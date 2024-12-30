@@ -1,5 +1,5 @@
 ## Live
-https://reactredux-loan-calculator.vercel.app/
+https://irr-hesaplama.vercel.app/
 
 
 
