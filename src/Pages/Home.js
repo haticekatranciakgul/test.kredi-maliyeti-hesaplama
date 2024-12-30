@@ -11,6 +11,7 @@ import AddIcon from "@mui/icons-material/Add";
 import DeleteIcon from "@mui/icons-material/Delete";
 import axios from "axios";
 import Typography from "@mui/material/Typography";
+import { BASE_URL } from "../api";
 
 const Home = () => {
   const theme = useTheme();
@@ -63,8 +64,9 @@ const Home = () => {
         additionalRows: generatedRows,
       };
 
-      // Fake API POST request
-      const response = await axios.post("https://jsonplaceholder.typicode.com/posts", payload);
+      const response = await axios.post(`${BASE_URL}/posts`, payload); 
+
+      //const response = await axios.post("https://jsonplaceholder.typicode.com/posts", payload);
       console.log("Data saved successfully:", response.data);
       alert("Veriler başarıyla kaydedildi.");
     } catch (error) {
@@ -87,38 +89,113 @@ const Home = () => {
                   LOREM İPSUM
                 </Typography>
               </Grid>
+
               <Grid item xs={2}>
+                <TextField
+                  required
+                  label="Kredi Tutarı"
+                  value={creditAmount}
+                  onChange={(e) => {
+                    const value = e.target.value;
+                    if (/^\d*\.?\d*$/.test(value)) {
+                      setCreditAmount(value);
+                    }
+                  }}
+                  inputProps={{
+                    inputMode: 'numeric',
+                    pattern: '[0-9]*'
+                  }}
+                />
+              </Grid>
+              {/* <Grid item xs={2}>
                 <TextField
                   required
                   label="Kredi Tutarı"
                   value={creditAmount}
                   onChange={(e) => setCreditAmount(e.target.value)}
                 />
-              </Grid>
+              </Grid> */}
               <Grid item xs={2}>
+                <TextField
+                  required
+                  label="Diğer Masraflar"
+                  value={otherExpenses}
+                  onChange={(e) => {
+
+                    const value = e.target.value;
+                    if (/^\d*\.?\d*$/.test(value)) {
+                      setOtherExpenses(value);
+                    }
+                  }}
+                  inputProps={{
+                    inputMode: 'numeric',
+                    pattern: '[0-9]*'
+                  }}
+                />
+              </Grid>
+              {/* <Grid item xs={2}>
                 <TextField
                   required
                   label="Diğer Masraflar"
                   value={otherExpenses}
                   onChange={(e) => setOtherExpenses(e.target.value)}
                 />
-              </Grid>
+              </Grid> */}
+
+
               <Grid item xs={2}>
+                <TextField
+                  required
+                  label="Vade Periyodu"
+                  value={inputCount}
+                  onChange={(e) => {
+                    const value = e.target.value;
+                    if (/^\d*$/.test(value) && (value === "" || parseInt(value) <= 999)) {
+                      setInputCount(value);
+                    }
+                  }}
+                  inputProps={{
+                    inputMode: 'numeric',
+                    pattern: '[0-9]*',
+                    max: 999 
+                  }}
+                />
+
+              </Grid>
+              {/* <Grid item xs={2}>
                 <TextField
                   required
                   label="Vade Periyodu"
                   value={inputCount}
                   onChange={(e) => setInputCount(e.target.value)}
                 />
-              </Grid>
+              </Grid> */}
               <Grid item xs={2}>
+                <TextField
+                  required
+                  label="Ödeme Tutarı"
+                  value={sharedValue}
+                  onChange={(e) => {
+                    const value = e.target.value;
+                    if (/^\d*\.?\d*$/.test(value)) {
+                      setSharedValue(value);
+                    }
+                  }}
+                  inputProps={{
+                    inputMode: 'numeric',
+                    pattern: '[0-9]*'
+                  }}
+                />
+              </Grid>
+
+              {/* <Grid item xs={2}>
                 <TextField
                   required
                   label="Ödeme Tutarı"
                   value={sharedValue}
                   onChange={(e) => setSharedValue(e.target.value)}
                 />
-              </Grid>
+              </Grid> */}
               <Grid item xs={2} display="flex" justifyContent="flex-end">
                 <Button
                   variant="contained"
@@ -136,7 +213,7 @@ const Home = () => {
                   variant="contained"
                   fullWidth
                   size="small"
-                   color="primary"
+                  color="primary"
                   onClick={handleSave}
                 >
                   KAYDET
@@ -147,7 +224,24 @@ const Home = () => {
               <Grid container spacing={2}>
                 {generatedRows.map((row, index) => (
                   <React.Fragment key={index}>
+
                     <Grid item xs={5}>
+                      <TextField
+                        fullWidth
+                        value={row.value1}
+                        onChange={(e) => {
+                          const value = e.target.value;
+                          if (/^\d*\.?\d*$/.test(value)) {
+                            handleInputChange(index, "value1", value);
+                          }
+                        }}
+                        inputProps={{
+                          inputMode: 'numeric',
+                          pattern: '[0-9]*'
+                        }}
+                      />
+                    </Grid>
+                    {/* <Grid item xs={5}>
                       <TextField
                         fullWidth
                         value={row.value1}
@@ -155,8 +249,28 @@ const Home = () => {
                           handleInputChange(index, "value1", e.target.value)
                         }
                       />
-                    </Grid>
+                    </Grid> */}
+
+
                     <Grid item xs={5}>
+                      <TextField
+                        fullWidth
+                        value={row.value2}
+                        onChange={(e) => {
+                          // Sadece sayıları kabul ediyoruz
+                          const value = e.target.value;
+                          if (/^\d*\.?\d*$/.test(value)) {
+                            handleInputChange(index, "value2", value);
+                          }
+                        }}
+                        inputProps={{
+                          inputMode: 'numeric',
+                          pattern: '[0-9]*'
+                        }}
+                      />
+                    </Grid>
+
+                    {/* <Grid item xs={5}>
                       <TextField
                         fullWidth
                         value={row.value2}
@@ -164,7 +278,9 @@ const Home = () => {
                           handleInputChange(index, "value2", e.target.value)
                         }
                       />
-                    </Grid>
+                    </Grid> */}
+
+
                     <Grid
                       item
                       xs={2}
