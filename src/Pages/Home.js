@@ -16,7 +16,6 @@ import { BASE_URL } from "../api";
 const Home = () => {
   const theme = useTheme();
   const colorMode = useContext(ColorModeContext);
-
   const [inputCount, setInputCount] = useState("");
   const [credits, setcredits] = useState("");
   const [initial, setInitial] = useState("");
@@ -34,8 +33,10 @@ const Home = () => {
             initial: parseFloat(initial) || 0,
             credits: generatedRows.map((row) => parseFloat(row.value2) || 0),
           }
+          
         );
         setIrrValue(response.data.irr);
+        
       } catch (error) {
         if (error.response) {
           console.error("API Yanıt Hatası:", error.response);
@@ -67,6 +68,14 @@ const Home = () => {
       setGeneratedRows(newRows);
     }
   }, [inputCount, credits]);
+
+    
+  useEffect(() => {
+    if (irrValue !== null) {
+      console.log("Hesaplanan IRR: ", irrValue); 
+    }
+  }, [irrValue]);
+  
 
   const handleAddRow = () => {
     setGeneratedRows((prevRows) => [...prevRows, { value1: "", value2: "" }]);
@@ -115,13 +124,7 @@ const Home = () => {
     }
   };
   
-  
-  useEffect(() => {
-    if (irrValue !== null) {
-      console.log("Hesaplanan IRR: ", irrValue); 
-    }
-  }, [irrValue]);
-  
+
 
   return (
     <ColorModeContext.Provider value={colorMode}>
