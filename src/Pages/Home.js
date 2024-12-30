@@ -12,9 +12,6 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import axios from "axios";
 import Typography from "@mui/material/Typography";
 import { BASE_URL } from "../api";
-
-
-import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardActionArea from '@mui/material/CardActionArea';
 import Paper from '@mui/material/Paper';
@@ -145,34 +142,19 @@ const Home = () => {
                   IRR HESAPLAMA
                 </Typography>
               </Grid>
-              <Grid item xs={12}>
-             
-              <Paper elevation={4} sx={{ maxWidth: 345 }}>
+              <Grid item xs={12} sx={{alignItems: "center", display: "flex", justifyContent: "center"}}>
+                <Paper elevation={4} sx={{ maxWidth: 345, backgroundColor:'transparent' }}>
                   <CardActionArea>
-                    
                     <CardContent>
                       <Typography gutterBottom variant="h5" component="div">
                         Sonuç =  {irrValue !== null
-                    ? `Hesaplanan IRR: ${irrValue}`
-                    : "IRR değeri henüz hesaplanmadı."}
-                      </Typography>
-                      <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-                     
+                          ? `Hesaplanan IRR: ${irrValue}`
+                          : "IRR değeri henüz hesaplanmadı."}
                       </Typography>
                     </CardContent>
                   </CardActionArea>
-                  {/* <CardActions>
-                    <Button size="small" color="primary">
-                      Share
-                    </Button>
-                  </CardActions> */}
                 </Paper>
-
-              
-              
-
               </Grid>
-
               <Grid item xs={2}>
                 <TextField
                   required

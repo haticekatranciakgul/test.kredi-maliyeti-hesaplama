@@ -5,6 +5,7 @@ import { ThemeProvider, useTheme } from "@mui/material";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
 import Box from "@mui/material/Box";
+import Divider from "@mui/material/Divider";
 
 const Layout = ( {children}) => {
   const theme = useTheme();
@@ -29,6 +30,7 @@ const Layout = ( {children}) => {
         >
           <Navbar />
           {children}
+          <Divider></Divider>
           <Footer />
         </Box>
        
