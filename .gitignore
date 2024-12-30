@@ -1,9 +1,39 @@
-# Node.js
-node_modules/
+# Created by https://www.toptal.com/developers/gitignore/api/react,visualstudiocode
+# Edit at https://www.toptal.com/developers/gitignore?templates=react,visualstudiocode
 
-# VSCode
-.vscode/
+### react ###
+.DS_*
+*.log
+logs
+**/*.backup.*
+**/*.back.*
 
-# Diğer gereksiz dosyalar
-.DS_Store
-npm-debug.log*
+node_modules
+bower_components
+
+*.sublime*
+
+psd
+thumb
+sketch
+
+### VisualStudioCode ###
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+!.vscode/*.code-snippets
+
+# Local History for Visual Studio Code
+.history/
+
+# Built Visual Studio Code Extensions
+*.vsix
+
+### VisualStudioCode Patch ###
+# Ignore all local history of files
+.history
+.ionide
+
+# End of https://www.toptal.com/developers/gitignore/api/react,visualstudiocode

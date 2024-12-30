@@ -188,7 +188,7 @@ const Home = () => {
                   value={inputCount}
                   onChange={(e) => {
                     const value = e.target.value;
-                    if (/^\d*$/.test(value) && (value === "" || parseInt(value) <= 999)) {
+                    if (/^\d*$/.test(value) && (value === "" || parseInt(value) <= 99)) {
                       setInputCount(value);
                     }
                   }}
