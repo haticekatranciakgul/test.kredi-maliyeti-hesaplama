@@ -64,22 +64,13 @@ export default function AppAppBar() {
             {/* <Sitemark /> */}
             <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
               <Button variant="text" color="info" size="small">
-                Features
+                Hakkında
               </Button>
               <Button variant="text" color="info" size="small">
-                Testimonials
+                Detaylar
               </Button>
               <Button variant="text" color="info" size="small">
-                Highlights
-              </Button>
-              <Button variant="text" color="info" size="small">
-                Pricing
-              </Button>
-              <Button variant="text" color="info" size="small" sx={{ minWidth: 0 }}>
-                FAQ
-              </Button>
-              <Button variant="text" color="info" size="small" sx={{ minWidth: 0 }}>
-                Blog
+                Hesaplamalar
               </Button>
             </Box>
           </Box>
@@ -99,10 +90,10 @@ export default function AppAppBar() {
                     )}
                 </IconButton>
             <Button color="primary" variant="contained" size="small">
-              Sign in
+             Giriş Yap
             </Button>
             <Button color="primary" variant="contained" size="small">
-              Sign up
+              Kayıt Ol
             </Button>
             {/* <ColorModeIconDropdown /> */}
           </Box>
