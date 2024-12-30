@@ -1,0 +1,9 @@
+# Node.js
+node_modules/
+
+# VSCode
+.vscode/
+
+# Diğer gereksiz dosyalar
+.DS_Store
+npm-debug.log*
