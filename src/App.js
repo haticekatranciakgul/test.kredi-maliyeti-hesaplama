@@ -11,7 +11,7 @@ const App = () => {
     return <div>
         <ColorModeContext.Provider value={colorMode}>
             <ThemeProvider theme={theme}>
-                <CssBaseline />
+                <CssBaseline enableColorScheme />
                 <BrowserRouter>
                     <Layout>
                         <Routes>

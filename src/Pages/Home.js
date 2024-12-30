@@ -13,6 +13,13 @@ import axios from "axios";
 import Typography from "@mui/material/Typography";
 import { BASE_URL } from "../api";
 
+
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import CardActionArea from '@mui/material/CardActionArea';
+import Paper from '@mui/material/Paper';
+
+
 const Home = () => {
   const theme = useTheme();
   const colorMode = useContext(ColorModeContext);
@@ -21,7 +28,7 @@ const Home = () => {
   const [initial, setInitial] = useState("");
   const [otherExpenses, setOtherExpenses] = useState("");
   const [generatedRows, setGeneratedRows] = useState([]);
-  const [irrValue, setIrrValue] = useState(null); 
+  const [irrValue, setIrrValue] = useState(null);
 
 
   useEffect(() => {
@@ -33,10 +40,10 @@ const Home = () => {
             initial: parseFloat(initial) || 0,
             credits: generatedRows.map((row) => parseFloat(row.value2) || 0),
           }
-          
+
         );
         setIrrValue(response.data.irr);
-        
+
       } catch (error) {
         if (error.response) {
           console.error("API Yanıt Hatası:", error.response);
@@ -50,12 +57,12 @@ const Home = () => {
         setIrrValue(null);
       }
     };
-  
+
     if (initial && otherExpenses && inputCount && generatedRows.length > 0) {
       fetchIrrValue();
     }
   }, [initial, otherExpenses, inputCount, generatedRows]);
-  
+
 
 
   useEffect(() => {
@@ -69,13 +76,13 @@ const Home = () => {
     }
   }, [inputCount, credits]);
 
-    
+
   useEffect(() => {
     if (irrValue !== null) {
-      console.log("Hesaplanan IRR: ", irrValue); 
+      console.log("Hesaplanan IRR: ", irrValue);
     }
   }, [irrValue]);
-  
+
 
   const handleAddRow = () => {
     setGeneratedRows((prevRows) => [...prevRows, { value1: "", value2: "" }]);
@@ -100,8 +107,8 @@ const Home = () => {
     try {
       const credits = generatedRows.map((row) => parseFloat(row.value2) || 0);
       const payload = {
-        initial: parseFloat(initial) || 0, 
-        credits, 
+        initial: parseFloat(initial) || 0,
+        credits,
       };
 
       const response = await axios.post(`${BASE_URL}/api/v1/credits/create`, payload);
@@ -123,7 +130,7 @@ const Home = () => {
       alert("Veriler kaydedilirken bir hata oluştu.");
     }
   };
-  
+
 
 
   return (
@@ -139,11 +146,31 @@ const Home = () => {
                 </Typography>
               </Grid>
               <Grid item xs={12}>
-                <Typography>
-                  {irrValue !== null
+             
+              <Paper elevation={4} sx={{ maxWidth: 345 }}>
+                  <CardActionArea>
+                    
+                    <CardContent>
+                      <Typography gutterBottom variant="h5" component="div">
+                        Sonuç =  {irrValue !== null
                     ? `Hesaplanan IRR: ${irrValue}`
                     : "IRR değeri henüz hesaplanmadı."}
-                </Typography>
+                      </Typography>
+                      <Typography variant="body2" sx={{ color: 'text.secondary' }}>
+                     
+                      </Typography>
+                    </CardContent>
+                  </CardActionArea>
+                  {/* <CardActions>
+                    <Button size="small" color="primary">
+                      Share
+                    </Button>
+                  </CardActions> */}
+                </Paper>
+
+              
+              
+
               </Grid>
 
               <Grid item xs={2}>
@@ -195,7 +222,7 @@ const Home = () => {
                   inputProps={{
                     inputMode: 'numeric',
                     pattern: '[0-9]*',
-                    max: 999 
+                    max: 999
                   }}
                 />
 
