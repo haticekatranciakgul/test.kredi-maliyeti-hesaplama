@@ -18,21 +18,55 @@ const Home = () => {
   const colorMode = useContext(ColorModeContext);
 
   const [inputCount, setInputCount] = useState("");
-  const [sharedValue, setSharedValue] = useState("");
-  const [creditAmount, setCreditAmount] = useState("");
+  const [credits, setcredits] = useState("");
+  const [initial, setInitial] = useState("");
   const [otherExpenses, setOtherExpenses] = useState("");
   const [generatedRows, setGeneratedRows] = useState([]);
+  const [irrValue, setIrrValue] = useState(null); 
+
+
+  useEffect(() => {
+    const fetchIrrValue = async () => {
+      try {
+        const response = await axios.post(
+          `${BASE_URL}/api/v1/credits/create`,
+          {
+            initial: parseFloat(initial) || 0,
+            credits: generatedRows.map((row) => parseFloat(row.value2) || 0),
+          }
+        );
+        setIrrValue(response.data.irr);
+      } catch (error) {
+        if (error.response) {
+          console.error("API Yanıt Hatası:", error.response);
+          console.log("Hata Kodu:", error.response.status);
+          console.log("Hata Mesajı:", error.response.data);
+        } else if (error.request) {
+          console.error("API İsteği Hatası:", error.request);
+        } else {
+          console.error("API Hatası:", error.message);
+        }
+        setIrrValue(null);
+      }
+    };
+  
+    if (initial && otherExpenses && inputCount && generatedRows.length > 0) {
+      fetchIrrValue();
+    }
+  }, [initial, otherExpenses, inputCount, generatedRows]);
+  
+
 
   useEffect(() => {
     const count = parseInt(inputCount) || 0;
-    if (sharedValue) {
+    if (credits) {
       const newRows = Array.from({ length: count }, () => ({
         value1: "",
-        value2: sharedValue,
+        value2: credits,
       }));
       setGeneratedRows(newRows);
     }
-  }, [inputCount, sharedValue]);
+  }, [inputCount, credits]);
 
   const handleAddRow = () => {
     setGeneratedRows((prevRows) => [...prevRows, { value1: "", value2: "" }]);
@@ -55,38 +89,57 @@ const Home = () => {
 
   const handleSave = async () => {
     try {
-      const paymentArray = Array(parseInt(inputCount) || 0).fill(sharedValue);
+      const credits = generatedRows.map((row) => parseFloat(row.value2) || 0);
       const payload = {
-        creditAmount,
-        otherExpenses,
-        installmentPeriod: inputCount,
-        paymentArray,
-        additionalRows: generatedRows,
+        initial: parseFloat(initial) || 0, 
+        credits, 
       };
 
-      const response = await axios.post(`${BASE_URL}/posts`, payload); 
-
-      //const response = await axios.post("https://jsonplaceholder.typicode.com/posts", payload);
-      console.log("Data saved successfully:", response.data);
+      const response = await axios.post(`${BASE_URL}/api/v1/credits/create`, payload);
+      if (response.data && response.data.irr !== undefined) {
+        setIrrValue(response.data.irr);
+      } else {
+        console.error("IRR değeri yanıt verisi içinde bulunamadı.");
+        setIrrValue(null);
+      }
       alert("Veriler başarıyla kaydedildi.");
     } catch (error) {
-      console.error("Error saving data:", error);
+      if (error.response) {
+        console.error("API yanıt hatası:", error.response);
+      } else if (error.request) {
+        console.error("API isteği hatası:", error.request);
+      } else {
+        console.error("API hatası:", error.message);
+      }
       alert("Veriler kaydedilirken bir hata oluştu.");
     }
   };
+  
+  
+  useEffect(() => {
+    if (irrValue !== null) {
+      console.log("Hesaplanan IRR: ", irrValue); 
+    }
+  }, [irrValue]);
+  
 
   return (
     <ColorModeContext.Provider value={colorMode}>
       <ThemeProvider theme={theme}>
         <CssBaseline />
-        <Container maxWidth="md" sx={{ minHeight: "42vh", marginTop: "2%" }}>
-
+        <Container maxWidth="md" sx={{ minHeight: "60vh", marginTop: "12%" }}>
           <Box sx={{ flexGrow: 1, backgroundColor: "#", p: 5 }}>
-
             <Grid container spacing={2}>
               <Grid item xs={12} sx={{ display: "flex", justifyContent: "center" }}>
-                <Typography sx={{ fontSize: "90px" }} gutterBottom>
-                  LOREM İPSUM
+                <Typography sx={{ fontSize: "60px" }} gutterBottom>
+                  IRR HESAPLAMA
+                </Typography>
+              </Grid>
+              <Grid item xs={12}>
+                <Typography>
+                  {irrValue !== null
+                    ? `Hesaplanan IRR: ${irrValue}`
+                    : "IRR değeri henüz hesaplanmadı."}
                 </Typography>
               </Grid>
 
@@ -94,11 +147,11 @@ const Home = () => {
                 <TextField
                   required
                   label="Kredi Tutarı"
-                  value={creditAmount}
+                  value={initial}
                   onChange={(e) => {
                     const value = e.target.value;
                     if (/^\d*\.?\d*$/.test(value)) {
-                      setCreditAmount(value);
+                      setInitial(value);
                     }
                   }}
                   inputProps={{
@@ -107,14 +160,6 @@ const Home = () => {
                   }}
                 />
               </Grid>
-              {/* <Grid item xs={2}>
-                <TextField
-                  required
-                  label="Kredi Tutarı"
-                  value={creditAmount}
-                  onChange={(e) => setCreditAmount(e.target.value)}
-                />
-              </Grid> */}
               <Grid item xs={2}>
                 <TextField
                   required
@@ -133,16 +178,6 @@ const Home = () => {
                   }}
                 />
               </Grid>
-              {/* <Grid item xs={2}>
-                <TextField
-                  required
-                  label="Diğer Masraflar"
-                  value={otherExpenses}
-                  onChange={(e) => setOtherExpenses(e.target.value)}
-                />
-              </Grid> */}
-
-
               <Grid item xs={2}>
                 <TextField
                   required
@@ -162,23 +197,15 @@ const Home = () => {
                 />
 
               </Grid>
-              {/* <Grid item xs={2}>
-                <TextField
-                  required
-                  label="Vade Periyodu"
-                  value={inputCount}
-                  onChange={(e) => setInputCount(e.target.value)}
-                />
-              </Grid> */}
               <Grid item xs={2}>
                 <TextField
                   required
                   label="Ödeme Tutarı"
-                  value={sharedValue}
+                  value={credits}
                   onChange={(e) => {
                     const value = e.target.value;
                     if (/^\d*\.?\d*$/.test(value)) {
-                      setSharedValue(value);
+                      setcredits(value);
                     }
                   }}
                   inputProps={{
@@ -187,15 +214,6 @@ const Home = () => {
                   }}
                 />
               </Grid>
-
-              {/* <Grid item xs={2}>
-                <TextField
-                  required
-                  label="Ödeme Tutarı"
-                  value={sharedValue}
-                  onChange={(e) => setSharedValue(e.target.value)}
-                />
-              </Grid> */}
               <Grid item xs={2} display="flex" justifyContent="flex-end">
                 <Button
                   variant="contained"
@@ -226,38 +244,12 @@ const Home = () => {
                   <React.Fragment key={index}>
 
                     <Grid item xs={5}>
-                      <TextField
-                        fullWidth
-                        value={row.value1}
-                        onChange={(e) => {
-                          const value = e.target.value;
-                          if (/^\d*\.?\d*$/.test(value)) {
-                            handleInputChange(index, "value1", value);
-                          }
-                        }}
-                        inputProps={{
-                          inputMode: 'numeric',
-                          pattern: '[0-9]*'
-                        }}
-                      />
                     </Grid>
-                    {/* <Grid item xs={5}>
-                      <TextField
-                        fullWidth
-                        value={row.value1}
-                        onChange={(e) =>
-                          handleInputChange(index, "value1", e.target.value)
-                        }
-                      />
-                    </Grid> */}
-
-
                     <Grid item xs={5}>
                       <TextField
                         fullWidth
                         value={row.value2}
                         onChange={(e) => {
-                          // Sadece sayıları kabul ediyoruz
                           const value = e.target.value;
                           if (/^\d*\.?\d*$/.test(value)) {
                             handleInputChange(index, "value2", value);
@@ -269,18 +261,6 @@ const Home = () => {
                         }}
                       />
                     </Grid>
-
-                    {/* <Grid item xs={5}>
-                      <TextField
-                        fullWidth
-                        value={row.value2}
-                        onChange={(e) =>
-                          handleInputChange(index, "value2", e.target.value)
-                        }
-                      />
-                    </Grid> */}
-
-
                     <Grid
                       item
                       xs={2}

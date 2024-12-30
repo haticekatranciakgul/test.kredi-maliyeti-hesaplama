@@ -1,66 +1,3 @@
-// import React from "react";
-// import { useContext } from "react";
-// import { ColorModeContext, tokens } from "../theme";
-// import { useTheme, Box, IconButton, InputBase } from "@mui/material";
-// import LightModeOutlinedIcon from "@mui/icons-material/LightModeOutlined";
-// import DarkModeOutlinedIcon from "@mui/icons-material/DarkModeOutlined";
-// import NotificationsOutlinedIcon from "@mui/icons-material/NotificationsOutlined";
-// import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
-// import PersonOutlinedIcon from "@mui/icons-material/PersonOutlined";
-// import SearchIcon from "@mui/icons-material/Search";
-
-// const Navbar = () => {
-//     const theme = useTheme();
-//     const colors = tokens(theme.palette.mode);
-//     const colorMode = useContext(ColorModeContext);
-
-
-//     return (
-//         <Box display="flex" justifyContent="space-between" p={2}>
-//             <Box display="flex">
-//                 <Box
-//                     display="flex"
-//                     border={`1px solid ${colors.grey[500]}`}
-//                     p={0.2}
-//                     borderRadius={1}
-//                 >
-//                     <InputBase sx={{ ml: 1, flex: 1 }} placeholder="Search" />
-//                     <IconButton type="button">
-//                         <SearchIcon />
-//                     </IconButton>
-
-                    
-//                 </Box>
-//             </Box>
-//             <Box display="flex">
-//                 <IconButton onClick={colorMode.toggleColorMode}>
-//                     {theme.palette.mode === "dark" ? (
-
-//                         <LightModeOutlinedIcon />
-//                     ) : (
-//                         <DarkModeOutlinedIcon />
-//                     )}
-//                 </IconButton>
-//                 <IconButton>
-//                     <NotificationsOutlinedIcon />
-//                 </IconButton>
-//                 <IconButton>
-//                     <SettingsOutlinedIcon />
-//                 </IconButton>
-//                 <IconButton>
-//                     <PersonOutlinedIcon />
-//                 </IconButton>
-//             </Box>
-//         </Box>
-//     );
-// };
-
-// export default Navbar;
-
-
-
-
-
 import * as React from 'react';
 import { styled, alpha } from '@mui/material/styles';
 import Box from '@mui/material/Box';
@@ -74,10 +11,6 @@ import MenuItem from '@mui/material/MenuItem';
 import Drawer from '@mui/material/Drawer';
 import MenuIcon from '@mui/icons-material/Menu';
 import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
-// import Sitemark from './SitemarkIcon';
-// import ColorModeIconDropdown from '../../shared-theme/ColorModeIconDropdown';
-
-
 import { useContext } from "react";
 import { ColorModeContext } from "../theme";
 import { useTheme } from "@mui/material";
