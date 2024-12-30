@@ -47,10 +47,10 @@ export default function Footer() {
             <Box sx={{ width: { xs: '100%', sm: '60%' } }}>
 
               <Typography variant="body2" gutterBottom sx={{ fontWeight: 600, mt: 2 }}>
-                Join the newsletter
+                BİZE ULAŞIN
               </Typography>
               <Typography variant="body2" sx={{ color: 'text.secondary', mb: 2 }}>
-                Subscribe for weekly updates. No spams ever!
+                HAFTALIK BÜLTENİMİZE ABONE OLUN
               </Typography>
               <InputLabel htmlFor="email-newsletter">Email</InputLabel>
               <Stack direction="row" spacing={1} useFlexGap>
@@ -61,7 +61,7 @@ export default function Footer() {
                   variant="outlined"
                   fullWidth
                   aria-label="Enter your email address"
-                  placeholder="Your email address"
+                  placeholder="Lütfen email adresinizi girin"
 
                   sx={{ width: '250px' }}
                 />
@@ -71,7 +71,7 @@ export default function Footer() {
                   size="small"
                   sx={{ flexShrink: 0 }}
                 >
-                  Subscribe
+                  ABONE OL
                 </Button>
               </Stack>
             </Box>
@@ -84,22 +84,19 @@ export default function Footer() {
             }}
           >
             <Typography variant="body2" sx={{ fontWeight: 'medium' }}>
-              Product
+              Ürünler
             </Typography>
             <Link color="text.secondary" variant="body2" href="#">
-              Features
+              Özellikler
             </Link>
             <Link color="text.secondary" variant="body2" href="#">
-              Testimonials
+            Görüşler
             </Link>
             <Link color="text.secondary" variant="body2" href="#">
-              Highlights
+            Öne Çıkanlar
             </Link>
             <Link color="text.secondary" variant="body2" href="#">
-              Pricing
-            </Link>
-            <Link color="text.secondary" variant="body2" href="#">
-              FAQs
+              Sıkça Sorulan Sorular
             </Link>
           </Box>
           <Box
@@ -110,38 +107,16 @@ export default function Footer() {
             }}
           >
             <Typography variant="body2" sx={{ fontWeight: 'medium' }}>
-              Company
+              Şirket
             </Typography>
             <Link color="text.secondary" variant="body2" href="#">
-              About us
+              Hakkımızda
             </Link>
             <Link color="text.secondary" variant="body2" href="#">
-              Careers
-            </Link>
-            <Link color="text.secondary" variant="body2" href="#">
-              Press
+              Kariyer
             </Link>
           </Box>
-          <Box
-            sx={{
-              display: { xs: 'none', sm: 'flex' },
-              flexDirection: 'column',
-              gap: 1,
-            }}
-          >
-            <Typography variant="body2" sx={{ fontWeight: 'medium' }}>
-              Legal
-            </Typography>
-            <Link color="text.secondary" variant="body2" href="#">
-              Terms
-            </Link>
-            <Link color="text.secondary" variant="body2" href="#">
-              Privacy
-            </Link>
-            <Link color="text.secondary" variant="body2" href="#">
-              Contact
-            </Link>
-          </Box>
+          
         </Box>
         <Box
           sx={{
@@ -179,7 +154,7 @@ export default function Footer() {
             <IconButton
               color="inherit"
               size="small"
-              href="https://github.com/mui"
+              href="https://github.com/haticekatranciakgul"
               aria-label="GitHub"
               sx={{ alignSelf: 'center' }}
             >
@@ -188,7 +163,7 @@ export default function Footer() {
             <IconButton
               color="inherit"
               size="small"
-              href="https://x.com/MaterialUI"
+              href="#"
               aria-label="X"
               sx={{ alignSelf: 'center' }}
             >
@@ -197,7 +172,7 @@ export default function Footer() {
             <IconButton
               color="inherit"
               size="small"
-              href="https://www.linkedin.com/company/mui/"
+              href="#"
               aria-label="LinkedIn"
               sx={{ alignSelf: 'center' }}
             >
