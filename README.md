@@ -1,5 +1,6 @@
 ## Live
-reactredux-loan-calculator.vercel.app
+https://reactredux-loan-calculator.vercel.app/
+
 
 
 # Getting Started with Create React App
