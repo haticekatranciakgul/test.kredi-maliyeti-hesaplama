@@ -63,13 +63,19 @@ export default function AppAppBar() {
           <Box sx={{ flexGrow: 1, display: 'flex', alignItems: 'center', px: 0 }}>
             {/* <Sitemark /> */}
             <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
-              <Button variant="text" color="inherit" size="small">
+              <Button variant="text" 
+                sx={{ color: theme => theme.palette.mode === 'dark' ? 'white' : 'black' }}
+                size="small">
                 Hakkında
               </Button>
-              <Button variant="text" color="inherit" size="small">
+              <Button variant="text" 
+                sx={{ color: theme => theme.palette.mode === 'dark' ? 'white' : 'black' }}
+                color="inherit" size="small">
                 Detaylar
               </Button>
-              <Button variant="text" color="inherit" size="small">
+              <Button variant="text"     
+                sx={{ color: theme => theme.palette.mode === 'dark' ? 'white' : 'black' }}
+                color="inherit" size="small">
                 Hesaplamalar
               </Button>
             </Box>
@@ -81,16 +87,16 @@ export default function AppAppBar() {
               alignItems: 'center',
             }}
           >
-             <IconButton onClick={colorMode.toggleColorMode}>
-                    {theme.palette.mode === "dark" ? (
+            <IconButton onClick={colorMode.toggleColorMode}>
+              {theme.palette.mode === "dark" ? (
 
-                        <LightModeOutlinedIcon />
-                    ) : (
-                        <DarkModeOutlinedIcon />
-                    )}
-                </IconButton>
+                <LightModeOutlinedIcon />
+              ) : (
+                <DarkModeOutlinedIcon />
+              )}
+            </IconButton>
             <Button color="primary" variant="contained" size="small">
-             Giriş Yap
+              Giriş Yap
             </Button>
             <Button color="primary" variant="contained" size="small">
               Kayıt Ol
