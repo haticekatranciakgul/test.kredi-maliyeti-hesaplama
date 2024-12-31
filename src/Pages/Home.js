@@ -15,7 +15,7 @@ import { BASE_URL } from "../api";
 import CardContent from '@mui/material/CardContent';
 import CardActionArea from '@mui/material/CardActionArea';
 import Paper from '@mui/material/Paper';
-
+import Divider from '@mui/material/Divider';
 
 const Home = () => {
   const theme = useTheme();
@@ -134,16 +134,34 @@ const Home = () => {
     <ColorModeContext.Provider value={colorMode}>
       <ThemeProvider theme={theme}>
         <CssBaseline />
-        <Container maxWidth="md" sx={{ minHeight: "60vh", marginTop: "12%" }}>
-          <Box sx={{ flexGrow: 1, backgroundColor: "#", p: 5 }}>
-            <Grid container spacing={2}>
-              <Grid item xs={12} sx={{ display: "flex", justifyContent: "center" }}>
-                <Typography sx={{ fontSize: "60px" }} gutterBottom>
-                  IRR HESAPLAMA
+        <Box sx={{
+            width: '100%',
+            backgroundImage: theme => theme.palette.mode === 'dark'
+                ? 'radial-gradient(ellipse 80% 50% at 50% -20%, hsl(210, 100%, 30%), transparent)'
+                : 'radial-gradient(ellipse 80% 50% at 50% -20%, hsl(210, 100%, 60%), transparent)',
+        }}>
+
+        <Container  id='hesaplamalar' sx={{
+          minHeight: "60vh",  marginBottom: '12%',
+          
+        }}>
+          <Box sx={{ display: 'flex', justifyContent: 'center', paddingTop:'12%' }} id='irr-calculator'>
+                <Typography sx={{ fontSize: "40px" }} gutterBottom>
+                IRR HESAPLAMA
                 </Typography>
-              </Grid>
-              <Grid item xs={12} sx={{alignItems: "center", display: "flex", justifyContent: "center"}}>
-                <Paper elevation={4} sx={{ maxWidth: 345, backgroundColor:'transparent' }}>
+            </Box>
+            <Divider></Divider>
+          
+          <Box sx={{
+            flexGrow: 1, p: 5, backgroundColor: 'transparent', borderRadius: 10, marginTop: '5%',
+            boxShadow: '1px 1px 185px -23px rgba(0, 0, 0, 0.43)',
+            webkitBoxShadow: '1px 1px 185px -23px rgba(0,0,0,0.43)',
+            mozBoxShadow: '1px 1px 185px -23px rgba(0,0,0,0.43)',
+          }}>
+            <Grid container spacing={2}>
+
+              <Grid item xs={12} sx={{ alignItems: "center", display: "flex", justifyContent: "center" }}>
+                <Paper elevation={4} sx={{ maxWidth: 345, backgroundColor: 'transparent' }}>
                   <CardActionArea>
                     <CardContent>
                       <Typography gutterBottom variant="h5" component="div">
@@ -154,6 +172,10 @@ const Home = () => {
                     </CardContent>
                   </CardActionArea>
                 </Paper>
+              </Grid>
+              <Grid item xs={12} sx={{ display: "flex", justifyContent: "center" }}>
+                <Typography>*Kredi Tutarı, Diğer Masraflar, Vade Periyodu ve Ödeme Tutarını Giriniz</Typography>
+
               </Grid>
               <Grid item xs={2}>
                 <TextField
@@ -168,7 +190,21 @@ const Home = () => {
                   }}
                   inputProps={{
                     inputMode: 'numeric',
-                    pattern: '[0-9]*'
+                    pattern: '[0-9]*',
+                    style: {  color: (theme) => theme.palette.mode === 'light' ? '#a1a4ab' : '#5e5b54',}
+                  }}
+                  InputLabelProps={{
+                    style: {   color: (theme) => theme.palette.mode === 'light' ? '#a1a4ab' : '#5e5b54', }, 
+                  }}
+                  sx={{
+                    '& .MuiInputBase-input': {
+                       color: (theme) => theme.palette.mode === 'light' ? '#a1a4ab' : '#5e5b54',
+                    },
+                    '& .MuiInputLabel-root': {
+                      color: (theme) => theme.palette.mode === 'light' ? '#a1a4ab' : '#ffffff',
+                    }, '& .MuiInputLabel-root.Mui-focused': {
+                      color: (theme) => theme.palette.mode === 'light' ? '#a1a4ab' : '#ffffff',
+                    },
                   }}
                 />
               </Grid>
@@ -188,6 +224,19 @@ const Home = () => {
                     inputMode: 'numeric',
                     pattern: '[0-9]*'
                   }}
+                  InputLabelProps={{
+                    style: {   color: (theme) => theme.palette.mode === 'light' ? '#a1a4ab' : '#5e5b54', }, 
+                  }}
+                  sx={{
+                    '& .MuiInputBase-input': {
+                       color: (theme) => theme.palette.mode === 'light' ? '#a1a4ab' : '#5e5b54',
+                    },
+                    '& .MuiInputLabel-root': {
+                      color: (theme) => theme.palette.mode === 'light' ? '#a1a4ab' : '#ffffff',
+                    }, '& .MuiInputLabel-root.Mui-focused': {
+                      color: (theme) => theme.palette.mode === 'light' ? '#a1a4ab' : '#ffffff',
+                    },
+                  }}
                 />
               </Grid>
               <Grid item xs={2}>
@@ -206,6 +255,19 @@ const Home = () => {
                     pattern: '[0-9]*',
                     max: 999
                   }}
+                  InputLabelProps={{
+                    style: {   color: (theme) => theme.palette.mode === 'light' ? '#a1a4ab' : '#5e5b54', }, 
+                  }}
+                  sx={{
+                    '& .MuiInputBase-input': {
+                       color: (theme) => theme.palette.mode === 'light' ? '#a1a4ab' : '#5e5b54',
+                    },
+                    '& .MuiInputLabel-root': {
+                      color: (theme) => theme.palette.mode === 'light' ? '#a1a4ab' : '#ffffff',
+                    }, '& .MuiInputLabel-root.Mui-focused': {
+                      color: (theme) => theme.palette.mode === 'light' ? '#a1a4ab' : '#ffffff',
+                    },
+                  }}
                 />
 
               </Grid>
@@ -223,6 +285,19 @@ const Home = () => {
                   inputProps={{
                     inputMode: 'numeric',
                     pattern: '[0-9]*'
+                  }}
+                  InputLabelProps={{
+                    style: {   color: (theme) => theme.palette.mode === 'light' ? '#a1a4ab' : '#5e5b54', }, 
+                  }}
+                  sx={{
+                    '& .MuiInputBase-input': {
+                       color: (theme) => theme.palette.mode === 'light' ? '#a1a4ab' : '#5e5b54',
+                    },
+                    '& .MuiInputLabel-root': {
+                      color: (theme) => theme.palette.mode === 'light' ? '#a1a4ab' : '#ffffff',
+                    }, '& .MuiInputLabel-root.Mui-focused': {
+                      color: (theme) => theme.palette.mode === 'light' ? '#a1a4ab' : '#ffffff',
+                    },
                   }}
                 />
               </Grid>
@@ -282,8 +357,8 @@ const Home = () => {
                     >
                       <Button
                         variant="contained"
-                        color="error"
-                        startIcon={<DeleteIcon />}
+                        color="primary"
+                        startIcon={<DeleteIcon  />}
                         onClick={() => handleDeleteRow(index)}
                       >
                         SİL
@@ -294,9 +369,16 @@ const Home = () => {
               </Grid>
             </Box>
           </Box>
+         
         </Container>
+
+
+
+        </Box>
+        
+
       </ThemeProvider>
-    </ColorModeContext.Provider>
+    </ColorModeContext.Provider >
   );
 };
 

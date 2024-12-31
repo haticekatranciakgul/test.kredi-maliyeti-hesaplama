@@ -164,7 +164,16 @@ export const themeSettings = (mode) => {
                 })
         },
         typography: {
-            fontFamily: ["Source Sans Pro", "sans-serif"].join(","),
+            fontFamily: [  '-apple-system',
+                'BlinkMacSystemFont',
+                '"Segoe UI"',
+                'Roboto',
+                '"Helvetica Neue"',
+                'Arial',
+                'sans-serif',
+                '"Apple Color Emoji"',
+                '"Segoe UI Emoji"',
+                '"Segoe UI Symbol"',].join(","),
             fontSize: 12,
             h1: {
                 fontFamily: ["Source Sans Pro", "sans-serif"].join(","),

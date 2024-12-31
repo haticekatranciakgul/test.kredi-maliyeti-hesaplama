@@ -63,20 +63,21 @@ export default function AppAppBar() {
           <Box sx={{ flexGrow: 1, display: 'flex', alignItems: 'center', px: 0 }}>
             {/* <Sitemark /> */}
             <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
-              <Button variant="text" 
+              <Button variant="text"  href="#main-content"
                 sx={{ color: theme => theme.palette.mode === 'dark' ? 'white' : 'black' }}
                 size="small">
                 Hakkında
               </Button>
               <Button variant="text" 
                 sx={{ color: theme => theme.palette.mode === 'dark' ? 'white' : 'black' }}
-                color="inherit" size="small">
-                Detaylar
+                color="inherit" size="small" href="#irr-calculator">
+                IRR Hesapla
               </Button>
+             
               <Button variant="text"     
                 sx={{ color: theme => theme.palette.mode === 'dark' ? 'white' : 'black' }}
-                color="inherit" size="small">
-                Hesaplamalar
+                color="inherit" size="small" href="#footer">
+                İletişim
               </Button>
             </Box>
           </Box>

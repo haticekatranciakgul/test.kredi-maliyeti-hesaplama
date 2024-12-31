@@ -6,6 +6,7 @@ import Navbar from "./Navbar";
 import Footer from "./Footer";
 import Box from "@mui/material/Box";
 import Divider from "@mui/material/Divider";
+import MainContent from "../Components/MainContent";
 
 const Layout = ( {children}) => {
   const theme = useTheme();
@@ -15,24 +16,17 @@ const Layout = ( {children}) => {
     <ColorModeContext.Provider value={colorMode}>
       <ThemeProvider theme={theme}>
         <CssBaseline />
-        <Box
-          sx={{
-            width: '100%',
-            backgroundImage: theme => theme.palette.mode === 'dark'
-              ? 'radial-gradient(ellipse 80% 50% at 50% -20%, hsl(210, 100%, 30%), transparent)'
-              : 'radial-gradient(ellipse 80% 50% at 50% -20%, hsl(210, 100%, 60%), transparent)',
-            backgroundRepeat: 'no-repeat',
-            backgroundSize: 'cover', 
-            display: 'flex',
-            flexDirection: 'column',
-            minHeight: '100vh', 
-          }}
-        >
+       
+        
+            <Divider></Divider>
           <Navbar />
           {children}
           <Divider></Divider>
-          <Footer />
-        </Box>
+          <MainContent></MainContent>
+          <Divider></Divider>
+          
+       
+        <Footer />
        
       </ThemeProvider>
     </ColorModeContext.Provider>

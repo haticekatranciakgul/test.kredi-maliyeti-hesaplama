@@ -17,23 +17,26 @@ import TwitterIcon from '@mui/icons-material/X';
 
 export default function Footer() {
   return (
-    <div>
-      <Container
-        sx={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          gap: { xs: 1, sm: 1 },
-          py: { xs: 1, sm: 1 },
-          textAlign: { sm: 'center', md: 'left' },
-        }}
-      >
+    <div
+      sx={{
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        gap: { xs: 1, sm: 1 },
+        py: { xs: 1, sm: 1 },
+        textAlign: { sm: 'center', md: 'left' },
+      }}
+      id="footer"
+    >
+      <Container >
         <Box
           sx={{
             display: 'flex',
             flexDirection: { xs: 'column', sm: 'row' },
             width: '100%',
             justifyContent: 'space-between',
+            paddingTop: { xs: 4, sm: 8 },
+            paddingBottom: { xs: 4, sm: 8 },
           }}
         >
           <Box
@@ -90,10 +93,10 @@ export default function Footer() {
               Özellikler
             </Link>
             <Link color="text.secondary" variant="body2" href="#">
-            Görüşler
+              Görüşler
             </Link>
             <Link color="text.secondary" variant="body2" href="#">
-            Öne Çıkanlar
+              Öne Çıkanlar
             </Link>
             <Link color="text.secondary" variant="body2" href="#">
               Sıkça Sorulan Sorular
@@ -116,7 +119,7 @@ export default function Footer() {
               Kariyer
             </Link>
           </Box>
-          
+
         </Box>
         <Box
           sx={{
@@ -180,8 +183,8 @@ export default function Footer() {
             </IconButton>
           </Stack>
         </Box>
-      </Container>
 
+      </Container>
     </div>
   )
 }
