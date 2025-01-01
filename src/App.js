@@ -5,6 +5,7 @@ import { ColorModeContext, useMode } from "./theme";
 import { CssBaseline, ThemeProvider } from "@mui/material";
 import Layout from "./Pages/Layout";
 import About from "./Pages/About";
+import Calculate from "./Pages/Calculate";
 
 
 const App = () => {
@@ -17,6 +18,7 @@ const App = () => {
                     <Layout>
                         <Routes>
                             <Route path="/" element={<Home></Home>}></Route>
+                            <Route path="/calculate" element={<Calculate></Calculate>}></Route>
                             <Route path="/about" element={<About></About>}></Route>
                         </Routes>
                     </Layout>
