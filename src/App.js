@@ -4,6 +4,7 @@ import Home from "./Pages/Home";
 import { ColorModeContext, useMode } from "./theme";
 import { CssBaseline, ThemeProvider } from "@mui/material";
 import Layout from "./Pages/Layout";
+import About from "./Pages/About";
 
 
 const App = () => {
@@ -16,6 +17,7 @@ const App = () => {
                     <Layout>
                         <Routes>
                             <Route path="/" element={<Home></Home>}></Route>
+                            <Route path="/about" element={<About></About>}></Route>
                         </Routes>
                     </Layout>
                 </BrowserRouter>

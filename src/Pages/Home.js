@@ -369,14 +369,8 @@ const Home = () => {
               </Grid>
             </Box>
           </Box>
-         
         </Container>
-
-
-
         </Box>
-        
-
       </ThemeProvider>
     </ColorModeContext.Provider >
   );

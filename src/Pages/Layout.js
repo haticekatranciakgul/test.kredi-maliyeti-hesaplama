@@ -4,11 +4,9 @@ import { ColorModeContext } from "../theme";
 import { ThemeProvider, useTheme } from "@mui/material";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
-import Box from "@mui/material/Box";
 import Divider from "@mui/material/Divider";
-import MainContent from "../Components/MainContent";
 
-const Layout = ( {children}) => {
+const Layout = ({ children }) => {
   const theme = useTheme();
   const colorMode = useContext(ColorModeContext);
 
@@ -16,18 +14,11 @@ const Layout = ( {children}) => {
     <ColorModeContext.Provider value={colorMode}>
       <ThemeProvider theme={theme}>
         <CssBaseline />
-       
-        
-            <Divider></Divider>
-          <Navbar />
-          {children}
-          <Divider></Divider>
-          <MainContent></MainContent>
-          <Divider></Divider>
-          
-       
+        <Divider></Divider>
+        <Navbar />
+        {children}
+        <Divider></Divider>
         <Footer />
-       
       </ThemeProvider>
     </ColorModeContext.Provider>
   );

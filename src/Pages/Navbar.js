@@ -16,8 +16,7 @@ import { ColorModeContext } from "../theme";
 import { useTheme } from "@mui/material";
 import LightModeOutlinedIcon from "@mui/icons-material/LightModeOutlined";
 import DarkModeOutlinedIcon from "@mui/icons-material/DarkModeOutlined";
-
-
+import { Link } from "react-router-dom";
 
 
 const StyledToolbar = styled(Toolbar)(({ theme }) => ({
@@ -63,10 +62,10 @@ export default function AppAppBar() {
           <Box sx={{ flexGrow: 1, display: 'flex', alignItems: 'center', px: 0 }}>
             {/* <Sitemark /> */}
             <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
-              <Button variant="text"  href="#main-content"
+              <Button variant="text"  
                 sx={{ color: theme => theme.palette.mode === 'dark' ? 'white' : 'black' }}
                 size="small">
-                Hakkında
+                  <Link to={`/about`} style={{ textDecoration: 'none', color: 'inherit' }}>Hakkında</Link>
               </Button>
               <Button variant="text" 
                 sx={{ color: theme => theme.palette.mode === 'dark' ? 'white' : 'black' }}
