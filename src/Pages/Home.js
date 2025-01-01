@@ -321,7 +321,7 @@ const Home = () => {
                   color="primary"
                   onClick={handleSave}
                 >
-                  KAYDET
+                  Hesapla
                 </Button>
               </Grid>
             </Grid>
