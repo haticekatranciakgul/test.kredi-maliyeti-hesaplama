@@ -5,6 +5,8 @@ import { ThemeProvider, useTheme } from "@mui/material";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
 import Divider from "@mui/material/Divider";
+import ScrollToTop from "react-scroll-to-top";
+
 
 const Layout = ({ children }) => {
   const theme = useTheme();
@@ -18,7 +20,9 @@ const Layout = ({ children }) => {
         <Navbar />
         {children}
         <Divider></Divider>
+        <ScrollToTop smooth />
         <Footer />
+
       </ThemeProvider>
     </ColorModeContext.Provider>
   );

@@ -27,7 +27,7 @@ function About() {
                     }}>
 
                         <Typography>
-                            <h2>IRR anlamı</h2>
+                            <h2>IRR Anlamı</h2>
 
                             IRR, iç getiri oranı anlamına gelir. Harici faktörleri hariç tutarak bir proje veya yatırımdaki getiri oranınızı ölçer.
                             Muhasebe getiri oranına (ARR) benzer şekilde yatırımların karlılığını tahmin etmek için kullanılabilir .
@@ -35,7 +35,7 @@ function About() {
                             Potansiyel projeleri sıralamak için IRR kullanıyorsanız, en yüksek IRR'ye sahip yatırım muhtemelen ilk yapılması gereken yatırımdır
                             (her projenin yatırım maliyetinin eşit olduğu varsayılarak).
 
-                            <h2>IRR nasıl hesaplanır?</h2>
+                            <h2>IRR Nasıl Hesaplanır?</h2>
                             IRR nasıl hesaplanır
                             IRR'nin nasıl hesaplanacağını anlamak zor olabilir, çünkü IRR formülü diğer birçok finansal metrikten biraz daha karmaşıktır. İşte hesaplamalarınızda kullanabileceğiniz IRR formülü:
                             <Box sx={{ display: 'flex', justifyContent: 'center', paddingTop: '2%', paddingBottom: '2%' }}>
@@ -57,16 +57,23 @@ function About() {
                                 t = Zaman periyotlarının sayısı
                             </Typography>
 
-                            <h2>İç verim oranı nedir?</h2>
-                            Farklı yatırım seçeneklerini kârlılıklarına göre değerlendirmede kullanılan oldukça önemli bir finansal kavramdır. İç verim oranı aynı zamanda yatırımın hangi oranda katma değer yaratacağını da ifade etmektedir. İç getiri oranı, iç kârlılık oranı ve yatırımın marjinal verimliliği gibi farklı adlarlarla da anılmaktadır.
-                            <h2> İç verim oranı nasıl hesaplanır?</h2>
+                            <h2>IRR Nasıl Kullanılır?</h2>
+                            IRR yöntemi, işletmeler tarafından hangi projenin veya yatırımın fonlanmaya değer olduğunu belirlemek için sıklıkla kullanılır. Örneğin, yeni bir ekipman satın almak mı yoksa yeni bir ürün serisine yatırım yapmak mı istediğinizi anlamaya çalışıyorsanız, IRR sağlıklı bir getiri oranı sağlama olasılığı en yüksek olan seçeneği anlamanıza yardımcı olabilir. Gerçek getiri oranının tahmini IRR'den önemli ölçüde farklı olması muhtemel olsa da, rakip seçeneklerden çok daha yüksek IRR'ye sahip projelerin daha iyi değer sunma olasılığı yüksektir.
 
-                            İç verim oranı, bir nakit akışının net bugünkü değerini sıfıra eşitleyen, diğer bir deyişle gelecekteki nakit giriş ve çıkışlarının bugünkü değerini bugünkü yatırım maliyetine eşitleyen iskonto oranı olarak tanımlanır.
+                            IRR yönteminin özellikle yararlı olduğu birkaç farklı senaryo vardır. Mevcut operasyonları genişletmenin karlılığını yeni operasyonlar kurmakla karşılaştırıyorsanız, şirketiniz hangisinin daha karlı seçenek olduğuna karar vermek için IRR hesaplama formülünü kullanabilir. Ayrıca, IRR hisse senedi geri alım programını düşünen şirketler için yararlı olabilir; şirketin hisse senedi diğer potansiyel projelerden daha düşük bir IRR'ye sahipse, hisse senedi geri alımı en iyi fikir olmayabilir.
 
-                            Yatırımdan sağlanan yıllık net nakit akımlarının sabit olması durumunda iç verim oranının hesaplanması oldukça kolaydır. Ancak yatırımlardan sağlanan dönemsel net nakit akımları genelde birbirinden farklıdır. Bu durumda iç verim oranı, deneme-yanılma ve enterpolasyon metodunun birlikte kullanılması ile bulunur. Hesaplamada negatif ve pozitif net bugünkü değer sonucu veren iki iskonto oranı bulunur. Bu iki değer arasında enterpolasyon yapılarak iç verim oranı tespit edilir.
-                            <h2>Yatırım kararlarında iç verim oranı nasıl değerlendirilir?</h2>
 
-                            Alternatif yatırımlar arasında yapılan seçimlerde iç verim oranı en büyük olan projeye öncelik verilir. Eğer ilgili yatırımın finansmanı tamamen borç kullanılarak sağlanacaksa, iç verim oranı ödenebilecek en yüksek faiz oranını göstermektedir.
+
+                            <h2>IRR'nin Sınırlamaları</h2>
+                            IRR, gelecekteki projelerin veya yatırımların karlılığını tahmin etmek için mükemmel bir araç olsa da, tek başına kullanıldığında biraz yanıltıcı olabilir.
+
+                            Düşük IRR'ye sahip projeler yüksek NPV'ye sahip olabilir, bu da getiri oranı diğer projelerden daha yavaş olsa da yatırımın kendisinin işletmeniz için önemli bir değer üretme olasılığının yüksek olduğunu gösterir. Aynı şekilde, IRR farklı uzunluklardaki projeleri değerlendirmek için en iyi araç olmayabilir.
+
+                            Ayrıca, IRR bir yatırımla ilişkili pozitif nakit akışlarının projenin getiri oranında yeniden yatırılacağını varsayar. Bu durum böyle olmayabilir ve sonuç olarak IRR yöntemi bir projenin maliyeti ve karlılığının en doğru yansıması olmayabilir.
+
+                            Genel olarak, IRR hesaplama formülü değerli bir ölçüttür, ancak nihai kararınızı verirken buna çok fazla önem vermemeniz önemlidir. Bu sorunları düzelten ve projeleri değerlendirmek için IRR formülünü kullanmayı düşünüyorsanız araştırmaya değer olabilecek değiştirilmiş iç getiri oranı (MIRR) adı verilen başka bir formül daha vardır.
+
+                           
                         </Typography>
                     </Box>
                 </Container>
