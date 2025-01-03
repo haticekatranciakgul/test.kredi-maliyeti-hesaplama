@@ -107,7 +107,7 @@ function Calculate() {
                 console.error("IRR değeri yanıt verisi içinde bulunamadı.");
                 setIrrValue(null);
             }
-            alert("Veriler başarıyla kaydedildi.");
+            //alert("Veriler başarıyla kaydedildi.");
         } catch (error) {
             if (error.response) {
                 console.error("API yanıt hatası:", error.response);
@@ -116,7 +116,7 @@ function Calculate() {
             } else {
                 console.error("API hatası:", error.message);
             }
-            alert("Veriler kaydedilirken bir hata oluştu.");
+            //alert("Veriler kaydedilirken bir hata oluştu.");
         }
     };
 
