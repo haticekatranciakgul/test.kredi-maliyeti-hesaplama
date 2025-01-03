@@ -26,7 +26,6 @@ export default function Footer() {
         py: { xs: 1, sm: 1 },
         textAlign: { sm: 'center', md: 'left' },
       }}
-      id="footer"
     >
       <Container >
         <Box

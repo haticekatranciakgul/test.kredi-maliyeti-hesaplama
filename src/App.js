@@ -6,6 +6,7 @@ import { CssBaseline, ThemeProvider } from "@mui/material";
 import Layout from "./Pages/Layout";
 import About from "./Pages/About";
 import Calculate from "./Pages/Calculate";
+import Contact from "./Pages/Contact";
 
 
 const App = () => {
@@ -20,6 +21,7 @@ const App = () => {
                             <Route path="/" element={<Home></Home>}></Route>
                             <Route path="/calculate" element={<Calculate></Calculate>}></Route>
                             <Route path="/about" element={<About></About>}></Route>
+                            <Route path="/contact" element={<Contact></Contact>}></Route>
                         </Routes>
                     </Layout>
                 </BrowserRouter>

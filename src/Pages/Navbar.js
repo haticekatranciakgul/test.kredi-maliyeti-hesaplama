@@ -74,8 +74,8 @@ export default function AppAppBar() {
               </Button>
               <Button variant="text"     
                 sx={{ color: theme => theme.palette.mode === 'dark' ? 'white' : 'black' }}
-                color="inherit" size="small" href="#footer">
-                İletişim
+                color="inherit" size="small" >
+                  <Link to={`/contact`} style={{ textDecoration: 'none', color: 'inherit' }}>İletişim</Link>
               </Button>
             </Box>
           </Box>
