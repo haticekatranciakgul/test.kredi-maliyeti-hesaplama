@@ -10,7 +10,7 @@ import Typography from "@mui/material/Typography";
 import { BASE_URL } from "../api";
 import Divider from '@mui/material/Divider';
 
-import { useDispatch} from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { fetchData } from '../Redux/dataSlice';
 import CreateTable from "../Components/CreateTable";
 // import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material';
@@ -25,8 +25,6 @@ function Calculate() {
     const [generatedRows, setGeneratedRows] = useState([]);
     const [irrValue, setIrrValue] = useState(null);
 
-
-
     const [showTable, setShowTable] = useState(false);
     const dispatch = useDispatch();
 
@@ -34,8 +32,6 @@ function Calculate() {
         dispatch(fetchData());
         setShowTable(true);
     };
-
-   
 
 
     useEffect(() => {
@@ -151,71 +147,17 @@ function Calculate() {
                 </Typography>
             </Box>
             <Divider></Divider>
-
-
-
-
-
-
-
-
-
             {showTable && (
-
                 <Box sx={{
                     flexGrow: 1, p: 5, backgroundColor: 'transparent', borderRadius: 10, marginTop: '5%',
                     boxShadow: '1px 1px 185px -23px rgba(0, 0, 0, 0.43)',
                     webkitBoxShadow: '1px 1px 185px -23px rgba(0,0,0,0.43)',
                     mozBoxShadow: '1px 1px 185px -23px rgba(0,0,0,0.43)',
-                   
+
                 }}>
-                    {/* <Box>
-                        <TextField
-                            label="Ara"
-                            variant="outlined"
-                            size="small"
-                            style={{ margin: '20px 0' }}
-                            onChange={(e) => setSearch(e.target.value)}
-                        />
-                        <Button variant="contained" color="primary" onClick={handleExport}>
-                            CSV Olarak Dışa Aktar
-                        </Button>
-                        {status === 'loading' && <p>Yükleniyor...</p>}
-                        {status === 'succeeded' && (
-                            <TableContainer component={Paper}>
-                                <Table>
-                                    <TableHead>
-                                        <TableRow>
-                                            <TableCell>ID</TableCell>
-                                            <TableCell>Başlık</TableCell>
-                                            <TableCell>İçerik</TableCell>
-                                        </TableRow>
-                                    </TableHead>
-                                    <TableBody>
-                                        {filteredData.map((row) => (
-                                            <TableRow key={row.id}>
-                                                <TableCell>{row.id}</TableCell>
-                                                <TableCell>{row.title}</TableCell>
-                                                <TableCell>{row.body}</TableCell>
-                                            </TableRow>
-                                        ))}
-                                    </TableBody>
-                                </Table>
-                            </TableContainer>
-                        )}
-                        {status === 'failed' && <p>Veri alınamadı!</p>}
-                    </Box> */}
-
-                    <CreateTable/>
-
-
+                    <CreateTable />
                 </Box>
-
             )}
-
-
-
-
             <Box sx={{
                 flexGrow: 1, p: 5, backgroundColor: 'transparent', borderRadius: 10, marginTop: '5%',
                 boxShadow: '1px 1px 185px -23px rgba(0, 0, 0, 0.43)',
@@ -250,163 +192,173 @@ function Calculate() {
                     <Grid item xs={12} sx={{ display: "flex", justifyContent: "center", paddingBottom: '2%' }}>
                         <Typography>*Kredi Tutarı, Diğer Masraflar, Vade Periyodu ve Ödeme Tutarını Giriniz</Typography>
                     </Grid>
-                    <Grid item xs={12} sm={4} md={2} lg={2} xl={2} >
-                        <TextField fullWidth
-                            required
-                            label="Kredi Tutarı"
-                            value={initial}
-                            onChange={(e) => {
-                                const value = e.target.value;
-                                if (/^\d*\.?\d*$/.test(value)) {
-                                    setInitial(value);
-                                }
-                            }}
-                            inputProps={{
-                                inputMode: 'numeric',
-                                pattern: '[0-9]*',
-                                style: { color: (theme) => theme.palette.mode === 'light' ? '#a1a4ab' : '#5e5b54', }
-                            }}
-                            InputLabelProps={{
-                                style: { color: (theme) => theme.palette.mode === 'light' ? '#a1a4ab' : '#5e5b54', },
-                            }}
-                            sx={{
-                                '& .MuiInputBase-input': {
-                                    color: (theme) => theme.palette.mode === 'light' ? '#a1a4ab' : '#5e5b54',
-                                },
-                                '& .MuiInputLabel-root': {
-                                    color: (theme) => theme.palette.mode === 'light' ? '#a1a4ab' : '#ffffff',
-                                }, '& .MuiInputLabel-root.Mui-focused': {
-                                    color: (theme) => theme.palette.mode === 'light' ? '#a1a4ab' : '#ffffff',
-                                },
-                            }}
-                        />
-                    </Grid>
-                    <Grid item xs={12} sm={4} md={2} lg={2} xl={2}>
-                        <TextField fullWidth
-                            required
-                            label="Diğer Masraflar"
-                            value={otherExpenses}
-                            onChange={(e) => {
+                    <Grid container spacing={2} columns={12}>
+                        <Grid item xs={12} sm={12} md={8} >
+                            <Grid container spacing={2} columns={12}>
+                                <Grid item xs={12} sm={6} md={3} lg={3} xl={3} >
+                                    <TextField fullWidth
+                                        required
+                                        label="Kredi Tutarı"
+                                        value={initial}
+                                        onChange={(e) => {
+                                            const value = e.target.value;
+                                            if (/^\d*\.?\d*$/.test(value)) {
+                                                setInitial(value);
+                                            }
+                                        }}
+                                        inputProps={{
+                                            inputMode: 'numeric',
+                                            pattern: '[0-9]*',
+                                            style: { color: (theme) => theme.palette.mode === 'light' ? '#a1a4ab' : '#5e5b54', }
+                                        }}
+                                        InputLabelProps={{
+                                            style: { color: (theme) => theme.palette.mode === 'light' ? '#a1a4ab' : '#5e5b54', },
+                                        }}
+                                        sx={{
+                                            '& .MuiInputBase-input': {
+                                                color: (theme) => theme.palette.mode === 'light' ? '#a1a4ab' : '#5e5b54',
+                                            },
+                                            '& .MuiInputLabel-root': {
+                                                color: (theme) => theme.palette.mode === 'light' ? '#a1a4ab' : '#ffffff',
+                                            }, '& .MuiInputLabel-root.Mui-focused': {
+                                                color: (theme) => theme.palette.mode === 'light' ? '#a1a4ab' : '#ffffff',
+                                            },
+                                        }}
+                                    />
+                                </Grid>
+                                <Grid item xs={12} sm={6} md={3} lg={3} xl={3}>
+                                    <TextField fullWidth
+                                        required
+                                        label="Diğer Masraflar"
+                                        value={otherExpenses}
+                                        onChange={(e) => {
 
-                                const value = e.target.value;
-                                if (/^\d*\.?\d*$/.test(value)) {
-                                    setOtherExpenses(value);
-                                }
-                            }}
-                            inputProps={{
-                                inputMode: 'numeric',
-                                pattern: '[0-9]*'
-                            }}
-                            InputLabelProps={{
-                                style: { color: (theme) => theme.palette.mode === 'light' ? '#a1a4ab' : '#5e5b54', },
-                            }}
-                            sx={{
-                                '& .MuiInputBase-input': {
-                                    color: (theme) => theme.palette.mode === 'light' ? '#a1a4ab' : '#5e5b54',
-                                },
-                                '& .MuiInputLabel-root': {
-                                    color: (theme) => theme.palette.mode === 'light' ? '#a1a4ab' : '#ffffff',
-                                }, '& .MuiInputLabel-root.Mui-focused': {
-                                    color: (theme) => theme.palette.mode === 'light' ? '#a1a4ab' : '#ffffff',
-                                },
-                            }}
-                        />
-                    </Grid>
-                    <Grid item xs={12} sm={4} md={2} lg={2} xl={2}>
-                        <TextField fullWidth
-                            required
-                            label="Vade Periyodu"
-                            value={inputCount}
-                            onChange={(e) => {
-                                const value = e.target.value;
-                                if (/^\d*$/.test(value) && (value === "" || parseInt(value) <= 99)) {
-                                    setInputCount(value);
-                                }
-                            }}
-                            inputProps={{
-                                inputMode: 'numeric',
-                                pattern: '[0-9]*',
-                                max: 999
-                            }}
-                            InputLabelProps={{
-                                style: { color: (theme) => theme.palette.mode === 'light' ? '#a1a4ab' : '#5e5b54', },
-                            }}
-                            sx={{
-                                '& .MuiInputBase-input': {
-                                    color: (theme) => theme.palette.mode === 'light' ? '#a1a4ab' : '#5e5b54',
-                                },
-                                '& .MuiInputLabel-root': {
-                                    color: (theme) => theme.palette.mode === 'light' ? '#a1a4ab' : '#ffffff',
-                                }, '& .MuiInputLabel-root.Mui-focused': {
-                                    color: (theme) => theme.palette.mode === 'light' ? '#a1a4ab' : '#ffffff',
-                                },
-                            }}
-                        />
+                                            const value = e.target.value;
+                                            if (/^\d*\.?\d*$/.test(value)) {
+                                                setOtherExpenses(value);
+                                            }
+                                        }}
+                                        inputProps={{
+                                            inputMode: 'numeric',
+                                            pattern: '[0-9]*'
+                                        }}
+                                        InputLabelProps={{
+                                            style: { color: (theme) => theme.palette.mode === 'light' ? '#a1a4ab' : '#5e5b54', },
+                                        }}
+                                        sx={{
+                                            '& .MuiInputBase-input': {
+                                                color: (theme) => theme.palette.mode === 'light' ? '#a1a4ab' : '#5e5b54',
+                                            },
+                                            '& .MuiInputLabel-root': {
+                                                color: (theme) => theme.palette.mode === 'light' ? '#a1a4ab' : '#ffffff',
+                                            }, '& .MuiInputLabel-root.Mui-focused': {
+                                                color: (theme) => theme.palette.mode === 'light' ? '#a1a4ab' : '#ffffff',
+                                            },
+                                        }}
+                                    />
+                                </Grid>
+                                <Grid item xs={12} sm={6} md={3} lg={3} xl={3}>
+                                    <TextField fullWidth
+                                        required
+                                        label="Vade Periyodu"
+                                        value={inputCount}
+                                        onChange={(e) => {
+                                            const value = e.target.value;
+                                            if (/^\d*$/.test(value) && (value === "" || parseInt(value) <= 99)) {
+                                                setInputCount(value);
+                                            }
+                                        }}
+                                        inputProps={{
+                                            inputMode: 'numeric',
+                                            pattern: '[0-9]*',
+                                            max: 999
+                                        }}
+                                        InputLabelProps={{
+                                            style: { color: (theme) => theme.palette.mode === 'light' ? '#a1a4ab' : '#5e5b54', },
+                                        }}
+                                        sx={{
+                                            '& .MuiInputBase-input': {
+                                                color: (theme) => theme.palette.mode === 'light' ? '#a1a4ab' : '#5e5b54',
+                                            },
+                                            '& .MuiInputLabel-root': {
+                                                color: (theme) => theme.palette.mode === 'light' ? '#a1a4ab' : '#ffffff',
+                                            }, '& .MuiInputLabel-root.Mui-focused': {
+                                                color: (theme) => theme.palette.mode === 'light' ? '#a1a4ab' : '#ffffff',
+                                            },
+                                        }}
+                                    />
 
-                    </Grid>
-                    <Grid item xs={12} sm={4} md={2} lg={2} xl={2}>
-                        <TextField fullWidth
-                            required
-                            label="Ödeme Tutarı"
-                            value={credits}
-                            onChange={(e) => {
-                                const value = e.target.value;
-                                if (/^\d*\.?\d*$/.test(value)) {
-                                    setcredits(value);
-                                }
-                            }}
-                            inputProps={{
-                                inputMode: 'numeric',
-                                pattern: '[0-9]*'
-                            }}
-                            InputLabelProps={{
-                                style: { color: (theme) => theme.palette.mode === 'light' ? '#a1a4ab' : '#5e5b54', },
-                            }}
-                            sx={{
-                                '& .MuiInputBase-input': {
-                                    color: (theme) => theme.palette.mode === 'light' ? '#a1a4ab' : '#5e5b54',
-                                },
-                                '& .MuiInputLabel-root': {
-                                    color: (theme) => theme.palette.mode === 'light' ? '#a1a4ab' : '#ffffff',
-                                }, '& .MuiInputLabel-root.Mui-focused': {
-                                    color: (theme) => theme.palette.mode === 'light' ? '#a1a4ab' : '#ffffff',
-                                },
-                            }}
-                        />
-                    </Grid>
-                    <Grid item xs={12} sm={4} md={2} lg={2} xl={2} display="flex" justifyContent="flex-end">
-                        <Button
-                            variant="contained"
-                            startIcon={<AddIcon />}
-                            fullWidth
-                            size="small"
-                            color="primary"
-                            onClick={handleAddRow}
-                        >
-                            EKLE
-                        </Button>
-                    </Grid>
-                    <Grid item xs={12} sm={4} md={2} lg={2} xl={2} display="flex" justifyContent="flex-end">
-                        <Button
-                            variant="contained"
-                            fullWidth
-                            size="small"
-                            color="primary"
-                            onClick={handleSave}
-                        >
-                            Hesapla
-                        </Button>
-                    </Grid>
-                    <Grid item xs={12} sm={4} md={2} lg={2} xl={2} display="flex" justifyContent="flex-end">
-                        <Button
-                            variant="contained"
-                            fullWidth
-                            size="small"
-                            color="primary"
-                            onClick={handleFetchData}
-                        >
-                            Tablo Oluştur
-                        </Button>
+                                </Grid>
+                                <Grid item xs={12} sm={6} md={3} lg={3} xl={3}>
+                                    <TextField fullWidth
+                                        required
+                                        label="Ödeme Tutarı"
+                                        value={credits}
+                                        onChange={(e) => {
+                                            const value = e.target.value;
+                                            if (/^\d*\.?\d*$/.test(value)) {
+                                                setcredits(value);
+                                            }
+                                        }}
+                                        inputProps={{
+                                            inputMode: 'numeric',
+                                            pattern: '[0-9]*'
+                                        }}
+                                        InputLabelProps={{
+                                            style: { color: (theme) => theme.palette.mode === 'light' ? '#a1a4ab' : '#5e5b54', },
+                                        }}
+                                        sx={{
+                                            '& .MuiInputBase-input': {
+                                                color: (theme) => theme.palette.mode === 'light' ? '#a1a4ab' : '#5e5b54',
+                                            },
+                                            '& .MuiInputLabel-root': {
+                                                color: (theme) => theme.palette.mode === 'light' ? '#a1a4ab' : '#ffffff',
+                                            }, '& .MuiInputLabel-root.Mui-focused': {
+                                                color: (theme) => theme.palette.mode === 'light' ? '#a1a4ab' : '#ffffff',
+                                            },
+                                        }}
+                                    />
+                                </Grid>
+                            </Grid>
+                        </Grid>
+                        <Grid item xs={12} sm={12} md={4} >
+                            <Grid container spacing={2} columns={12}>
+                                <Grid item xs={12} sm={4} md={4} lg={4} xl={4} display="flex" justifyContent="flex-end">
+                                    <Button
+                                        variant="contained"
+                                        startIcon={<AddIcon />}
+                                        fullWidth
+                                        size="small"
+                                        color="primary"
+                                        onClick={handleAddRow}
+                                    >
+                                        EKLE
+                                    </Button>
+                                </Grid>
+                                <Grid item xs={12} sm={4} md={4} lg={4} xl={4} display="flex" justifyContent="flex-end">
+                                    <Button
+                                        variant="contained"
+                                        fullWidth
+                                        size="small"
+                                        color="primary"
+                                        onClick={handleSave}
+                                    >
+                                        Hesapla
+                                    </Button>
+                                </Grid>
+                                <Grid item xs={12} sm={4} md={4} lg={4} xl={4} display="flex" justifyContent="flex-end">
+                                    <Button
+                                        variant="contained"
+                                        fullWidth
+                                        size="small"
+                                        color="primary"
+                                        onClick={handleFetchData}
+                                    >
+                                        Tablo Oluştur
+                                    </Button>
+                                </Grid>
+                            </Grid>
+                        </Grid>
                     </Grid>
                 </Grid>
                 <Box mt={4}>
