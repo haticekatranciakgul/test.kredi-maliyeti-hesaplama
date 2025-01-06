@@ -2,8 +2,8 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
   initial: '0',
-  // otherExpenses: '',
-  // inputCount: '',
+  otherExpenses: '',
+  inputCount: '',
   credits: '0',
   generatedRows: [],
 };

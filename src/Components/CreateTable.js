@@ -15,8 +15,8 @@ function CreateTable({ fetchData }) {
 
     const filteredData = data.filter(
         (item) =>
-            item.title.toLowerCase().includes(search.toLowerCase()) ||
-            item.body.toLowerCase().includes(search.toLowerCase())
+            item.initial.toLowerCase().includes(search.toLowerCase()) ||
+            item.credits.toLowerCase().includes(search.toLowerCase())
     );
 
     const handleExport = () => {
@@ -79,8 +79,8 @@ function CreateTable({ fetchData }) {
                                     .map((row) => (
                                         <TableRow key={row.id}>
                                             <TableCell>{row.id}</TableCell>
-                                            <TableCell>{row.title}</TableCell>
-                                            <TableCell>{row.body}</TableCell>
+                                            <TableCell>{row.initial}</TableCell>
+                                            <TableCell>{row.credits}</TableCell>
                                         </TableRow>
                                     ))}
                             </TableBody>
