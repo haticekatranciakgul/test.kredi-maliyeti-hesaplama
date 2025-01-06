@@ -52,8 +52,6 @@ function Calculate() {
         }
     }, [initial, otherExpenses, inputCount, generatedRows]);
 
-
-
     useEffect(() => {
         const count = parseInt(inputCount) || 0;
         if (credits) {
@@ -65,13 +63,11 @@ function Calculate() {
         }
     }, [inputCount, credits]);
 
-
     useEffect(() => {
         if (irrValue !== null) {
             console.log("Hesaplanan IRR: ", irrValue);
         }
     }, [irrValue]);
-
 
     const handleAddRow = () => {
         setGeneratedRows((prevRows) => [...prevRows, { value1: "", value2: "" }]);
@@ -120,7 +116,6 @@ function Calculate() {
         }
     };
 
-
     return (
         <>
             <Box sx={{ display: 'flex', justifyContent: 'center', }}>
@@ -137,7 +132,6 @@ function Calculate() {
                 </Typography>
             </Box>
             <Divider></Divider>
-
             <Box sx={{
                 flexGrow: 1, p: 5, backgroundColor: 'transparent', borderRadius: 10, marginTop: '5%',
                 boxShadow: '1px 1px 185px -23px rgba(0, 0, 0, 0.43)',
@@ -145,9 +139,7 @@ function Calculate() {
                 mozBoxShadow: '1px 1px 185px -23px rgba(0,0,0,0.43)',
             }}>
                 <Grid container spacing={2}>
-
                     <Grid item xs={12} sx={{ alignItems: "center", display: "flex", justifyContent: "center" }}>
-
                         <Box sx={{ display: 'flex', justifyContent: 'center', paddingTop: '2%', paddingBottom: '2%' }}>
                             <Box sx={{
                                 display: 'flex', justifyContent: 'center', flexGrow: 1, p: 5, backgroundColor: 'transparent', borderRadius: 10, marginTop: '5%',
@@ -170,11 +162,9 @@ function Calculate() {
                                 </Typography>
                             </Box>
                         </Box><br />
-
                     </Grid>
                     <Grid item xs={12} sx={{ display: "flex", justifyContent: "center", paddingBottom: '2%' }}>
                         <Typography>*Kredi Tutarı, Diğer Masraflar, Vade Periyodu ve Ödeme Tutarını Giriniz</Typography>
-
                     </Grid>
                     <Grid item xs={12} sm={4} md={2} lg={2} xl={2} >
                         <TextField fullWidth
@@ -328,7 +318,6 @@ function Calculate() {
                     <Grid container spacing={2}>
                         {generatedRows.map((row, index) => (
                             <React.Fragment key={index}>
-
                                 <Grid item xs={5}>
                                 </Grid>
                                 <Grid item xs={5}>
