@@ -1,6 +1,9 @@
 import axios from 'axios';
 
-export const BASE_URL = 'https://credit-irr.vercel.app';
+//export const BASE_URL = 'https://credit-irr.vercel.app';
+
+//geçici api
+export const BASE_URL = 'https://jsonplaceholder.typicode.com/posts';
 
 export const saveData = async (payload) => {
   try {

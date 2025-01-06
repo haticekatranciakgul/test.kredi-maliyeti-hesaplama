@@ -10,6 +10,13 @@ import Typography from "@mui/material/Typography";
 import { BASE_URL } from "../api";
 import Divider from '@mui/material/Divider';
 
+import { useDispatch} from 'react-redux';
+import { fetchData } from '../Redux/dataSlice';
+import CreateTable from "../Components/CreateTable";
+// import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material';
+// import { saveAs } from 'file-saver';
+// import Createtable from '../Components/CreateTable';
+
 function Calculate() {
     const [inputCount, setInputCount] = useState("");
     const [credits, setcredits] = useState("");
@@ -18,6 +25,17 @@ function Calculate() {
     const [generatedRows, setGeneratedRows] = useState([]);
     const [irrValue, setIrrValue] = useState(null);
 
+
+
+    const [showTable, setShowTable] = useState(false);
+    const dispatch = useDispatch();
+
+    const handleFetchData = () => {
+        dispatch(fetchData());
+        setShowTable(true);
+    };
+
+   
 
 
     useEffect(() => {
@@ -116,6 +134,7 @@ function Calculate() {
         }
     };
 
+
     return (
         <>
             <Box sx={{ display: 'flex', justifyContent: 'center', }}>
@@ -132,6 +151,71 @@ function Calculate() {
                 </Typography>
             </Box>
             <Divider></Divider>
+
+
+
+
+
+
+
+
+
+            {showTable && (
+
+                <Box sx={{
+                    flexGrow: 1, p: 5, backgroundColor: 'transparent', borderRadius: 10, marginTop: '5%',
+                    boxShadow: '1px 1px 185px -23px rgba(0, 0, 0, 0.43)',
+                    webkitBoxShadow: '1px 1px 185px -23px rgba(0,0,0,0.43)',
+                    mozBoxShadow: '1px 1px 185px -23px rgba(0,0,0,0.43)',
+                   
+                }}>
+                    {/* <Box>
+                        <TextField
+                            label="Ara"
+                            variant="outlined"
+                            size="small"
+                            style={{ margin: '20px 0' }}
+                            onChange={(e) => setSearch(e.target.value)}
+                        />
+                        <Button variant="contained" color="primary" onClick={handleExport}>
+                            CSV Olarak Dışa Aktar
+                        </Button>
+                        {status === 'loading' && <p>Yükleniyor...</p>}
+                        {status === 'succeeded' && (
+                            <TableContainer component={Paper}>
+                                <Table>
+                                    <TableHead>
+                                        <TableRow>
+                                            <TableCell>ID</TableCell>
+                                            <TableCell>Başlık</TableCell>
+                                            <TableCell>İçerik</TableCell>
+                                        </TableRow>
+                                    </TableHead>
+                                    <TableBody>
+                                        {filteredData.map((row) => (
+                                            <TableRow key={row.id}>
+                                                <TableCell>{row.id}</TableCell>
+                                                <TableCell>{row.title}</TableCell>
+                                                <TableCell>{row.body}</TableCell>
+                                            </TableRow>
+                                        ))}
+                                    </TableBody>
+                                </Table>
+                            </TableContainer>
+                        )}
+                        {status === 'failed' && <p>Veri alınamadı!</p>}
+                    </Box> */}
+
+                    <CreateTable/>
+
+
+                </Box>
+
+            )}
+
+
+
+
             <Box sx={{
                 flexGrow: 1, p: 5, backgroundColor: 'transparent', borderRadius: 10, marginTop: '5%',
                 boxShadow: '1px 1px 185px -23px rgba(0, 0, 0, 0.43)',
@@ -156,7 +240,7 @@ function Calculate() {
                                         lg: '18px', // lg için font boyutu
                                     },
                                 }} variant="h4" >
-                                     {irrValue !== null
+                                    {irrValue !== null
                                         ? ` IRR = ${irrValue}`
                                         : "IRR değeri henüz hesaplanmadı."}
                                 </Typography>
@@ -291,7 +375,7 @@ function Calculate() {
                         />
                     </Grid>
                     <Grid item xs={12} sm={4} md={2} lg={2} xl={2} display="flex" justifyContent="flex-end">
-                        <Button 
+                        <Button
                             variant="contained"
                             startIcon={<AddIcon />}
                             fullWidth
@@ -311,6 +395,17 @@ function Calculate() {
                             onClick={handleSave}
                         >
                             Hesapla
+                        </Button>
+                    </Grid>
+                    <Grid item xs={12} sm={4} md={2} lg={2} xl={2} display="flex" justifyContent="flex-end">
+                        <Button
+                            variant="contained"
+                            fullWidth
+                            size="small"
+                            color="primary"
+                            onClick={handleFetchData}
+                        >
+                            Tablo Oluştur
                         </Button>
                     </Grid>
                 </Grid>
