@@ -20,8 +20,8 @@ import Table from "@mui/material/Table";
 import Paper from "@mui/material/Paper";
 
 
-//import { useDispatch } from 'react-redux';
-//import { fetchData } from '../Redux/dataSlice';
+import { useDispatch } from 'react-redux';
+import { fetchData } from '../Redux/dataSlice';
 import CreateTable from "../Components/CreateTable";
 // import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material';
 // import { saveAs } from 'file-saver';
@@ -35,15 +35,31 @@ function Calculate() {
     const [generatedRows, setGeneratedRows] = useState([]);
     const [irrValue, setIrrValue] = useState(null);
 
-   // const [showTable, setShowTable] = useState(false);
-    //const dispatch = useDispatch();
+    const [showTable, setShowTable] = useState(false);
+    const dispatch = useDispatch();
 
     const [tableData, setTableData] = useState([]);
     const [error, setError] = useState("");
 
+
+
+    // const handleFormSubmit = async () => {
+    //     const credits = generatedRows.map((row) => parseFloat(row.value2) || 0);
+    //     if (!initial || !credits) {
+    //         setError("Lütfen tüm alanları doldurun!");
+    //         return;
+    //     }
+    //     setError("");
+
+    //     const payload = {
+    //         initial: parseFloat(initial) || 0,
+    //         credits,
+    //     };
+
+
     const handleFormSubmit = async () => {
         const credits = generatedRows.map((row) => parseFloat(row.value2) || 0);
-        if (!initial || !credits) {
+        if (!initial || !credits.length) {
             setError("Lütfen tüm alanları doldurun!");
             return;
         }
@@ -62,6 +78,7 @@ function Calculate() {
                 id: index + 1,
                 initial: response.data.initial,
                 credits: response.data.credits,
+                value2 : generatedRows[index]?.value2 || 0,
                 //total: response.data.initial + response.data.credits,
             }));
             setTableData(generatedTable);
@@ -88,6 +105,10 @@ function Calculate() {
             console.log("inputCount:" + inputCount)
         }
     }, [inputCount, credits]);
+
+
+
+    
 
     useEffect(() => {
         if (irrValue !== null) {
@@ -194,7 +215,7 @@ function Calculate() {
                                 <TableRow key={row.id}>
                                     <TableCell>{row.id}</TableCell>
                                     <TableCell>{row.initial}</TableCell>
-                                    <TableCell>{row.credits}</TableCell>
+                                    <TableCell>{row.value2}</TableCell>
                                     {/* <TableCell>{row.total}</TableCell> */}
                                 </TableRow>
                             ))}
