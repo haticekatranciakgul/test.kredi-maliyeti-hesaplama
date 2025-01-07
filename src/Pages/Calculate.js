@@ -11,21 +11,6 @@ import { BASE_URL } from "../api";
 import Divider from '@mui/material/Divider';
 
 
-import TableBody from "@mui/material/TableBody";
-import TableCell from "@mui/material/TableCell";
-import TableContainer from "@mui/material/TableContainer";
-import TableHead from "@mui/material/TableHead";
-import TableRow from "@mui/material/TableRow";
-import Table from "@mui/material/Table";
-import Paper from "@mui/material/Paper";
-
-
-import { useDispatch } from 'react-redux';
-import { fetchData } from '../Redux/dataSlice';
-import CreateTable from "../Components/CreateTable";
-// import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material';
-// import { saveAs } from 'file-saver';
-// import Createtable from '../Components/CreateTable';
 
 function Calculate() {
     const [inputCount, setInputCount] = useState("");
@@ -35,63 +20,6 @@ function Calculate() {
     const [generatedRows, setGeneratedRows] = useState([]);
     const [irrValue, setIrrValue] = useState(null);
 
-    const [showTable, setShowTable] = useState(false);
-    const dispatch = useDispatch();
-
-    const [tableData, setTableData] = useState([]);
-    const [error, setError] = useState("");
-
-
-
-    // const handleFormSubmit = async () => {
-    //     const credits = generatedRows.map((row) => parseFloat(row.value2) || 0);
-    //     if (!initial || !credits) {
-    //         setError("Lütfen tüm alanları doldurun!");
-    //         return;
-    //     }
-    //     setError("");
-
-    //     const payload = {
-    //         initial: parseFloat(initial) || 0,
-    //         credits,
-    //     };
-
-
-    const handleFormSubmit = async () => {
-        const credits = generatedRows.map((row) => parseFloat(row.value2) || 0);
-        if (!initial || !credits.length) {
-            setError("Lütfen tüm alanları doldurun!");
-            return;
-        }
-        setError("");
-
-        const payload = {
-            initial: parseFloat(initial) || 0,
-            credits,
-        };
-
-        try {
-            const response = await axios.post("https://jsonplaceholder.typicode.com/posts", payload);
-           // const response = await axios.post(`${BASE_URL}/api/v1/credits/create`, payload);
-
-            const generatedTable = Array.from({ length: inputCount }, (_, index) => ({
-                id: index + 1,
-                initial: response.data.initial,
-                credits: response.data.credits,
-                value2 : generatedRows[index]?.value2 || 0,
-                //total: response.data.initial + response.data.credits,
-            }));
-            setTableData(generatedTable);
-        } catch (error) {
-            console.error("Hata:", error);
-            setError("Bir hata oluştu. Lütfen tekrar deneyin.");
-        }
-    };
-
-    // const handleFetchData = () => {
-    //     dispatch(fetchData());
-    //     setShowTable(true);
-    // };
 
 
     useEffect(() => {
@@ -180,51 +108,8 @@ function Calculate() {
                 </Typography>
             </Box>
             <Divider></Divider>
-           {/* < {showTable && (
-                <Box sx={{
-                    flexGrow: 1, p: 5, backgroundColor: 'transparent', borderRadius: 10, marginTop: '5%',
-                    boxShadow: '1px 1px 185px -23px rgba(0, 0, 0, 0.43)',
-                    webkitBoxShadow: '1px 1px 185px -23px rgba(0,0,0,0.43)',
-                    mozBoxShadow: '1px 1px 185px -23px rgba(0,0,0,0.43)',
-
-                }}>
-                    <CreateTable />
-                </Box>
-            )}> */}
-            {tableData.length > 0 && (
-                  <Box sx={{
-                    flexGrow: 1, p: 5, backgroundColor: 'transparent', borderRadius: 10, marginTop: '5%',
-                    boxShadow: '1px 1px 185px -23px rgba(0, 0, 0, 0.43)',
-                    webkitBoxShadow: '1px 1px 185px -23px rgba(0,0,0,0.43)',
-                    mozBoxShadow: '1px 1px 185px -23px rgba(0,0,0,0.43)',
-
-                }}>
-                    <CreateTable />
-                    <TableContainer component={Paper} sx={{ mt: 3 }}>
-                    <Table>
-                        <TableHead>
-                            <TableRow>
-                                <TableCell>ID</TableCell>
-                                <TableCell>Initial Value</TableCell>
-                                <TableCell>Credits Value</TableCell>
-                                {/* <TableCell>Total</TableCell> */}
-                            </TableRow>
-                        </TableHead>
-                        <TableBody>
-                            {tableData.map((row) => (
-                                <TableRow key={row.id}>
-                                    <TableCell>{row.id}</TableCell>
-                                    <TableCell>{row.initial}</TableCell>
-                                    <TableCell>{row.value2}</TableCell>
-                                    {/* <TableCell>{row.total}</TableCell> */}
-                                </TableRow>
-                            ))}
-                        </TableBody>
-                    </Table>
-                </TableContainer>
-                </Box>
-              
-            )}
+          
+           
             <Box sx={{
                 flexGrow: 1, p: 5, backgroundColor: 'transparent', borderRadius: 10, marginTop: '5%',
                 boxShadow: '1px 1px 185px -23px rgba(0, 0, 0, 0.43)',
@@ -419,7 +304,7 @@ function Calculate() {
                                         fullWidth
                                         size="small"
                                         color="primary"
-                                        onClick={handleFormSubmit}
+                                        
                                     >
                                         Tablo Oluştur
                                     </Button>
