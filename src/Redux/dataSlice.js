@@ -17,7 +17,7 @@ export const fetchData = createAsyncThunk('data/fetchData', async () => {
     } catch (error) {
       throw new Error(error.response?.data?.message || 'Veri çekilemedi!');
     }
-  });
+});
   
 
 const dataSlice = createSlice({

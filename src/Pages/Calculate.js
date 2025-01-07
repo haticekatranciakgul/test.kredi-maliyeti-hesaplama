@@ -9,6 +9,7 @@ import axios from "axios";
 import Typography from "@mui/material/Typography";
 import { BASE_URL } from "../api";
 import Divider from '@mui/material/Divider';
+import CreateTable from "../Components/CreateTable";
 
 
 
@@ -19,6 +20,8 @@ function Calculate() {
     const [otherExpenses, setOtherExpenses] = useState("");
     const [generatedRows, setGeneratedRows] = useState([]);
     const [irrValue, setIrrValue] = useState(null);
+//tablo için 
+const [tableData, setTableData] = useState([]);  // Tablo verisini saklayacak state
 
 
 
@@ -33,10 +36,6 @@ function Calculate() {
             console.log("inputCount:" + inputCount)
         }
     }, [inputCount, credits]);
-
-
-
-    
 
     useEffect(() => {
         if (irrValue !== null) {
@@ -91,6 +90,32 @@ function Calculate() {
         }
     };
 
+    const handleCreateTable = async () => {
+        try {
+            const credits = generatedRows.map((row) => parseFloat(row.value2) || 0);
+            const payload = {
+                initial: parseFloat(initial) || 0,
+                credits,
+            };
+
+            // Tabloyu oluşturmak için ikinci API çağrısı
+            const tableResponse = await axios.post(`${BASE_URL}/api/v1/credits/table`, payload);
+            if (tableResponse.data && Array.isArray(tableResponse.data)) {
+                setTableData(tableResponse.data);  // Geriye dönen tabloyu state'e ata
+            } else {
+                console.error("Tablo verisi yanıt verisi içinde bulunamadı.");
+            }
+        } catch (error) {
+            if (error.response) {
+                console.error("API yanıt hatası:", error.response);
+            } else if (error.request) {
+                console.error("API isteği hatası:", error.request);
+            } else {
+                console.error("API hatası:", error.message);
+            }
+        }
+    };
+
 
     return (
         <>
@@ -108,7 +133,7 @@ function Calculate() {
                 </Typography>
             </Box>
             <Divider></Divider>
-          
+        <CreateTable tableData={tableData}/>
            
             <Box sx={{
                 flexGrow: 1, p: 5, backgroundColor: 'transparent', borderRadius: 10, marginTop: '5%',
@@ -304,7 +329,7 @@ function Calculate() {
                                         fullWidth
                                         size="small"
                                         color="primary"
-                                        
+                                        onClick={handleCreateTable}
                                     >
                                         Tablo Oluştur
                                     </Button>
