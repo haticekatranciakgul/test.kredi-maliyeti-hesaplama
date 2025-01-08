@@ -124,14 +124,13 @@ const [tableData, setTableData] = useState([]);  // Tablo verisini saklayacak st
                 initial: parseFloat(initial) || 0,
                 credits,
             };
-            const tableResponse = await axios.post("https://credit-irr.vercel.app/api/v1/credits/create/table", payload);
+            const tableResponse = await axios.post(`${BASE_URL}/api/v1/credits/create/table`, payload);
             console.log("Backend yanıtı:", tableResponse.data);
     
             if (tableResponse.data && tableResponse.data.table) {
                 
                 const parsedTable = JSON.parse(tableResponse.data.table);
-    
-            
+                
                 const formattedData = parsedTable.map((row) => ({
                     column1: row.fields.credit_amount,
                     column2: row.fields.interest,
