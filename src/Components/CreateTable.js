@@ -15,7 +15,7 @@ function CreateTable({ tableData }) {
 
     return (
         <>
-            {/* {tableData.length > 0 && ( */}
+            {tableData.length > 0 && (
             <Paper sx={{ height: 400, width: '100%', backgroundColor: '#1F2A40' }}>
                 <DataGrid
                     rows={tableData.map((row, index) => ({ id: index, ...row }))}
@@ -115,7 +115,7 @@ function CreateTable({ tableData }) {
 
                 />
             </Paper>
-            {/* )} */}
+             )} 
         </>
 
     );

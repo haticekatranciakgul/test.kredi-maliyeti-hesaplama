@@ -54,7 +54,7 @@ function SelectRadioBtn({ setConsumerCreditType, setCreditType }) {
                                     <FormControlLabel value="Ticari" control={<Radio />} label="Ticari" />
                                     <FormControlLabel value="Bireysel" control={<Radio />} label="Bireysel" />
                                 </RadioGroup>
-
+{/* //send */}
                                 {selectedOption === 'Bireysel' && (
                                     <div>
                                         <RadioGroup
