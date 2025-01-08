@@ -70,7 +70,7 @@ const [tableData, setTableData] = useState([]);  // Tablo verisini saklayacak st
                 credits,
             };
             console.log("initial:" + initial, "credits:" + credits)
-            const response = await axios.post(`${BASE_URL}/api/v1/credits/create`, payload);
+            const response = await axios.post(`${BASE_URL}/api/v1/credits/create/irr`, payload);
             if (response.data && response.data.irr !== undefined) {
                 setIrrValue(response.data.irr);
             } else {
@@ -90,6 +90,33 @@ const [tableData, setTableData] = useState([]);  // Tablo verisini saklayacak st
         }
     };
 
+    // const handleCreateTable = async () => {
+    //     try {
+    //         const credits = generatedRows.map((row) => parseFloat(row.value2) || 0);
+    //         const payload = {
+    //             initial: parseFloat(initial) || 0,
+    //             credits,
+    //         };
+    //         //const tableResponse = await axios.post(`${BASE_URL}/api/v1/credits/table`, payload);
+    //         const tableResponse = await axios.post("https://credit-irr.vercel.app/api/v1/credits/create/table", payload);
+    //         if (tableResponse.data && Array.isArray(tableResponse.data)) {
+    //             setTableData(tableResponse.data); 
+                
+    //             console.log("Backend yanıtı:", tableResponse.data);
+    //         } else {
+    //             console.error("Tablo verisi yanıt verisi içinde bulunamadı.");
+    //         }
+    //     } catch (error) {
+    //         if (error.response) {
+    //             console.error("API yanıt hatası:", error.response);
+    //         } else if (error.request) {
+    //             console.error("API isteği hatası:", error.request);
+    //         } else {
+    //             console.error("API hatası:", error.message);
+    //         }
+    //     }
+    // };
+
     const handleCreateTable = async () => {
         try {
             const credits = generatedRows.map((row) => parseFloat(row.value2) || 0);
@@ -97,11 +124,23 @@ const [tableData, setTableData] = useState([]);  // Tablo verisini saklayacak st
                 initial: parseFloat(initial) || 0,
                 credits,
             };
-
-            // Tabloyu oluşturmak için ikinci API çağrısı
-            const tableResponse = await axios.post(`${BASE_URL}/api/v1/credits/table`, payload);
-            if (tableResponse.data && Array.isArray(tableResponse.data)) {
-                setTableData(tableResponse.data);  // Geriye dönen tabloyu state'e ata
+            const tableResponse = await axios.post("https://credit-irr.vercel.app/api/v1/credits/create/table", payload);
+            console.log("Backend yanıtı:", tableResponse.data);
+    
+            if (tableResponse.data && tableResponse.data.table) {
+                
+                const parsedTable = JSON.parse(tableResponse.data.table);
+    
+            
+                const formattedData = parsedTable.map((row) => ({
+                    column1: row.fields.credit_amount,
+                    column2: row.fields.interest,
+                    column3: row.fields.tax,
+                    column4: row.fields.principal_amount,
+                    column5: row.fields.remaining_principal_amount,
+                }));
+    
+                setTableData(formattedData);
             } else {
                 console.error("Tablo verisi yanıt verisi içinde bulunamadı.");
             }
@@ -115,8 +154,8 @@ const [tableData, setTableData] = useState([]);  // Tablo verisini saklayacak st
             }
         }
     };
-
-
+    
+    
     return (
         <>
             <Box sx={{ display: 'flex', justifyContent: 'center', }}>

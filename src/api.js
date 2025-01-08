@@ -2,6 +2,9 @@
 
 export const BASE_URL = 'https://credit-irr.vercel.app';
 
+//http://localhost:8000//api/v1/credits/create/irr
+//http://localhost:8000//api/v1/credits/create/table
+
 //geçici api
 //export const BASE_URL = 'https://jsonplaceholder.typicode.com/posts';
 

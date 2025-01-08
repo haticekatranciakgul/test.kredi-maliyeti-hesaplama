@@ -3,16 +3,18 @@ import React from 'react'
 function CreateTable({ tableData }) {
 
 
-
+    //kolon adları: geri ödeme, faiz, vergi, anapara, kalan anapara
     return (
         <div>
             {tableData.length > 0 && (
                 <table>
                     <thead>
                         <tr>
-                            <th>Column 1</th>
-                            <th>Column 2</th>
-                            <th>Column 3</th>
+                            <th>geri ödeme</th>
+                            <th>faiz</th>
+                            <th>vergi</th>
+                            <th>anapara</th>
+                            <th>anapara</th>
                             {/* Tablo başlıklarını buraya ekle */}
                         </tr>
                     </thead>
@@ -22,6 +24,8 @@ function CreateTable({ tableData }) {
                                 <td>{row.column1}</td>
                                 <td>{row.column2}</td>
                                 <td>{row.column3}</td>
+                                <td>{row.column4}</td>
+                                <td>{row.column4}</td>
                                 {/* Tablo verilerini buraya ekle */}
                             </tr>
                         ))}
