@@ -10,7 +10,7 @@ import Typography from "@mui/material/Typography";
 import { BASE_URL } from "../api";
 import Divider from '@mui/material/Divider';
 import CreateTable from "../Components/CreateTable";
-
+import SelectRadioBtn from "../Components/SelectRadioBtn"
 
 
 function Calculate() {
@@ -20,9 +20,9 @@ function Calculate() {
     const [otherExpenses, setOtherExpenses] = useState("");
     const [generatedRows, setGeneratedRows] = useState([]);
     const [irrValue, setIrrValue] = useState(null);
-//tablo için 
-const [tableData, setTableData] = useState([]);  // Tablo verisini saklayacak state
-
+    const [consumerCreditType, setConsumerCreditType] = useState(null);
+    const [creditType, setCreditType] = useState(null);
+    const [tableData, setTableData] = useState([]);  
 
 
     useEffect(() => {
@@ -90,47 +90,25 @@ const [tableData, setTableData] = useState([]);  // Tablo verisini saklayacak st
         }
     };
 
-    // const handleCreateTable = async () => {
-    //     try {
-    //         const credits = generatedRows.map((row) => parseFloat(row.value2) || 0);
-    //         const payload = {
-    //             initial: parseFloat(initial) || 0,
-    //             credits,
-    //         };
-    //         //const tableResponse = await axios.post(`${BASE_URL}/api/v1/credits/table`, payload);
-    //         const tableResponse = await axios.post("https://credit-irr.vercel.app/api/v1/credits/create/table", payload);
-    //         if (tableResponse.data && Array.isArray(tableResponse.data)) {
-    //             setTableData(tableResponse.data); 
-                
-    //             console.log("Backend yanıtı:", tableResponse.data);
-    //         } else {
-    //             console.error("Tablo verisi yanıt verisi içinde bulunamadı.");
-    //         }
-    //     } catch (error) {
-    //         if (error.response) {
-    //             console.error("API yanıt hatası:", error.response);
-    //         } else if (error.request) {
-    //             console.error("API isteği hatası:", error.request);
-    //         } else {
-    //             console.error("API hatası:", error.message);
-    //         }
-    //     }
-    // };
-
     const handleCreateTable = async () => {
         try {
             const credits = generatedRows.map((row) => parseFloat(row.value2) || 0);
             const payload = {
                 initial: parseFloat(initial) || 0,
                 credits,
+                consumer_credit_type: consumerCreditType,
+                credit_type: creditType,
+
             };
             const tableResponse = await axios.post(`${BASE_URL}/api/v1/credits/create/table`, payload);
+            console.log("Gönderilen Request Payload:", payload);
+
             console.log("Backend yanıtı:", tableResponse.data);
-    
+
             if (tableResponse.data && tableResponse.data.table) {
-                
+
                 const parsedTable = JSON.parse(tableResponse.data.table);
-                
+
                 const formattedData = parsedTable.map((row) => ({
                     column1: row.fields.credit_amount,
                     column2: row.fields.interest,
@@ -138,7 +116,7 @@ const [tableData, setTableData] = useState([]);  // Tablo verisini saklayacak st
                     column4: row.fields.principal_amount,
                     column5: row.fields.remaining_principal_amount,
                 }));
-    
+
                 setTableData(formattedData);
             } else {
                 console.error("Tablo verisi yanıt verisi içinde bulunamadı.");
@@ -153,17 +131,17 @@ const [tableData, setTableData] = useState([]);  // Tablo verisini saklayacak st
             }
         }
     };
-    
-    
+
+
     return (
         <>
             <Box sx={{ display: 'flex', justifyContent: 'center', }}>
                 <Typography variant="h1" gutterBottom sx={{
                     fontSize: {
-                        xs: '20px', // Varsayılan font boyutu
-                        sm: '20px', // sm için font boyutu
-                        md: '23px', // md için font boyutu
-                        lg: '25px', // lg için font boyutu
+                        xs: '20px',
+                        sm: '20px',
+                        md: '23px',
+                        lg: '25px',
                     },
                     fontWeight: 'bold',
                 }}>
@@ -171,8 +149,8 @@ const [tableData, setTableData] = useState([]);  // Tablo verisini saklayacak st
                 </Typography>
             </Box>
             <Divider></Divider>
-        <CreateTable tableData={tableData}/>
-           
+            <CreateTable tableData={tableData} />
+
             <Box sx={{
                 flexGrow: 1, p: 5, backgroundColor: 'transparent', borderRadius: 10, marginTop: '5%',
                 boxShadow: '1px 1px 185px -23px rgba(0, 0, 0, 0.43)',
@@ -191,10 +169,10 @@ const [tableData, setTableData] = useState([]);  // Tablo verisini saklayacak st
                             }}>
                                 <Typography sx={{
                                     fontWeight: 'bold', fontSize: {
-                                        xs: '14px', // Varsayılan font boyutu
-                                        sm: '14px', // sm için font boyutu
-                                        md: '16px', // md için font boyutu
-                                        lg: '18px', // lg için font boyutu
+                                        xs: '14px',
+                                        sm: '14px',
+                                        md: '16px',
+                                        lg: '18px',
                                     },
                                 }} variant="h4" >
                                     {irrValue !== null
@@ -204,9 +182,14 @@ const [tableData, setTableData] = useState([]);  // Tablo verisini saklayacak st
                             </Box>
                         </Box><br />
                     </Grid>
+                    <Grid item xs={12} >
+                        <SelectRadioBtn setConsumerCreditType={setConsumerCreditType}
+                            setCreditType={setCreditType} ></SelectRadioBtn>
+                    </Grid>
                     <Grid item xs={12} sx={{ display: "flex", justifyContent: "center", paddingBottom: '2%' }}>
                         <Typography>*Kredi Tutarı, Diğer Masraflar, Vade Periyodu ve Ödeme Tutarını Giriniz</Typography>
                     </Grid>
+                    
                     <Grid container spacing={2} columns={12}>
                         <Grid item xs={12} sm={12} md={8} >
                             <Grid container spacing={2} columns={12}>

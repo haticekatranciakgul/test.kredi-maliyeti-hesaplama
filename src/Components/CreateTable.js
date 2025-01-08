@@ -1,54 +1,10 @@
-// import React from 'react'
-
-
-// function CreateTable({ tableData }) {
-
-
-//     //kolon adları: geri ödeme, faiz, vergi, anapara, kalan anapara
-//     return (
-//         <div>
-//             {tableData.length > 0 && (
-//                 <table>
-//                     <thead>
-//                         <tr>
-//                             <th>geri ödeme</th>
-//                             <th>faiz</th>
-//                             <th>vergi</th>
-//                             <th>anapara</th>
-//                             <th>anapara</th>
-//                             {/* Tablo başlıklarını buraya ekle */}
-//                         </tr>
-//                     </thead>
-//                     <tbody>
-//                         {tableData.map((row, index) => (
-//                             <tr key={index}>
-//                                 <td>{row.column1}</td>
-//                                 <td>{row.column2}</td>
-//                                 <td>{row.column3}</td>
-//                                 <td>{row.column4}</td>
-//                                 <td>{row.column4}</td>
-//                                 {/* Tablo verilerini buraya ekle */}
-//                             </tr>
-//                         ))}
-//                     </tbody>
-//                 </table>
-//             )}
-//         </div>
-//     )
-// }
-
-// export default CreateTable
-
-
-
-
-
 import React from 'react';
-import { DataGrid } from '@mui/x-data-grid';
+import { DataGrid, GridToolbar } from '@mui/x-data-grid';
 import Paper from '@mui/material/Paper';
 
+
 function CreateTable({ tableData }) {
-    
+
     const columns = [
         { field: 'column1', headerName: 'Geri Ödeme', width: 150 },
         { field: 'column2', headerName: 'Faiz', width: 150 },
@@ -59,22 +15,109 @@ function CreateTable({ tableData }) {
 
     return (
         <>
-          {tableData.length > 0 && (
-        <Paper sx={{ height: 400, width: '100%' }}>
-            <DataGrid
-                rows={tableData.map((row, index) => ({ id: index, ...row }))}
-                columns={columns}
-                pageSizeOptions={[5, 10, 20, 50]}
-                initialState={{
-                    pagination: { paginationModel: { page: 0, pageSize: 5 } },
-                }}
-                checkboxSelection
-                sx={{ border: 0 }}
-            />
-        </Paper>
-    )}
+            {/* {tableData.length > 0 && ( */}
+            <Paper sx={{ height: 400, width: '100%', backgroundColor: '#1F2A40' }}>
+                <DataGrid
+                    rows={tableData.map((row, index) => ({ id: index, ...row }))}
+                    columns={columns}
+                    pageSizeOptions={[5, 10, 20, 50]}
+                    initialState={{
+                        pagination: { paginationModel: { page: 0, pageSize: 5 } },
+                    }}
+                    checkboxSelection
+                    sx={{ color: '#ffffff',
+                        border: 0,
+                        '& .MuiDataGrid-row': {
+                            backgroundColor: '#eaf4fc',
+                            '&:nth-of-type(odd)': {
+                                backgroundColor: '#f0f8ff',
+                            },
+                            '&:hover': {
+                                backgroundColor: '#cde7f0',
+                            },
+                        }, '& .MuiDataGrid-container--top ': {
+                            // backgroundColor: 'pink', color:'pink'
+                        },
+                        '& .MuiDataGrid-toolbarContainer': {
+                            backgroundColor: '#1F2A40', // Arka plan rengi
+                            color: '#ffffff', // Metin rengi
+                            '& .MuiButton-root': {
+                                color: '#ffffff', // Filtreler ve yoğunluk gibi butonların rengi
+                            },
+                        },
+                        '& .MuiDataGrid-container--top [role="row"]': { 
+                            backgroundColor: '#1F2A40', 
+                        },
+                        '& .MuiDataGrid-columnHeader:hover': {
+                            backgroundColor: '#357ABD', // Hover durumunda başlık rengi
+                        },
+                        '& .MuiDataGrid-footerContainer': {
+                            backgroundColor: '#1F2A40', // Footer arka plan rengi
+                            color: '#ffffff', // Footer metin rengi
+                        },
+                        
+                        '& .MuiTablePagination-selectLabel': {
+                            display: 'none'
+                        }
+
+                    }}
+                    localeText={{
+                        noRowsLabel: 'Gösterilecek satır yok',
+                        toolbarFilters: 'Filtreler',
+                        filterPanelColumns: 'Sütunlar',
+                        filterPanelOperators: 'Operatörler',
+                        filterPanelOperator: 'Operatörler',
+                        filterOperatorContains: 'İçerik',
+                        filterPanelInputLabel: 'Değer',
+                        filterPanelInputPlaceholder: 'Değer girin',
+                        toolbarDensity: 'Yoğunluk',
+                        toolbarDensityLabel: 'Yoğunluk',
+                        toolbarDensityCompact: 'Kompakt',
+                        toolbarDensityStandard: 'Standart',
+                        toolbarDensityComfortable: 'Konforlu',
+                        columnMenuSortAsc: 'Artan sıraya göre sırala',
+                        columnMenuSortDesc: 'Azalan sıraya göre sırala',
+                        columnMenuFilter: 'Filtrele',
+                        columnMenuManageColumns: 'Sütunları yönet',
+                        columnMenuHideColumn: 'Sütunu gizle',
+                        columnMenuUnsort: 'Sıralamayı Kaldır',
+                        filterOperatorDoesNotContain: 'İçermez',
+                        filterOperatorEquals: 'Eşittir',
+                        filterOperatorDoesNotEqual: 'Eşit Değil',
+                        filterOperatorStartsWith: 'İle Başlar',
+                        filterOperatorEndsWith: 'İle Biter',
+                        filterOperatorIs: 'Şu',
+                        filterOperatorNot: 'Şu Değil',
+                        filterOperatorAfter: 'Sonra',
+                        filterOperatorOnOrAfter: 'Sonra veya O Gün',
+                        filterOperatorBefore: 'Önce',
+                        filterOperatorOnOrBefore: 'Önce veya O Gün',
+                        filterOperatorIsEmpty: 'Boş',
+                        filterOperatorIsNotEmpty: 'Boş Değil',
+                        filterOperatorIsAnyOf: 'Şunlardan Herhangi Biri',
+                        checkboxSelectionHeaderName: 'Onay kutusu seçimi',
+                        checkboxSelectionSelectAllRows: 'Tüm satırları seç',
+                        checkboxSelectionUnselectAllRows: 'Tüm satırların seçimini kaldır',
+                        checkboxSelectionSelectRow: 'Satırı seç',
+                        checkboxSelectionUnselectRow: 'Satırın seçimini kaldır',
+                        toolbarColumns: 'Sütunlar',
+                        toolbarColumnsLabel: 'Sütunları seç',
+                        paginationPanelRowsPerPage: 'Sayfa başına satır', // Burayı ekledik
+
+
+
+
+                    }}
+                    slots={{
+                        toolbar: GridToolbar,
+                    }}
+
+
+                />
+            </Paper>
+            {/* )} */}
         </>
-      
+
     );
 }
 
