@@ -206,8 +206,11 @@ function Calculate() {
                         <SelectRadioBtn setConsumerCreditType={setConsumerCreditType}
                             setCreditType={setCreditType} ></SelectRadioBtn>
                     </Grid>
+                    <Grid item xs={12} sx={{ display: "flex", justifyContent: "center" }}>
+                        <Typography>* Kredi Tutarı, Diğer Masraflar, Vade Periyodu ve Ödeme Tutarını Giriniz</Typography>
+                    </Grid>
                     <Grid item xs={12} sx={{ display: "flex", justifyContent: "center", paddingBottom: '2%' }}>
-                        <Typography>*Kredi Tutarı, Diğer Masraflar, Vade Periyodu ve Ödeme Tutarını Giriniz</Typography>
+                        <Typography>* Faize baz gün sayısı farklılıklarından dolayı hesaplamalarda küçük farklar oluşabilir.</Typography>
                     </Grid>
                     
                     <Grid container spacing={2} columns={12}>
