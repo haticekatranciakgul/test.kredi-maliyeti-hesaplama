@@ -64,9 +64,9 @@ function SelectRadioBtn({ setConsumerCreditType, setCreditType }) {
                                             value={subOption}
                                             onChange={handleSubOptionChange}
                                         >
-                                            <FormControlLabel value="option1" control={<Radio />} label="Seçenek 1" />
-                                            <FormControlLabel value="option2" control={<Radio />} label="Seçenek 2" />
-                                            <FormControlLabel value="option3" control={<Radio />} label="Seçenek 3" />
+                                            <FormControlLabel value="option1" control={<Radio />} label="İhtiyaç" />
+                                            <FormControlLabel value="option2" control={<Radio />} label="Konut" />
+                                            <FormControlLabel value="option3" control={<Radio />} label="Taşıt" />
                                         </RadioGroup>
                                     </div>
                                 )}
