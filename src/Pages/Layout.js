@@ -31,7 +31,7 @@ const Layout = ({ children }) => {
             ? 'radial-gradient(ellipse 80% 50% at 50% -20%, hsl(210, 100%, 30%), transparent)'
             : 'radial-gradient(ellipse 80% 50% at 50% -20%, hsl(210, 100%, 60%), transparent)',
         }}>
-          <Container >
+          <Container  maxWidth="xl" >
             <Navbar />
             {children}
           </Container>

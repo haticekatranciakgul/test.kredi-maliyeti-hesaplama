@@ -12,9 +12,9 @@ function SelectRadioBtn({ setConsumerCreditType, setCreditType }) {
     const handleMainOptionChange = (event) => {
         setSelectedOption(event.target.value);
         if (event.target.value === 'Ticari') {
-            setConsumerCreditType(1);
+            setCreditType(1);
         } else if (event.target.value === 'Bireysel') {
-            setConsumerCreditType(2);
+            setCreditType(2);
         }
     };
 
@@ -22,11 +22,11 @@ function SelectRadioBtn({ setConsumerCreditType, setCreditType }) {
     const handleSubOptionChange = (event) => {
         setSubOption(event.target.value);
         if (event.target.value === 'option1') {
-            setCreditType(1);
+             setConsumerCreditType(1);
         } else if (event.target.value === 'option2') {
-            setCreditType(2);
+             setConsumerCreditType(2);
         } else if (event.target.value === 'option3') {
-            setCreditType(3);
+             setConsumerCreditType(3);
         }
     };
 
@@ -54,7 +54,6 @@ function SelectRadioBtn({ setConsumerCreditType, setCreditType }) {
                                     <FormControlLabel value="Ticari" control={<Radio />} label="Ticari" />
                                     <FormControlLabel value="Bireysel" control={<Radio />} label="Bireysel" />
                                 </RadioGroup>
-{/* //send */}
                                 {selectedOption === 'Bireysel' && (
                                     <div>
                                         <RadioGroup

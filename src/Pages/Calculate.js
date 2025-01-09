@@ -11,19 +11,27 @@ import { BASE_URL } from "../api";
 import Divider from '@mui/material/Divider';
 import CreateTable from "../Components/CreateTable";
 import SelectRadioBtn from "../Components/SelectRadioBtn"
-
+import { useDispatch } from 'react-redux';
+import { openModal } from '../Redux/modalSlice';
+import ExpenseModal from '../Components/ExpenseModal'
 
 function Calculate() {
     const [inputCount, setInputCount] = useState("");
     const [credits, setcredits] = useState("");
     const [initial, setInitial] = useState("");
-    const [otherExpenses, setOtherExpenses] = useState("");
+    //const [otherExpenses, setOtherExpenses] = useState("");
     const [generatedRows, setGeneratedRows] = useState([]);
     const [irrValue, setIrrValue] = useState(null);
     const [consumerCreditType, setConsumerCreditType] = useState(null);
     const [creditType, setCreditType] = useState(null);
     const [tableData, setTableData] = useState([]);  
 
+
+    const dispatch = useDispatch();
+
+    const handleOpenModal = () => {
+      dispatch(openModal());
+    };
 
     useEffect(() => {
         const count = parseInt(inputCount) || 0;
@@ -80,7 +88,7 @@ function Calculate() {
             //alert("Veriler başarıyla kaydedildi.");
         } catch (error) {
             if (error.response) {
-                console.error("API yanıt hatası:", error.response);
+                console.error("API yanıt hatası AHMET:", error.response.status);
             } else if (error.request) {
                 console.error("API isteği hatası:", error.request);
             } else {
@@ -100,10 +108,10 @@ function Calculate() {
                 credit_type: creditType,
 
             };
-            const tableResponse = await axios.post(`${BASE_URL}/api/v1/credits/create/table`, payload);
             console.log("Gönderilen Request Payload:", payload);
+            const tableResponse = await axios.post(`${BASE_URL}/api/v1/credits/create/table`, payload);
 
-            console.log("Backend yanıtı:", tableResponse.data);
+
 
             if (tableResponse.data && tableResponse.data.table) {
 
@@ -119,16 +127,12 @@ function Calculate() {
 
                 setTableData(formattedData);
             } else {
+               // console.log("Gönderilen Request Payload:", payload);
                 console.error("Tablo verisi yanıt verisi içinde bulunamadı.");
             }
         } catch (error) {
-            if (error.response) {
-                console.error("API yanıt hatası:", error.response);
-            } else if (error.request) {
-                console.error("API isteği hatası:", error.request);
-            } else {
-                console.error("API hatası:", error.message);
-            }
+            console.error(error.response.data.error);
+
         }
     };
 
@@ -213,11 +217,11 @@ function Calculate() {
                         <Typography>* Faize baz gün sayısı farklılıklarından dolayı hesaplamalarda küçük farklar oluşabilir.</Typography>
                     </Grid>
                     
-                    <Grid container spacing={2} columns={12}>
-                        <Grid item xs={12} sm={12} md={8} >
-                            <Grid container spacing={2} columns={12}>
-                                <Grid item xs={12} sm={6} md={3} lg={3} xl={3} >
-                                    <TextField fullWidth
+                    <Grid container spacing={1} columns={20}>
+                        <Grid item xs={20} sm={20} md={8} >
+                            <Grid container spacing={1} columns={12}>
+                                <Grid item xs={12} sm={4} md={4} lg={4} xl={4} >
+                                    <TextField fullWidth variant="standard" size="small"
                                         required
                                         label="Kredi Tutarı (Anapara)"
                                         value={initial}
@@ -247,39 +251,8 @@ function Calculate() {
                                         }}
                                     />
                                 </Grid>
-                                <Grid item xs={12} sm={6} md={3} lg={3} xl={3}>
-                                    <TextField fullWidth
-                                        required
-                                        label="Diğer Masraflar"
-                                        value={otherExpenses}
-                                        onChange={(e) => {
-
-                                            const value = e.target.value;
-                                            if (/^\d*\.?\d*$/.test(value)) {
-                                                setOtherExpenses(value);
-                                            }
-                                        }}
-                                        inputProps={{
-                                            inputMode: 'numeric',
-                                            pattern: '[0-9]*'
-                                        }}
-                                        InputLabelProps={{
-                                            style: { color: (theme) => theme.palette.mode === 'light' ? '#a1a4ab' : '#5e5b54', },
-                                        }}
-                                        sx={{
-                                            '& .MuiInputBase-input': {
-                                                color: (theme) => theme.palette.mode === 'light' ? '#a1a4ab' : '#5e5b54',
-                                            },
-                                            '& .MuiInputLabel-root': {
-                                                color: (theme) => theme.palette.mode === 'light' ? '#a1a4ab' : '#ffffff',
-                                            }, '& .MuiInputLabel-root.Mui-focused': {
-                                                color: (theme) => theme.palette.mode === 'light' ? '#a1a4ab' : '#ffffff',
-                                            },
-                                        }}
-                                    />
-                                </Grid>
-                                <Grid item xs={12} sm={6} md={3} lg={3} xl={3}>
-                                    <TextField fullWidth
+                                <Grid item xs={12} sm={4} md={4} lg={4} xl={4}>
+                                    <TextField fullWidth variant="standard" size="small"
                                         required
                                         label="Vade Periyodu"
                                         value={inputCount}
@@ -310,8 +283,8 @@ function Calculate() {
                                     />
 
                                 </Grid>
-                                <Grid item xs={12} sm={6} md={3} lg={3} xl={3}>
-                                    <TextField fullWidth
+                                <Grid item xs={12} sm={4} md={4} lg={4} xl={4}>
+                                    <TextField fullWidth variant="standard" size="small"
                                         required
                                         label="Ödeme Tutarı"
                                         value={credits}
@@ -342,36 +315,49 @@ function Calculate() {
                                 </Grid>
                             </Grid>
                         </Grid>
-                        <Grid item xs={12} sm={12} md={4} >
-                            <Grid container spacing={2} columns={12}>
-                                <Grid item xs={12} sm={4} md={4} lg={4} xl={4} display="flex" justifyContent="flex-end">
+                        <Grid item xs={20} sm={20} md={12} >
+                            <Grid container spacing={1} columns={12}>
+                                <Grid item xs={12} sm={3} md={3} lg={3} xl={3} display="flex" justifyContent="flex-end">
                                     <Button
                                         variant="contained"
                                         startIcon={<AddIcon />}
                                         fullWidth
-                                        size="small"
+                                        size="large"
                                         color="primary"
                                         onClick={handleAddRow}
                                     >
                                         EKLE
                                     </Button>
                                 </Grid>
-                                <Grid item xs={12} sm={4} md={4} lg={4} xl={4} display="flex" justifyContent="flex-end">
+                                <Grid item xs={12} sm={3} md={3} lg={3} xl={3} display="flex" justifyContent="flex-end">
+                                    <Button
+                                        variant="contained"
+                                        startIcon={<AddIcon />}
+                                        fullWidth
+                                        size="large"
+                                        color="primary"
+                                        onClick={handleOpenModal}
+                                    >
+                                        Masraf
+                                    </Button>
+                                    <ExpenseModal/>
+                                </Grid>
+                                <Grid item xs={12} sm={3} md={3} lg={3} xl={3} display="flex" justifyContent="flex-end">
                                     <Button
                                         variant="contained"
                                         fullWidth
-                                        size="small"
+                                        size="large"
                                         color="primary"
                                         onClick={handleSave}
                                     >
                                         Hesapla
                                     </Button>
                                 </Grid>
-                                <Grid item xs={12} sm={4} md={4} lg={4} xl={4} display="flex" justifyContent="flex-end">
+                                <Grid item xs={12} sm={3} md={3} lg={3} xl={3} display="flex" justifyContent="flex-end">
                                     <Button
                                         variant="contained"
                                         fullWidth
-                                        size="small"
+                                        size="large"
                                         color="primary"
                                         onClick={handleCreateTable}
                                     >
