@@ -207,7 +207,7 @@ function Calculate() {
                             setCreditType={setCreditType} ></SelectRadioBtn>
                     </Grid>
                     <Grid item xs={12} sx={{ display: "flex", justifyContent: "center" }}>
-                        <Typography>* Kredi Tutarı, Diğer Masraflar, Vade Periyodu ve Ödeme Tutarını Giriniz</Typography>
+                        <Typography>* Kredi Tutarı (Anapara), Diğer Masraflar, Vade Periyodu ve Ödeme Tutarını Giriniz</Typography>
                     </Grid>
                     <Grid item xs={12} sx={{ display: "flex", justifyContent: "center", paddingBottom: '2%' }}>
                         <Typography>* Faize baz gün sayısı farklılıklarından dolayı hesaplamalarda küçük farklar oluşabilir.</Typography>
@@ -219,7 +219,7 @@ function Calculate() {
                                 <Grid item xs={12} sm={6} md={3} lg={3} xl={3} >
                                     <TextField fullWidth
                                         required
-                                        label="Kredi Tutarı"
+                                        label="Kredi Tutarı (Anapara)"
                                         value={initial}
                                         onChange={(e) => {
                                             const value = e.target.value;
