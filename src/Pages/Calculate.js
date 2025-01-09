@@ -147,8 +147,28 @@ function Calculate() {
                 }}>
                     IRR HESAPLAMA
                 </Typography>
+
+
             </Box>
             <Divider></Divider>
+            <Box sx={{ display: 'flex', justifyContent: 'center', }}>
+            <Typography variant="h1" gutterBottom sx={{
+                    fontSize: {
+                        xs: '10px',
+                        sm: '12px',
+                        md: '14px',
+                        lg: '16px',
+                    },
+                    fontWeight: 'bold',
+                    paddingBottom:'20px',
+                    paddingTop:'20px'
+                }}>
+                    HER ŞEY DAHİL YILLIK BİLEŞİK KREDİ MALİYETİNİZİ KOLAYCA HESAPLAYIN! YANILMAYIN!
+                </Typography>
+
+            </Box>
+           
+                <Divider></Divider>
             <CreateTable tableData={tableData} />
 
             <Box sx={{
