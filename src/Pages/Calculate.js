@@ -148,8 +148,8 @@ function Calculate() {
             const payload = {
                 initial: parseFloat(initial) || 0,
                 credits,
-                // consumer_credit_type: consumerCreditType,
-                // credit_type: creditType,
+                consumer_credit_type: consumerCreditType,
+                credit_type: creditType,
 
             };
             console.log("Gönderilen Request Payload:", payload);
