@@ -70,34 +70,76 @@ function Calculate() {
         }
     };
 
+    // const handleSave = async () => {
+    //     try {
+    //         const credits = generatedRows.map((row) => parseFloat(row.value2) || 0);
+    //         const payload = {
+    //             initial: parseFloat(initial) || 0,
+    //             credits,
+    //         };
+    //         console.log("initial:" + initial, "credits:" + credits)
+    //         console.log("payload" , payload)
+    //         //http://localhost:8000//api/v1/credits/create/irr
+    //         const response = await axios.post("https://credit-irr.vercel.app/api/v1/credits/create/irr", payload);
+    //         if (response.data && response.data.irr !== undefined) {
+    //             setIrrValue(response.data.irr);
+    //         } else {
+    //             console.error("IRR değeri yanıt verisi içinde bulunamadı.");
+    //             setIrrValue(null);
+    //         }
+    //         //alert("Veriler başarıyla kaydedildi.");
+    //     } catch (error) {
+    //         if (error.response) {
+    //             console.error("API yanıt hatası:", error.response.status);
+    //         } else if (error.request) {
+    //             console.error("API isteği hatası:", error.request);
+    //         } else {
+    //             console.error("API hatası:", error.message);
+    //         }
+    //         //alert("Veriler kaydedilirken bir hata oluştu.");
+    //     }
+    // };
+
+
+
     const handleSave = async () => {
         try {
+            // `generatedRows` içinden `value2` değerlerini alıp sayıya çeviriyoruz.
             const credits = generatedRows.map((row) => parseFloat(row.value2) || 0);
             const payload = {
                 initial: parseFloat(initial) || 0,
                 credits,
+                consumer_credit_type: 2, // Varsayılan değer
+                credit_type: 1,         // Varsayılan değer
             };
-            console.log("initial:" + initial, "credits:" + credits)
-            const response = await axios.post(`${BASE_URL}/api/v1/credits/create/irr`, payload);
-            if (response.data && response.data.irr !== undefined) {
-                setIrrValue(response.data.irr);
+    
+            console.log("Initial:", payload.initial);
+            console.log("Credits:", payload.credits);
+            console.log("Payload:", payload);
+    
+            // API isteği
+            const response = await axios.post("https://credit-irr.vercel.app/api/v1/credits/create/irr", payload);
+    
+            // Yanıtı kontrol et
+            if (response.data && typeof response.data.irr !== "undefined") {
+                console.log("IRR Value:", response.data.irr);
+                setIrrValue(response.data.irr); // IRR değerini kaydet
             } else {
-                console.error("IRR değeri yanıt verisi içinde bulunamadı.");
+                console.error("Yanıt içinde IRR değeri bulunamadı.");
                 setIrrValue(null);
             }
-            //alert("Veriler başarıyla kaydedildi.");
         } catch (error) {
+            // Hata kontrolü
             if (error.response) {
-                console.error("API yanıt hatası AHMET:", error.response.status);
+                console.error("API Yanıt Hatası:", error.response.status, error.response.data);
             } else if (error.request) {
-                console.error("API isteği hatası:", error.request);
+                console.error("API İstek Hatası:", error.request);
             } else {
-                console.error("API hatası:", error.message);
+                console.error("API Hatası:", error.message);
             }
-            //alert("Veriler kaydedilirken bir hata oluştu.");
         }
     };
-
+    
     const handleCreateTable = async () => {
         try {
             const credits = generatedRows.map((row) => parseFloat(row.value2) || 0);
@@ -110,7 +152,7 @@ function Calculate() {
             };
             console.log("Gönderilen Request Payload:", payload);
             const tableResponse = await axios.post(`${BASE_URL}/api/v1/credits/create/table`, payload);
-
+            //http://localhost:8000//api/v1/credits/create/table
 
 
             if (tableResponse.data && tableResponse.data.table) {
