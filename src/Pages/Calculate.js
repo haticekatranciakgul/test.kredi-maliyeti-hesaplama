@@ -14,6 +14,7 @@ import SelectRadioBtn from "../Components/SelectRadioBtn"
 import { useDispatch } from 'react-redux';
 import { openModal } from '../Redux/modalSlice';
 import ExpenseModal from '../Components/ExpenseModal'
+import AnimatedText from "../Components/AnimatedText";
 
 function Calculate() {
     const [inputCount, setInputCount] = useState("");
@@ -80,14 +81,14 @@ function Calculate() {
                 consumer_credit_type: 1,
                 credit_type: 1,
             };
-    
+
             console.log("Initial:", payload.initial);
             console.log("Credits:", payload.credits);
             console.log("Payload:", payload);
-    
+
 
             const response = await axios.post("https://credit-irr.vercel.app/api/v1/credits/create/irr", payload);
-    
+
 
             if (response.data && typeof response.data.irr !== "undefined") {
                 console.log("IRR Value:", response.data.irr);
@@ -99,7 +100,7 @@ function Calculate() {
         } catch (error) {
             if (error.response) {
                 console.error("API Yanıt Hatası:", error.response.status, error.response.data.error);
-                alert( "API Yanıt Hatası: LÜTFEN İLGİLİ ALANLRI DOLDURUNUZ! KREDİ TÜRÜNÜ SEÇİNİZ ANAPARAYI VADE PERİYODUNU ÖDEME TUTARINI GİRİNİZ!");
+                alert("API Yanıt Hatası: LÜTFEN İLGİLİ ALANLRI DOLDURUNUZ! KREDİ TÜRÜNÜ SEÇİNİZ ANAPARAYI VADE PERİYODUNU ÖDEME TUTARINI GİRİNİZ!");
             } else if (error.request) {
                 console.error("API İstek Hatası:", error.request.data.error);
                 alert("API İstek Hatası")
@@ -108,7 +109,7 @@ function Calculate() {
             }
         }
     };
-    
+
     const handleCreateTable = async () => {
         try {
             const credits = generatedRows.map((row) => parseFloat(row.value2) || 0);
@@ -163,23 +164,8 @@ function Calculate() {
                 </Typography>
             </Box>
             <Divider></Divider>
-            <Box sx={{ display: 'flex', justifyContent: 'center', }}>
-                <Typography variant="h1" gutterBottom sx={{
-                    fontSize: {
-                        xs: '10px',
-                        sm: '12px',
-                        md: '14px',
-                        lg: '16px',
-                    },
-                    fontWeight: 'bold',
-                    paddingBottom: '20px',
-                    paddingTop: '20px'
-                }}>
-                    HER ŞEY DAHİL YILLIK BİLEŞİK KREDİ MALİYETİNİZİ KOLAYCA HESAPLAYIN! YANILMAYIN!
-                </Typography>
 
-            </Box>
-            <Divider></Divider>
+            {/* <Divider></Divider> */}
             <CreateTable tableData={tableData} />
             <Box sx={{
                 flexGrow: 1, p: 5, backgroundColor: 'transparent', borderRadius: 10, marginTop: '5%',
@@ -189,7 +175,14 @@ function Calculate() {
             }}>
                 <Grid container spacing={2}>
                     <Grid item xs={12} sx={{ alignItems: "center", display: "flex", justifyContent: "center" }}>
-                        <Box sx={{ display: 'flex', justifyContent: 'center', paddingTop: '2%', paddingBottom: '2%' }}>
+                        <Box sx={{ display: 'flex', justifyContent: 'center', }}>
+                            <AnimatedText />
+
+                        </Box>
+                    </Grid>
+                    <Grid item xs={12} sx={{ alignItems: "center", display: "flex", justifyContent: "center" }}>
+
+                        <Box sx={{ display: 'flex', justifyContent: 'center', paddingTop: '1%', paddingBottom: '1%' }}>
                             <Box sx={{
                                 display: 'flex', justifyContent: 'center', flexGrow: 1, p: 5, backgroundColor: 'transparent', borderRadius: 10, marginTop: '5%',
                                 boxShadow: '1px 1px 185px -23px rgb(78, 142, 225)',
@@ -382,7 +375,7 @@ function Calculate() {
                 </Grid>
 
                 {generatedRows.map((row, index) => (
-                    <Grid container spacing={2} key={index} sx={{marginTop:'10px'}}>
+                    <Grid container spacing={2} key={index} sx={{ marginTop: '10px' }}>
                         <Grid container spacing={1} columns={12}>
                             <Grid item xs={12} sm={6} md={6} >
                                 <Grid container spacing={1} columns={12}>
