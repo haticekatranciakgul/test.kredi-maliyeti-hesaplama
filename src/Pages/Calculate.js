@@ -173,18 +173,18 @@ function Calculate() {
             <CreateTable tableData={tableData} />
             <Box sx={{
                 flexGrow: 1, p: 5, backgroundColor: 'transparent', borderRadius: 10, marginTop: '5%',
-                boxShadow: '1px 1px 185px -23px rgba(0, 0, 0, 0.43)',
-                webkitBoxShadow: '1px 1px 185px -23px rgba(0,0,0,0.43)',
-                mozBoxShadow: '1px 1px 185px -23px rgba(0,0,0,0.43)',
+                boxShadow: '1px 1px 185px -23px rgb(78, 142, 225)',
+                webkitBoxShadow: '1px 1px 185px -23px rgba(62, 113, 240, 0.43)',
+                mozBoxShadow: '1px 1px 185px -23px rgba(101, 150, 254, 0.43)',
             }}>
                 <Grid container spacing={2}>
                     <Grid item xs={12} sx={{ alignItems: "center", display: "flex", justifyContent: "center" }}>
                         <Box sx={{ display: 'flex', justifyContent: 'center', paddingTop: '2%', paddingBottom: '2%' }}>
                             <Box sx={{
                                 display: 'flex', justifyContent: 'center', flexGrow: 1, p: 5, backgroundColor: 'transparent', borderRadius: 10, marginTop: '5%',
-                                boxShadow: '1px 1px 185px -23px rgb(40, 63, 152)',
-                                webkitBoxShadow: '1px 1px 185px -23px rgba(55, 102, 221, 0.43)',
-                                mozBoxShadow: '1px 1px 185px -23px rgba(44, 102, 228, 0.43)',
+                                boxShadow: '1px 1px 185px -23px rgb(78, 142, 225)',
+                                webkitBoxShadow: '1px 1px 185px -23px rgba(62, 113, 240, 0.43)',
+                                mozBoxShadow: '1px 1px 185px -23px rgba(101, 150, 254, 0.43)',
 
                             }}>
                                 <Typography sx={{
@@ -363,7 +363,7 @@ function Calculate() {
                                             padding: "5px"
                                         }}
                                     >
-                                        Tablo Oluştur
+                                        Tablo Oluştur1
                                     </Button>
                                 </Grid>
                             </Grid>

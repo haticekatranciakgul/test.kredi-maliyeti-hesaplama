@@ -37,9 +37,9 @@ function SelectRadioBtn({ setConsumerCreditType, setCreditType }) {
                     <Box sx={{ width: '40%' }}>
                         <Box sx={{
                             display: 'flex', justifyContent: 'center', flexGrow: 1, p: 5, backgroundColor: 'transparent', borderRadius: 10,
-                            boxShadow: '1px 1px 185px -23px rgb(40, 63, 152)',
-                            webkitBoxShadow: '1px 1px 185px -23px rgba(55, 102, 221, 0.43)',
-                            mozBoxShadow: '1px 1px 185px -23px rgba(44, 102, 228, 0.43)',
+                            boxShadow: '1px 1px 185px -23px rgb(78, 142, 225)',
+                            webkitBoxShadow: '1px 1px 185px -23px rgba(62, 113, 240, 0.43)',
+                            mozBoxShadow: '1px 1px 185px -23px rgba(101, 150, 254, 0.43)',
 
 
                         }}>
