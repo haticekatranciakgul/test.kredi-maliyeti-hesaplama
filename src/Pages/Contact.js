@@ -49,7 +49,9 @@ function Contact() {
                 backgroundColor: 'transparent',
                 borderRadius: 10,
                 marginTop: '5%',
-                boxShadow: '1px 1px 185px -23px rgba(0, 0, 0, 0.43)',
+                boxShadow: '1px 1px 185px -23px rgb(78, 142, 225)',
+                webkitBoxShadow: '1px 1px 185px -23px rgba(62, 113, 240, 0.43)',
+                mozBoxShadow: '1px 1px 185px -23px rgba(101, 150, 254, 0.43)',
                 alignItems: 'center',
             }}>
                 <form onSubmit={handleSubmit(onSubmit)}>

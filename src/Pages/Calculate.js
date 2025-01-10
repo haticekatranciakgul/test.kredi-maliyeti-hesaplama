@@ -404,7 +404,7 @@ function Calculate() {
                                             padding: "5px"
                                         }}
                                     >
-                                        Tablo Oluştur
+                                        Tablo Oluştur1
                                     </Button>
                                 </Grid>
                             </Grid>

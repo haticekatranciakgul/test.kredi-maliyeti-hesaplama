@@ -59,9 +59,10 @@ function About() {
             <Divider></Divider>
             <Box sx={{
                 flexGrow: 1, p: 5, backgroundColor: 'transparent', borderRadius: 10, marginTop: '5%',
-                boxShadow: '1px 1px 185px -23px rgba(0, 0, 0, 0.43)',
-                webkitBoxShadow: '1px 1px 185px -23px rgba(0,0,0,0.43)',
-                mozBoxShadow: '1px 1px 185px -23px rgba(0,0,0,0.43)', alignItems: 'center'
+                boxShadow: '1px 1px 185px -23px rgb(78, 142, 225)',
+                webkitBoxShadow: '1px 1px 185px -23px rgba(62, 113, 240, 0.43)',
+                mozBoxShadow: '1px 1px 185px -23px rgba(101, 150, 254, 0.43)',
+                 alignItems: 'center'
             }}>
 
                 <Typography variant="h2" >IRR Anlamı </Typography>
@@ -82,7 +83,7 @@ function About() {
                 </Typography><br/>
                 <Box sx={{ display: 'flex', justifyContent: 'center', paddingTop: '2%', paddingBottom: '2%' }}>
                     <Box sx={{ display: 'flex', justifyContent: 'center', backgroundColor: 'transparent', padding: 2, borderRadius: 10, 
-                    flexGrow: 1, p: 5, borderRadius: 10, marginTop: '5%',
+                    flexGrow: 1, p: 5,  marginTop: '5%',
                     boxShadow: '1px 1px 185px -23px rgba(244, 244, 244, 0.3)',
                     webkitBoxShadow: '1px 1px 185px -23px rgba(251, 251, 251, 0.43)',
                     mozBoxShadow: '1px 1px 185px -23px rgba(164, 132, 132, 0.43)', alignItems: 'center',

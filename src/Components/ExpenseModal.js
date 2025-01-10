@@ -63,11 +63,11 @@ export default function FormDialog() {
                         }}
                     >
                         <DialogTitle sx={{ 
-                            backgroundColor: (theme) => theme.palette.mode === 'light' ? '#727681' : '#101624',
+                            backgroundColor: (theme) => theme.palette.mode === 'light' ? '#4d6eb1ad' : '#101624',
                          }}>Masraf Ekle</DialogTitle>
                         <DialogContent
                          sx={{ 
-                            backgroundColor: (theme) => theme.palette.mode === 'light' ? '#a1a4ab' : '#1F2A40',
+                            backgroundColor: (theme) => theme.palette.mode === 'light' ? '#d3daee' : '#1F2A40',
                          }}>
                             <DialogContentText sx={{ marginBottom: '2%', marginTop:"2%" }}>
                                 *Masraf bilgilerinizi buraya giriniz. Girdiğiniz bilgiler kaydedilecektir.
@@ -161,7 +161,7 @@ export default function FormDialog() {
                         </DialogContent>
                         <DialogActions 
                         sx={{ 
-                            backgroundColor: (theme) => theme.palette.mode === 'light' ? '#727681' : '#101624',
+                            backgroundColor: (theme) => theme.palette.mode === 'light' ? '#4d6eb1ad' : '#101624',
                          }}>
                             <Button
                                 variant="contained"
