@@ -109,8 +109,8 @@ function Calculate() {
             const payload = {
                 initial: parseFloat(initial) || 0,
                 credits,
-                consumer_credit_type: 2, // Varsayılan değer
-                credit_type: 1,         // Varsayılan değer
+                consumer_credit_type: consumerCreditType,
+                credit_type: creditType,
             };
     
             console.log("Initial:", payload.initial);
@@ -131,9 +131,11 @@ function Calculate() {
         } catch (error) {
             // Hata kontrolü
             if (error.response) {
-                console.error("API Yanıt Hatası:", error.response.status, error.response.data);
+                console.error("API Yanıt Hatası:", error.response.status, error.response.data.error);
+                alert( "API Yanıt Hatası: LÜTFEN İLGİLİ ALANLRI DOLDURUNUZ! KREDİ TÜRÜNÜ SEÇİNİZ ANAPARAYI VADE PERİYODUNU ÖDEME TUTARINI GİRİNİZ!");
             } else if (error.request) {
-                console.error("API İstek Hatası:", error.request);
+                console.error("API İstek Hatası:", error.request.data.error);
+                alert("API İstek Hatası")
             } else {
                 console.error("API Hatası:", error.message);
             }
@@ -146,8 +148,8 @@ function Calculate() {
             const payload = {
                 initial: parseFloat(initial) || 0,
                 credits,
-                consumer_credit_type: consumerCreditType,
-                credit_type: creditType,
+                // consumer_credit_type: consumerCreditType,
+                // credit_type: creditType,
 
             };
             console.log("Gönderilen Request Payload:", payload);
