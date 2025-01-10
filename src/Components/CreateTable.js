@@ -25,15 +25,15 @@ function CreateTable({ tableData }) {
                         pagination: { paginationModel: { page: 0, pageSize: 5 } },
                     }}
                     checkboxSelection
-                    sx={{ color: '#ffffff',
+                    sx={{ color: '#ffffff', 
                         border: 0,
                         '& .MuiDataGrid-row': {
-                            backgroundColor: '#eaf4fc',
+                            backgroundColor: '#727681',
                             '&:nth-of-type(odd)': {
-                                backgroundColor: '#f0f8ff',
+                                backgroundColor: '#1F2A40',
                             },
                             '&:hover': {
-                                backgroundColor: '#cde7f0',
+                                backgroundColor: '#a1a4ab',
                             },
                         }, '& .MuiDataGrid-container--top ': {
                             // backgroundColor: 'pink', color:'pink'
