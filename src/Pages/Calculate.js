@@ -24,13 +24,13 @@ function Calculate() {
     const [irrValue, setIrrValue] = useState(null);
     const [consumerCreditType, setConsumerCreditType] = useState(null);
     const [creditType, setCreditType] = useState(null);
-    const [tableData, setTableData] = useState([]);  
+    const [tableData, setTableData] = useState([]);
 
 
     const dispatch = useDispatch();
 
     const handleOpenModal = () => {
-      dispatch(openModal());
+        dispatch(openModal());
     };
 
     useEffect(() => {
@@ -127,7 +127,7 @@ function Calculate() {
 
                 setTableData(formattedData);
             } else {
-               // console.log("Gönderilen Request Payload:", payload);
+                // console.log("Gönderilen Request Payload:", payload);
                 console.error("Tablo verisi yanıt verisi içinde bulunamadı.");
             }
         } catch (error) {
@@ -151,12 +151,10 @@ function Calculate() {
                 }}>
                     IRR HESAPLAMA
                 </Typography>
-
-
             </Box>
             <Divider></Divider>
             <Box sx={{ display: 'flex', justifyContent: 'center', }}>
-            <Typography variant="h1" gutterBottom sx={{
+                <Typography variant="h1" gutterBottom sx={{
                     fontSize: {
                         xs: '10px',
                         sm: '12px',
@@ -164,17 +162,15 @@ function Calculate() {
                         lg: '16px',
                     },
                     fontWeight: 'bold',
-                    paddingBottom:'20px',
-                    paddingTop:'20px'
+                    paddingBottom: '20px',
+                    paddingTop: '20px'
                 }}>
                     HER ŞEY DAHİL YILLIK BİLEŞİK KREDİ MALİYETİNİZİ KOLAYCA HESAPLAYIN! YANILMAYIN!
                 </Typography>
 
             </Box>
-           
-                <Divider></Divider>
+            <Divider></Divider>
             <CreateTable tableData={tableData} />
-
             <Box sx={{
                 flexGrow: 1, p: 5, backgroundColor: 'transparent', borderRadius: 10, marginTop: '5%',
                 boxShadow: '1px 1px 185px -23px rgba(0, 0, 0, 0.43)',
@@ -216,9 +212,9 @@ function Calculate() {
                     <Grid item xs={12} sx={{ display: "flex", justifyContent: "center", paddingBottom: '2%' }}>
                         <Typography>* Faize baz gün sayısı farklılıklarından dolayı hesaplamalarda küçük farklar oluşabilir.</Typography>
                     </Grid>
-                    
-                    <Grid container spacing={1} columns={20}>
-                        <Grid item xs={20} sm={20} md={8} >
+
+                    <Grid container spacing={1} columns={12}>
+                        <Grid item xs={12} sm={12} md={6} >
                             <Grid container spacing={1} columns={12}>
                                 <Grid item xs={12} sm={4} md={4} lg={4} xl={4} >
                                     <TextField fullWidth variant="standard" size="small"
@@ -315,7 +311,7 @@ function Calculate() {
                                 </Grid>
                             </Grid>
                         </Grid>
-                        <Grid item xs={20} sm={20} md={12} >
+                        <Grid item xs={12} sm={12} md={6} >
                             <Grid container spacing={1} columns={12}>
                                 <Grid item xs={12} sm={3} md={3} lg={3} xl={3} display="flex" justifyContent="flex-end">
                                     <Button
@@ -340,7 +336,7 @@ function Calculate() {
                                     >
                                         Masraf
                                     </Button>
-                                    <ExpenseModal/>
+                                    <ExpenseModal />
                                 </Grid>
                                 <Grid item xs={12} sm={3} md={3} lg={3} xl={3} display="flex" justifyContent="flex-end">
                                     <Button
@@ -360,56 +356,79 @@ function Calculate() {
                                         size="large"
                                         color="primary"
                                         onClick={handleCreateTable}
+                                        sx={{
+                                            overflow: "hidden",
+                                            whiteSpace: "nowrap",
+                                            textOverflow: "ellipsis",
+                                            padding: "5px"
+                                        }}
                                     >
-                                        Tablo Oluştur
+                                        Tablo Oluştur1
                                     </Button>
                                 </Grid>
                             </Grid>
                         </Grid>
                     </Grid>
                 </Grid>
-                <Box mt={4}>
-                    <Grid container spacing={2}>
-                        {generatedRows.map((row, index) => (
-                            <React.Fragment key={index}>
-                                <Grid item xs={5}>
+
+                {generatedRows.map((row, index) => (
+                    <Grid container spacing={2} key={index} sx={{marginTop:'10px'}}>
+                        <Grid container spacing={1} columns={12}>
+                            <Grid item xs={12} sm={6} md={6} >
+                                <Grid container spacing={1} columns={12}>
+                                    <Grid item xs={12} sm={6} md={4} lg={4} xl={4} >
+
+                                    </Grid>
+                                    <Grid item xs={12} sm={6} md={4} lg={4} xl={4}>
+                                    </Grid>
+                                    <Grid item xs={12} sm={12} md={4} lg={4} xl={4}>
+                                        <TextField variant="standard" size="small"
+                                            label="Yeni Ödeme Tutarı "
+                                            fullWidth
+                                            value={row.value2}
+                                            onChange={(e) => {
+                                                const value = e.target.value;
+                                                if (/^\d*\.?\d*$/.test(value)) {
+                                                    handleInputChange(index, "value2", value);
+                                                }
+                                            }}
+                                            inputProps={{
+                                                inputMode: 'numeric',
+                                                pattern: '[0-9]*'
+                                            }}
+                                        />
+                                    </Grid>
                                 </Grid>
-                                <Grid item xs={5}>
-                                    <TextField
-                                        fullWidth
-                                        value={row.value2}
-                                        onChange={(e) => {
-                                            const value = e.target.value;
-                                            if (/^\d*\.?\d*$/.test(value)) {
-                                                handleInputChange(index, "value2", value);
-                                            }
-                                        }}
-                                        inputProps={{
-                                            inputMode: 'numeric',
-                                            pattern: '[0-9]*'
-                                        }}
-                                    />
+                            </Grid>
+                            <Grid item xs={12} sm={6} md={6}  >
+                                <Grid container spacing={1} columns={12}>
+                                    <Grid item xs={12} sm={12} md={3} lg={3} xl={3} display="flex" justifyContent="flex-end">
+                                        <Button
+                                            variant="contained"
+                                            color="primary"
+                                            startIcon={<DeleteIcon />}
+                                            fullWidth
+                                            size="large"
+                                            onClick={() => handleDeleteRow(index)}
+                                        >
+                                            SİL
+                                        </Button>
+                                    </Grid>
+                                    <Grid item xs={12} sm={6} md={3} lg={3} xl={3} display="flex" justifyContent="flex-end">
+
+
+                                    </Grid>
+                                    <Grid item xs={12} sm={6} md={3} lg={3} xl={3} display="flex" justifyContent="flex-end">
+
+                                    </Grid>
+                                    <Grid item xs={12} sm={6} md={3} lg={3} xl={3} display="flex" justifyContent="flex-end">
+
+                                    </Grid>
                                 </Grid>
-                                <Grid
-                                    item
-                                    xs={2}
-                                    display="flex"
-                                    justifyContent="center"
-                                    alignItems="center"
-                                >
-                                    <Button
-                                        variant="contained"
-                                        color="primary"
-                                        startIcon={<DeleteIcon />}
-                                        onClick={() => handleDeleteRow(index)}
-                                    >
-                                        SİL
-                                    </Button>
-                                </Grid>
-                            </React.Fragment>
-                        ))}
+                            </Grid>
+                        </Grid>
                     </Grid>
-                </Box>
+                ))}
             </Box>
         </>
     )
