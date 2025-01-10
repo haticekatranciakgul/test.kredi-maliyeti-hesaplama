@@ -182,9 +182,9 @@ function Calculate() {
                         <Box sx={{ display: 'flex', justifyContent: 'center', paddingTop: '2%', paddingBottom: '2%' }}>
                             <Box sx={{
                                 display: 'flex', justifyContent: 'center', flexGrow: 1, p: 5, backgroundColor: 'transparent', borderRadius: 10, marginTop: '5%',
-                                boxShadow: '1px 1px 185px -23px rgba(0, 0, 0, 1)',
-                                webkitBoxShadow: '1px 1px 185px -23px rgba(0,0,0,0.43)',
-                                mozBoxShadow: '1px 1px 185px -23px rgba(0,0,0,0.43)',
+                                boxShadow: '1px 1px 185px -23px rgb(40, 63, 152)',
+                                webkitBoxShadow: '1px 1px 185px -23px rgba(55, 102, 221, 0.43)',
+                                mozBoxShadow: '1px 1px 185px -23px rgba(44, 102, 228, 0.43)',
 
                             }}>
                                 <Typography sx={{
@@ -363,7 +363,7 @@ function Calculate() {
                                             padding: "5px"
                                         }}
                                     >
-                                        Tablo Oluştur1
+                                        Tablo Oluştur
                                     </Button>
                                 </Grid>
                             </Grid>
@@ -400,7 +400,7 @@ function Calculate() {
                                     </Grid>
                                 </Grid>
                             </Grid>
-                            <Grid item xs={12} sm={6} md={6}  >
+                            <Grid item xs={12} sm={6} md={6}>
                                 <Grid container spacing={1} columns={12}>
                                     <Grid item xs={12} sm={12} md={3} lg={3} xl={3} display="flex" justifyContent="flex-end">
                                         <Button
@@ -419,10 +419,8 @@ function Calculate() {
 
                                     </Grid>
                                     <Grid item xs={12} sm={6} md={3} lg={3} xl={3} display="flex" justifyContent="flex-end">
-
                                     </Grid>
                                     <Grid item xs={12} sm={6} md={3} lg={3} xl={3} display="flex" justifyContent="flex-end">
-
                                     </Grid>
                                 </Grid>
                             </Grid>

@@ -115,7 +115,7 @@ function CreateTable({ tableData }) {
 
                 />
             </Paper>
-             )} 
+             )}  
         </>
 
     );

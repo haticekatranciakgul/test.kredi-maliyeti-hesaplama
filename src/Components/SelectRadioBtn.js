@@ -22,25 +22,25 @@ function SelectRadioBtn({ setConsumerCreditType, setCreditType }) {
     const handleSubOptionChange = (event) => {
         setSubOption(event.target.value);
         if (event.target.value === 'option1') {
-             setConsumerCreditType(1);
+            setConsumerCreditType(1);
         } else if (event.target.value === 'option2') {
-             setConsumerCreditType(2);
+            setConsumerCreditType(2);
         } else if (event.target.value === 'option3') {
-             setConsumerCreditType(3);
+            setConsumerCreditType(3);
         }
     };
 
     return (
         <div>
             <Grid container spacing={2} >
-                <Grid item xs={12} sx={{display: 'flex', justifyContent: 'center',}} >
-                    <Box sx={{ width:'40%'}}>
+                <Grid item xs={12} sx={{ display: 'flex', justifyContent: 'center', }} >
+                    <Box sx={{ width: '40%' }}>
                         <Box sx={{
                             display: 'flex', justifyContent: 'center', flexGrow: 1, p: 5, backgroundColor: 'transparent', borderRadius: 10,
-                            boxShadow: '1px 1px 185px -23px rgba(0, 0, 0, 1)',
-                            webkitBoxShadow: '1px 1px 185px -23px rgba(0,0,0,0.43)',
-                            mozBoxShadow: '1px 1px 185px -23px rgba(0,0,0,0.43)',
-                           
+                            boxShadow: '1px 1px 185px -23px rgb(40, 63, 152)',
+                            webkitBoxShadow: '1px 1px 185px -23px rgba(55, 102, 221, 0.43)',
+                            mozBoxShadow: '1px 1px 185px -23px rgba(44, 102, 228, 0.43)',
+
 
                         }}>
                             <FormControl sx={{ alignItems: "center", display: "flex", justifyContent: "center" }}>
