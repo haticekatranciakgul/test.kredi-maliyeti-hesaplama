@@ -5,8 +5,8 @@ import Grid from "@mui/material/Grid";
 
 
 function SelectRadioBtn({ setConsumerCreditType, setCreditType }) {
-    const [selectedOption, setSelectedOption] = useState('');
-    const [subOption, setSubOption] = useState('');
+    const [selectedOption, setSelectedOption] = useState(1);
+    const [subOption, setSubOption] = useState(1);
 
 
     const handleMainOptionChange = (event) => {
