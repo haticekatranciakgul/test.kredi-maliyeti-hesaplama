@@ -14,7 +14,6 @@ import SelectRadioBtn from "../Components/SelectRadioBtn"
 import { useDispatch } from 'react-redux';
 import { openModal } from '../Redux/modalSlice';
 import ExpenseModal from '../Components/ExpenseModal'
-import AnimatedText from "../Components/AnimatedText";
 
 function Calculate() {
     const [inputCount, setInputCount] = useState("");
@@ -176,7 +175,7 @@ function Calculate() {
                 <Grid container spacing={2}>
                     <Grid item xs={12} sx={{ alignItems: "center", display: "flex", justifyContent: "center" }}>
                         <Box sx={{ display: 'flex', justifyContent: 'center', }}>
-                            <AnimatedText />
+                        HER ŞEY DAHİL YILLIK BİLEŞİK KREDİ MALİYETİNİZİ KOLAYCA HESAPLAYIN! YANILMAYIN!
 
                         </Box>
                     </Grid>
