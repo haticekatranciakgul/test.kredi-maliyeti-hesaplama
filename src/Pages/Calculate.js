@@ -13,7 +13,9 @@ import CreateTable from "../Components/CreateTable";
 import SelectRadioBtn from "../Components/SelectRadioBtn"
 import { useDispatch } from 'react-redux';
 import { openModal } from '../Redux/modalSlice';
-import ExpenseModal from '../Components/ExpenseModal'
+import ExpenseModal from '../Components/ExpenseModal';
+import { useSelector } from 'react-redux';
+
 
 function Calculate() {
     const [inputCount, setInputCount] = useState("");
@@ -25,6 +27,7 @@ function Calculate() {
     const [consumerCreditType, setConsumerCreditType] = useState(null);
     const [creditType, setCreditType] = useState(null);
     const [tableData, setTableData] = useState([]);
+    const expenses = useSelector((state) => state.expenses.expenses);
 
 
     const dispatch = useDispatch();
@@ -79,6 +82,7 @@ function Calculate() {
                 credits,
                 consumer_credit_type: 1,
                 credit_type: 1,
+                expenses
             };
 
             console.log("Initial:", payload.initial);
@@ -117,6 +121,7 @@ function Calculate() {
                 credits,
                 consumer_credit_type: 1,
                 credit_type: 1,
+                expenses
 
             };
             console.log("Gönderilen Request Payload:", payload);
