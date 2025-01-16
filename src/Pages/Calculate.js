@@ -16,6 +16,8 @@ import { openModal } from '../Redux/modalSlice';
 import ExpenseModal from '../Components/ExpenseModal';
 import { useSelector } from 'react-redux';
 
+import { setConsumerCreditType, setCreditType } from '../Redux/creditTypeSlice';
+
 
 function Calculate() {
     const [inputCount, setInputCount] = useState("");
@@ -24,13 +26,13 @@ function Calculate() {
     //const [otherExpenses, setOtherExpenses] = useState("");
     const [generatedRows, setGeneratedRows] = useState([]);
     const [irrValue, setIrrValue] = useState(null);
-    const [consumerCreditType, setConsumerCreditType] = useState(null);
-    const [creditType, setCreditType] = useState(null);
     const [tableData, setTableData] = useState([]);
     const expenses = useSelector((state) => state.expenses.expenses);
 
 
     const dispatch = useDispatch();
+    const consumerCreditType = useSelector((state) => state.creditType.consumerCreditType);
+    const creditType = useSelector((state) => state.creditType.creditType);
 
     const handleOpenModal = () => {
         dispatch(openModal());
@@ -80,8 +82,8 @@ function Calculate() {
             const payload = {
                 initial: parseFloat(initial) || 0,
                 credits,
-                consumer_credit_type: consumerCreditType,
                 credit_type: creditType,
+                consumer_credit_type: consumerCreditType,
                 expenses
             };
 
@@ -119,8 +121,8 @@ function Calculate() {
             const payload = {
                 initial: parseFloat(initial) || 0,
                 credits,
-                consumer_credit_type: consumerCreditType,
                 credit_type: creditType,
+                consumer_credit_type: consumerCreditType,
                 expenses
 
             };
@@ -210,8 +212,10 @@ function Calculate() {
                         </Box><br />
                     </Grid>
                     <Grid item xs={12} >
-                        <SelectRadioBtn setConsumerCreditType={setConsumerCreditType}
-                            setCreditType={setCreditType} ></SelectRadioBtn>
+                        <SelectRadioBtn
+                            setConsumerCreditType={(value) => dispatch(setConsumerCreditType(value))}
+                            setCreditType={(value) => dispatch(setCreditType(value))}
+                        />
                     </Grid>
                     <Grid item xs={12} sx={{ display: "flex", justifyContent: "center" }}>
                         <Typography>* Kredi Tutarı (Anapara), Diğer Masraflar, Vade Periyodu ve Ödeme Tutarını Giriniz</Typography>

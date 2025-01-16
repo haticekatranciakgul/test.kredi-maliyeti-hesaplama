@@ -13,6 +13,7 @@ function SelectRadioBtn({ setConsumerCreditType, setCreditType }) {
         setSelectedOption(event.target.value);
         if (event.target.value === 'Ticari') {
             setCreditType(1);
+            setConsumerCreditType(1);
         } else if (event.target.value === 'Bireysel') {
             setCreditType(2);
         }

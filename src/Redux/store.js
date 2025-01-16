@@ -4,7 +4,7 @@ import formReducer from './formSlice';
 import dataReducer from './dataSlice';
 import modalReducer from './modalSlice';
 import expensesReducer from './expensesSlice';
-
+import creditTypeReducer from './creditTypeSlice';
 
 const store = configureStore({
   reducer: {
@@ -13,6 +13,8 @@ const store = configureStore({
     data: dataReducer,
     modal: modalReducer,
     expenses: expensesReducer,
+    creditType: creditTypeReducer,
+
 
   },
 });
