@@ -39,7 +39,7 @@ export default function FormDialog() {
 
     const handleInputChange = (index, field, value) => {
         const newRows = [...rows];
-        newRows[index][field] = value;
+        newRows[index] = { ...newRows[index], [field]: value };
         setRows(newRows); 
     };
 
@@ -84,7 +84,7 @@ export default function FormDialog() {
                                             fullWidth
                                             variant="standard"
                                             value={row.title}
-                                            onChange={(e) => handleInputChange(index, 'text', e.target.value)}
+                                            onChange={(e) => handleInputChange(index, 'title', e.target.value)}
                                         />
                                     </Grid>
                                     <Grid item md={5}>
