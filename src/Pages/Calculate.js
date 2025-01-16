@@ -90,7 +90,7 @@ function Calculate() {
             console.log("Payload:", payload);
 
 
-            const response = await axios.post("https://credit-irr.vercel.app/api/v1/credits/create/irr", payload);
+            const response = await axios.post(`${BASE_URL}/api/v1/credits/create/irr`, payload);
 
 
             if (response.data && typeof response.data.irr !== "undefined") {

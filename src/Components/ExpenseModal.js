@@ -13,7 +13,6 @@ import AddIcon from "@mui/icons-material/Add";
 import { ThemeProvider, useTheme } from "@mui/material";
 import CssBaseline from "@mui/material/CssBaseline";
 import { ColorModeContext } from "../theme";
-import axios from "axios";
 
 
 import { setExpenses } from '../Redux/expensesSlice'; // Redux aksiyonunu import ediyoruz
@@ -94,7 +93,7 @@ export default function FormDialog() {
                                     <Grid item md={5}>
                                         <TextField
                                             required
-                                            label="Masraf Açıkla"
+                                            label="Masraf Açıklaması"
                                             fullWidth
                                             variant="standard"
                                             value={row.text}
