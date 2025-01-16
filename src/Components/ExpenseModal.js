@@ -21,40 +21,33 @@ import { setExpenses } from '../Redux/expensesSlice'; // Redux aksiyonunu import
 
 export default function FormDialog() {
     const dispatch = useDispatch();
-    const open = useSelector((state) => state.modal.isOpen); // Modal durumunu Redux'tan al
-    const [rows, setRows] = useState([{ text: '', amount: '' }]); // Dinamik form satırları için state
+    const open = useSelector((state) => state.modal.isOpen); 
+    const expenses = useSelector((state) => state.expenses.expenses); 
+
+    const [rows, setRows] = useState(expenses);
     const theme = useTheme();
     const colorMode = useContext(ColorModeContext);
-   // const expenses = useSelector(state => state.expenses.expenses); // Redux store'dan veriyi al
 
 
     const handleClose = () => {
-        dispatch(closeModal()); // Modal'ı kapa
+        dispatch(closeModal()); 
     };
 
     const handleAddRow = () => {
-        setRows([...rows, { text: '', amount: '' }]); // Yeni satır ekle
+        setRows([...rows, { title: '', amount: '' }]); 
     };
 
     const handleInputChange = (index, field, value) => {
         const newRows = [...rows];
         newRows[index][field] = value;
-        setRows(newRows); // İlgili satırı güncelle
+        setRows(newRows); 
     };
 
     const handleSave = async () => {
-        const expenses = rows.map(row => ({
-            title: row.text,
-            amount: parseFloat(row.amount),
-        }));
-        dispatch(setExpenses(expenses));
-
-        console.log("expenses", expenses)
-
+        dispatch(setExpenses(rows)); 
+        console.log("expenses", rows);
         try {
-            // const response = await axios.post('https://credit-irr.vercel.app/api/v1/credits/create/irr', { expenses });
-            // console.log('Veri başarıyla gönderildi:', response.data);
-            handleClose(); // Modalı kapat
+            handleClose();
         } catch (error) {
             console.error('Hata:', error);
         }
@@ -81,12 +74,6 @@ export default function FormDialog() {
                         <DialogContentText sx={{ marginBottom: '2%', marginTop: "2%" }}>
                             *Masraf bilgilerinizi buraya giriniz. Girdiğiniz bilgiler kaydedilecektir.
                         </DialogContentText>
-                        {/* {expenses.map((expense, index) => (
-                            <div key={index}>
-                                <p>{expense.title}: {expense.amount}</p>
-                            </div>
-                        ))} */}
-
                         <Grid container spacing={1} columns={12}>
                             {rows.map((row, index) => (
                                 <Grid container spacing={1} columns={10} key={index}>
@@ -96,7 +83,7 @@ export default function FormDialog() {
                                             label="Masraf Açıklaması"
                                             fullWidth
                                             variant="standard"
-                                            value={row.text}
+                                            value={row.title}
                                             onChange={(e) => handleInputChange(index, 'text', e.target.value)}
                                         />
                                     </Grid>

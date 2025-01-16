@@ -2,7 +2,12 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-    expenses: [],
+    // expenses: [],
+    expenses: [
+        { id: 0, title: 'Komisyon ücret ve masraflar ', amount: '' },  
+        { id: 1, title: 'Sigortalar', amount: '' },  
+        { id: 2, title: 'Diğer', amount: '' },  
+    ],
 };
 
 const expensesSlice = createSlice({
@@ -10,10 +15,10 @@ const expensesSlice = createSlice({
     initialState,
     reducers: {
         addExpense: (state, action) => {
-            state.expenses.push(action.payload); // Yeni expense ekler
+            state.expenses.push(action.payload); 
         },
         setExpenses: (state, action) => {
-            state.expenses = action.payload; // Expenses'ı set eder
+            state.expenses = action.payload; 
         },
     },
 });
