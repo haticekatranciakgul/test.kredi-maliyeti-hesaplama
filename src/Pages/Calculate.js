@@ -80,8 +80,8 @@ function Calculate() {
             const payload = {
                 initial: parseFloat(initial) || 0,
                 credits,
-                consumer_credit_type: 1,
-                credit_type: 1,
+                consumer_credit_type: consumerCreditType,
+                credit_type: creditType,
                 expenses
             };
 
@@ -119,8 +119,8 @@ function Calculate() {
             const payload = {
                 initial: parseFloat(initial) || 0,
                 credits,
-                consumer_credit_type: 1,
-                credit_type: 1,
+                consumer_credit_type: consumerCreditType,
+                credit_type: creditType,
                 expenses
 
             };
