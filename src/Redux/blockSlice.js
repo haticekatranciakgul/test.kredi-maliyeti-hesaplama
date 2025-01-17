@@ -1,10 +1,8 @@
-// blockSlice.js
-
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-  block: 0, // Gün sayısı
-  block_amount: 0, // Blokede kalacak kredi tutarı
+  block: 0,
+  block_amount: 0,
 };
 
 const blockSlice = createSlice({

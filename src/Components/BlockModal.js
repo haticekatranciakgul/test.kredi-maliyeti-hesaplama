@@ -89,7 +89,7 @@ export default function FormDialog() {
                                     onChange={handleBlockChange}
                                     inputProps={{
                                         inputMode: 'numeric',
-                                        pattern: '\\d*',  // Tam sayı pattern'i
+                                        pattern: '\\d*', 
                                         max: 999
                                     }}
                                 />
@@ -104,9 +104,9 @@ export default function FormDialog() {
                                     value={blockAmount}
                                     onChange={handleBlockAmountChange}
                                     inputProps={{
-                                        inputMode: 'decimal',  // Ondalıklı sayılar için
-                                        pattern: '[0-9]*[.,]?[0-9]*',  // Nokta veya virgül ile ondalıklı sayılar
-                                        step: 'any'  // Herhangi bir ondalıklı sayıya izin verir
+                                        inputMode: 'decimal', 
+                                        pattern: '[0-9]*[.,]?[0-9]*', 
+                                        step: 'any'  
                                     }}
                                 />
                             </Grid>
