@@ -141,9 +141,9 @@ export default function Footer() {
               Terms of Service
             </Link>
             <Typography sx={{ display: 'inline', mx: 0.5, opacity: 0.5 }}>
-              &nbsp;•&nbsp;
+             
             </Typography>
-            <Link color="text.secondary" variant="body2" href="https://github.com/haticekatranciakgul">Created by H.K.A</Link>
+            {/* <Link color="text.secondary" variant="body2" href="https://github.com/haticekatranciakgul">Created by H.K.A</Link> */}
 
             {/* <Copyright /> */}
           </div>
@@ -156,7 +156,7 @@ export default function Footer() {
             <IconButton
               color="inherit"
               size="small"
-              href="https://github.com/haticekatranciakgul"
+             href="#"
               aria-label="GitHub"
               sx={{ alignSelf: 'center' }}
             >
