@@ -15,7 +15,8 @@ import { useDispatch } from 'react-redux';
 import { openModal } from '../Redux/modalSlice';
 import ExpenseModal from '../Components/ExpenseModal';
 import { useSelector } from 'react-redux';
-import BlockModal from '../Components/BlockModal'
+import BlockModal from '../Components/BlockModal';
+import { selectBlockData } from '../Redux/blockSlice';
 
 import { setConsumerCreditType, setCreditType } from '../Redux/creditTypeSlice';
 
@@ -30,7 +31,7 @@ function Calculate() {
     const [tableData, setTableData] = useState([]);
     const expenses = useSelector((state) => state.expenses.expenses);
     const { isOpen, modalType } = useSelector((state) => state.modal);
-
+    const blockData = useSelector(selectBlockData);
 
 
     const dispatch = useDispatch();
@@ -130,12 +131,14 @@ function Calculate() {
                 credits,
                 credit_type: creditType,
                 consumer_credit_type: consumerCreditType,
-                expenses
+                expenses,
+                block: blockData.block,
+                block_amount: blockData.block_amount, 
 
             };
             console.log("Gönderilen Request Payload:", payload);
             const tableResponse = await axios.post(`${BASE_URL}/api/v1/credits/create/table`, payload);
-            //http://localhost:8000//api/v1/credits/create/table
+         
 
 
             if (tableResponse.data && tableResponse.data.table) {

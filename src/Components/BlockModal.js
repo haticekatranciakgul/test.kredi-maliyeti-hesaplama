@@ -12,11 +12,16 @@ import Grid from "@mui/material/Grid";
 import { ThemeProvider, useTheme } from "@mui/material";
 import CssBaseline from "@mui/material/CssBaseline";
 import { ColorModeContext } from "../theme";
+import { setBlockData } from '../Redux/blockSlice';
 
 
 export default function FormDialog() {
     const dispatch = useDispatch();
     const open = useSelector((state) => state.modal.isOpen);
+    const blockData = useSelector((state) => state.block);
+
+    const [block, setBlock] = React.useState(blockData.block);
+    const [blockAmount, setBlockAmount] = React.useState(blockData.block_amount);
 
     const theme = useTheme();
     const colorMode = useContext(ColorModeContext);
@@ -25,8 +30,26 @@ export default function FormDialog() {
     const handleClose = () => {
         dispatch(closeModal());
     };
+    const handleBlockChange = (e) => {
+        const value = e.target.value;
+        if (/^\d*$/.test(value) && (value === "" || parseInt(value) <= 999)) {
+            setBlock(parseInt(value) || 0);  
+        }
+    };
+    
+    const handleBlockAmountChange = (e) => {
+        const value = e.target.value;
+        if (/^\d*\.?\d*$/.test(value)) {
+            setBlockAmount(value);  
+        }
+    };
+    
+    
 
     const handleSave = async () => {
+        dispatch(setBlockData({ block, block_amount: blockAmount }));
+
+
         try {
             handleClose();
         } catch (error) {
@@ -61,7 +84,14 @@ export default function FormDialog() {
                                     label="Kredi tutarının blokede tutulacağı gün sayısı "
                                     fullWidth
                                     variant="standard"
-                                    type="number"
+                                    type="text"
+                                    value={block}
+                                    onChange={handleBlockChange}
+                                    inputProps={{
+                                        inputMode: 'numeric',
+                                        pattern: '\\d*',  // Tam sayı pattern'i
+                                        max: 999
+                                    }}
                                 />
                             </Grid>
                             <Grid item md={5}>
@@ -70,7 +100,14 @@ export default function FormDialog() {
                                     label="Blokede kalacak kredi tutarı "
                                     fullWidth
                                     variant="standard"
-                                    type="number"
+                                    type="text"
+                                    value={blockAmount}
+                                    onChange={handleBlockAmountChange}
+                                    inputProps={{
+                                        inputMode: 'decimal',  // Ondalıklı sayılar için
+                                        pattern: '[0-9]*[.,]?[0-9]*',  // Nokta veya virgül ile ondalıklı sayılar
+                                        step: 'any'  // Herhangi bir ondalıklı sayıya izin verir
+                                    }}
                                 />
                             </Grid>
                         </Grid>
