@@ -15,6 +15,7 @@ import { useDispatch } from 'react-redux';
 import { openModal } from '../Redux/modalSlice';
 import ExpenseModal from '../Components/ExpenseModal';
 import { useSelector } from 'react-redux';
+import BlockModal from '../Components/BlockModal'
 
 import { setConsumerCreditType, setCreditType } from '../Redux/creditTypeSlice';
 
@@ -28,15 +29,21 @@ function Calculate() {
     const [irrValue, setIrrValue] = useState(null);
     const [tableData, setTableData] = useState([]);
     const expenses = useSelector((state) => state.expenses.expenses);
+    const { isOpen, modalType } = useSelector((state) => state.modal);
+
 
 
     const dispatch = useDispatch();
     const consumerCreditType = useSelector((state) => state.creditType.consumerCreditType);
     const creditType = useSelector((state) => state.creditType.creditType);
 
-    const handleOpenModal = () => {
-        dispatch(openModal());
-    };
+    const handleOpenExpenseModal = () => {
+        dispatch(openModal("expense"));
+      };
+    
+      const handleOpenBlockModal = () => {
+        dispatch(openModal("block"));
+      };
 
     useEffect(() => {
         const count = parseInt(inputCount) || 0;
@@ -343,11 +350,27 @@ function Calculate() {
                                         fullWidth
                                         size="large"
                                         color="primary"
-                                        onClick={handleOpenModal}
+                                        onClick={handleOpenExpenseModal}
                                     >
                                         Masraf
                                     </Button>
-                                    <ExpenseModal />
+                                    {isOpen && modalType === "expense" && <ExpenseModal />}
+                                    
+                                </Grid>
+                                <Grid item xs={12} sm={3} md={3} lg={3} xl={3} display="flex" justifyContent="flex-end">
+                                    <Button
+                                        variant="contained"
+                                        startIcon={<AddIcon />}
+                                        fullWidth
+                                        size="large"
+                                        color="primary"
+                                        onClick={handleOpenBlockModal}
+                                        
+                                    >
+                                        Blok
+                                    </Button>
+                                    {isOpen && modalType === "block" && <BlockModal />}
+                                   
                                 </Grid>
                                 <Grid item xs={12} sm={3} md={3} lg={3} xl={3} display="flex" justifyContent="flex-end">
                                     <Button
