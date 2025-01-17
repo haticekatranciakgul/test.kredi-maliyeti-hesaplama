@@ -2,7 +2,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-    // expenses: [],
     expenses: [
         { id: 0, title: 'Komisyon, ücret ve masraflar ', amount: '' },  
         { id: 1, title: 'Sigortalar', amount: '' },  

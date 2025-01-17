@@ -7,45 +7,26 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
-import { closeModal } from '../Redux/modalSlice'; // Redux aksiyonlarını içe aktar
+import { closeModal } from '../Redux/modalSlice';
 import Grid from "@mui/material/Grid";
-import AddIcon from "@mui/icons-material/Add";
 import { ThemeProvider, useTheme } from "@mui/material";
 import CssBaseline from "@mui/material/CssBaseline";
 import { ColorModeContext } from "../theme";
 
 
-import { setExpenses } from '../Redux/expensesSlice'; // Redux aksiyonunu import ediyoruz
-
-
-
 export default function FormDialog() {
     const dispatch = useDispatch();
-    const open = useSelector((state) => state.modal.isOpen); 
-    const expenses = useSelector((state) => state.expenses.expenses); 
+    const open = useSelector((state) => state.modal.isOpen);
 
-    const [rows, setRows] = useState(expenses);
     const theme = useTheme();
     const colorMode = useContext(ColorModeContext);
 
 
     const handleClose = () => {
-        dispatch(closeModal()); 
-    };
-
-    const handleAddRow = () => {
-        setRows([...rows, { title: '', amount: '' }]); 
-    };
-
-    const handleInputChange = (index, field, value) => {
-        const newRows = [...rows];
-        newRows[index] = { ...newRows[index], [field]: value };
-        setRows(newRows); 
+        dispatch(closeModal());
     };
 
     const handleSave = async () => {
-        dispatch(setExpenses(rows)); 
-        console.log("expenses", rows);
         try {
             handleClose();
         } catch (error) {
@@ -71,48 +52,29 @@ export default function FormDialog() {
                     <DialogContent sx={{
                         backgroundColor: (theme) => theme.palette.mode === 'light' ? '#d3daee' : '#1F2A40',
                     }}>
-                        <DialogContentText sx={{ marginBottom: '2%', marginTop: "2%" }}>
-                            *Masraf bilgilerinizi buraya giriniz. Girdiğiniz bilgiler kaydedilecektir.
-                        </DialogContentText>
-                        <Grid container spacing={1} columns={12}>
-                            {rows.map((row, index) => (
-                                <Grid container spacing={1} columns={10} key={index}>
-                                    <Grid item md={5}>
-                                        <TextField
-                                            required
-                                            label="Masraf Açıklaması"
-                                            fullWidth
-                                            variant="standard"
-                                            value={row.title}
-                                            onChange={(e) => handleInputChange(index, 'title', e.target.value)}
-                                        />
-                                    </Grid>
-                                    <Grid item md={5}>
-                                        <TextField
-                                            required
-                                            label="Masraf Tutarı"
-                                            fullWidth
-                                            variant="standard"
-                                            value={row.amount}
-                                            onChange={(e) => handleInputChange(index, 'amount', e.target.value)}
-                                            type="number"
-                                        />
-                                    </Grid>
-                                </Grid>
-                            ))}
-                            <Grid item md={2}>
-                                <Button
-                                    variant="contained"
-                                    startIcon={<AddIcon />}
+                        <DialogContentText sx={{ marginBottom: '2%', marginTop: "2%" }}> </DialogContentText>
+
+                        <Grid container spacing={1} columns={10} >
+                            <Grid item md={5}>
+                                <TextField
+                                    required
+                                    label="Kredi tutarının blokede tutulacağı gün sayısı "
                                     fullWidth
-                                    size="large"
-                                    color="primary"
-                                    onClick={handleAddRow}
-                                >
-                                    EKLE
-                                </Button>
+                                    variant="standard"
+                                    type="number"
+                                />
+                            </Grid>
+                            <Grid item md={5}>
+                                <TextField
+                                    required
+                                    label="Blokede kalacak kredi tutarı "
+                                    fullWidth
+                                    variant="standard"
+                                    type="number"
+                                />
                             </Grid>
                         </Grid>
+
                     </DialogContent>
                     <DialogActions sx={{
                         backgroundColor: (theme) => theme.palette.mode === 'light' ? '#4d6eb1ad' : '#101624',
