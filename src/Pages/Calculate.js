@@ -21,7 +21,6 @@ import { setConsumerCreditType, setCreditType } from '../Redux/creditTypeSlice';
 import TaxModal from '../Components/TaxModal';
 
 
-
 function Calculate() {
     const [inputCount, setInputCount] = useState("");
     const [credits, setcredits] = useState("");
@@ -30,8 +29,10 @@ function Calculate() {
     const [irrValue, setIrrValue] = useState(null);
     const [tableData, setTableData] = useState([]);
     const expenses = useSelector((state) => state.expenses.expenses);
+    const tax = useSelector((state) => state.tax.tax);
     const { isOpen, modalType } = useSelector((state) => state.modal);
     const blockData = useSelector(selectBlockData);
+
 
 
     const dispatch = useDispatch();
@@ -138,7 +139,8 @@ function Calculate() {
                 expenses,
                 block: blockData.block,
                 block_amount: blockData.block_amount,
-
+                tax,
+            
             };
             console.log("Gönderilen Request Payload:", payload);
             const tableResponse = await axios.post(`${BASE_URL}/api/v1/credits/create/table`, payload);

@@ -6,6 +6,8 @@ import modalReducer from './modalSlice';
 import expensesReducer from './expensesSlice';
 import creditTypeReducer from './creditTypeSlice';
 import blockReducer from './blockSlice';
+import taxReducer from './taxSlice';
+
 
 const store = configureStore({
   reducer: {
@@ -16,7 +18,7 @@ const store = configureStore({
     expenses: expensesReducer,
     creditType: creditTypeReducer,
     block: blockReducer, 
-
+    tax: taxReducer, 
 
   },
 });

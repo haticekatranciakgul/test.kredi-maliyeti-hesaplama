@@ -7,22 +7,22 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
-import { closeModal } from '../Redux/modalSlice';
+import { closeModal } from '../Redux/modalSlice'; 
 import Grid from "@mui/material/Grid";
+import AddIcon from "@mui/icons-material/Add";
 import { ThemeProvider, useTheme } from "@mui/material";
 import CssBaseline from "@mui/material/CssBaseline";
 import { ColorModeContext } from "../theme";
-import { setBlockData } from '../Redux/blockSlice';
+import { setTax } from '../Redux/taxSlice'; 
+
 
 
 export default function FormDialog() {
     const dispatch = useDispatch();
     const open = useSelector((state) => state.modal.isOpen);
-    const blockData = useSelector((state) => state.block);
+    const tax = useSelector((state) => state.tax.tax);
 
-    const [block, setBlock] = React.useState(blockData.block);
-    const [blockAmount, setBlockAmount] = React.useState(blockData.block_amount);
-
+    const [rows, setRows] = useState(tax);
     const theme = useTheme();
     const colorMode = useContext(ColorModeContext);
 
@@ -30,26 +30,20 @@ export default function FormDialog() {
     const handleClose = () => {
         dispatch(closeModal());
     };
-    const handleBlockChange = (e) => {
-        const value = e.target.value;
-        if (/^\d*$/.test(value) && (value === "" || parseInt(value) <= 999)) {
-            setBlock(parseInt(value) || 0);  
-        }
+
+    const handleAddRow = () => {
+        setRows([...rows, { title: '', amount: '' }]);
     };
-    
-    const handleBlockAmountChange = (e) => {
-        const value = e.target.value;
-        if (/^\d*\.?\d*$/.test(value)) {
-            setBlockAmount(value);  
-        }
+
+    const handleInputChange = (index, field, value) => {
+        const newRows = [...rows];
+        newRows[index] = { ...newRows[index], [field]: value };
+        setRows(newRows);
     };
-    
-    
 
     const handleSave = async () => {
-        dispatch(setBlockData({ block, block_amount: blockAmount }));
-
-
+        dispatch(setTax(rows));
+        console.log("tax", rows);
         try {
             handleClose();
         } catch (error) {
@@ -75,44 +69,48 @@ export default function FormDialog() {
                     <DialogContent sx={{
                         backgroundColor: (theme) => theme.palette.mode === 'light' ? '#d3daee' : '#1F2A40',
                     }}>
-                        <DialogContentText sx={{ marginBottom: '2%', marginTop: "2%" }}> 
+                        <DialogContentText sx={{ marginBottom: '2%', marginTop: "2%" }}>
                         *Oranlar farklı ise oranları düzeltin.                        </DialogContentText>
-
-                        <Grid container spacing={1} columns={10} >
-                            <Grid item md={5}>
-                                <TextField
-                                    required
-                                    label="Vergi"
+                       
+                        <Grid container spacing={1} columns={12}>
+                            {rows.map((row, index) => (
+                                <Grid container spacing={1} columns={10} key={index}>
+                                    <Grid item md={5}>
+                                        <TextField
+                                            required
+                                            label="Vergi Açıklması"
+                                            fullWidth
+                                            variant="standard"
+                                            value={row.title}
+                                            onChange={(e) => handleInputChange(index, 'title', e.target.value)}
+                                        />
+                                    </Grid>
+                                    <Grid item md={5}>
+                                        <TextField
+                                            required
+                                            label="Vergi Oranı"
+                                            fullWidth
+                                            variant="standard"
+                                            value={row.amount}
+                                            onChange={(e) => handleInputChange(index, 'amount', e.target.value)}
+                                            type="number"
+                                        />
+                                    </Grid>
+                                </Grid>
+                            ))}
+                            <Grid item md={2}>
+                                <Button
+                                    variant="contained"
+                                    startIcon={<AddIcon />}
                                     fullWidth
-                                    variant="standard"
-                                    type="text"
-                                    value={block}
-                                    onChange={handleBlockChange}
-                                    inputProps={{
-                                        inputMode: 'numeric',
-                                        pattern: '\\d*', 
-                                        max: 999
-                                    }}
-                                />
-                            </Grid>
-                            <Grid item md={5}>
-                                <TextField
-                                    required
-                                    label="Vergi Oranı"
-                                    fullWidth
-                                    variant="standard"
-                                    type="text"
-                                    value={blockAmount}
-                                    onChange={handleBlockAmountChange}
-                                    inputProps={{
-                                        inputMode: 'decimal', 
-                                        pattern: '[0-9]*[.,]?[0-9]*', 
-                                        step: 'any'  
-                                    }}
-                                />
+                                    size="large"
+                                    color="primary"
+                                    onClick={handleAddRow}
+                                >
+                                    EKLE
+                                </Button>
                             </Grid>
                         </Grid>
-
                     </DialogContent>
                     <DialogActions sx={{
                         backgroundColor: (theme) => theme.palette.mode === 'light' ? '#4d6eb1ad' : '#101624',
