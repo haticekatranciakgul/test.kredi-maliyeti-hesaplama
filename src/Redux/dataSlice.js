@@ -2,13 +2,6 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { BASE_URL } from "../api";
 
-// const API_URL = 'https://jsonplaceholder.typicode.com/posts';
-
-// export const fetchData = createAsyncThunk('data/fetchData', async () => {
-//   const response = await axios.get(API_URL);
-//   return response.data;
-// });
-
 
 export const fetchData = createAsyncThunk('data/fetchData', async () => {
     try {

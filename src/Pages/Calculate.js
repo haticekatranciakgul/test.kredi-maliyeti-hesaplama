@@ -33,8 +33,6 @@ function Calculate() {
     const { isOpen, modalType } = useSelector((state) => state.modal);
     const blockData = useSelector(selectBlockData);
 
-
-
     const dispatch = useDispatch();
     const consumerCreditType = useSelector((state) => state.creditType.consumerCreditType);
     const creditType = useSelector((state) => state.creditType.creditType);
@@ -104,13 +102,11 @@ function Calculate() {
             console.log("Credits:", payload.credits);
             console.log("Payload:", payload);
 
-
             const response = await axios.post(`${BASE_URL}/api/v1/credits/create/irr`, payload);
-
 
             if (response.data && typeof response.data.irr !== "undefined") {
                 console.log("IRR Value:", response.data.irr);
-                setIrrValue(response.data.irr); // IRR değerini kaydet
+                setIrrValue(response.data.irr); 
             } else {
                 console.error("Yanıt içinde IRR değeri bulunamadı.");
                 setIrrValue(null);
@@ -145,8 +141,6 @@ function Calculate() {
             console.log("Gönderilen Request Payload:", payload);
             const tableResponse = await axios.post(`${BASE_URL}/api/v1/credits/create/table`, payload);
 
-
-
             if (tableResponse.data && tableResponse.data.table) {
 
                 const parsedTable = JSON.parse(tableResponse.data.table);
@@ -162,6 +156,7 @@ function Calculate() {
                 setTableData(formattedData);
             } else {
                 // console.log("Gönderilen Request Payload:", payload);
+                alert("Tablo verisi yanıt verisi içinde bulunamadı.")
                 console.error("Tablo verisi yanıt verisi içinde bulunamadı.");
             }
         } catch (error) {
@@ -474,8 +469,6 @@ function Calculate() {
                                         </Button>
                                     </Grid>
                                     <Grid item xs={12} sm={6} md={3} lg={3} xl={3} display="flex" justifyContent="flex-end">
-
-
                                     </Grid>
                                     <Grid item xs={12} sm={6} md={3} lg={3} xl={3} display="flex" justifyContent="flex-end">
                                     </Grid>
