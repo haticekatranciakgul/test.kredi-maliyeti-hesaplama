@@ -17,15 +17,15 @@ import ExpenseModal from '../Components/ExpenseModal';
 import { useSelector } from 'react-redux';
 import BlockModal from '../Components/BlockModal';
 import { selectBlockData } from '../Redux/blockSlice';
-
 import { setConsumerCreditType, setCreditType } from '../Redux/creditTypeSlice';
+import TaxModal from '../Components/TaxModal';
+
 
 
 function Calculate() {
     const [inputCount, setInputCount] = useState("");
     const [credits, setcredits] = useState("");
     const [initial, setInitial] = useState("");
-    //const [otherExpenses, setOtherExpenses] = useState("");
     const [generatedRows, setGeneratedRows] = useState([]);
     const [irrValue, setIrrValue] = useState(null);
     const [tableData, setTableData] = useState([]);
@@ -40,11 +40,15 @@ function Calculate() {
 
     const handleOpenExpenseModal = () => {
         dispatch(openModal("expense"));
-      };
-    
-      const handleOpenBlockModal = () => {
+    };
+
+    const handleOpenBlockModal = () => {
         dispatch(openModal("block"));
-      };
+    };
+
+    const handleOpenTaxModal = () => {
+        dispatch(openModal("tax"));
+    };
 
     useEffect(() => {
         const count = parseInt(inputCount) || 0;
@@ -133,12 +137,12 @@ function Calculate() {
                 consumer_credit_type: consumerCreditType,
                 expenses,
                 block: blockData.block,
-                block_amount: blockData.block_amount, 
+                block_amount: blockData.block_amount,
 
             };
             console.log("Gönderilen Request Payload:", payload);
             const tableResponse = await axios.post(`${BASE_URL}/api/v1/credits/create/table`, payload);
-         
+
 
 
             if (tableResponse.data && tableResponse.data.table) {
@@ -358,7 +362,7 @@ function Calculate() {
                                         Masraf
                                     </Button>
                                     {isOpen && modalType === "expense" && <ExpenseModal />}
-                                    
+
                                 </Grid>
                                 <Grid item xs={12} sm={3} md={3} lg={3} xl={3} display="flex" justifyContent="flex-end">
                                     <Button
@@ -368,12 +372,27 @@ function Calculate() {
                                         size="large"
                                         color="primary"
                                         onClick={handleOpenBlockModal}
-                                        
+
                                     >
                                         Blok
                                     </Button>
                                     {isOpen && modalType === "block" && <BlockModal />}
-                                   
+
+                                </Grid>
+                                <Grid item xs={12} sm={3} md={3} lg={3} xl={3} display="flex" justifyContent="flex-end">
+                                    <Button
+                                        variant="contained"
+                                        startIcon={<AddIcon />}
+                                        fullWidth
+                                        size="large"
+                                        color="primary"
+                                        onClick={handleOpenTaxModal}
+
+                                    >
+                                        Vergi
+                                    </Button>
+                                    {isOpen && modalType === "tax" && <TaxModal />}
+
                                 </Grid>
                                 <Grid item xs={12} sm={3} md={3} lg={3} xl={3} display="flex" justifyContent="flex-end">
                                     <Button
