@@ -19,7 +19,12 @@ import BlockModal from '../Components/BlockModal';
 import { selectBlockData } from '../Redux/blockSlice';
 import { setConsumerCreditType, setCreditType } from '../Redux/creditTypeSlice';
 import TaxModal from '../Components/TaxModal';
+import { Alert, Snackbar } from "@mui/material";
+import Slide from '@mui/material/Slide';
 
+function SlideTransition(props) {
+    return <Slide {...props} direction="left" />;
+  }
 
 function Calculate() {
     const [inputCount, setInputCount] = useState("");
@@ -32,6 +37,16 @@ function Calculate() {
     const tax = useSelector((state) => state.tax.tax);
     const { isOpen, modalType } = useSelector((state) => state.modal);
     const blockData = useSelector(selectBlockData);
+
+    //Alert: start
+    const [snackbarOpen, setSnackbarOpen] = useState(false);
+    const [snackbarMessage, setSnackbarMessage] = useState("");
+    const [snackbarSeverity, setSnackbarSeverity] = useState("error"); 
+
+    const handleSnackbarClose = () => {
+        setSnackbarOpen(false);
+    };
+    //Alert: end
 
     const dispatch = useDispatch();
     const consumerCreditType = useSelector((state) => state.creditType.consumerCreditType);
@@ -107,19 +122,33 @@ function Calculate() {
             if (response.data && typeof response.data.irr !== "undefined") {
                 console.log("IRR Value:", response.data.irr);
                 setIrrValue(response.data.irr); 
+                // Başarı mesajını ayarla
+                setSnackbarMessage(`IRR başarıyla hesaplandı`);
+                setSnackbarSeverity("success");
+                setSnackbarOpen(true);
             } else {
                 console.error("Yanıt içinde IRR değeri bulunamadı.");
+                setSnackbarMessage("Yanıt içinde IRR değeri bulunamadı.");
+                setSnackbarSeverity("warning");
+                setSnackbarOpen(true);
                 setIrrValue(null);
             }
         } catch (error) {
             if (error.response) {
                 console.error("API Yanıt Hatası:", error.response.status, error.response.data.error);
-                alert("API Yanıt Hatası: LÜTFEN İLGİLİ ALANLRI DOLDURUNUZ! KREDİ TÜRÜNÜ SEÇİNİZ ANAPARAYI VADE PERİYODUNU ÖDEME TUTARINI GİRİNİZ!");
+                setSnackbarMessage("API Yanıt Hatası");
+                setSnackbarSeverity("error");
+                setSnackbarOpen(true);
             } else if (error.request) {
                 console.error("API İstek Hatası:", error.request.data.error);
-                alert("API İstek Hatası")
+                setSnackbarMessage("API İstek Hatası");
+                setSnackbarSeverity("error");
+                setSnackbarOpen(true);
             } else {
                 console.error("API Hatası:", error.message);
+                setSnackbarMessage(`API Hatası: ${error.message}`);
+                setSnackbarSeverity("error");
+                setSnackbarOpen(true);
             }
         }
     };
@@ -154,13 +183,22 @@ function Calculate() {
                 }));
 
                 setTableData(formattedData);
+                 // Başarı mesajını ayarla
+                 setSnackbarMessage(`Tablo başarıyla Oluşturuldu`);
+                 setSnackbarSeverity("success");
+                 setSnackbarOpen(true);
             } else {
                 // console.log("Gönderilen Request Payload:", payload);
-                alert("Tablo verisi yanıt verisi içinde bulunamadı.")
                 console.error("Tablo verisi yanıt verisi içinde bulunamadı.");
+                setSnackbarMessage("Yanıt içinde IRR değeri bulunamadı.");
+                setSnackbarSeverity("warning");
+                setSnackbarOpen(true);
             }
         } catch (error) {
             console.error(error.response.data.error);
+            setSnackbarMessage("API Yanıt Hatası");
+            setSnackbarSeverity("error");
+            setSnackbarOpen(true);
 
         }
     };
@@ -181,6 +219,23 @@ function Calculate() {
                 </Typography>
             </Box>
             <Divider></Divider>
+            
+             {/* Snackbar ve Alert */}
+             <Snackbar
+                open={snackbarOpen}
+                autoHideDuration={4000}
+                onClose={handleSnackbarClose}
+                anchorOrigin={{ vertical: "top", horizontal: "right" }}
+                TransitionComponent={SlideTransition} 
+            >
+                <Alert
+                    onClose={handleSnackbarClose}
+                    severity={snackbarSeverity}
+                    sx={{ width: '100%' }}
+                >
+                    {snackbarMessage}
+                </Alert>
+            </Snackbar>
 
             {/* <Divider></Divider> */}
             <CreateTable tableData={tableData} />
