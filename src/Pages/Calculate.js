@@ -340,7 +340,7 @@ function Calculate() {
                         </Grid>
                         <Grid item xs={12} sm={12} md={6} >
                             <Grid container spacing={1} columns={12}>
-                                <Grid item xs={12} sm={3} md={3} lg={3} xl={3} display="flex" justifyContent="flex-end">
+                                <Grid item xs={6} sm={4} md={2} lg={2} xl={2} display="flex" justifyContent="flex-end">
                                     <Button
                                         variant="contained"
                                         startIcon={<AddIcon />}
@@ -352,7 +352,7 @@ function Calculate() {
                                         EKLE
                                     </Button>
                                 </Grid>
-                                <Grid item xs={12} sm={3} md={3} lg={3} xl={3} display="flex" justifyContent="flex-end">
+                                <Grid item xs={6} sm={4} md={2} lg={2} xl={2} display="flex" justifyContent="flex-end">
                                     <Button
                                         variant="contained"
                                         startIcon={<AddIcon />}
@@ -366,7 +366,7 @@ function Calculate() {
                                     {isOpen && modalType === "expense" && <ExpenseModal />}
 
                                 </Grid>
-                                <Grid item xs={12} sm={3} md={3} lg={3} xl={3} display="flex" justifyContent="flex-end">
+                                <Grid item xs={6} sm={4} md={2} lg={2} xl={2} display="flex" justifyContent="flex-end">
                                     <Button
                                         variant="contained"
                                         startIcon={<AddIcon />}
@@ -381,7 +381,7 @@ function Calculate() {
                                     {isOpen && modalType === "block" && <BlockModal />}
 
                                 </Grid>
-                                <Grid item xs={12} sm={3} md={3} lg={3} xl={3} display="flex" justifyContent="flex-end">
+                                <Grid item xs={6} sm={4} md={2} lg={2} xl={2} display="flex" justifyContent="flex-end">
                                     <Button
                                         variant="contained"
                                         startIcon={<AddIcon />}
@@ -396,20 +396,10 @@ function Calculate() {
                                     {isOpen && modalType === "tax" && <TaxModal />}
 
                                 </Grid>
-                                <Grid item xs={12} sm={3} md={3} lg={3} xl={3} display="flex" justifyContent="flex-end">
+                                <Grid item xs={6} sm={4} md={2} lg={2} xl={2} display="flex" justifyContent="flex-end">
                                     <Button
                                         variant="contained"
-                                        fullWidth
-                                        size="large"
-                                        color="primary"
-                                        onClick={handleSave}
-                                    >
-                                        Hesapla
-                                    </Button>
-                                </Grid>
-                                <Grid item xs={12} sm={3} md={3} lg={3} xl={3} display="flex" justifyContent="flex-end">
-                                    <Button
-                                        variant="contained"
+                                        startIcon={<AddIcon />}
                                         fullWidth
                                         size="large"
                                         color="primary"
@@ -421,7 +411,18 @@ function Calculate() {
                                             padding: "5px"
                                         }}
                                     >
-                                        Tablo Oluştur
+                                        Tablo
+                                    </Button>
+                                </Grid>
+                                <Grid item xs={6} sm={4} md={2} lg={2} xl={2} display="flex" justifyContent="flex-end">
+                                    <Button
+                                        variant="contained"
+                                        fullWidth
+                                        size="large"
+                                        color="primary"
+                                        onClick={handleSave}
+                                    >
+                                        Hesapla
                                     </Button>
                                 </Grid>
                             </Grid>
