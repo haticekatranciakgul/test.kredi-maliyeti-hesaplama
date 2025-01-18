@@ -75,7 +75,9 @@ export default function FormDialog() {
                     <DialogContent sx={{
                         backgroundColor: (theme) => theme.palette.mode === 'light' ? '#d3daee' : '#1F2A40',
                     }}>
-                        <DialogContentText sx={{ marginBottom: '2%', marginTop: "2%" }}> </DialogContentText>
+                        <DialogContentText sx={{ marginBottom: '2%', marginTop: "2%" }}> 
+                        *Kullandırım sonrası kredi tutarının tamamının veya bir kısmının bir süre bankada tutulması şartı varsa buraya giriş yapın.
+                        </DialogContentText>
 
                         <Grid container spacing={1} columns={10} >
                             <Grid item md={5}>

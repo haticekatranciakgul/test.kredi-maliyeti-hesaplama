@@ -104,7 +104,7 @@ function CreateTable({ tableData }) {
                         toolbarColumnsLabel: 'Sütunları seç',
                         paginationPanelRowsPerPage: 'Sayfa başına satır', // Burayı ekledik
 
-
+                     
 
 
                     }}

@@ -21,8 +21,8 @@ import { setExpenses } from '../Redux/expensesSlice'; // Redux aksiyonunu import
 
 export default function FormDialog() {
     const dispatch = useDispatch();
-    const open = useSelector((state) => state.modal.isOpen); 
-    const expenses = useSelector((state) => state.expenses.expenses); 
+    const open = useSelector((state) => state.modal.isOpen);
+    const expenses = useSelector((state) => state.expenses.expenses);
 
     const [rows, setRows] = useState(expenses);
     const theme = useTheme();
@@ -30,21 +30,21 @@ export default function FormDialog() {
 
 
     const handleClose = () => {
-        dispatch(closeModal()); 
+        dispatch(closeModal());
     };
 
     const handleAddRow = () => {
-        setRows([...rows, { title: '', amount: '' }]); 
+        setRows([...rows, { title: '', amount: '' }]);
     };
 
     const handleInputChange = (index, field, value) => {
         const newRows = [...rows];
         newRows[index] = { ...newRows[index], [field]: value };
-        setRows(newRows); 
+        setRows(newRows);
     };
 
     const handleSave = async () => {
-        dispatch(setExpenses(rows)); 
+        dispatch(setExpenses(rows));
         console.log("expenses", rows);
         try {
             handleClose();
@@ -72,7 +72,10 @@ export default function FormDialog() {
                         backgroundColor: (theme) => theme.palette.mode === 'light' ? '#d3daee' : '#1F2A40',
                     }}>
                         <DialogContentText sx={{ marginBottom: '2%', marginTop: "2%" }}>
-                            *Masraf bilgilerinizi buraya giriniz. Girdiğiniz bilgiler kaydedilecektir.
+                            *Gönüllü olarak ödemediğiniz ve havaya gittiğini düşündüğünüz masrafları buraya girin.
+                        </DialogContentText>
+                        <DialogContentText sx={{ marginBottom: '2%', marginTop: "2%" }}>
+                            *Farklı para biriminden olan ödemeleri güncel kurdan kredi ile aynı para birimine çevirip girin.
                         </DialogContentText>
                         <Grid container spacing={1} columns={12}>
                             {rows.map((row, index) => (
