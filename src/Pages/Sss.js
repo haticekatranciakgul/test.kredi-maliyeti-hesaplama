@@ -64,6 +64,7 @@ function Sss() {
                 mozBoxShadow: '1px 1px 185px -23px rgba(101, 150, 254, 0.43)',
                  alignItems: 'center'
             }}>
+                HAZIRLANIYOR ...
 
 
             </Box>
