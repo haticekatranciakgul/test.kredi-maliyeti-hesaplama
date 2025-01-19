@@ -91,25 +91,17 @@ export default function Footer() {
             <Link color="text.secondary" variant="body2" href="#">
               Özellikler
             </Link>
-            <Link color="text.secondary" variant="body2" href="#">
+            <Link color="text.secondary" variant="body2" href="/iletisim">
               Görüşler
             </Link>
-            <Link color="text.secondary" variant="body2" href="#">
+            {/* <Link color="text.secondary" variant="body2" href="#">
               Öne Çıkanlar
-            </Link>
+            </Link> */}
             <Link color="text.secondary" variant="body2" href={`/hakkinda`}>
               Sıkça Sorulan Sorular
             </Link>            
           </Box>
-          <Box
-            sx={{
-              display: { xs: 'none', sm: 'flex' },
-              flexDirection: 'column',
-              gap: 1,
-            }}
-          >
-           
-          </Box>
+          
 
         </Box>
         <Box

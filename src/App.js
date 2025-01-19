@@ -21,7 +21,7 @@ const App = () => {
                             <Route path="/" element={<Home></Home>}></Route>
                             <Route path="/hesapla" element={<Calculate></Calculate>}></Route>
                             <Route path="/hakkinda" element={<About></About>}></Route>
-                            <Route path="/iletişim" element={<Contact></Contact>}></Route>
+                            <Route path="/iletisim" element={<Contact></Contact>}></Route>
                         </Routes>
                     </Layout>
                 </BrowserRouter>

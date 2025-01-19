@@ -11,6 +11,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useForm, Controller } from 'react-hook-form';
 import { FormHelperText } from '@mui/material';
 import { submitForm } from '../Redux/formSlice';
+import TextArea from '../Components/TextArea';
 
 const FormGrid = styled(Grid)(() => ({
     display: 'flex',
@@ -137,7 +138,8 @@ function Contact() {
                                         <FormLabel htmlFor="about-topic" required>
                                             Ne Hakkında Yazmak İstiyorsunuz?
                                         </FormLabel>
-                                        <Controller
+                                        <TextArea fullWidth ></TextArea>
+                                        {/* <Controller
                                             name="about"
                                             control={control}
                                             defaultValue=""
@@ -145,7 +147,7 @@ function Contact() {
                                             render={({ field }) => (
                                                 <OutlinedInput {...field} placeholder="Ne hakkında yazmak istiyorsunuz?" size="small" />
                                             )}
-                                        />
+                                        /> */}
                                         {errors.about && <FormHelperText error>{errors.about.message}</FormHelperText>}
                                     </FormGrid>
                                 </Grid>
