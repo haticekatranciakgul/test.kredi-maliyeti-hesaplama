@@ -6,7 +6,6 @@ import Toolbar from '@mui/material/Toolbar';
 import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import Container from '@mui/material/Container';
-import Divider from '@mui/material/Divider';
 import MenuItem from '@mui/material/MenuItem';
 import Drawer from '@mui/material/Drawer';
 import MenuIcon from '@mui/icons-material/Menu';
@@ -71,6 +70,11 @@ export default function AppAppBar() {
                 sx={{ color: theme => theme.palette.mode === 'dark' ? 'white' : 'black' }}
                 size="small">
                   <Link to={`/hakkinda`} style={{ textDecoration: 'none', color: 'inherit' }}>HAKKINDA</Link>
+              </Button>
+              <Button variant="text"     
+                sx={{ color: theme => theme.palette.mode === 'dark' ? 'white' : 'black' }}
+                color="inherit" size="small" >
+                  <Link to={`/sss`} style={{ textDecoration: 'none', color: 'inherit' }}>Sss</Link>
               </Button>
               <Button variant="text"     
                 sx={{ color: theme => theme.palette.mode === 'dark' ? 'white' : 'black' }}

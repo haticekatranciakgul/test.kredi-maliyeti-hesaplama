@@ -10,7 +10,7 @@ import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import FacebookIcon from '@mui/icons-material/GitHub';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
-import TwitterIcon from '@mui/icons-material/X';
+
 
 
 
@@ -97,7 +97,7 @@ export default function Footer() {
             {/* <Link color="text.secondary" variant="body2" href="#">
               Öne Çıkanlar
             </Link> */}
-            <Link color="text.secondary" variant="body2" href={`/hakkinda`}>
+            <Link color="text.secondary" variant="body2" href={`/sss`}>
               Sıkça Sorulan Sorular
             </Link>            
           </Box>

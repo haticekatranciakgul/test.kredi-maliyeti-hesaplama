@@ -7,6 +7,7 @@ import Layout from "./Pages/Layout";
 import About from "./Pages/About";
 import Calculate from "./Pages/Calculate";
 import Contact from "./Pages/Contact";
+import Sss from "./Pages/Sss";
 
 
 const App = () => {
@@ -21,6 +22,7 @@ const App = () => {
                             <Route path="/" element={<Home></Home>}></Route>
                             <Route path="/hesapla" element={<Calculate></Calculate>}></Route>
                             <Route path="/hakkinda" element={<About></About>}></Route>
+                            <Route path="/sss" element={<Sss></Sss>}></Route>
                             <Route path="/iletisim" element={<Contact></Contact>}></Route>
                         </Routes>
                     </Layout>
