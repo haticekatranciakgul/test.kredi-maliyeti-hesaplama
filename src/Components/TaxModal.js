@@ -88,7 +88,7 @@ export default function FormDialog() {
                                     <Grid item md={5}>
                                         <TextField
                                             required
-                                            label="Vergi Oranı"
+                                            label="Vergi Oranı (%)"
                                             fullWidth
                                             variant="standard"
                                             value={row.amount}
