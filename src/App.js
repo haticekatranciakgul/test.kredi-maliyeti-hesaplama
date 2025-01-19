@@ -19,9 +19,9 @@ const App = () => {
                     <Layout>
                         <Routes>
                             <Route path="/" element={<Home></Home>}></Route>
-                            <Route path="/calculate" element={<Calculate></Calculate>}></Route>
-                            <Route path="/about" element={<About></About>}></Route>
-                            <Route path="/contact" element={<Contact></Contact>}></Route>
+                            <Route path="/hesapla" element={<Calculate></Calculate>}></Route>
+                            <Route path="/hakkinda" element={<About></About>}></Route>
+                            <Route path="/iletişim" element={<Contact></Contact>}></Route>
                         </Routes>
                     </Layout>
                 </BrowserRouter>

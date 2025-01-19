@@ -86,7 +86,7 @@ export default function Footer() {
             }}
           >
             <Typography variant="body2" sx={{ fontWeight: 'medium' }}>
-              Ürünler
+              Ürün
             </Typography>
             <Link color="text.secondary" variant="body2" href="#">
               Özellikler
@@ -97,9 +97,9 @@ export default function Footer() {
             <Link color="text.secondary" variant="body2" href="#">
               Öne Çıkanlar
             </Link>
-            <Link color="text.secondary" variant="body2" href="#">
+            <Link color="text.secondary" variant="body2" href={`/hakkinda`}>
               Sıkça Sorulan Sorular
-            </Link>
+            </Link>            
           </Box>
           <Box
             sx={{
@@ -108,15 +108,7 @@ export default function Footer() {
               gap: 1,
             }}
           >
-            <Typography variant="body2" sx={{ fontWeight: 'medium' }}>
-              Şirket
-            </Typography>
-            <Link color="text.secondary" variant="body2" href="#">
-              Hakkımızda
-            </Link>
-            <Link color="text.secondary" variant="body2" href="#">
-              Kariyer
-            </Link>
+           
           </Box>
 
         </Box>
@@ -156,25 +148,17 @@ export default function Footer() {
             <IconButton
               color="inherit"
               size="small"
-             href="#"
+             href="https://github.com/haticekatranciakgul"
               aria-label="GitHub"
               sx={{ alignSelf: 'center' }}
             >
               <FacebookIcon />
             </IconButton>
+           
             <IconButton
               color="inherit"
               size="small"
-              href="#"
-              aria-label="X"
-              sx={{ alignSelf: 'center' }}
-            >
-              <TwitterIcon />
-            </IconButton>
-            <IconButton
-              color="inherit"
-              size="small"
-              href="#"
+              href=""
               aria-label="LinkedIn"
               sx={{ alignSelf: 'center' }}
             >

@@ -120,7 +120,7 @@ function Calculate() {
             const response = await axios.post(`${BASE_URL}/api/v1/credits/create/irr`, payload);
 
             if (response.data && typeof response.data.irr !== "undefined") {
-                console.log("IRR Value:", response.data.irr);
+                // console.log("IRR Value:", response.data.irr);
                 setIrrValue(response.data.irr); 
                 // Başarı mesajını ayarla
                 setSnackbarMessage(`IRR başarıyla hesaplandı`);
@@ -135,18 +135,8 @@ function Calculate() {
             }
         } catch (error) {
             if (error.response) {
-                console.error("API Yanıt Hatası:", error.response.status, error.response.data.error);
-                setSnackbarMessage("API Yanıt Hatası");
-                setSnackbarSeverity("error");
-                setSnackbarOpen(true);
-            } else if (error.request) {
-                console.error("API İstek Hatası:", error.request.data.error);
-                setSnackbarMessage("API İstek Hatası");
-                setSnackbarSeverity("error");
-                setSnackbarOpen(true);
-            } else {
-                console.error("API Hatası:", error.message);
-                setSnackbarMessage(`API Hatası: ${error.message}`);
+                // console.error("API Yanıt Hatası:", error.response.status, error.response.data.error);
+                setSnackbarMessage("API Yanıt Hatası: ", error.response.data.error);
                 setSnackbarSeverity("error");
                 setSnackbarOpen(true);
             }

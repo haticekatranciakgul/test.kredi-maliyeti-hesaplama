@@ -65,17 +65,17 @@ export default function AppAppBar() {
               <Button variant="text" 
                 sx={{ color: theme => theme.palette.mode === 'dark' ? 'white' : 'black' }}
                 color="inherit" size="small">
-                  <Link to={`/calculate`} style={{ textDecoration: 'none', color: 'inherit' }}>IRR Hesapla</Link>
+                  <Link to={`/hesapla`} style={{ textDecoration: 'none', color: 'inherit' }}>IRR Hesapla</Link>
               </Button>
               <Button variant="text"  
                 sx={{ color: theme => theme.palette.mode === 'dark' ? 'white' : 'black' }}
                 size="small">
-                  <Link to={`/about`} style={{ textDecoration: 'none', color: 'inherit' }}>Hakkında</Link>
+                  <Link to={`/hakkinda`} style={{ textDecoration: 'none', color: 'inherit' }}>Hakkında</Link>
               </Button>
               <Button variant="text"     
                 sx={{ color: theme => theme.palette.mode === 'dark' ? 'white' : 'black' }}
                 color="inherit" size="small" >
-                  <Link to={`/contact`} style={{ textDecoration: 'none', color: 'inherit' }}>İletişim</Link>
+                  <Link to={`/iletişim`} style={{ textDecoration: 'none', color: 'inherit' }}>İletişim</Link>
               </Button>
             </Box>
           </Box>
