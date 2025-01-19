@@ -158,7 +158,7 @@ export default function Footer() {
             <IconButton
               color="inherit"
               size="small"
-              href=""
+              href="https://www.linkedin.com/in/haticekatranci/"
               aria-label="LinkedIn"
               sx={{ alignSelf: 'center' }}
             >
