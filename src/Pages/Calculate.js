@@ -492,7 +492,7 @@ function Calculate() {
                                     </Grid>
                                     <Grid item xs={12} sm={12} md={4} lg={4} xl={4}>
                                         <TextField variant="standard" size="small"
-                                            label="Yeni Ödeme Tutarı "
+                                            label="Ödeme Tutarı "
                                             fullWidth
                                             value={row.value2}
                                             onChange={(e) => {
