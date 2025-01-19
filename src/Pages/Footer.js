@@ -76,7 +76,14 @@ export default function Footer() {
                   ABONE OL
                 </Button>
               </Stack>
+
             </Box>
+
+            <Link color="text.secondary" variant="body2" target="_blank" href={`https://www.linkedin.com/in/h%C3%BCseyin-ba%C4%9Fr%C4%B1yan%C4%B1k-51bb6165/?originalSubdomain=tr`}>
+              <Typography variant="body2" sx={{ color: 'text.secondary', mb: 2 }}>
+                Bu sayfanın geliştirilmesi ile ilgili düşüncelerinizi iletin.
+              </Typography>
+            </Link>
           </Box>
           <Box
             sx={{
@@ -88,7 +95,7 @@ export default function Footer() {
             <Typography variant="body2" sx={{ fontWeight: 'medium' }}>
               Ürün
             </Typography>
-            <Link color="text.secondary" variant="body2" href="#">
+            <Link color="text.secondary" variant="body2" href="hakkinda">
               Özellikler
             </Link>
             <Link color="text.secondary" variant="body2" href="/iletisim">
@@ -99,9 +106,9 @@ export default function Footer() {
             </Link> */}
             <Link color="text.secondary" variant="body2" href={`/sss`}>
               Sıkça Sorulan Sorular
-            </Link>            
+            </Link>
           </Box>
-          
+
 
         </Box>
         <Box
@@ -125,7 +132,7 @@ export default function Footer() {
               Terms of Service
             </Link>
             <Typography sx={{ display: 'inline', mx: 0.5, opacity: 0.5 }}>
-             
+
             </Typography>
             {/* <Link color="text.secondary" variant="body2" href="https://github.com/haticekatranciakgul">Created by H.K.A</Link> */}
 
@@ -140,16 +147,18 @@ export default function Footer() {
             <IconButton
               color="inherit"
               size="small"
-             href="https://github.com/haticekatranciakgul"
+              target="_blank"
+              href="https://github.com/haticekatranciakgul"
               aria-label="GitHub"
               sx={{ alignSelf: 'center' }}
             >
               <FacebookIcon />
             </IconButton>
-           
+
             <IconButton
               color="inherit"
               size="small"
+              target="_blank"
               href="https://www.linkedin.com/in/haticekatranci/"
               aria-label="LinkedIn"
               sx={{ alignSelf: 'center' }}
