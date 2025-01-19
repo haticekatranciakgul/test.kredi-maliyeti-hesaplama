@@ -13,6 +13,7 @@ import { FormHelperText } from '@mui/material';
 import { submitForm } from '../Redux/formSlice';
 import TextArea from '../Components/TextArea';
 
+
 const FormGrid = styled(Grid)(() => ({
     display: 'flex',
     flexDirection: 'column',
@@ -138,16 +139,19 @@ function Contact() {
                                         <FormLabel htmlFor="about-topic" required>
                                             Ne Hakkında Yazmak İstiyorsunuz?
                                         </FormLabel>
-                                        <TextArea fullWidth ></TextArea>
-                                        {/* <Controller
+                                        <Controller
                                             name="about"
                                             control={control}
-                                            defaultValue=""
+                                            defaultValue=""  fullWidth
                                             rules={{ required: 'Bu alan zorunludur' }}
                                             render={({ field }) => (
-                                                <OutlinedInput {...field} placeholder="Ne hakkında yazmak istiyorsunuz?" size="small" />
+                                                <TextArea
+                                                    {...field}
+                                                    
+                                                />
                                             )}
-                                        /> */}
+                                        />
+                                       
                                         {errors.about && <FormHelperText error>{errors.about.message}</FormHelperText>}
                                     </FormGrid>
                                 </Grid>
