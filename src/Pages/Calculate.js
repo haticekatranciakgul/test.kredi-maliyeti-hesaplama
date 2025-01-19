@@ -426,7 +426,7 @@ function Calculate() {
                                         onClick={handleOpenBlockModal}
 
                                     >
-                                        Blok
+                                        Bloke
                                     </Button>
                                     {isOpen && modalType === "block" && <BlockModal />}
 

@@ -71,7 +71,7 @@ export default function FormDialog() {
                 }}>
                     <DialogTitle sx={{
                         backgroundColor: (theme) => theme.palette.mode === 'light' ? '#4d6eb1ad' : '#101624',
-                    }}>Blok</DialogTitle>
+                    }}>Bloke Verileri</DialogTitle>
                     <DialogContent sx={{
                         backgroundColor: (theme) => theme.palette.mode === 'light' ? '#d3daee' : '#1F2A40',
                     }}>
