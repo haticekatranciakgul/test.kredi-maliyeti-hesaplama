@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
     tax: [
-        { id: 0, title: 'BSMV', amount: '' },  
+        { id: 0, title: 'BSMV', amount: '5'},  
         { id: 1, title: 'KKDF', amount: '' },  
         { id: 2, title: 'Diğer', amount: '' },  
     ],
