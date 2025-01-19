@@ -78,7 +78,7 @@ export default function FormDialog() {
                                     <Grid item md={5}>
                                         <TextField
                                             required
-                                            label="Vergi Açıklması"
+                                            label="Vergi Açıklaması"
                                             fullWidth
                                             variant="standard"
                                             value={row.title}
