@@ -3,6 +3,8 @@ import Box from '@mui/material/Box';
 import Divider from '@mui/material/Divider';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Typography from '@mui/material/Typography';
+import ListFormula from '../Components/ListFormula';
+
 
 const theme = createTheme({
     typography: {
@@ -84,31 +86,17 @@ function About() {
                 <Box sx={{ display: 'flex', justifyContent: 'center', paddingTop: '2%', paddingBottom: '2%' }}>
                     <Box sx={{ display: 'flex', justifyContent: 'center', backgroundColor: 'transparent', padding: 2, borderRadius: 10, 
                     flexGrow: 1, p: 5,  marginTop: '5%',
-                    boxShadow: '1px 1px 185px -23px rgba(244, 244, 244, 0.3)',
-                    webkitBoxShadow: '1px 1px 185px -23px rgba(251, 251, 251, 0.43)',
-                    mozBoxShadow: '1px 1px 185px -23px rgba(164, 132, 132, 0.43)', alignItems: 'center',
+                    boxShadow: '1px 1px 185px -23px rgb(78, 142, 225)',
+                webkitBoxShadow: '1px 1px 185px -23px rgba(62, 113, 240, 0.43)',
+                mozBoxShadow: '1px 1px 185px -23px rgba(101, 150, 254, 0.43)', alignItems: 'center',
                         
                     }}>
                         <Typography sx={{ fontWeight: 'bold' }} variant="h4"> 0 = NPV = t ∑ t=1 Ct/ ​(1+ IRR ) t​​ − C0</Typography>
                     </Box>
                 </Box><br/>
-                <Typography variant="h4">
-                    Ct = t dönemindeki net nakit girişi
-                </Typography>
-
-                <Typography variant="h4">
-                    C0 = İlk yatırım maliyeti
-                </Typography>
-                <Typography variant="h4">
-                    IRR = Dahili getiri oranı
-                </Typography>
-                <Typography variant="h4">
-                    t = Zaman periyotlarının sayısı
-                </Typography><br/>
-
-
+                <ListFormula/>
+                
                 <Typography  variant="h2">IRR Nasıl Kullanılır?</Typography><br/>
-
 
                 <Typography variant="h4"  sx={{
                     textIndent: '2em', // İlk satır için boşluk

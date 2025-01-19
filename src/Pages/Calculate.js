@@ -439,7 +439,6 @@ function Calculate() {
                                 <Grid item xs={6} sm={4} md={2} lg={2} xl={2} display="flex" justifyContent="flex-end">
                                     <Button
                                         variant="contained"
-                                        startIcon={<AddIcon />}
                                         fullWidth
                                         size="large"
                                         color="primary"
