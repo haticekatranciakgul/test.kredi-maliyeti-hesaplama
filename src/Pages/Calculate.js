@@ -72,13 +72,13 @@ function Calculate() {
                 value2: credits,
             }));
             setGeneratedRows(newRows);
-            console.log("inputCount:" + inputCount)
+            //console.log("inputCount:" + inputCount)
         }
     }, [inputCount, credits]);
 
     useEffect(() => {
         if (irrValue !== null) {
-            console.log("Hesaplanan IRR: ", irrValue);
+            //console.log("Hesaplanan IRR: ", irrValue);
         }
     }, [irrValue]);
 

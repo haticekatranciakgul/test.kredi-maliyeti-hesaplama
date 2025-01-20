@@ -43,7 +43,7 @@ export default function FormDialog() {
 
     const handleSave = async () => {
         dispatch(setTax(rows));
-        console.log("tax", rows);
+        //console.log("tax", rows);
         try {
             handleClose();
         } catch (error) {
