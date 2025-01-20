@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from "react";
 import Box from '@mui/material/Box';
 import { styled } from '@mui/material/styles';
 import Grid from '@mui/material/Grid';
@@ -12,6 +12,14 @@ import { useForm, Controller } from 'react-hook-form';
 import { FormHelperText } from '@mui/material';
 import { submitForm } from '../Redux/formSlice';
 import TextArea from '../Components/TextArea';
+import { setSnackbarOpen } from "../Redux/formSlice"; // doğru yolu kullan
+import { Alert, Snackbar } from "@mui/material";
+import Slide from '@mui/material/Slide';
+
+
+function SlideTransition(props) {
+    return <Slide {...props} direction="left" />;
+}
 
 
 const FormGrid = styled(Grid)(() => ({
@@ -29,8 +37,44 @@ function Contact() {
         console.log(data);
     };
 
+
+    const snackbarOpen = useSelector((state) => state.form.snackbarOpen);
+    const snackbarMessage = useSelector((state) => state.form.snackbarMessage);
+    const snackbarSeverity = useSelector((state) => state.form.snackbarSeverity);
+
+    const handleSnackbarClose = () => {
+        dispatch(setSnackbarOpen(false));
+    };
+
+    useEffect(() => {
+        // Eğer snackbar 1 saniye açık kalacaksa, zamanlayıcı ile kapanmasını sağla
+        if (snackbarOpen) {
+            const timer = setTimeout(() => {
+                dispatch(setSnackbarOpen(false));
+            }, 3000); // 3 saniye
+
+            return () => clearTimeout(timer); // cleanup
+        }
+    }, [snackbarOpen, dispatch]);
+
     return (
         <div>
+            {/* Snackbar ve Alert */}
+            <Snackbar
+                open={snackbarOpen}
+                autoHideDuration={4000}
+                onClose={handleSnackbarClose}
+                anchorOrigin={{ vertical: "top", horizontal: "right" }}
+                TransitionComponent={SlideTransition}
+            >
+                <Alert
+                    onClose={handleSnackbarClose}
+                    severity={snackbarSeverity}
+                    sx={{ width: '100%' }}
+                >
+                    {snackbarMessage}
+                </Alert>
+            </Snackbar>
             <Box sx={{ display: 'flex', justifyContent: 'center' }}>
                 <Typography variant="h1" gutterBottom sx={{
                     fontSize: {
@@ -142,16 +186,16 @@ function Contact() {
                                         <Controller
                                             name="about"
                                             control={control}
-                                            defaultValue=""  fullWidth
+                                            defaultValue="" fullWidth
                                             rules={{ required: 'Bu alan zorunludur' }}
                                             render={({ field }) => (
                                                 <TextArea
                                                     {...field}
-                                                    
+
                                                 />
                                             )}
                                         />
-                                       
+
                                         {errors.about && <FormHelperText error>{errors.about.message}</FormHelperText>}
                                     </FormGrid>
                                 </Grid>

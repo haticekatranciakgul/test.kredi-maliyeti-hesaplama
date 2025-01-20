@@ -15,7 +15,7 @@ const TextareaAutosize = styled(BaseTextareaAutosize)(
     padding: 8px 12px; /* Padding for better UX */
     border-radius: 8px; /* Rounded corners */
     color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
-    background: ${theme.palette.mode === 'dark' ? grey[900] : '#fff'};
+    background: none;
     border: 1px solid ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};
     box-shadow: 0 2px 2px ${theme.palette.mode === 'dark' ? grey[900] : grey[50]};
 

@@ -77,9 +77,9 @@ function About() {
                     Potansiyel projeleri sıralamak için IRR kullanıyorsanız, en yüksek IRR'ye sahip yatırım muhtemelen ilk yapılması gereken yatırımdır
                     (her projenin yatırım maliyetinin eşit olduğu varsayılarak).
                 </Typography><br/>
-                <Typography Typography variant="h2">IRR Nasıl Hesaplanır?</Typography><br/>
+                <Typography  variant="h2">IRR Nasıl Hesaplanır?</Typography><br/>
 
-                <Typography Typography variant="h4" sx={{
+                <Typography  variant="h4" sx={{
                     textIndent: '2em', // İlk satır için boşluk
                 }}>  IRR'nin nasıl hesaplanacağını anlamak zor olabilir, çünkü IRR formülü diğer birçok finansal metrikten biraz daha karmaşıktır. İşte hesaplamalarınızda kullanabileceğiniz IRR formülü:
                 </Typography><br/>
@@ -91,14 +91,14 @@ function About() {
                 mozBoxShadow: '1px 1px 185px -23px rgba(101, 150, 254, 0.43)', alignItems: 'center',
                         
                     }}>
-                        <Typography sx={{ fontWeight: 'bold' }} variant="h4"> 0 = NPV = t ∑ t=1 Ct/ ​(1+ IRR ) t​​ − C0</Typography>
+                        <Typography sx={{ fontWeight: 'bold' }} > 0 = NPV = t ∑ t=1 Ct/ ​(1+ IRR ) t​​ − C0</Typography>
                     </Box>
                 </Box><br/>
                 <ListFormula/>
                 
                 <Typography  variant="h2">IRR Nasıl Kullanılır?</Typography><br/>
 
-                <Typography variant="h4"  sx={{
+                <Typography  sx={{
                     textIndent: '2em', // İlk satır için boşluk
                 }}>
 
