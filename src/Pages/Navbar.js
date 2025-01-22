@@ -61,25 +61,25 @@ export default function AppAppBar() {
           <Box sx={{ flexGrow: 1, display: 'flex', alignItems: 'center', px: 0 }}>
             {/* <Sitemark /> */}
             <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
-              <Button variant="text" 
+              <Button variant="text"
                 sx={{ color: theme => theme.palette.mode === 'dark' ? 'white' : 'black' }}
                 color="inherit" size="small">
-                  <Link to={`/hesapla`} style={{ textDecoration: 'none', color: 'inherit' }}>IRR HESAPLA</Link>
+                <Link to={`/hesapla`} style={{ textDecoration: 'none', color: 'inherit' }}>IRR HESAPLA</Link>
               </Button>
-              <Button variant="text"  
+              <Button variant="text"
                 sx={{ color: theme => theme.palette.mode === 'dark' ? 'white' : 'black' }}
                 size="small">
-                  <Link to={`/hakkinda`} style={{ textDecoration: 'none', color: 'inherit' }}>HAKKINDA</Link>
+                <Link to={`/hakkinda`} style={{ textDecoration: 'none', color: 'inherit' }}>HAKKINDA</Link>
               </Button>
-              <Button variant="text"     
+              <Button variant="text"
                 sx={{ color: theme => theme.palette.mode === 'dark' ? 'white' : 'black' }}
                 color="inherit" size="small" >
-                  <Link to={`/sss`} style={{ textDecoration: 'none', color: 'inherit' }}>Sss</Link>
+                <Link to={`/sss`} style={{ textDecoration: 'none', color: 'inherit' }}>Sss</Link>
               </Button>
-              <Button variant="text"     
+              <Button variant="text"
                 sx={{ color: theme => theme.palette.mode === 'dark' ? 'white' : 'black' }}
                 color="inherit" size="small" >
-                  <Link to={`/iletisim`} style={{ textDecoration: 'none', color: 'inherit' }}>İLETİŞİM</Link>
+                <Link to={`/iletisim`} style={{ textDecoration: 'none', color: 'inherit' }}>İLETİŞİM</Link>
               </Button>
             </Box>
           </Box>
@@ -125,13 +125,18 @@ export default function AppAppBar() {
                   </IconButton>
                 </Box>
 
-                <MenuItem>Features</MenuItem>
-                <MenuItem>Testimonials</MenuItem>
-                <MenuItem>Highlights</MenuItem>
-                <MenuItem>Pricing</MenuItem>
-                <MenuItem>FAQ</MenuItem>
-                <MenuItem>Blog</MenuItem>
-               
+                <MenuItem>
+                  <Link to={`/hesapla`} style={{ textDecoration: 'none', color: 'inherit' }}>IRR HESAPLA</Link>
+                </MenuItem>
+                <MenuItem>
+                  <Link to={`/hakkinda`} style={{ textDecoration: 'none', color: 'inherit' }}>HAKKINDA</Link>
+                </MenuItem>
+                <MenuItem>
+                  <Link to={`/sss`} style={{ textDecoration: 'none', color: 'inherit' }}>Sss</Link>
+                </MenuItem>
+                <MenuItem>
+                  <Link to={`/iletisim`} style={{ textDecoration: 'none', color: 'inherit' }}>İLETİŞİM</Link>
+                </MenuItem>
               </Box>
             </Drawer>
           </Box>
