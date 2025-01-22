@@ -1,12 +1,20 @@
-import React, { useState } from 'react';
-import { FormControl, FormControlLabel, Radio, RadioGroup } from '@mui/material';
+import React from 'react';
+import { FormControl, FormControlLabel, Radio, RadioGroup, styled } from '@mui/material';
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 
+const CustomRadio = styled(Radio)(({ theme }) => ({
+    "&.Mui-checked": {
+      color: theme.palette.mode === "dark" ? "#3173db" : undefined,
 
+    },
+  }));
+
+  
 function SelectRadioBtn({ setConsumerCreditType, setCreditType }) {
-    const [selectedOption, setSelectedOption] = useState(1);
-    const [subOption, setSubOption] = useState(1);
+    const [selectedOption, setSelectedOption] = React.useState('Ticari');
+    const [subOption, setSubOption] =  React.useState('option1');
+   
 
 
     const handleMainOptionChange = (event) => {
@@ -52,8 +60,8 @@ function SelectRadioBtn({ setConsumerCreditType, setCreditType }) {
                                     value={selectedOption}
                                     onChange={handleMainOptionChange}
                                 >
-                                    <FormControlLabel value="Ticari" control={<Radio />} label="Ticari" />
-                                    <FormControlLabel value="Bireysel" control={<Radio />} label="Bireysel" />
+                                    <FormControlLabel value="Ticari" control={<CustomRadio />}  label="Ticari" />
+                                    <FormControlLabel value="Bireysel" control={<CustomRadio />}  label="Bireysel" />
                                 </RadioGroup>
                                 {selectedOption === 'Bireysel' && (
                                     <div>
@@ -64,9 +72,9 @@ function SelectRadioBtn({ setConsumerCreditType, setCreditType }) {
                                             value={subOption}
                                             onChange={handleSubOptionChange}
                                         >
-                                            <FormControlLabel value="option1" control={<Radio />} label="İhtiyaç" />
-                                            <FormControlLabel value="option2" control={<Radio />} label="Konut" />
-                                            <FormControlLabel value="option3" control={<Radio />} label="Taşıt" />
+                                            <FormControlLabel value="option1" control={<CustomRadio />}  label="İhtiyaç" />
+                                            <FormControlLabel value="option2" control={<CustomRadio />}  label="Konut" />
+                                            <FormControlLabel value="option3" control={<CustomRadio />}  label="Taşıt" />
                                         </RadioGroup>
                                     </div>
                                 )}
