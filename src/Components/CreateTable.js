@@ -1,10 +1,12 @@
 import React from 'react';
 import { DataGrid, GridToolbar } from '@mui/x-data-grid';
 import Paper from '@mui/material/Paper';
+import { useTheme } from '@mui/material/styles';
 
 
 function CreateTable({ tableData }) {
-
+    const theme = useTheme(); // Tema kontrolü
+    const isDarkMode = theme.palette.mode === 'dark';
     const columns = [
         { field: 'column1', headerName: 'Geri Ödeme', width: 150 },
         { field: 'column2', headerName: 'Faiz', width: 150 },
@@ -56,9 +58,13 @@ function CreateTable({ tableData }) {
                             color: '#ffffff', // Footer metin rengi
                         },
                         
-                        '& .MuiTablePagination-selectLabel': {
-                            display: 'none'
-                        }
+                        '& .MuiDataGrid-footerContainer': {
+                                backgroundColor: isDarkMode ? '#1F2A40' : '#f5f5f5',
+                                color: isDarkMode ? '#ffffff' : '#000000',
+                                '& .MuiTablePagination-selectLabel': {
+                                    display: 'none', // Her iki modda da gizli
+                                },
+                            },
 
                     }}
                     localeText={{
