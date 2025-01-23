@@ -7,6 +7,7 @@ import expensesReducer from './expensesSlice';
 import creditTypeReducer from './creditTypeSlice';
 import blockReducer from './blockSlice';
 import taxReducer from './taxSlice';
+import subscriptionReducer from './subscriptionSlice';
 
 
 const store = configureStore({
@@ -19,6 +20,8 @@ const store = configureStore({
     creditType: creditTypeReducer,
     block: blockReducer, 
     tax: taxReducer, 
+    subscription: subscriptionReducer,
+
 
   },
 });

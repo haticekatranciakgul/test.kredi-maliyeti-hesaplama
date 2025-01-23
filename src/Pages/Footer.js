@@ -1,4 +1,6 @@
-import * as React from 'react';
+import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { subscribeEmail } from '../Redux/subscriptionSlice';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
@@ -10,12 +12,47 @@ import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import FacebookIcon from '@mui/icons-material/GitHub';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
-
-
+import Snackbar from '@mui/material/Snackbar';
+import Alert from '@mui/material/Alert';
 
 
 
 export default function Footer() {
+  const [email, setEmail] = useState('');
+  const dispatch = useDispatch();
+  const { loading, success, error } = useSelector((state) => state.subscription);
+  const [snackbarOpen, setSnackbarOpen] = useState(false);
+  const [snackbarSeverity, setSnackbarSeverity] = useState('success');
+  const [snackbarMessage, setSnackbarMessage] = useState('');
+
+  const handleSubscribe = () => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // Basit e-posta doğrulama regex'i
+    if (email && emailRegex.test(email)) {
+      dispatch(subscribeEmail(email));
+    } else {
+      setSnackbarMessage('Lütfen geçerli bir email adresi girin.');
+      setSnackbarSeverity('warning');
+      setSnackbarOpen(true);
+    }
+  };
+  
+  React.useEffect(() => {
+    if (success) {
+      setSnackbarMessage('Başarıyla abone oldunuz!');
+      setSnackbarSeverity('success');
+      setSnackbarOpen(true);
+    } else if (error) {
+      setSnackbarMessage(error);
+      setSnackbarSeverity('error');
+      setSnackbarOpen(true);
+    }
+  }, [success, error]);
+
+  const handleCloseSnackbar = () => {
+    setSnackbarOpen(false);
+  };
+
+
   return (
     <div
       sx={{
@@ -64,7 +101,8 @@ export default function Footer() {
                   fullWidth
                   aria-label="Enter your email address"
                   placeholder="Lütfen email adresinizi girin"
-
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                   sx={{ width: '250px' }}
                 />
                 <Button
@@ -72,10 +110,13 @@ export default function Footer() {
                   color="primary"
                   size="small"
                   sx={{ flexShrink: 0 }}
+                  onClick={handleSubscribe}
+                  disabled={loading}
                 >
-                  ABONE OL
+                  {loading ? 'Gönderiliyor...' : 'ABONE OL'}
                 </Button>
               </Stack>
+              
 
             </Box>
 
@@ -101,9 +142,6 @@ export default function Footer() {
             <Link color="text.secondary" variant="body2" href="/iletisim">
               Görüşler
             </Link>
-            {/* <Link color="text.secondary" variant="body2" href="#">
-              Öne Çıkanlar
-            </Link> */}
             <Link color="text.secondary" variant="body2" href={`/sss`}>
               Sıkça Sorulan Sorular
             </Link>
@@ -131,12 +169,6 @@ export default function Footer() {
             <Link color="text.secondary" variant="body2" href="#">
               Terms of Service
             </Link>
-            <Typography sx={{ display: 'inline', mx: 0.5, opacity: 0.5 }}>
-
-            </Typography>
-            {/* <Link color="text.secondary" variant="body2" href="https://github.com/haticekatranciakgul">Created by H.K.A</Link> */}
-
-            {/* <Copyright /> */}
           </div>
           <Stack
             direction="row"
@@ -167,6 +199,21 @@ export default function Footer() {
             </IconButton>
           </Stack>
         </Box>
+
+        <Snackbar
+          open={snackbarOpen}
+          autoHideDuration={4000}
+          onClose={handleCloseSnackbar}
+          anchorOrigin={{ vertical: "top", horizontal: "right" }}
+        >
+          <Alert
+            onClose={handleCloseSnackbar}
+            severity={snackbarSeverity}
+            sx={{ width: '100%' }}
+          >
+            {snackbarMessage}
+          </Alert>
+        </Snackbar>
 
       </Container>
     </div>

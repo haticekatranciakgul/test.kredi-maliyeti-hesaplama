@@ -30,7 +30,6 @@ const FormGrid = styled(Grid)(() => ({
 function Contact() {
     const { control, handleSubmit, formState: { errors } } = useForm();
     const dispatch = useDispatch();
-    const formStatus = useSelector((state) => state.form.status);
 
     const onSubmit = (data) => {
         dispatch(submitForm(data));
@@ -205,10 +204,8 @@ function Contact() {
                                         sx={{ width: '30%' }}
                                         size="small"
                                         color="primary"
-                                        type="submit"
-                                        disabled={formStatus === 'loading'}
                                     >
-                                        {formStatus === 'loading' ? 'Gönderiliyor...' : 'Gönder'}
+                                        Gönder
                                     </Button>
                                 </Grid>
                             </Grid>
