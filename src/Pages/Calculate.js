@@ -140,15 +140,16 @@ function Calculate() {
             const credits = generatedRows.map((row) => parseFloat(row.value2) || 0);
             const payload = {
                 initial: parseFloat(initial) || 0,
-                credits,
+                credits: credits,
                 credit_type: creditType,
                 consumer_credit_type: consumerCreditType,
-                expenses,
+                expenses: expenses,
                 block: blockData.block,
                 block_amount: blockData.block_amount,
-                tax,
+                taxes: tax,
 
             };
+            console.log(payload);
             const tableResponse = await axios.post(`${BASE_URL}/api/v1/credits/create/table`, payload);
 
             if (tableResponse.data && tableResponse.data.table) {
