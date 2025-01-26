@@ -17,7 +17,7 @@ export const subscribeEmail = createAsyncThunk(
 
         return response.data;
       } else {
-        dispatch(setSnackbarMessage('API Yanıt Hatası: Beklenmedik bir durum oluştu.' + response.data.error));
+        dispatch(setSnackbarMessage('API Yanıt Hatası:' + response.data.error));
         dispatch(setSnackbarSeverity('warning'));
         dispatch(setSnackbarOpen(true));
         return rejectWithValue({ message: 'Unexpected response status', data: response.data });

@@ -121,7 +121,7 @@ function Calculate() {
                 setSnackbarSeverity("success");
                 setSnackbarOpen(true);
             } else {
-                setSnackbarMessage("API Yanıt Hatası1: " + response.data.error);
+                setSnackbarMessage("API Yanıt Hatası: " + response.data.error);
                 setSnackbarSeverity("warning");
                 setSnackbarOpen(true);
                 setIrrValue(null);

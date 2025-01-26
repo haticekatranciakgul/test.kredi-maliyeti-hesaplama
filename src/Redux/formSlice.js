@@ -16,7 +16,7 @@ export const submitForm = createAsyncThunk(
         return response.data;
       } else {
         // API yanıtı başarılı değilse hata mesajı gönder
-        dispatch(setSnackbarMessage('API Yanıt Hatası: Beklenmedik bir durum oluştu.' + response.data.error));
+        dispatch(setSnackbarMessage('API Yanıt Hatası:' + response.data.error));
         dispatch(setSnackbarSeverity('warning'));
         dispatch(setSnackbarOpen(true));
 
