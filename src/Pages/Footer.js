@@ -42,7 +42,7 @@ export default function Footer() {
       setSnackbarSeverity('success');
       setSnackbarOpen(true);
     } else if (error) {
-      setSnackbarMessage('API Yanıt Hatası' + error);
+      setSnackbarMessage(error);
       setSnackbarSeverity('error');
       setSnackbarOpen(true);
     }

@@ -11,21 +11,28 @@ export const subscribeEmail = createAsyncThunk(
         formData
       );
       if (response.data) {
+        // Dispatch snackbar notifications on success
         dispatch(setSnackbarMessage('Form başarıyla gönderildi.'));
         dispatch(setSnackbarSeverity('success'));
         dispatch(setSnackbarOpen(true));
 
         return response.data;
       } else {
-        dispatch(setSnackbarMessage('API Yanıt Hatası:' + response.data.error));
+        // Handle unexpected API responses
+        dispatch(setSnackbarMessage('API Yanıt Hatası: Beklenmedik bir durum oluştu.'));
         dispatch(setSnackbarSeverity('warning'));
         dispatch(setSnackbarOpen(true));
+        console.error(response.data.error);
+
         return rejectWithValue({ message: 'Unexpected response status', data: response.data });
       }
     } catch (error) {
-      setSnackbarMessage("API Yanıt Hatası", error.response.data.error);
-      setSnackbarSeverity("error");
-      setSnackbarOpen(true);
+      // Handle errors and dispatch snackbar notifications
+      dispatch(setSnackbarMessage('API Yanıt Hatası'));
+      dispatch(setSnackbarSeverity('error'));
+      dispatch(setSnackbarOpen(true));
+
+      return rejectWithValue(error.response?.data?.error || 'API Yanıt Hatası');
     }
   }
 );
