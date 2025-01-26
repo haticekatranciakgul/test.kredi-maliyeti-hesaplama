@@ -23,10 +23,9 @@ export const subscribeEmail = createAsyncThunk(
         return rejectWithValue({ message: 'Unexpected response status', data: response.data });
       }
     } catch (error) {
-      dispatch(setSnackbarMessage('API Yanıt Hatası' + error.response.data.error));
-      dispatch(setSnackbarSeverity('error'));
-      dispatch(setSnackbarOpen(true));
-      return rejectWithValue(error.response?.data?.error || 'Bir hata oluştu');
+      setSnackbarMessage("API Yanıt Hatası", error.response.data.error);
+      setSnackbarSeverity("error");
+      setSnackbarOpen(true);
     }
   }
 );
