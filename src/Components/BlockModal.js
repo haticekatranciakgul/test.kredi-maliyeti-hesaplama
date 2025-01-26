@@ -32,7 +32,7 @@ export default function FormDialog() {
     };
     const handleBlockChange = (e) => {
         const value = e.target.value;
-        if (/^\d*$/.test(value) && (value === "" || parseInt(value) <= 999)) {
+        if (/^\d*$/.test(value) && (value === "" || parseInt(value) <= 99)) {
             setBlock(parseInt(value) || 0);  
         }
     };
@@ -113,7 +113,6 @@ export default function FormDialog() {
                                 />
                             </Grid>
                         </Grid>
-
                     </DialogContent>
                     <DialogActions sx={{
                         backgroundColor: (theme) => theme.palette.mode === 'light' ? '#4d6eb1ad' : '#101624',
