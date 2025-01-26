@@ -113,7 +113,7 @@ export default function Footer() {
                   onClick={handleSubscribe}
                   disabled={loading}
                 >
-                  {loading ? 'Gönderiliyor...' : 'ABONE OL'}
+                  Abone Ol
                 </Button>
               </Stack>
               

@@ -19,7 +19,7 @@ export const subscribeEmail = createAsyncThunk(
         return response.data;
       } else {
         // Handle unexpected API responses
-        dispatch(setSnackbarMessage('API Yanıt Hatası: Beklenmedik bir durum oluştu.'));
+        dispatch(setSnackbarMessage('API Yanıt Hatası'));
         dispatch(setSnackbarSeverity('warning'));
         dispatch(setSnackbarOpen(true));
         console.error(response.data.error);

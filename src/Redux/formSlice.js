@@ -16,21 +16,20 @@ export const submitForm = createAsyncThunk(
         return response.data;
       } else {
         // API yanıtı başarılı değilse hata mesajı gönder
-        dispatch(setSnackbarMessage('API Yanıt Hatası:' + response.data.error));
+        dispatch(setSnackbarMessage('API Yanıt Hatası' + response.data.error));
         dispatch(setSnackbarSeverity('warning'));
         dispatch(setSnackbarOpen(true));
-
-        return rejectWithValue({ message: 'Unexpected response status', data: response.data });
       }
 
      
     } catch (error) {
       // Hata durumunda snackbar'ı ayarla
-      dispatch(setSnackbarMessage('API Yanıt Hatası' + error.response.data.error));
+      dispatch(setSnackbarMessage('API Yanıt Hatası'));
+      //      dispatch(setSnackbarMessage('API Yanıt Hatası' + error.response.data.error));
+
       dispatch(setSnackbarSeverity('error'));
       dispatch(setSnackbarOpen(true));
 
-      return rejectWithValue(error.response.data.error);
     }
   }
 );
