@@ -33,7 +33,7 @@ function Contact() {
 
     const onSubmit = (data) => {
         dispatch(submitForm(data));
-        //console.log(data);
+     
     };
 
 

@@ -24,7 +24,7 @@ import Slide from '@mui/material/Slide';
 
 function SlideTransition(props) {
     return <Slide {...props} direction="left" />;
-  }
+}
 
 function Calculate() {
     const [inputCount, setInputCount] = useState("");
@@ -41,7 +41,7 @@ function Calculate() {
     //Alert: start
     const [snackbarOpen, setSnackbarOpen] = useState(false);
     const [snackbarMessage, setSnackbarMessage] = useState("");
-    const [snackbarSeverity, setSnackbarSeverity] = useState("error"); 
+    const [snackbarSeverity, setSnackbarSeverity] = useState("error");
 
     const handleSnackbarClose = () => {
         setSnackbarOpen(false);
@@ -72,7 +72,6 @@ function Calculate() {
                 value2: credits,
             }));
             setGeneratedRows(newRows);
-            //console.log("inputCount:" + inputCount)
         }
     }, [inputCount, credits]);
 
@@ -113,15 +112,12 @@ function Calculate() {
                 expenses
             };
 
-            console.log("Initial:", payload.initial);
-            console.log("Credits:", payload.credits);
-            console.log("Payload:", payload);
+            
 
             const response = await axios.post(`${BASE_URL}/api/v1/credits/create/irr`, payload);
 
             if (response.data && typeof response.data.irr !== "undefined") {
-                // console.log("IRR Value:", response.data.irr);
-                setIrrValue(response.data.irr); 
+                setIrrValue(response.data.irr);
                 // Başarı mesajını ayarla
                 setSnackbarMessage(`IRR başarıyla hesaplandı`);
                 setSnackbarSeverity("success");
@@ -155,9 +151,8 @@ function Calculate() {
                 block: blockData.block,
                 block_amount: blockData.block_amount,
                 tax,
-            
+
             };
-            console.log("Gönderilen Request Payload:", payload);
             const tableResponse = await axios.post(`${BASE_URL}/api/v1/credits/create/table`, payload);
 
             if (tableResponse.data && tableResponse.data.table) {
@@ -173,12 +168,11 @@ function Calculate() {
                 }));
 
                 setTableData(formattedData);
-                 // Başarı mesajını ayarla
-                 setSnackbarMessage(`Tablo başarıyla Oluşturuldu`);
-                 setSnackbarSeverity("success");
-                 setSnackbarOpen(true);
+                // Başarı mesajını ayarla
+                setSnackbarMessage(`Tablo başarıyla Oluşturuldu`);
+                setSnackbarSeverity("success");
+                setSnackbarOpen(true);
             } else {
-                // console.log("Gönderilen Request Payload:", payload);
                 console.error("Tablo verisi yanıt verisi içinde bulunamadı.");
                 setSnackbarMessage("Yanıt içinde IRR değeri bulunamadı.");
                 setSnackbarSeverity("warning");
@@ -209,14 +203,14 @@ function Calculate() {
                 </Typography>
             </Box>
             <Divider></Divider>
-            
-             {/* Snackbar ve Alert */}
-             <Snackbar
+
+            {/* Snackbar ve Alert */}
+            <Snackbar
                 open={snackbarOpen}
                 autoHideDuration={4000}
                 onClose={handleSnackbarClose}
                 anchorOrigin={{ vertical: "top", horizontal: "right" }}
-                TransitionComponent={SlideTransition} 
+                TransitionComponent={SlideTransition}
             >
                 <Alert
                     onClose={handleSnackbarClose}

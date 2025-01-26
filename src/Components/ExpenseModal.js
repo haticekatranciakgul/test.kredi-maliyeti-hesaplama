@@ -45,7 +45,6 @@ export default function FormDialog() {
 
     const handleSave = async () => {
         dispatch(setExpenses(rows));
-        //console.log("expenses", rows);
         try {
             handleClose();
         } catch (error) {
