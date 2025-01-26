@@ -77,7 +77,6 @@ function Calculate() {
 
     useEffect(() => {
         if (irrValue !== null) {
-            //console.log("Hesaplanan IRR: ", irrValue);
         }
     }, [irrValue]);
 
@@ -118,21 +117,18 @@ function Calculate() {
 
             if (response.data && typeof response.data.irr !== "undefined") {
                 setIrrValue(response.data.irr);
-                // Başarı mesajını ayarla
                 setSnackbarMessage(`IRR başarıyla hesaplandı`);
                 setSnackbarSeverity("success");
                 setSnackbarOpen(true);
             } else {
-                console.error("Yanıt içinde IRR değeri bulunamadı.");
-                setSnackbarMessage("Yanıt içinde IRR değeri bulunamadı.");
+                setSnackbarMessage("API Yanıt Hatası1: " + response.data.error);
                 setSnackbarSeverity("warning");
                 setSnackbarOpen(true);
                 setIrrValue(null);
             }
         } catch (error) {
             if (error.response) {
-                // console.error("API Yanıt Hatası:", error.response.status, error.response.data.error);
-                setSnackbarMessage("API Yanıt Hatası: ", error.response.data.error);
+                setSnackbarMessage("API Yanıt Hatası: " + error.response.data.error);
                 setSnackbarSeverity("error");
                 setSnackbarOpen(true);
             }
@@ -168,19 +164,16 @@ function Calculate() {
                 }));
 
                 setTableData(formattedData);
-                // Başarı mesajını ayarla
                 setSnackbarMessage(`Tablo başarıyla Oluşturuldu`);
                 setSnackbarSeverity("success");
                 setSnackbarOpen(true);
             } else {
-                console.error("Tablo verisi yanıt verisi içinde bulunamadı.");
                 setSnackbarMessage("Yanıt içinde IRR değeri bulunamadı.");
                 setSnackbarSeverity("warning");
                 setSnackbarOpen(true);
             }
         } catch (error) {
-            console.error(error.response.data.error);
-            setSnackbarMessage("API Yanıt Hatası");
+            setSnackbarMessage("API Yanıt Hatası", error.response.data.error);
             setSnackbarSeverity("error");
             setSnackbarOpen(true);
 

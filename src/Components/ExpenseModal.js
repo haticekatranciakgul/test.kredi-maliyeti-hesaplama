@@ -48,7 +48,7 @@ export default function FormDialog() {
         try {
             handleClose();
         } catch (error) {
-            console.error('Hata:', error);
+
         }
     };
 

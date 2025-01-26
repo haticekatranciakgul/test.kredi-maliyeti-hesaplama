@@ -16,10 +16,9 @@ export const submitForm = createAsyncThunk(
         return response.data;
       } else {
         // API yanıtı başarılı değilse hata mesajı gönder
-        dispatch(setSnackbarMessage('API Yanıt Hatası: Beklenmedik bir durum oluştu.'));
+        dispatch(setSnackbarMessage('API Yanıt Hatası: Beklenmedik bir durum oluştu.' + response.data.error));
         dispatch(setSnackbarSeverity('warning'));
         dispatch(setSnackbarOpen(true));
-        console.error(response.data.error);
 
         return rejectWithValue({ message: 'Unexpected response status', data: response.data });
       }
@@ -27,7 +26,7 @@ export const submitForm = createAsyncThunk(
      
     } catch (error) {
       // Hata durumunda snackbar'ı ayarla
-      dispatch(setSnackbarMessage('API Yanıt Hatası'));
+      dispatch(setSnackbarMessage('API Yanıt Hatası' + error.response.data.error));
       dispatch(setSnackbarSeverity('error'));
       dispatch(setSnackbarOpen(true));
 
