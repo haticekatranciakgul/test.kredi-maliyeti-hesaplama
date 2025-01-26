@@ -5,9 +5,7 @@ import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import AddIcon from "@mui/icons-material/Add";
 import DeleteIcon from "@mui/icons-material/Delete";
-import axios from "axios";
 import Typography from "@mui/material/Typography";
-import { BASE_URL } from "../api";
 import Divider from '@mui/material/Divider';
 import CreateTable from "../Components/CreateTable";
 import SelectRadioBtn from "../Components/SelectRadioBtn"
@@ -21,6 +19,8 @@ import { setConsumerCreditType, setCreditType } from '../Redux/creditTypeSlice';
 import TaxModal from '../Components/TaxModal';
 import { Alert, Snackbar } from "@mui/material";
 import Slide from '@mui/material/Slide';
+import { calculateIRR, createTable } from '../Redux/service';
+
 
 function SlideTransition(props) {
     return <Slide {...props} direction="left" />;
@@ -98,8 +98,15 @@ function Calculate() {
             );
         }
     };
-
-
+    const showSnackbar = (message, severity) => {
+        setSnackbarMessage(message);
+        setSnackbarSeverity(severity);
+        setSnackbarOpen(true);
+    };
+    const handleError = (error) => {
+        showSnackbar("API Yanıt Hatası: " + error.response.data.error, "error");
+      };
+      
     const handleSave = async () => {
         try {
             const credits = generatedRows.map((row) => parseFloat(row.value2) || 0);
@@ -108,30 +115,24 @@ function Calculate() {
                 credits,
                 credit_type: creditType,
                 consumer_credit_type: consumerCreditType,
-                expenses
+                expenses,
             };
 
-            
+            const response = await calculateIRR(payload);
 
-            const response = await axios.post(`${BASE_URL}/api/v1/credits/create/irr`, payload);
+            if (response && typeof response.irr !== "undefined") {
+                setIrrValue(response.irr);
+                showSnackbar("İşlem Başarılı", "success");
+                console.log(payload);
+                console.log(response)
 
-            if (response.data && typeof response.data.irr !== "undefined") {
-                setIrrValue(response.data.irr);
-                setSnackbarMessage(`IRR başarıyla hesaplandı`);
-                setSnackbarSeverity("success");
-                setSnackbarOpen(true);
             } else {
-                setSnackbarMessage("API Yanıt Hatası: " + response.data.error);
-                setSnackbarSeverity("warning");
-                setSnackbarOpen(true);
+                showSnackbar("API Yanıt Hatası", "warning");
                 setIrrValue(null);
             }
         } catch (error) {
-            if (error.response) {
-                setSnackbarMessage("API Yanıt Hatası: " + error.response.data.error);
-                setSnackbarSeverity("error");
-                setSnackbarOpen(true);
-            }
+            handleError(error);
+
         }
     };
 
@@ -147,14 +148,12 @@ function Calculate() {
                 block: blockData.block,
                 block_amount: blockData.block_amount,
                 taxes: tax,
-
             };
-            console.log(payload);
-            const tableResponse = await axios.post(`${BASE_URL}/api/v1/credits/create/table`, payload);
 
-            if (tableResponse.data && tableResponse.data.table) {
+            const tableResponse = await createTable(payload);
 
-                const parsedTable = JSON.parse(tableResponse.data.table);
+            if (tableResponse && tableResponse.table) {
+                const parsedTable = JSON.parse(tableResponse.table);
 
                 const formattedData = parsedTable.map((row) => ({
                     column1: row.fields.credit_amount,
@@ -165,21 +164,18 @@ function Calculate() {
                 }));
 
                 setTableData(formattedData);
-                setSnackbarMessage(`Tablo başarıyla Oluşturuldu`);
-                setSnackbarSeverity("success");
-                setSnackbarOpen(true);
+                showSnackbar("İşlem Başarılı", "success");
+                console.log(payload);
+                console.log(tableResponse)
             } else {
-                setSnackbarMessage("Yanıt içinde IRR değeri bulunamadı.");
-                setSnackbarSeverity("warning");
-                setSnackbarOpen(true);
+                showSnackbar("API Yanıt Hatası", "warning");
             }
         } catch (error) {
-            setSnackbarMessage("API Yanıt Hatası", error.response.data.error);
-            setSnackbarSeverity("error");
-            setSnackbarOpen(true);
-
+            handleError(error);
         }
     };
+
+
 
     return (
         <>
