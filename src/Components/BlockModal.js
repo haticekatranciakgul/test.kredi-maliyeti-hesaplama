@@ -92,7 +92,7 @@ export default function FormDialog() {
                                     inputProps={{
                                         inputMode: 'numeric',
                                         pattern: '\\d*', 
-                                        max: 999
+                                        max: 99
                                     }}
                                 />
                             </Grid>
