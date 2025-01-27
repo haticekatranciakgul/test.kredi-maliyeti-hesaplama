@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
@@ -12,16 +12,17 @@ import Grid from "@mui/material/Grid";
 import { ThemeProvider, useTheme } from "@mui/material";
 import CssBaseline from "@mui/material/CssBaseline";
 import { ColorModeContext } from "../theme";
-import { setBlockData } from '../Redux/blockSlice';
+import { setBlockData, selectBlockData } from "../Redux/blockSlice";
 
 
 export default function FormDialog() {
     const dispatch = useDispatch();
     const open = useSelector((state) => state.modal.isOpen);
-    const blockData = useSelector((state) => state.block);
+    const blockData = useSelector(selectBlockData);
+    const initial = blockData.initial; 
 
-    const [block, setBlock] = React.useState(blockData.block);
-    const [blockAmount, setBlockAmount] = React.useState(blockData.block_amount);
+    const [block, setBlock] = useState(""); 
+    const [blockAmount, setBlockAmount] = useState(""); 
 
     const theme = useTheme();
     const colorMode = useContext(ColorModeContext);
@@ -33,29 +34,36 @@ export default function FormDialog() {
     const handleBlockChange = (e) => {
         const value = e.target.value;
         if (/^\d*$/.test(value) && (value === "" || parseInt(value) <= 99)) {
-            setBlock(parseInt(value) || 0);  
+            setBlock(value); 
         }
     };
-    
+
+
+    useEffect(() => {
+        if (block !== "" && initial !== null) {
+            setBlockAmount(initial.toString()); 
+        } else if (block === "") {
+            setBlockAmount(""); 
+        }
+    }, [block, initial]);
+
     const handleBlockAmountChange = (e) => {
-        const value = e.target.value;
+        const value = e.target.value; 
         if (/^\d*\.?\d*$/.test(value)) {
-            setBlockAmount(value);  
+          if (value === "" || parseFloat(value) <= (initial || 0)) {
+            setBlockAmount(value);
+          }
         }
-    };
-    
-    
+      };
 
-    const handleSave = async () => {
-        dispatch(setBlockData({ block, block_amount: blockAmount }));
-
-
-        try {
-            handleClose();
-        } catch (error) {
-            
-        }
-    };
+    const handleSave = () => {
+        dispatch(
+          setBlockData({
+            block: parseFloat(block) || 0,
+            block_amount: parseFloat(blockAmount) || 0,
+          })
+        );
+      };
 
     return (
         <ColorModeContext.Provider value={colorMode}>
@@ -75,8 +83,8 @@ export default function FormDialog() {
                     <DialogContent sx={{
                         backgroundColor: (theme) => theme.palette.mode === 'light' ? '#d3daee' : '#1F2A40',
                     }}>
-                        <DialogContentText sx={{ marginBottom: '2%', marginTop: "2%" }}> 
-                        *Kullandırım sonrası kredi tutarının tamamının veya bir kısmının bir süre bankada tutulması şartı varsa buraya giriş yapın.
+                        <DialogContentText sx={{ marginBottom: '2%', marginTop: "2%" }}>
+                            *Kullandırım sonrası kredi tutarının tamamının veya bir kısmının bir süre bankada tutulması şartı varsa buraya giriş yapın.
                         </DialogContentText>
 
                         <Grid container spacing={1} columns={10} >
@@ -91,7 +99,7 @@ export default function FormDialog() {
                                     onChange={handleBlockChange}
                                     inputProps={{
                                         inputMode: 'numeric',
-                                        pattern: '\\d*', 
+                                        pattern: '\\d*',
                                         max: 99
                                     }}
                                 />
@@ -106,9 +114,9 @@ export default function FormDialog() {
                                     value={blockAmount}
                                     onChange={handleBlockAmountChange}
                                     inputProps={{
-                                        inputMode: 'decimal', 
-                                        pattern: '[0-9]*[.,]?[0-9]*', 
-                                        step: 'any'  
+                                        inputMode: 'decimal',
+                                        pattern: '[0-9]*[.,]?[0-9]*',
+                                        step: 'any'
                                     }}
                                 />
                             </Grid>

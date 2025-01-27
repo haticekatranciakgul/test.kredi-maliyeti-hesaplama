@@ -20,6 +20,8 @@ import TaxModal from '../Components/TaxModal';
 import { Alert, Snackbar } from "@mui/material";
 import Slide from '@mui/material/Slide';
 import { calculateIRR, createTable } from '../Redux/service';
+import { setBlockData } from "../Redux/blockSlice";
+import { setInitial } from '../Redux/blockSlice';
 
 
 function SlideTransition(props) {
@@ -29,7 +31,7 @@ function SlideTransition(props) {
 function Calculate() {
     const [inputCount, setInputCount] = useState("");
     const [credits, setcredits] = useState("");
-    const [initial, setInitial] = useState("");
+    const [initial, setInitialInput] = useState("");
     const [generatedRows, setGeneratedRows] = useState([]);
     const [irrValue, setIrrValue] = useState(null);
     const [tableData, setTableData] = useState([]);
@@ -47,6 +49,14 @@ function Calculate() {
         setSnackbarOpen(false);
     };
     //Alert: end
+
+    const handleInitialChange = (e) => {
+        const value = e.target.value;
+        if (/^\d*\.?\d*$/.test(value)) {
+            setInitialInput(value);
+            dispatch(setInitial(value ? parseFloat(value) : null));
+        }
+    };
 
     const dispatch = useDispatch();
     const consumerCreditType = useSelector((state) => state.creditType.consumerCreditType);
@@ -105,8 +115,8 @@ function Calculate() {
     };
     const handleError = (error) => {
         showSnackbar("API Yanıt Hatası: " + error.response.data.error, "error");
-      };
-      
+    };
+
     const handleSave = async () => {
         try {
             const credits = generatedRows.map((row) => parseFloat(row.value2) || 0);
@@ -117,6 +127,8 @@ function Calculate() {
                 consumer_credit_type: consumerCreditType,
                 expenses,
             };
+
+            dispatch(setBlockData({ block_amount: parseFloat(initial) || 0 }));
 
             const response = await calculateIRR(payload);
 
@@ -272,12 +284,7 @@ function Calculate() {
                                         required
                                         label="Kredi Tutarı (Anapara)"
                                         value={initial}
-                                        onChange={(e) => {
-                                            const value = e.target.value;
-                                            if (/^\d*\.?\d*$/.test(value)) {
-                                                setInitial(value);
-                                            }
-                                        }}
+                                        onChange={handleInitialChange}
                                         inputProps={{
                                             inputMode: 'numeric',
                                             pattern: '[0-9]*',
