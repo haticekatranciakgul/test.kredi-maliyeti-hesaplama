@@ -34,7 +34,9 @@ export default function FormDialog() {
     };
 
     const handleAddRow = () => {
-        setRows([...rows, { title: '', amount: '' }]);
+        const maxId = rows.length > 0 ? Math.max(...rows.map((row) => row.id)) : -1; // Mevcut en yüksek id'yi bul
+        const newRow = { id: maxId + 1, title: '', amount: '' }; // Yeni id oluştur
+        setRows([...rows, newRow]); // Yeni satırı ekle
     };
 
     const handleInputChange = (index, field, value) => {
@@ -48,6 +50,7 @@ export default function FormDialog() {
         try {
             handleClose();
         } catch (error) {
+            // console.error('Hata:', error);
 
         }
     };
@@ -78,7 +81,7 @@ export default function FormDialog() {
                         </DialogContentText>
                         <Grid container spacing={1} columns={12}>
                             {rows.map((row, index) => (
-                                <Grid container spacing={1} columns={10} key={index}>
+                                <Grid container spacing={1} columns={10} key={row.id}>
                                     <Grid item md={5}>
                                         <TextField
                                             required
