@@ -4,9 +4,10 @@ const initialState = {
   initial: '0',
   otherExpenses: '',
   inputCount: '',
-  credits: '0',
+  credits: [ {id: "", credit: "300"} ],
   generatedRows: [],
 };
+
 
 const creditSlice = createSlice({
   name: 'credit',

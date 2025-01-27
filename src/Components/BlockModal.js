@@ -44,17 +44,22 @@ export default function FormDialog() {
             setBlockAmount(initial.toString()); 
         } else if (block === "") {
             setBlockAmount(""); 
+        } else if (initial === "") {
+            setBlockAmount(""); 
         }
     }, [block, initial]);
 
     const handleBlockAmountChange = (e) => {
-        const value = e.target.value; 
+        const value = e.target.value; // Kullanıcının girdiği değeri al
         if (/^\d*\.?\d*$/.test(value)) {
-          if (value === "" || parseFloat(value) <= (initial || 0)) {
-            setBlockAmount(value);
+          // Eğer initial veya block boşsa, her değere izin ver
+          if (initial === "" || block === "" || parseFloat(value) <= parseFloat(initial || 0)) {
+            setBlockAmount(value); // Değer geçerliyse block_amount güncelle
           }
         }
       };
+      
+      
 
     const handleSave = () => {
         dispatch(
@@ -63,6 +68,11 @@ export default function FormDialog() {
             block_amount: parseFloat(blockAmount) || 0,
           })
         );
+        try {
+            handleClose();
+        } catch (error) {
+            
+        }
       };
 
     return (

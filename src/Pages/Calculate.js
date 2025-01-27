@@ -126,6 +126,8 @@ function Calculate() {
                 credit_type: creditType,
                 consumer_credit_type: consumerCreditType,
                 expenses,
+                // block: blockData.block,
+                // block_amount: blockData.block_amount,
             };
 
             dispatch(setBlockData({ block_amount: parseFloat(initial) || 0 }));
