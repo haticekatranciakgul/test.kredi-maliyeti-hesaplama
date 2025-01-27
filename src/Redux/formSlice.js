@@ -23,10 +23,7 @@ export const submitForm = createAsyncThunk(
 
      
     } catch (error) {
-      // Hata durumunda snackbar'ı ayarla
       dispatch(setSnackbarMessage('API Yanıt Hatası'));
-      //      dispatch(setSnackbarMessage('API Yanıt Hatası' + error.response.data.error));
-
       dispatch(setSnackbarSeverity('error'));
       dispatch(setSnackbarOpen(true));
 

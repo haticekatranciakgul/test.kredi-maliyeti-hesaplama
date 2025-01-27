@@ -22,7 +22,8 @@ import Slide from '@mui/material/Slide';
 import { calculateIRR, createTable } from '../Redux/service';
 import { setBlockData } from "../Redux/blockSlice";
 import { setInitial } from '../Redux/blockSlice';
-
+import { handleError } from '../utils';
+ 
 
 function SlideTransition(props) {
     return <Slide {...props} direction="left" />;
@@ -113,9 +114,7 @@ function Calculate() {
         setSnackbarSeverity(severity);
         setSnackbarOpen(true);
     };
-    const handleError = (error) => {
-        showSnackbar("API Yanıt Hatası: " + error.response.data.error, "error");
-    };
+ 
 
     const handleSave = async () => {
         try {
@@ -137,14 +136,14 @@ function Calculate() {
             if (response && typeof response.irr !== "undefined") {
                 setIrrValue(response.irr);
                 showSnackbar("İşlem Başarılı", "success");
-              console.log(payload)
+              //console.log(payload)
 
             } else {
                 showSnackbar("API Yanıt Hatası", "warning");
                 setIrrValue(null);
             }
         } catch (error) {
-            handleError(error);
+            handleError(error, showSnackbar);
 
         }
     };
@@ -183,7 +182,7 @@ function Calculate() {
                 showSnackbar("API Yanıt Hatası", "warning");
             }
         } catch (error) {
-            handleError(error);
+            handleError(error, showSnackbar);
         }
     };
 
