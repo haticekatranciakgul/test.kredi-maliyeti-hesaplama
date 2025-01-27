@@ -136,7 +136,7 @@ function Calculate() {
             if (response && typeof response.irr !== "undefined") {
                 setIrrValue(response.irr);
                 showSnackbar("İşlem Başarılı", "success");
-              //console.log(payload)
+             
 
             } else {
                 showSnackbar("API Yanıt Hatası", "warning");
