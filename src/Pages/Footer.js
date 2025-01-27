@@ -26,7 +26,7 @@ export default function Footer() {
   const [snackbarMessage, setSnackbarMessage] = useState('');
 
   const handleSubscribe = () => {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // Basit e-posta doğrulama regex'i
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; 
     if (email && emailRegex.test(email)) {
       dispatch(subscribeEmail(email));
     } else {
