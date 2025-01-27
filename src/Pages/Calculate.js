@@ -137,8 +137,7 @@ function Calculate() {
             if (response && typeof response.irr !== "undefined") {
                 setIrrValue(response.irr);
                 showSnackbar("İşlem Başarılı", "success");
-                console.log(payload);
-                console.log(response)
+              
 
             } else {
                 showSnackbar("API Yanıt Hatası", "warning");
@@ -179,8 +178,7 @@ function Calculate() {
 
                 setTableData(formattedData);
                 showSnackbar("İşlem Başarılı", "success");
-                console.log(payload);
-                console.log(tableResponse)
+               
             } else {
                 showSnackbar("API Yanıt Hatası", "warning");
             }

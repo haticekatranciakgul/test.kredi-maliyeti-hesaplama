@@ -11,23 +11,19 @@ export const subscribeEmail = createAsyncThunk(
         formData
       );
       if (response.data) {
-        // Dispatch snackbar notifications on success
         dispatch(setSnackbarMessage('Form başarıyla gönderildi.'));
         dispatch(setSnackbarSeverity('success'));
         dispatch(setSnackbarOpen(true));
 
         return response.data;
       } else {
-        // Handle unexpected API responses
         dispatch(setSnackbarMessage('API Yanıt Hatası'));
         dispatch(setSnackbarSeverity('warning'));
         dispatch(setSnackbarOpen(true));
-        console.error(response.data.error);
 
         return rejectWithValue({ message: 'Unexpected response status', data: response.data });
       }
     } catch (error) {
-      // Handle errors and dispatch snackbar notifications
       dispatch(setSnackbarMessage('API Yanıt Hatası'));
       dispatch(setSnackbarSeverity('error'));
       dispatch(setSnackbarOpen(true));
@@ -37,18 +33,17 @@ export const subscribeEmail = createAsyncThunk(
   }
 );
 
-// Slice definition for form management
+
 const formSlice = createSlice({
   name: 'form',
   initialState: {
-    status: 'idle', // 'idle' | 'loading' | 'succeeded' | 'failed'
+    status: 'idle', 
     error: null,
     snackbarMessage: '',
-    snackbarSeverity: 'info', // 'info', 'success', 'warning', 'error'
+    snackbarSeverity: 'info', 
     snackbarOpen: false,
   },
   reducers: {
-    // Reducers for snackbar state management
     setSnackbarMessage: (state, action) => {
       state.snackbarMessage = action.payload;
     },
@@ -74,7 +69,6 @@ const formSlice = createSlice({
   },
 });
 
-// Exporting actions and reducer
 export const { setSnackbarMessage, setSnackbarSeverity, setSnackbarOpen } = formSlice.actions;
 
 export default formSlice.reducer;

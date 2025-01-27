@@ -50,11 +50,10 @@ export default function FormDialog() {
     }, [block, initial]);
 
     const handleBlockAmountChange = (e) => {
-        const value = e.target.value; // Kullanıcının girdiği değeri al
+        const value = e.target.value; 
         if (/^\d*\.?\d*$/.test(value)) {
-          // Eğer initial veya block boşsa, her değere izin ver
           if (initial === "" || block === "" || parseFloat(value) <= parseFloat(initial || 0)) {
-            setBlockAmount(value); // Değer geçerliyse block_amount güncelle
+            setBlockAmount(value); 
           }
         }
       };
