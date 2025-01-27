@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
@@ -19,60 +19,51 @@ export default function FormDialog() {
     const dispatch = useDispatch();
     const open = useSelector((state) => state.modal.isOpen);
     const blockData = useSelector(selectBlockData);
-    const initial = blockData.initial; 
+    const initial = blockData.initial;
 
-    const [block, setBlock] = useState(""); 
-    const [blockAmount, setBlockAmount] = useState(""); 
-
+    const [block, setBlock] = useState(0); 
+    const [blockAmount, setBlockAmount] = useState(0); 
     const theme = useTheme();
     const colorMode = useContext(ColorModeContext);
-
 
     const handleClose = () => {
         dispatch(closeModal());
     };
+
     const handleBlockChange = (e) => {
         const value = e.target.value;
         if (/^\d*$/.test(value) && (value === "" || parseInt(value) <= 99)) {
-            setBlock(value); 
+            setBlock(value);
+            if (value !== "" && initial !== null) {
+                setBlockAmount(initial.toString());
+            } else {
+                setBlockAmount("");
+            }
         }
     };
 
-
-    useEffect(() => {
-        if (block !== "" && initial !== null) {
-            setBlockAmount(initial.toString()); 
-        } else if (block === "") {
-            setBlockAmount(""); 
-        } else if (initial === "") {
-            setBlockAmount(""); 
-        }
-    }, [block, initial]);
-
     const handleBlockAmountChange = (e) => {
-        const value = e.target.value; 
+        const value = e.target.value;
         if (/^\d*\.?\d*$/.test(value)) {
-          if (initial === "" || block === "" || parseFloat(value) <= parseFloat(initial || 0)) {
-            setBlockAmount(value); 
-          }
+            if (initial === null || block === "" || parseFloat(value) <= parseFloat(initial || 0)) {
+                setBlockAmount(value);
+            }
         }
-      };
-      
-      
+    };
 
     const handleSave = () => {
         dispatch(
-          setBlockData({
-            block: parseFloat(block) || 0,
-            block_amount: parseFloat(blockAmount) || 0,
-          })
+            setBlockData({
+                block: parseFloat(block) || 0,
+                block_amount: parseFloat(blockAmount) || 0,
+            })
         );
         try {
             handleClose();
         } catch (error) {
-            
+            console.error("Error closing modal", error);
         }
-      };
+    };
 
     return (
         <ColorModeContext.Provider value={colorMode}>
