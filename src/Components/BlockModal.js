@@ -18,11 +18,12 @@ import { setBlockData, selectBlockData } from "../Redux/blockSlice";
 export default function FormDialog() {
     const dispatch = useDispatch();
     const open = useSelector((state) => state.modal.isOpen);
-    const blockData = useSelector(selectBlockData);
+    const blockData = useSelector((state) => state.block);
     const initial = blockData.initial;
 
-    const [block, setBlock] = useState(0); 
-    const [blockAmount, setBlockAmount] = useState(0); 
+   // Local state
+   const [block, setBlock] = useState(blockData.block || 0);
+   const [blockAmount, setBlockAmount] = useState(blockData.block_amount || 0);
     const theme = useTheme();
     const colorMode = useContext(ColorModeContext);
 
