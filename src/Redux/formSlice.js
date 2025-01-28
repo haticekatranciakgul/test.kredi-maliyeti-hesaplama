@@ -8,14 +8,12 @@ export const submitForm = createAsyncThunk(
     try {
       const response = await axios.post('https://credit-irr.vercel.app/api/v1/credits/create/contactus', formData);
       if (response.data ) {
-        // Başarı durumunda snackbar'ı ayarla
         dispatch(setSnackbarMessage('Form başarıyla gönderildi.'));
         dispatch(setSnackbarSeverity('success'));
         dispatch(setSnackbarOpen(true));
 
         return response.data;
       } else {
-        // API yanıtı başarılı değilse hata mesajı gönder
         dispatch(setSnackbarMessage('API Yanıt Hatası' + response.data.error));
         dispatch(setSnackbarSeverity('warning'));
         dispatch(setSnackbarOpen(true));
@@ -35,14 +33,14 @@ export const submitForm = createAsyncThunk(
 const formSlice = createSlice({
   name: 'form',
   initialState: {
-    status: 'idle', // 'idle' | 'loading' | 'succeeded' | 'failed'
+    status: 'idle', 
     error: null,
     snackbarMessage: '',
-    snackbarSeverity: 'info', // 'info', 'success', 'warning', 'error'
+    snackbarSeverity: 'info', 
     snackbarOpen: false,
   },
   reducers: {
-    // Reducers for managing snackbar state
+   
     setSnackbarMessage: (state, action) => {
       state.snackbarMessage = action.payload;
     },

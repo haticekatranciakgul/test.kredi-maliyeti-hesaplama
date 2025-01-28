@@ -27,7 +27,7 @@ function SelectRadioBtn({ setConsumerCreditType, setCreditType }) {
         }
     };
 
-    // TODO: Will be converted to enum
+    
     const handleSubOptionChange = (event) => {
         setSubOption(event.target.value);
         if (event.target.value === 'option1') {

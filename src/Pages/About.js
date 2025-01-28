@@ -9,42 +9,42 @@ import ListFormula from '../Components/ListFormula';
 const theme = createTheme({
     typography: {
         h1: {
-            fontSize: '20px', // Varsayılan font boyutu (xs)
+            fontSize: '20px', 
             '@media (min-width:600px)': {
-                fontSize: '20px', // sm için font boyutu
+                fontSize: '20px', 
             },
             '@media (min-width:960px)': {
-                fontSize: '23px', // md için font boyutu
+                fontSize: '23px',
             },
             '@media (min-width:1280px)': {
-                fontSize: '25px', // lg için font boyutu
+                fontSize: '25px',
             },
             fontWeight: 'bold' 
         },
         h2: {
-            fontSize: '18px', // Varsayılan font boyutu (xs)
+            fontSize: '18px', 
             '@media (min-width:600px)': {
-                fontSize: '18px', // sm için font boyutu
+                fontSize: '18px',
             },
             '@media (min-width:960px)': {
-                fontSize: '20px', // md için font boyutu
+                fontSize: '20px', 
             },
             '@media (min-width:1280px)': {
-                fontSize: '23px', // lg için font boyutu
+                fontSize: '23px', 
             },
             fontWeight: 'bold' 
         },
        
         h4: {
-            fontSize: '14px', // Varsayılan font boyutu (xs)
+            fontSize: '14px', 
             '@media (min-width:600px)': {
-                fontSize: '14px', // sm için font boyutu
+                fontSize: '14px', 
             },
             '@media (min-width:960px)': {
-                fontSize: '16px', // md için font boyutu
+                fontSize: '16px', 
             },
             '@media (min-width:1280px)': {
-                fontSize: '18px', // lg için font boyutu
+                fontSize: '18px', 
             },
         },
     },
@@ -68,9 +68,7 @@ function About() {
             }}>
 
                 <Typography variant="h2" >IRR Anlamı </Typography>
-                <Typography variant="h4" sx={{
-                    textIndent: '2em', // İlk satır için boşluk
-                }}><br/>
+                <Typography variant="h4" ><br/>
                     IRR, iç getiri oranı anlamına gelir. Harici faktörleri hariç tutarak bir proje veya yatırımdaki getiri oranınızı ölçer.
                     Muhasebe getiri oranına (ARR) benzer şekilde yatırımların karlılığını tahmin etmek için kullanılabilir .
                     Genellikle, yüksek bir IRR, düşük bir IRR'den daha iyidir, çünkü potansiyel bir projenin veya yatırımın işinize değer katma olasılığının yüksek olduğunu gösterir.
@@ -79,9 +77,7 @@ function About() {
                 </Typography><br/>
                 <Typography  variant="h2">IRR Nasıl Hesaplanır?</Typography><br/>
 
-                <Typography  variant="h4" sx={{
-                    textIndent: '2em', // İlk satır için boşluk
-                }}>  IRR'nin nasıl hesaplanacağını anlamak zor olabilir, çünkü IRR formülü diğer birçok finansal metrikten biraz daha karmaşıktır. İşte hesaplamalarınızda kullanabileceğiniz IRR formülü:
+                <Typography  variant="h4" >  IRR'nin nasıl hesaplanacağını anlamak zor olabilir, çünkü IRR formülü diğer birçok finansal metrikten biraz daha karmaşıktır. İşte hesaplamalarınızda kullanabileceğiniz IRR formülü:
                 </Typography><br/>
                 <Box sx={{ display: 'flex', justifyContent: 'center', paddingTop: '2%', paddingBottom: '2%' }}>
                     <Box sx={{ display: 'flex', justifyContent: 'center', backgroundColor: 'transparent', padding: 2, borderRadius: 10, 
@@ -98,18 +94,14 @@ function About() {
                 
                 <Typography  variant="h2">IRR Nasıl Kullanılır?</Typography><br/>
 
-                <Typography  sx={{
-                    textIndent: '2em', // İlk satır için boşluk
-                }}>
+                <Typography >
 
                     IRR yöntemi, işletmeler tarafından hangi projenin veya yatırımın fonlanmaya değer olduğunu belirlemek için sıklıkla kullanılır. Örneğin, yeni bir ekipman satın almak mı yoksa yeni bir ürün serisine yatırım yapmak mı istediğinizi anlamaya çalışıyorsanız, IRR sağlıklı bir getiri oranı sağlama olasılığı en yüksek olan seçeneği anlamanıza yardımcı olabilir. Gerçek getiri oranının tahmini IRR'den önemli ölçüde farklı olması muhtemel olsa da, rakip seçeneklerden çok daha yüksek IRR'ye sahip projelerin daha iyi değer sunma olasılığı yüksektir.
 
                     IRR yönteminin özellikle yararlı olduğu birkaç farklı senaryo vardır. Mevcut operasyonları genişletmenin karlılığını yeni operasyonlar kurmakla karşılaştırıyorsanız, şirketiniz hangisinin daha karlı seçenek olduğuna karar vermek için IRR hesaplama formülünü kullanabilir. Ayrıca, IRR hisse senedi geri alım programını düşünen şirketler için yararlı olabilir; şirketin hisse senedi diğer potansiyel projelerden daha düşük bir IRR'ye sahipse, hisse senedi geri alımı en iyi fikir olmayabilir.
                 </Typography><br/>
                 <Typography  variant="h2">IRR'nin Sınırlamaları</Typography><br/>
-                <Typography  variant="h4" sx={{
-                    textIndent: '2em', // İlk satır için boşluk
-                }}>
+                <Typography  variant="h4" >
 
                     IRR, gelecekteki projelerin veya yatırımların karlılığını tahmin etmek için mükemmel bir araç olsa da, tek başına kullanıldığında biraz yanıltıcı olabilir.
 

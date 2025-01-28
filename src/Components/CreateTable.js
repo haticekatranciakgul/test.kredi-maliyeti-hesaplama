@@ -38,31 +38,31 @@ function CreateTable({ tableData }) {
                                 backgroundColor: '#a1a4ab',
                             },
                         }, '& .MuiDataGrid-container--top ': {
-                            // backgroundColor: 'pink', color:'pink'
+                            
                         },
                         '& .MuiDataGrid-toolbarContainer': {
-                            backgroundColor: '#1F2A40', // Arka plan rengi
-                            color: '#ffffff', // Metin rengi
+                            backgroundColor: '#1F2A40', 
+                            color: '#ffffff', 
                             '& .MuiButton-root': {
-                                color: '#ffffff', // Filtreler ve yoğunluk gibi butonların rengi
+                                color: '#ffffff', 
                             },
                         },
                         '& .MuiDataGrid-container--top [role="row"]': { 
                             backgroundColor: '#1F2A40', 
                         },
                         '& .MuiDataGrid-columnHeader:hover': {
-                            backgroundColor: '#357ABD', // Hover durumunda başlık rengi
+                            backgroundColor: '#357ABD', 
                         },
                         '& .MuiDataGrid-footerContainer': {
-                            backgroundColor: '#1F2A40', // Footer arka plan rengi
-                            color: '#ffffff', // Footer metin rengi
+                            backgroundColor: '#1F2A40', 
+                            color: '#ffffff',
                         },
                         
                         '& .MuiDataGrid-footerContainer': {
                                 backgroundColor: isDarkMode ? '#1F2A40' : '#f5f5f5',
                                 color: isDarkMode ? '#ffffff' : '#000000',
                                 '& .MuiTablePagination-selectLabel': {
-                                    display: 'none', // Her iki modda da gizli
+                                    display: 'none',
                                 },
                             },
 
@@ -108,10 +108,7 @@ function CreateTable({ tableData }) {
                         checkboxSelectionUnselectRow: 'Satırın seçimini kaldır',
                         toolbarColumns: 'Sütunlar',
                         toolbarColumnsLabel: 'Sütunları seç',
-                        paginationPanelRowsPerPage: 'Sayfa başına satır', // Burayı ekledik
-
-                     
-
+                        paginationPanelRowsPerPage: 'Sayfa başına satır', 
 
                     }}
                     slots={{

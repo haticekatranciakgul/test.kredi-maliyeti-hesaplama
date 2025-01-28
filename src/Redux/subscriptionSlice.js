@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-// Asynchronous thunk for form submission
+
 export const subscribeEmail = createAsyncThunk(
   'form/submitForm',
   async (formData, { rejectWithValue, dispatch }) => {

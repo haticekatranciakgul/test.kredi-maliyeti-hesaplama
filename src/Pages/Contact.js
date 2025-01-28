@@ -12,7 +12,7 @@ import { useForm, Controller } from 'react-hook-form';
 import { FormHelperText } from '@mui/material';
 import { submitForm } from '../Redux/formSlice';
 import TextArea from '../Components/TextArea';
-import { setSnackbarOpen } from "../Redux/formSlice"; // doğru yolu kullan
+import { setSnackbarOpen } from "../Redux/formSlice"; 
 import { Alert, Snackbar } from "@mui/material";
 import Slide from '@mui/material/Slide';
 
@@ -48,19 +48,18 @@ function Contact() {
     };
 
     useEffect(() => {
-        // Eğer snackbar 1 saniye açık kalacaksa, zamanlayıcı ile kapanmasını sağla
         if (snackbarOpen) {
             const timer = setTimeout(() => {
                 dispatch(setSnackbarOpen(false));
-            }, 3000); // 3 saniye
+            }, 3000); 
 
-            return () => clearTimeout(timer); // cleanup
+            return () => clearTimeout(timer); 
         }
     }, [snackbarOpen, dispatch]);
 
     return (
         <div>
-            {/* Snackbar ve Alert */}
+           
             <Snackbar
                 open={snackbarOpen}
                 autoHideDuration={4000}
@@ -170,7 +169,7 @@ function Contact() {
                                             defaultValue=""
                                             rules={{
                                                 required: 'Telefon zorunludur',
-                                                // pattern: { value: /^[0-9]{10}$/, message: 'Geçerli bir telefon giriniz' },
+                                                
                                             }}
                                             render={({ field }) => (
                                                 <OutlinedInput {...field} placeholder="Telefon" size="small" />

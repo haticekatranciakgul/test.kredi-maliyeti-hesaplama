@@ -7,42 +7,42 @@ import Typography from '@mui/material/Typography';
 const theme = createTheme({
     typography: {
         h1: {
-            fontSize: '20px', // Varsayılan font boyutu (xs)
+            fontSize: '20px', 
             '@media (min-width:600px)': {
-                fontSize: '20px', // sm için font boyutu
+                fontSize: '20px',
             },
             '@media (min-width:960px)': {
-                fontSize: '23px', // md için font boyutu
+                fontSize: '23px', 
             },
             '@media (min-width:1280px)': {
-                fontSize: '25px', // lg için font boyutu
+                fontSize: '25px', 
             },
             fontWeight: 'bold' 
         },
         h2: {
-            fontSize: '18px', // Varsayılan font boyutu (xs)
+            fontSize: '18px', 
             '@media (min-width:600px)': {
-                fontSize: '18px', // sm için font boyutu
+                fontSize: '18px', 
             },
             '@media (min-width:960px)': {
-                fontSize: '20px', // md için font boyutu
+                fontSize: '20px',
             },
             '@media (min-width:1280px)': {
-                fontSize: '23px', // lg için font boyutu
+                fontSize: '23px', 
             },
             fontWeight: 'bold' 
         },
        
         h4: {
-            fontSize: '14px', // Varsayılan font boyutu (xs)
+            fontSize: '14px', 
             '@media (min-width:600px)': {
-                fontSize: '14px', // sm için font boyutu
+                fontSize: '14px', 
             },
             '@media (min-width:960px)': {
-                fontSize: '16px', // md için font boyutu
+                fontSize: '16px', 
             },
             '@media (min-width:1280px)': {
-                fontSize: '18px', // lg için font boyutu
+                fontSize: '18px', 
             },
         },
     },

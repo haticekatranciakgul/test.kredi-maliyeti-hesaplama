@@ -3,7 +3,6 @@ import { TextareaAutosize as BaseTextareaAutosize } from '@mui/base/TextareaAuto
 import { styled } from '@mui/system';
 import PropTypes from 'prop-types';
 
-// Özelleştirilmiş TextareaAutosize bileşeni
 const TextareaAutosize = styled(BaseTextareaAutosize)(
   ({ theme }) => `
     box-sizing: border-box;
@@ -57,21 +56,20 @@ const grey = {
   900: '#1C2025',
 };
 
-// Ana bileşen
+
 const TextArea = React.forwardRef(({ placeholder, ...props }, ref) => {
   return (
     <TextareaAutosize
-      ref={ref} // React Hook Form veya diğer formlar için forwardRef
+      ref={ref}
       placeholder={placeholder || 'Ne hakkında yazmak istiyorsunuz?'}
       {...props}
     />
   );
 });
 
-// Prop türlerini belirtme
+
 TextArea.propTypes = {
   placeholder: PropTypes.string,
 };
 
-// Varsayılan export
 export default TextArea;

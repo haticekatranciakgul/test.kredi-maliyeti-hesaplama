@@ -7,7 +7,7 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
-import { closeModal } from '../Redux/modalSlice'; // Redux aksiyonlarını içe aktar
+import { closeModal } from '../Redux/modalSlice'; 
 import Grid from "@mui/material/Grid";
 import AddIcon from "@mui/icons-material/Add";
 import { ThemeProvider, useTheme } from "@mui/material";
@@ -15,7 +15,7 @@ import CssBaseline from "@mui/material/CssBaseline";
 import { ColorModeContext } from "../theme";
 
 
-import { setExpenses } from '../Redux/expensesSlice'; // Redux aksiyonunu import ediyoruz
+import { setExpenses } from '../Redux/expensesSlice'; 
 
 
 
@@ -34,9 +34,9 @@ export default function FormDialog() {
     };
 
     const handleAddRow = () => {
-        const maxId = rows.length > 0 ? Math.max(...rows.map((row) => row.id)) : -1; // Mevcut en yüksek id'yi bul
-        const newRow = { id: maxId + 1, title: '', amount: '' }; // Yeni id oluştur
-        setRows([...rows, newRow]); // Yeni satırı ekle
+        const maxId = rows.length > 0 ? Math.max(...rows.map((row) => row.id)) : -1; 
+        const newRow = { id: maxId + 1, title: '', amount: '' }; 
+        setRows([...rows, newRow]);
     };
 
     const handleInputChange = (index, field, value) => {
