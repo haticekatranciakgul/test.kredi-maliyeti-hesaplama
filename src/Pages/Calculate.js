@@ -116,37 +116,37 @@ function Calculate() {
     };
  
 
-    const handleSave = async () => {
-        try {
-            const credits = generatedRows.map((row) => parseFloat(row.value2) || 0);
-            const payload = {
-                initial: parseFloat(initial) || 0,
-                credits,
-                credit_type: creditType,
-                consumer_credit_type: consumerCreditType,
-                expenses,
-                // block: blockData.block,
-                // block_amount: blockData.block_amount,
-            };
+    // const handleSave = async () => {
+    //     try {
+    //         const credits = generatedRows.map((row) => parseFloat(row.value2) || 0);
+    //         const payload = {
+    //             initial: parseFloat(initial) || 0,
+    //             credits,
+    //             credit_type: creditType,
+    //             consumer_credit_type: consumerCreditType,
+    //             expenses,
+    //             // block: blockData.block,
+    //             // block_amount: blockData.block_amount,
+    //         };
 
-            dispatch(setBlockData({ block_amount: parseFloat(initial) || 0 }));
+    //         dispatch(setBlockData({ block_amount: parseFloat(initial) || 0 }));
 
-            const response = await calculateIRR(payload);
+    //         const response = await calculateIRR(payload);
 
-            if (response && typeof response.irr !== "undefined") {
-                setIrrValue(response.irr);
-                showSnackbar("İşlem Başarılı", "success");
+    //         if (response && typeof response.irr !== "undefined") {
+    //             setIrrValue(response.irr);
+    //             showSnackbar("İşlem Başarılı", "success");
              
 
-            } else {
-                showSnackbar("API Yanıt Hatası", "warning");
-                setIrrValue(null);
-            }
-        } catch (error) {
-            handleError(error, showSnackbar);
+    //         } else {
+    //             showSnackbar("API Yanıt Hatası", "warning");
+    //             setIrrValue(null);
+    //         }
+    //     } catch (error) {
+    //         handleError(error, showSnackbar);
 
-        }
-    };
+    //     }
+    // };
 
     const handleCreateTable = async () => {
         try {
@@ -161,10 +161,12 @@ function Calculate() {
                 block_amount: blockData.block_amount,
                 taxes: tax,
             };
+            dispatch(setBlockData({ block_amount: parseFloat(initial) || 0 }));
 
             const tableResponse = await createTable(payload);
+            const response = await calculateIRR(payload);
 
-            if (tableResponse && tableResponse.table) {
+            if (tableResponse && tableResponse.table && response && typeof response.irr !== "undefined") {
                 const parsedTable = JSON.parse(tableResponse.table);
 
                 const formattedData = parsedTable.map((row) => ({
@@ -176,10 +178,12 @@ function Calculate() {
                 }));
 
                 setTableData(formattedData);
+                setIrrValue(response.irr);
                 showSnackbar("İşlem Başarılı", "success");
                
             } else {
                 showSnackbar("API Yanıt Hatası", "warning");
+                setIrrValue(null);
             }
         } catch (error) {
             handleError(error, showSnackbar);
@@ -426,12 +430,12 @@ function Calculate() {
                                     {isOpen && modalType === "tax" && <TaxModal />}
 
                                 </Grid>
-                                <Grid item xs={6} sm={4} md={2} lg={2} xl={2} display="flex" justifyContent="flex-end">
+                                <Grid item xs={12} sm={4} md={4} lg={4} xl={4} display="flex" justifyContent="flex-end">
                                     <Button
                                         variant="contained"
                                         fullWidth
                                         size="large"
-                                        color="primary"
+                                        color="inherit"
                                         onClick={handleCreateTable}
                                         sx={{
                                             overflow: "hidden",
@@ -440,10 +444,10 @@ function Calculate() {
                                             padding: "5px"
                                         }}
                                     >
-                                        Tablo
+                                        Hesapla
                                     </Button>
                                 </Grid>
-                                <Grid item xs={6} sm={4} md={2} lg={2} xl={2} display="flex" justifyContent="flex-end">
+                                {/* <Grid item xs={6} sm={4} md={2} lg={2} xl={2} display="flex" justifyContent="flex-end">
                                     <Button
                                         variant="contained"
                                         fullWidth
@@ -453,7 +457,7 @@ function Calculate() {
                                     >
                                         Hesapla
                                     </Button>
-                                </Grid>
+                                </Grid> */}
                             </Grid>
                         </Grid>
                     </Grid>
