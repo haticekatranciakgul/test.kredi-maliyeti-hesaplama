@@ -1,5 +1,5 @@
 ## Live
-https://irr-hesaplama.vercel.app/
+Kredi Maliyet Hesaplama Page - https://irr-hesaplama.vercel.app/
 
 
 
