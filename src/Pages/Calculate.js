@@ -23,7 +23,7 @@ import { calculateIRR, createTable } from '../Redux/service';
 import { setBlockData } from "../Redux/blockSlice";
 import { setInitial } from '../Redux/blockSlice';
 import { handleError } from '../utils';
- 
+
 
 function SlideTransition(props) {
     return <Slide {...props} direction="left" />;
@@ -114,7 +114,7 @@ function Calculate() {
         setSnackbarSeverity(severity);
         setSnackbarOpen(true);
     };
- 
+
 
     // const handleSave = async () => {
     //     try {
@@ -136,7 +136,7 @@ function Calculate() {
     //         if (response && typeof response.irr !== "undefined") {
     //             setIrrValue(response.irr);
     //             showSnackbar("İşlem Başarılı", "success");
-             
+
 
     //         } else {
     //             showSnackbar("API Yanıt Hatası", "warning");
@@ -180,7 +180,7 @@ function Calculate() {
                 setTableData(formattedData);
                 setIrrValue(response.irr);
                 showSnackbar("İşlem Başarılı", "success");
-               
+
             } else {
                 showSnackbar("API Yanıt Hatası", "warning");
                 setIrrValue(null);
@@ -471,7 +471,9 @@ function Calculate() {
                                     <Grid item xs={12} sm={6} md={4} lg={4} xl={4} >
 
                                     </Grid>
-                                    <Grid item xs={12} sm={6} md={4} lg={4} xl={4}>
+                                    <Grid item xs={12} sm={6} md={4} lg={4} xl={4} sx={{ textAlign: 'right', marginTop:'auto'}}>
+                                        {`${index + 1}. Vade`}
+                                        
                                     </Grid>
                                     <Grid item xs={12} sm={12} md={4} lg={4} xl={4}>
                                         <TextField variant="standard" size="small"
