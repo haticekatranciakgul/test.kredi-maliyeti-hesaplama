@@ -192,23 +192,7 @@ function Calculate() {
                     {snackbarMessage}
                 </Alert>
             </Snackbar>
-
-            {/* <Divider></Divider> */}
-            <CreateTable tableData={tableData} />
-            <Box sx={{
-                flexGrow: 1, p: 5, backgroundColor: 'transparent', borderRadius: 10, marginTop: '5%',
-                boxShadow: '1px 1px 185px -23px rgb(78, 142, 225)',
-                webkitBoxShadow: '1px 1px 185px -23px rgba(62, 113, 240, 0.43)',
-                mozBoxShadow: '1px 1px 185px -23px rgba(101, 150, 254, 0.43)',
-            }}>
-                <Grid container spacing={2}>
-                    <Grid item xs={12} sx={{ alignItems: "center", display: "flex", justifyContent: "center" }}>
-                        <Box sx={{ display: 'flex', justifyContent: 'center', }}>
-                            HER ŞEY DAHİL YILLIK BİLEŞİK KREDİ MALİYETİNİZİ KOLAYCA HESAPLAYIN! YANILMAYIN!
-
-                        </Box>
-                    </Grid>
-                    <Grid item xs={12} sx={{ alignItems: "center", display: "flex", justifyContent: "center" }}>
+            <Grid item xs={12} sx={{ alignItems: "center", display: "flex", justifyContent: "center" }}>
 
                         <Box sx={{ display: 'flex', justifyContent: 'center', paddingTop: '1%', paddingBottom: '1%' }}>
                             <Box sx={{
@@ -233,6 +217,23 @@ function Calculate() {
                             </Box>
                         </Box><br />
                     </Grid>
+
+            {/* <Divider></Divider> */}
+            <CreateTable tableData={tableData} />
+            <Box sx={{
+                flexGrow: 1, p: 5, backgroundColor: 'transparent', borderRadius: 10, marginTop: '5%',
+                boxShadow: '1px 1px 185px -23px rgb(78, 142, 225)',
+                webkitBoxShadow: '1px 1px 185px -23px rgba(62, 113, 240, 0.43)',
+                mozBoxShadow: '1px 1px 185px -23px rgba(101, 150, 254, 0.43)',
+            }}>
+                <Grid container spacing={2}>
+                    <Grid item xs={12} sx={{ alignItems: "center", display: "flex", justifyContent: "center" }}>
+                        <Box sx={{ display: 'flex', justifyContent: 'center', }}>
+                            HER ŞEY DAHİL YILLIK BİLEŞİK KREDİ MALİYETİNİZİ KOLAYCA HESAPLAYIN! YANILMAYIN!
+
+                        </Box>
+                    </Grid>
+                    
                     <Grid item xs={12} >
                         <SelectRadioBtn
                             setConsumerCreditType={(value) => dispatch(setConsumerCreditType(value))}
