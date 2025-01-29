@@ -115,39 +115,6 @@ function Calculate() {
         setSnackbarOpen(true);
     };
 
-
-    // const handleSave = async () => {
-    //     try {
-    //         const credits = generatedRows.map((row) => parseFloat(row.value2) || 0);
-    //         const payload = {
-    //             initial: parseFloat(initial) || 0,
-    //             credits,
-    //             credit_type: creditType,
-    //             consumer_credit_type: consumerCreditType,
-    //             expenses,
-    //             // block: blockData.block,
-    //             // block_amount: blockData.block_amount,
-    //         };
-
-    //         dispatch(setBlockData({ block_amount: parseFloat(initial) || 0 }));
-
-    //         const response = await calculateIRR(payload);
-
-    //         if (response && typeof response.irr !== "undefined") {
-    //             setIrrValue(response.irr);
-    //             showSnackbar("İşlem Başarılı", "success");
-
-
-    //         } else {
-    //             showSnackbar("API Yanıt Hatası", "warning");
-    //             setIrrValue(null);
-    //         }
-    //     } catch (error) {
-    //         handleError(error, showSnackbar);
-
-    //     }
-    // };
-
     const handleCreateTable = async () => {
         try {
             const credits = generatedRows.map((row) => parseFloat(row.value2) || 0);
