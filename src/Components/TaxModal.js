@@ -7,13 +7,13 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
-import { closeModal } from '../Redux/modalSlice'; 
+import { closeModal } from '../Redux/slices/modalSlice'; 
 import Grid from "@mui/material/Grid";
 import AddIcon from "@mui/icons-material/Add";
 import { ThemeProvider, useTheme } from "@mui/material";
 import CssBaseline from "@mui/material/CssBaseline";
 import { ColorModeContext } from "../theme";
-import { setTaxes } from '../Redux/taxesSlice'; 
+import { setTaxes } from '../Redux/slices/taxesSlice'; 
 
 
 

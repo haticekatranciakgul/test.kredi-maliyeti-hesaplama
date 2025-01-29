@@ -10,18 +10,18 @@ import Divider from '@mui/material/Divider';
 import CreateTable from "../Components/CreateTable";
 import SelectRadioBtn from "../Components/SelectRadioBtn"
 import { useDispatch } from 'react-redux';
-import { openModal } from '../Redux/modalSlice';
+import { openModal } from '../Redux/slices/modalSlice';
 import ExpenseModal from '../Components/ExpenseModal';
 import { useSelector } from 'react-redux';
 import BlockModal from '../Components/BlockModal';
-import { selectBlockData } from '../Redux/blockSlice';
-import { setConsumerCreditType, setCreditType } from '../Redux/creditTypeSlice';
+import { selectBlockData } from '../Redux/slices/blockSlice';
+import { setConsumerCreditType, setCreditType } from '../Redux/slices/creditTypeSlice';
 import TaxModal from '../Components/TaxModal';
 import { Alert, Snackbar } from "@mui/material";
 import Slide from '@mui/material/Slide';
-import { calculateIRR, createTable } from '../Redux/service';
-import { setBlockData } from "../Redux/blockSlice";
-import { setInitial } from '../Redux/blockSlice';
+import { calculateIRR, createTable } from '../services/service';
+import { setBlockData } from "../Redux/slices/blockSlice";
+import { setInitial } from '../Redux/slices/blockSlice';
 import { handleError } from '../utils';
 
 
