@@ -5,16 +5,16 @@ import Grid from "@mui/material/Grid";
 
 const CustomRadio = styled(Radio)(({ theme }) => ({
     "&.Mui-checked": {
-      color: theme.palette.mode === "dark" ? "#3173db" : undefined,
+        color: theme.palette.mode === "dark" ? "#3173db" : undefined,
 
     },
-  }));
+}));
 
-  
+
 function SelectRadioBtn({ setConsumerCreditType, setCreditType }) {
     const [selectedOption, setSelectedOption] = React.useState('Ticari');
-    const [subOption, setSubOption] =  React.useState('option1');
-   
+    const [subOption, setSubOption] = React.useState('option1');
+
 
 
     const handleMainOptionChange = (event) => {
@@ -27,7 +27,7 @@ function SelectRadioBtn({ setConsumerCreditType, setCreditType }) {
         }
     };
 
-    
+
     const handleSubOptionChange = (event) => {
         setSubOption(event.target.value);
         if (event.target.value === 'option1') {
@@ -43,7 +43,8 @@ function SelectRadioBtn({ setConsumerCreditType, setCreditType }) {
         <div>
             <Grid container spacing={2} >
                 <Grid item xs={12} sx={{ display: 'flex', justifyContent: 'center', }} >
-                    <Box sx={{ width: '40%' }}>
+                    <Box sx={{ width: { xs: '100%', sm: '50%', md: '40%', lg: '40%',  } }}>
+
                         <Box sx={{
                             display: 'flex', justifyContent: 'center', flexGrow: 1, p: 5, backgroundColor: 'transparent', borderRadius: 10,
                             boxShadow: '1px 1px 185px -23px rgb(78, 142, 225)',
@@ -60,8 +61,8 @@ function SelectRadioBtn({ setConsumerCreditType, setCreditType }) {
                                     value={selectedOption}
                                     onChange={handleMainOptionChange}
                                 >
-                                    <FormControlLabel value="Ticari" control={<CustomRadio />}  label="Ticari" />
-                                    <FormControlLabel value="Bireysel" control={<CustomRadio />}  label="Bireysel" />
+                                    <FormControlLabel value="Ticari" control={<CustomRadio />} label="Ticari" />
+                                    <FormControlLabel value="Bireysel" control={<CustomRadio />} label="Bireysel" />
                                 </RadioGroup>
                                 {selectedOption === 'Bireysel' && (
                                     <div>
@@ -72,9 +73,9 @@ function SelectRadioBtn({ setConsumerCreditType, setCreditType }) {
                                             value={subOption}
                                             onChange={handleSubOptionChange}
                                         >
-                                            <FormControlLabel value="option1" control={<CustomRadio />}  label="İhtiyaç" />
-                                            <FormControlLabel value="option2" control={<CustomRadio />}  label="Konut" />
-                                            <FormControlLabel value="option3" control={<CustomRadio />}  label="Taşıt" />
+                                            <FormControlLabel value="option1" control={<CustomRadio />} label="İhtiyaç" />
+                                            <FormControlLabel value="option2" control={<CustomRadio />} label="Konut" />
+                                            <FormControlLabel value="option3" control={<CustomRadio />} label="Taşıt" />
                                         </RadioGroup>
                                     </div>
                                 )}

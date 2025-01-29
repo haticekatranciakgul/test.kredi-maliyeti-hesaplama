@@ -234,7 +234,7 @@ function Calculate() {
                         </Box>
                     </Grid>
                     
-                    <Grid item xs={12} >
+                    <Grid item xs={12} sm={12} md={12} lg={12} xl={12}  >
                         <SelectRadioBtn
                             setConsumerCreditType={(value) => dispatch(setConsumerCreditType(value))}
                             setCreditType={(value) => dispatch(setCreditType(value))}
@@ -248,7 +248,7 @@ function Calculate() {
                     </Grid>
 
                     <Grid container spacing={1} columns={12}>
-                        <Grid item xs={12} sm={12} md={6} >
+                        <Grid item xs={12} sm={12} md={4} >
                             <Grid container spacing={1} columns={12}>
                                 <Grid item xs={12} sm={4} md={4} lg={4} xl={4} >
                                     <TextField fullWidth variant="standard" size="small"
@@ -340,9 +340,9 @@ function Calculate() {
                                 </Grid>
                             </Grid>
                         </Grid>
-                        <Grid item xs={12} sm={12} md={6} >
+                        <Grid item xs={12} sm={12} md={8} >
                             <Grid container spacing={1} columns={12}>
-                                <Grid item xs={6} sm={4} md={2} lg={2} xl={2} display="flex" justifyContent="flex-end">
+                                <Grid item xs={6} sm={2} md={2} lg={2} xl={2} display="flex" justifyContent="flex-end">
                                     <Button
                                         variant="contained"
                                         startIcon={<AddIcon />}
@@ -354,7 +354,7 @@ function Calculate() {
                                         EKLE
                                     </Button>
                                 </Grid>
-                                <Grid item xs={6} sm={4} md={2} lg={2} xl={2} display="flex" justifyContent="flex-end">
+                                <Grid item xs={6} sm={2} md={2} lg={2} xl={2} display="flex" justifyContent="flex-end">
                                     <Button
                                         variant="contained"
                                         startIcon={<AddIcon />}
@@ -368,7 +368,7 @@ function Calculate() {
                                     {isOpen && modalType === "expense" && <ExpenseModal />}
 
                                 </Grid>
-                                <Grid item xs={6} sm={4} md={2} lg={2} xl={2} display="flex" justifyContent="flex-end">
+                                <Grid item xs={6} sm={2} md={2} lg={2} xl={2} display="flex" justifyContent="flex-end">
                                     <Button
                                         variant="contained"
                                         startIcon={<AddIcon />}
@@ -383,7 +383,7 @@ function Calculate() {
                                     {isOpen && modalType === "block" && <BlockModal />}
 
                                 </Grid>
-                                <Grid item xs={6} sm={4} md={2} lg={2} xl={2} display="flex" justifyContent="flex-end">
+                                <Grid item xs={6} sm={2} md={2} lg={2} xl={2} display="flex" justifyContent="flex-end">
                                     <Button
                                         variant="contained"
                                         startIcon={<AddIcon />}
@@ -415,17 +415,6 @@ function Calculate() {
                                         Hesapla
                                     </Button>
                                 </Grid>
-                                {/* <Grid item xs={6} sm={4} md={2} lg={2} xl={2} display="flex" justifyContent="flex-end">
-                                    <Button
-                                        variant="contained"
-                                        fullWidth
-                                        size="large"
-                                        color="primary"
-                                        onClick={handleSave}
-                                    >
-                                        Hesapla
-                                    </Button>
-                                </Grid> */}
                             </Grid>
                         </Grid>
                     </Grid>
