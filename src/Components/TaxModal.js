@@ -13,18 +13,19 @@ import AddIcon from "@mui/icons-material/Add";
 import { ThemeProvider, useTheme } from "@mui/material";
 import CssBaseline from "@mui/material/CssBaseline";
 import { ColorModeContext } from "../theme";
-import { setTax } from '../Redux/taxSlice'; 
+import { setTaxes } from '../Redux/taxesSlice'; 
 
 
 
 export default function FormDialog() {
     const dispatch = useDispatch();
     const open = useSelector((state) => state.modal.isOpen);
-    const tax = useSelector((state) => state.tax.tax);
+    const taxes = useSelector((state) => state.taxes.taxes);
 
-    const [rows, setRows] = useState(tax);
+    const [rows, setRows] = useState(taxes);
     const theme = useTheme();
     const colorMode = useContext(ColorModeContext);
+    
 
 
     const handleClose = () => {
@@ -42,7 +43,7 @@ export default function FormDialog() {
     };
 
     const handleSave = async () => {
-        dispatch(setTax(rows));
+        dispatch(setTaxes(rows));
         try {
             handleClose();
         } catch (error) {

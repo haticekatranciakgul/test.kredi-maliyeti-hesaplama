@@ -37,7 +37,7 @@ function Calculate() {
     const [irrValue, setIrrValue] = useState(null);
     const [tableData, setTableData] = useState([]);
     const expenses = useSelector((state) => state.expenses.expenses);
-    const tax = useSelector((state) => state.tax.tax);
+    const taxes = useSelector((state) => state.taxes.taxes);
     const { isOpen, modalType } = useSelector((state) => state.modal);
     const blockData = useSelector(selectBlockData);
 
@@ -71,8 +71,8 @@ function Calculate() {
         dispatch(openModal("block"));
     };
 
-    const handleOpenTaxModal = () => {
-        dispatch(openModal("tax"));
+    const handleOpenTaxesModal = () => {
+        dispatch(openModal("taxes"));
     };
 
     useEffect(() => {
@@ -159,7 +159,7 @@ function Calculate() {
                 expenses: expenses,
                 block: blockData.block,
                 block_amount: blockData.block_amount,
-                taxes: tax,
+                taxes: taxes,
             };
             dispatch(setBlockData({ block_amount: parseFloat(initial) || 0 }));
 
@@ -422,12 +422,12 @@ function Calculate() {
                                         fullWidth
                                         size="large"
                                         color="primary"
-                                        onClick={handleOpenTaxModal}
+                                        onClick={handleOpenTaxesModal}
 
                                     >
                                         Vergi
                                     </Button>
-                                    {isOpen && modalType === "tax" && <TaxModal />}
+                                    {isOpen && modalType === "taxes" && <TaxModal />}
 
                                 </Grid>
                                 <Grid item xs={12} sm={4} md={4} lg={4} xl={4} display="flex" justifyContent="flex-end">

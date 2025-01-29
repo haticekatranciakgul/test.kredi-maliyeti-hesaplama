@@ -12,7 +12,7 @@ import Grid from "@mui/material/Grid";
 import { ThemeProvider, useTheme } from "@mui/material";
 import CssBaseline from "@mui/material/CssBaseline";
 import { ColorModeContext } from "../theme";
-import { setBlockData, selectBlockData } from "../Redux/blockSlice";
+import { setBlockData } from "../Redux/blockSlice";
 
 
 export default function FormDialog() {
