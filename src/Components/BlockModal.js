@@ -62,7 +62,7 @@ export default function FormDialog() {
         try {
             handleClose();
         } catch (error) {
-            console.error("Error closing modal", error);
+           // console.error("Error closing modal", error);
         }
     };
 
