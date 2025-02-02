@@ -29,6 +29,15 @@ function SlideTransition(props) {
     return <Slide {...props} direction="left" />;
 }
 
+
+const formatCurrency = (value) => {
+    return new Intl.NumberFormat("tr-TR", {
+        style: "currency",
+        currency: "TRY",
+        minimumFractionDigits: 2,
+    }).format(value);
+};
+
 function Calculate() {
     const [inputCount, setInputCount] = useState("");
     const [credits, setcredits] = useState("");
@@ -51,13 +60,29 @@ function Calculate() {
     };
     //Alert: end
 
+    // const handleInitialChange = (e) => {
+    //     const value = e.target.value;
+    //     if (/^\d*\.?\d*$/.test(value)) {
+    //         setInitialInput(value);
+    //         dispatch(setInitial(value ? parseFloat(value) : null)); 
+    //     }
+    // };
     const handleInitialChange = (e) => {
-        const value = e.target.value;
-        if (/^\d*\.?\d*$/.test(value)) {
-            setInitialInput(value);
-            dispatch(setInitial(value ? parseFloat(value) : null));
-        }
+        let value = e.target.value;
+    
+        // Sadece rakam ve virgül girilmesine izin ver
+        value = value.replace(/[^0-9,]/g, "");
+    
+        // Noktalama için önceki noktaları temizleyip tekrar formatla
+        let parts = value.split(",");
+        let integerPart = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+        let formattedValue = parts.length > 1 ? integerPart + "," + parts[1] : integerPart;
+    
+        // State'e formatlı değeri ata
+        setInitialInput(formattedValue);
+        dispatch(setInitial(formattedValue));
     };
+    
 
     const dispatch = useDispatch();
     const consumerCreditType = useSelector((state) => state.creditType.consumerCreditType);
@@ -115,38 +140,32 @@ function Calculate() {
         setSnackbarOpen(true);
     };
 
-    const handleCreateTable = async () => {
+    const handleSave = async () => {
         try {
+            //const formattedInitial = formatCurrency(initial); // TL formatına çevirme
+
             const credits = generatedRows.map((row) => parseFloat(row.value2) || 0);
+
+           
             const payload = {
-                initial: parseFloat(initial) || 0,
-                credits: credits,
+                initial: initial, 
+                credits,
                 credit_type: creditType,
                 consumer_credit_type: consumerCreditType,
-                expenses: expenses,
-                block: blockData.block,
-                block_amount: blockData.block_amount,
-                taxes: taxes,
+                expenses,
+                // block: blockData.block,
+                // block_amount: blockData.block_amount,
             };
-            dispatch(setBlockData({ block_amount: parseFloat(initial) || 0 }));
 
-            const tableResponse = await createTable(payload);
+            //dispatch(setBlockData({ block_amount: parseFloat(initial) || 0 }));
+            dispatch(setBlockData({ block_amount: initial }));
+
             const response = await calculateIRR(payload);
 
-            if (tableResponse && tableResponse.table && response && typeof response.irr !== "undefined") {
-                const parsedTable = JSON.parse(tableResponse.table);
-
-                const formattedData = parsedTable.map((row) => ({
-                    column1: row.fields.credit_amount,
-                    column2: row.fields.interest,
-                    column3: row.fields.tax,
-                    column4: row.fields.principal_amount,
-                    column5: row.fields.remaining_principal_amount,
-                }));
-
-                setTableData(formattedData);
+            if (response && typeof response.irr !== "undefined") {
                 setIrrValue(response.irr);
                 showSnackbar("İşlem Başarılı", "success");
+                console.log(payload)
 
             } else {
                 showSnackbar("API Yanıt Hatası", "warning");
@@ -154,6 +173,7 @@ function Calculate() {
             }
         } catch (error) {
             handleError(error, showSnackbar);
+
         }
     };
 
@@ -194,29 +214,29 @@ function Calculate() {
             </Snackbar>
             <Grid item xs={12} sx={{ alignItems: "center", display: "flex", justifyContent: "center" }}>
 
-                        <Box sx={{ display: 'flex', justifyContent: 'center', paddingTop: '1%', paddingBottom: '1%' }}>
-                            <Box sx={{
-                                display: 'flex', justifyContent: 'center', flexGrow: 1, p: 5, backgroundColor: 'transparent', borderRadius: 10, marginTop: '5%',
-                                boxShadow: '1px 1px 185px -23px rgb(78, 142, 225)',
-                                webkitBoxShadow: '1px 1px 185px -23px rgba(62, 113, 240, 0.43)',
-                                mozBoxShadow: '1px 1px 185px -23px rgba(101, 150, 254, 0.43)',
+                <Box sx={{ display: 'flex', justifyContent: 'center', paddingTop: '1%', paddingBottom: '1%' }}>
+                    <Box sx={{
+                        display: 'flex', justifyContent: 'center', flexGrow: 1, p: 5, backgroundColor: 'transparent', borderRadius: 10, marginTop: '5%',
+                        boxShadow: '1px 1px 185px -23px rgb(78, 142, 225)',
+                        webkitBoxShadow: '1px 1px 185px -23px rgba(62, 113, 240, 0.43)',
+                        mozBoxShadow: '1px 1px 185px -23px rgba(101, 150, 254, 0.43)',
 
-                            }}>
-                                <Typography sx={{
-                                    fontWeight: 'bold', fontSize: {
-                                        xs: '14px',
-                                        sm: '14px',
-                                        md: '16px',
-                                        lg: '18px',
-                                    },
-                                }} variant="h4" >
-                                    {irrValue !== null
-                                        ? ` IRR = ${irrValue}`
-                                        : "IRR değeri henüz hesaplanmadı."}
-                                </Typography>
-                            </Box>
-                        </Box><br />
-                    </Grid>
+                    }}>
+                        <Typography sx={{
+                            fontWeight: 'bold', fontSize: {
+                                xs: '14px',
+                                sm: '14px',
+                                md: '16px',
+                                lg: '18px',
+                            },
+                        }} variant="h4" >
+                            {irrValue !== null
+                                ? ` IRR = ${irrValue}`
+                                : "IRR değeri henüz hesaplanmadı."}
+                        </Typography>
+                    </Box>
+                </Box><br />
+            </Grid>
 
             {/* <Divider></Divider> */}
             <CreateTable tableData={tableData} />
@@ -233,7 +253,7 @@ function Calculate() {
 
                         </Box>
                     </Grid>
-                    
+
                     <Grid item xs={12} sm={12} md={12} lg={12} xl={12}  >
                         <SelectRadioBtn
                             setConsumerCreditType={(value) => dispatch(setConsumerCreditType(value))}
@@ -246,7 +266,7 @@ function Calculate() {
                     <Grid item xs={12} sx={{ display: "flex", justifyContent: "center", paddingBottom: '2%' }}>
                         <Typography>* Faize baz gün sayısı farklılıklarından dolayı hesaplamalarda küçük farklar oluşabilir.</Typography>
                     </Grid>
-
+                    <h2>Gönderilen Değer: {initial}</h2>
                     <Grid container spacing={1} columns={12}>
                         <Grid item xs={12} sm={12} md={4} >
                             <Grid container spacing={1} columns={12}>
@@ -404,7 +424,7 @@ function Calculate() {
                                         fullWidth
                                         size="large"
                                         color="inherit"
-                                        onClick={handleCreateTable}
+                                        onClick={handleSave}
                                         sx={{
                                             overflow: "hidden",
                                             whiteSpace: "nowrap",
@@ -428,9 +448,9 @@ function Calculate() {
                                     <Grid item xs={12} sm={6} md={4} lg={4} xl={4} >
 
                                     </Grid>
-                                    <Grid item xs={12} sm={6} md={4} lg={4} xl={4} sx={{ textAlign: 'right', marginTop:'auto'}}>
+                                    <Grid item xs={12} sm={6} md={4} lg={4} xl={4} sx={{ textAlign: 'right', marginTop: 'auto' }}>
                                         {`${index + 1}. Vade`}
-                                        
+
                                     </Grid>
                                     <Grid item xs={12} sm={12} md={4} lg={4} xl={4}>
                                         <TextField variant="standard" size="small"
