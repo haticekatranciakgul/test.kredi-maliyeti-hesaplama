@@ -32,7 +32,7 @@ function SlideTransition(props) {
 function Calculate() {
     const [inputCount, setInputCount] = useState("");
     const [credits, setcredits] = useState("");
-    const [initial, setInitialInput] = useState("");
+    const [initial, setInitial] = useState("");
     const [generatedRows, setGeneratedRows] = useState([]);
     const [irrValue, setIrrValue] = useState(null);
     const [tableData, setTableData] = useState([]);
@@ -54,7 +54,7 @@ function Calculate() {
     const handleInitialChange = (e) => {
         const value = e.target.value;
         if (/^\d*\.?\d*$/.test(value)) {
-            setInitialInput(value);
+            setInitial(value);
             dispatch(setInitial(value ? parseFloat(value) : null));
         }
     };
