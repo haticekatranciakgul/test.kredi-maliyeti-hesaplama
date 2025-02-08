@@ -64,7 +64,7 @@ export default function AppAppBar() {
               <Button variant="text"
                 sx={{ color: theme => theme.palette.mode === 'dark' ? 'white' : 'black' }}
                 color="inherit" size="small">
-                <Link to={`/hesapla`} style={{ textDecoration: 'none', color: 'inherit' }}>IRR HESAPLA</Link>
+                <Link to={`/hesapla`} style={{ textDecoration: 'none', color: 'inherit' }}>KREDİ MALİYETİ HESAPLAMA</Link>
               </Button>
               <Button variant="text"
                 sx={{ color: theme => theme.palette.mode === 'dark' ? 'white' : 'black' }}

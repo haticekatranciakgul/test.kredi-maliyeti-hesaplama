@@ -214,7 +214,7 @@ function Calculate() {
                     },
                     fontWeight: 'bold',
                 }}>
-                    IRR HESAPLAMA
+                    KREDİ MALİYETİ HESAPLAMA
                 </Typography>
             </Box>
             <Divider></Divider>
