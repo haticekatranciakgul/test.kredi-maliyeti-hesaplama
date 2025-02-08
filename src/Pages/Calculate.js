@@ -236,8 +236,9 @@ function Calculate() {
                 </Alert>
             </Snackbar>
             <Grid item xs={12} sx={{ alignItems: "center", display: "flex", justifyContent: "center" }}>
+                
 
-                        <Box sx={{ display: 'flex', justifyContent: 'center', paddingTop: '1%', paddingBottom: '1%' }}>
+                        {/* <Box sx={{ display: 'flex', justifyContent: 'center', paddingTop: '1%', paddingBottom: '1%' }}>
                             <Box sx={{
                                 display: 'flex', justifyContent: 'center', flexGrow: 1, p: 5, backgroundColor: 'transparent', borderRadius: 10, marginTop: '5%',
                                 boxShadow: '1px 1px 185px -23px rgb(78, 142, 225)',
@@ -258,7 +259,7 @@ function Calculate() {
                                         : "IRR değeri henüz hesaplanmadı."}
                                 </Typography>
                             </Box>
-                        </Box><br />
+                        </Box><br /> */}
                     </Grid>
 
             {/* <Divider></Divider> */}
