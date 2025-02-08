@@ -236,7 +236,9 @@ function Calculate() {
                 </Alert>
             </Snackbar>
             <Grid item xs={12} sx={{ alignItems: "center", display: "flex", justifyContent: "center" }}>
-                
+                                    {irrValue !== null
+                                        ? ` IRR = ${irrValue}`
+                                        : ""}
 
                         {/* <Box sx={{ display: 'flex', justifyContent: 'center', paddingTop: '1%', paddingBottom: '1%' }}>
                             <Box sx={{
@@ -447,13 +449,14 @@ function Calculate() {
                                         variant="contained"
                                         fullWidth
                                         size="large"
-                                        color="inherit"
+                                        
                                         onClick={handleSave}
                                         sx={{
                                             overflow: "hidden",
                                             whiteSpace: "nowrap",
                                             textOverflow: "ellipsis",
-                                            padding: "5px"
+                                            padding: "5px",
+                                            backgroundColor: "#254474",
                                         }}
                                     >
                                         Hesapla
