@@ -115,7 +115,8 @@ function Calculate() {
         setSnackbarOpen(true);
     };
 
-    const handleCreateTable = async () => {
+
+    const handleSave = async () => {
         try {
             const credits = generatedRows.map((row) => parseFloat(row.value2) || 0);
             const payload = {
@@ -156,6 +157,48 @@ function Calculate() {
             handleError(error, showSnackbar);
         }
     };
+
+    // const handleCreateTable = async () => {
+    //     try {
+    //         const credits = generatedRows.map((row) => parseFloat(row.value2) || 0);
+    //         const payload = {
+    //             initial: parseFloat(initial) || 0,
+    //             credits: credits,
+    //             credit_type: creditType,
+    //             consumer_credit_type: consumerCreditType,
+    //             expenses: expenses,
+    //             block: blockData.block,
+    //             block_amount: blockData.block_amount,
+    //             taxes: taxes,
+    //         };
+    //         dispatch(setBlockData({ block_amount: parseFloat(initial) || 0 }));
+
+    //         const tableResponse = await createTable(payload);
+    //         const response = await calculateIRR(payload);
+
+    //         if (tableResponse && tableResponse.table && response && typeof response.irr !== "undefined") {
+    //             const parsedTable = JSON.parse(tableResponse.table);
+
+    //             const formattedData = parsedTable.map((row) => ({
+    //                 column1: row.fields.credit_amount,
+    //                 column2: row.fields.interest,
+    //                 column3: row.fields.tax,
+    //                 column4: row.fields.principal_amount,
+    //                 column5: row.fields.remaining_principal_amount,
+    //             }));
+
+    //             setTableData(formattedData);
+    //             setIrrValue(response.irr);
+    //             showSnackbar("İşlem Başarılı", "success");
+
+    //         } else {
+    //             showSnackbar("API Yanıt Hatası", "warning");
+    //             setIrrValue(null);
+    //         }
+    //     } catch (error) {
+    //         handleError(error, showSnackbar);
+    //     }
+    // };
 
 
 
@@ -404,7 +447,7 @@ function Calculate() {
                                         fullWidth
                                         size="large"
                                         color="inherit"
-                                        onClick={handleCreateTable}
+                                        onClick={handleSave}
                                         sx={{
                                             overflow: "hidden",
                                             whiteSpace: "nowrap",
