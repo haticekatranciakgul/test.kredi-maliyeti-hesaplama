@@ -130,11 +130,11 @@ function Calculate() {
                 taxes: taxes,
             };
             dispatch(setBlockData({ block_amount: parseFloat(initial) || 0 }));
-
+            console.log(payload);
             const tableResponse = await createTable(payload);
-            const response = await calculateIRR(payload);
-
-            if (tableResponse && tableResponse.table && response && typeof response.irr !== "undefined") {
+           // const response = await calculateIRR(payload);
+            
+            if (tableResponse && tableResponse.table ) {
                 const parsedTable = JSON.parse(tableResponse.table);
 
                 const formattedData = parsedTable.map((row) => ({
@@ -146,7 +146,7 @@ function Calculate() {
                 }));
 
                 setTableData(formattedData);
-                setIrrValue(response.irr);
+                setIrrValue(tableResponse.irr);
                 showSnackbar("İşlem Başarılı", "success");
 
             } else {
