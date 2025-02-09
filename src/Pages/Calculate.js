@@ -476,7 +476,7 @@ function Calculate() {
 
                                     </Grid>
                                     <Grid item xs={12} sm={6} md={4} lg={4} xl={4} sx={{ textAlign: 'right', marginTop:'auto'}}>
-                                        {`${index + 1}. Vade`}
+                                    <Typography sx={{ fontSize:'17px', fontWeight: '500' }}>{`${index + 1}. Vade :`}</Typography> 
                                         
                                     </Grid>
                                     <Grid item xs={12} sm={12} md={4} lg={4} xl={4}>
