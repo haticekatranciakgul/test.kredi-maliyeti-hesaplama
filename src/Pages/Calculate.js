@@ -470,7 +470,7 @@ function Calculate() {
                 {generatedRows.map((row, index) => (
                     <Grid container spacing={2} key={index} sx={{ marginTop: '10px' }}>
                         <Grid container spacing={1} columns={12}>
-                            <Grid item xs={12} sm={6} md={6} >
+                            <Grid item xs={12} sm={6} md={4} >
                                 <Grid container spacing={1} columns={12}>
                                     <Grid item xs={12} sm={6} md={4} lg={4} xl={4} >
 
@@ -498,9 +498,9 @@ function Calculate() {
                                     </Grid>
                                 </Grid>
                             </Grid>
-                            <Grid item xs={12} sm={6} md={6}>
+                            <Grid item xs={12} sm={6} md={8}>
                                 <Grid container spacing={1} columns={12}>
-                                    <Grid item xs={12} sm={12} md={3} lg={3} xl={3} display="flex" justifyContent="flex-end">
+                                    <Grid item xs={6} sm={2} md={2} lg={2} xl={2} display="flex" justifyContent="flex-end">
                                         <Button
                                             variant="contained"
                                             color="primary"
@@ -512,11 +512,11 @@ function Calculate() {
                                             SİL
                                         </Button>
                                     </Grid>
-                                    <Grid item xs={12} sm={6} md={3} lg={3} xl={3} display="flex" justifyContent="flex-end">
+                                    <Grid item xs={6} sm={2} md={2} lg={2} xl={2} display="flex" justifyContent="flex-end">
                                     </Grid>
-                                    <Grid item xs={12} sm={6} md={3} lg={3} xl={3} display="flex" justifyContent="flex-end">
+                                    <Grid item xs={6} sm={2} md={2} lg={2} xl={2} display="flex" justifyContent="flex-end">
                                     </Grid>
-                                    <Grid item xs={12} sm={6} md={3} lg={3} xl={3} display="flex" justifyContent="flex-end">
+                                    <Grid item xs={6} sm={2} md={2} lg={2} xl={2} display="flex" justifyContent="flex-end">
                                     </Grid>
                                 </Grid>
                             </Grid>
