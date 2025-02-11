@@ -236,32 +236,31 @@ function Calculate() {
                 </Alert>
             </Snackbar>
             <Grid item xs={12} sx={{ alignItems: "center", display: "flex", justifyContent: "center" }}>
-                {irrValue !== null
-                    ? ` IRR = ${irrValue}`
-                    : ""}
+               
+                {irrValue !== null && (
 
-                {/* <Box sx={{ display: 'flex', justifyContent: 'center', paddingTop: '1%', paddingBottom: '1%' }}>
-                            <Box sx={{
-                                display: 'flex', justifyContent: 'center', flexGrow: 1, p: 5, backgroundColor: 'transparent', borderRadius: 10, marginTop: '5%',
-                                boxShadow: '1px 1px 185px -23px rgb(78, 142, 225)',
-                                webkitBoxShadow: '1px 1px 185px -23px rgba(62, 113, 240, 0.43)',
-                                mozBoxShadow: '1px 1px 185px -23px rgba(101, 150, 254, 0.43)',
+                    <Box sx={{ display: 'flex', justifyContent: 'center', paddingTop: '1%', paddingBottom: '1%' }}>
+                        <Box sx={{
+                            display: 'flex', justifyContent: 'center', flexGrow: 1, p: 5, backgroundColor: 'transparent', borderRadius: 10, marginTop: '5%',
+                            boxShadow: '1px 1px 185px -23px rgb(78, 142, 225)',
+                            webkitBoxShadow: '1px 1px 185px -23px rgba(62, 113, 240, 0.43)',
+                            mozBoxShadow: '1px 1px 185px -23px rgba(101, 150, 254, 0.43)',
 
-                            }}>
-                                <Typography sx={{
-                                    fontWeight: 'bold', fontSize: {
-                                        xs: '14px',
-                                        sm: '14px',
-                                        md: '16px',
-                                        lg: '18px',
-                                    },
-                                }} variant="h4" >
-                                    {irrValue !== null
-                                        ? ` IRR = ${irrValue}`
-                                        : "IRR değeri henüz hesaplanmadı."}
-                                </Typography>
-                            </Box>
-                        </Box><br /> */}
+                        }}>
+                            <Typography sx={{
+                                fontWeight: 'bold', fontSize: {
+                                    xs: '14px',
+                                    sm: '14px',
+                                    md: '16px',
+                                    lg: '18px',
+                                },
+                            }} variant="h4">
+                                Kredi Maliyeti Hesaplama  = ${irrValue}
+                            </Typography>
+                        </Box>
+                    </Box>
+                )}
+                <br />
             </Grid>
 
             {/* <Divider></Divider> */}
