@@ -4,7 +4,6 @@ const initialState = {
     taxes: [
         { id: 0, title: 'BSMV', amount: '5'},  
         { id: 1, title: 'KKDF', amount: '0' },  
-        { id: 2, title: 'Diğer', amount: '' },  
     ],
 };
 
