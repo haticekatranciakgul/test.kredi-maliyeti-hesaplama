@@ -33,7 +33,9 @@ export default function FormDialog() {
     };
 
     const handleAddRow = () => {
-        setRows([...rows, { title: '', amount: '' }]);
+        const maxId = rows.length > 0 ? Math.max(...rows.map((row) => row.id)) : -1; 
+        const newRow = { id: maxId + 1, title: '', amount: '' }; 
+        setRows([...rows, newRow]);
     };
 
     const handleInputChange = (index, field, value) => {
