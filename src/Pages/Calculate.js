@@ -132,9 +132,9 @@ function Calculate() {
             dispatch(setBlockData({ block_amount: parseFloat(initial) || 0 }));
             console.log(payload);
             const tableResponse = await createTable(payload);
-           // const response = await calculateIRR(payload);
-            
-            if (tableResponse && tableResponse.table ) {
+            // const response = await calculateIRR(payload);
+
+            if (tableResponse && tableResponse.table) {
                 const parsedTable = JSON.parse(tableResponse.table);
 
                 const formattedData = parsedTable.map((row) => ({
@@ -236,11 +236,11 @@ function Calculate() {
                 </Alert>
             </Snackbar>
             <Grid item xs={12} sx={{ alignItems: "center", display: "flex", justifyContent: "center" }}>
-                                    {irrValue !== null
-                                        ? ` IRR = ${irrValue}`
-                                        : ""}
+                {irrValue !== null
+                    ? ` IRR = ${irrValue}`
+                    : ""}
 
-                        {/* <Box sx={{ display: 'flex', justifyContent: 'center', paddingTop: '1%', paddingBottom: '1%' }}>
+                {/* <Box sx={{ display: 'flex', justifyContent: 'center', paddingTop: '1%', paddingBottom: '1%' }}>
                             <Box sx={{
                                 display: 'flex', justifyContent: 'center', flexGrow: 1, p: 5, backgroundColor: 'transparent', borderRadius: 10, marginTop: '5%',
                                 boxShadow: '1px 1px 185px -23px rgb(78, 142, 225)',
@@ -262,7 +262,7 @@ function Calculate() {
                                 </Typography>
                             </Box>
                         </Box><br /> */}
-                    </Grid>
+            </Grid>
 
             {/* <Divider></Divider> */}
             <CreateTable tableData={tableData} />
@@ -279,7 +279,7 @@ function Calculate() {
 
                         </Box>
                     </Grid>
-                    
+
                     <Grid item xs={12} sm={12} md={12} lg={12} xl={12}  >
                         <SelectRadioBtn
                             setConsumerCreditType={(value) => dispatch(setConsumerCreditType(value))}
@@ -449,7 +449,7 @@ function Calculate() {
                                         variant="contained"
                                         fullWidth
                                         size="large"
-                                        
+
                                         onClick={handleSave}
                                         sx={{
                                             overflow: "hidden",
@@ -472,14 +472,15 @@ function Calculate() {
                         <Grid container spacing={1} columns={12}>
                             <Grid item xs={12} sm={6} md={4} >
                                 <Grid container spacing={1} columns={12}>
-                                    <Grid item xs={12} sm={6} md={4} lg={4} xl={4} >
+                                    <Grid item xs={12} sm={12} md={4} lg={4} xl={4} >
 
                                     </Grid>
-                                    <Grid item xs={12} sm={6} md={4} lg={4} xl={4} sx={{ textAlign: 'right', marginTop:'auto'}}>
-                                    <Typography sx={{ fontSize:'17px', fontWeight: '500' }}>{`${index + 1}. Vade :`}</Typography> 
-                                        
+                                    <Grid item xs={12} sm={6} md={4} lg={4} xl={4} sx={{ textAlign: 'center', marginTop: 'auto' }}>
+                                        <Typography sx={{ fontSize: '17px', fontWeight: '500' }}>
+                                            {`${index + 1}. Vade :`}
+                                        </Typography>
                                     </Grid>
-                                    <Grid item xs={12} sm={12} md={4} lg={4} xl={4}>
+                                    <Grid item xs={12} sm={6} md={4} lg={4} xl={4}>
                                         <TextField variant="standard" size="small"
                                             label="Ödeme Tutarı "
                                             fullWidth
@@ -500,7 +501,7 @@ function Calculate() {
                             </Grid>
                             <Grid item xs={12} sm={6} md={8}>
                                 <Grid container spacing={1} columns={12}>
-                                    <Grid item xs={6} sm={2} md={2} lg={2} xl={2} display="flex" justifyContent="flex-end">
+                                    <Grid item xs={12} sm={12} md={2} lg={2} xl={2} display="flex" justifyContent="flex-end">
                                         <Button
                                             variant="contained"
                                             color="primary"
@@ -512,11 +513,11 @@ function Calculate() {
                                             SİL
                                         </Button>
                                     </Grid>
-                                    <Grid item xs={6} sm={2} md={2} lg={2} xl={2} display="flex" justifyContent="flex-end">
+                                    <Grid item xs={12} sm={12} md={2} lg={2} xl={2} display="flex" justifyContent="flex-end">
                                     </Grid>
-                                    <Grid item xs={6} sm={2} md={2} lg={2} xl={2} display="flex" justifyContent="flex-end">
+                                    <Grid item xs={12} sm={12} md={2} lg={2} xl={2} display="flex" justifyContent="flex-end">
                                     </Grid>
-                                    <Grid item xs={6} sm={2} md={2} lg={2} xl={2} display="flex" justifyContent="flex-end">
+                                    <Grid item xs={12} sm={12} md={2} lg={2} xl={2} display="flex" justifyContent="flex-end">
                                     </Grid>
                                 </Grid>
                             </Grid>
