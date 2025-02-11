@@ -255,7 +255,7 @@ function Calculate() {
                                     lg: '18px',
                                 },
                             }} variant="h4">
-                                Kredi Maliyeti Hesaplama  = ${irrValue}
+                                Kredi Maliyeti = {irrValue}
                             </Typography>
                         </Box>
                     </Box>
