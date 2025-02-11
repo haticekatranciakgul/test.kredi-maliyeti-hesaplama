@@ -1,5 +1,5 @@
 ## Live
-Kredi Maliyet Hesaplama Page - [Link] (https://testkredi-maliyeti-hesaplama.vercel.app/)
+Kredi Maliyet Hesaplama Page - [Link](https://testkredi-maliyeti-hesaplama.vercel.app/)
 
 
 
