@@ -101,20 +101,22 @@ function SelectRadioBtn({ setConsumerCreditType, setCreditType }) {
 
 
                     <Box sx={{
-                        display: 'flex', justifyContent: 'center', flexGrow: 1, p: 5, marginTop: '10px', backgroundColor: 'transparent', borderRadius: 10,
+                        justifyContent: 'center', flexGrow: 1, p: 5, marginTop: '10px', backgroundColor: 'transparent', borderRadius: 10,
                         boxShadow: '1px 1px 185px -23px rgb(78, 142, 225)',
                         webkitBoxShadow: '1px 1px 185px -23px rgba(62, 113, 240, 0.43)',
                         mozBoxShadow: '1px 1px 185px -23px rgba(101, 150, 254, 0.43)',
-
-
-
                     }}>
+                        <Grid item xs={12} >
+                            <Typography variant="h5" component="div"
+                                sx={{ display: 'flex', 
+                                justifyContent: 'center', 
+                                fontWeight: '500', p: 1,
+                                }}>
+                                KREDİ TÜRÜ
+                            </Typography>
+                            <Divider></Divider>
+                        </Grid>
                         <FormControl sx={{ alignItems: "center", display: "flex", justifyContent: "center" }}>
-                            <Grid item xs={12} >
-                                <Typography variant="h5" component="div" sx={{ display: 'flex', justifyContent: 'center', fontWeight: 'bold' }}>
-                                    KREDİ TÜRÜ
-                                </Typography>
-                            </Grid>
 
                             <RadioGroup
                                 row
