@@ -2,6 +2,12 @@ import React from 'react';
 import { FormControl, FormControlLabel, Radio, RadioGroup, styled } from '@mui/material';
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
+import Typography from "@mui/material/Typography";
+import Divider from "@mui/material/Divider";
+
+import Card from '@mui/material/Card';
+import CardActions from '@mui/material/CardActions';
+import CardContent from '@mui/material/CardContent';
 
 const CustomRadio = styled(Radio)(({ theme }) => ({
     "&.Mui-checked": {
@@ -41,49 +47,105 @@ function SelectRadioBtn({ setConsumerCreditType, setCreditType }) {
 
     return (
         <div>
-            <Grid container spacing={2} >
-                <Grid item xs={12} sx={{ display: 'flex', justifyContent: 'center', }} >
-                    <Box sx={{ width: { xs: '100%', sm: '50%', md: '40%', lg: '40%',  } }}>
-
-                        <Box sx={{
-                            display: 'flex', justifyContent: 'center', flexGrow: 1, p: 5, backgroundColor: 'transparent', borderRadius: 10,
-                            boxShadow: '1px 1px 185px -23px rgb(78, 142, 225)',
-                            webkitBoxShadow: '1px 1px 185px -23px rgba(62, 113, 240, 0.43)',
-                            mozBoxShadow: '1px 1px 185px -23px rgba(101, 150, 254, 0.43)',
+            <Grid container spacing={2} sx={{ display: 'flex', justifyContent: 'center', }} >
+                <Grid item xs={12} md={6} lg={4} sx={{ display: 'flex', justifyContent: 'center', }} >
 
 
-                        }}>
-                            <FormControl sx={{ alignItems: "center", display: "flex", justifyContent: "center" }}>
-                                <RadioGroup
-                                    row
-                                    aria-labelledby="demo-row-radio-buttons-group-label"
-                                    name="row-radio-buttons-group"
-                                    value={selectedOption}
-                                    onChange={handleMainOptionChange}
-                                >
-                                    <FormControlLabel value="Ticari" control={<CustomRadio />} label="Ticari" />
-                                    <FormControlLabel value="Bireysel" control={<CustomRadio />} label="Bireysel" />
-                                </RadioGroup>
-                                {selectedOption === 'Bireysel' && (
-                                    <div>
-                                        <RadioGroup
-                                            row
-                                            aria-labelledby="bireysel-options-group-label"
-                                            name="bireysel-options-group"
-                                            value={subOption}
-                                            onChange={handleSubOptionChange}
-                                        >
-                                            <FormControlLabel value="option1" control={<CustomRadio />} label="İhtiyaç" />
-                                            <FormControlLabel value="option2" control={<CustomRadio />} label="Konut" />
-                                            <FormControlLabel value="option3" control={<CustomRadio />} label="Taşıt" />
-                                        </RadioGroup>
-                                    </div>
-                                )}
-                            </FormControl>
+
+                    {/* <Card sx={{
+                         display: 'flex', justifyContent: 'center', flexGrow: 1, marginTop: '10px', backgroundColor: 'transparent', borderRadius: 10,
+                        boxShadow: '1px 1px 185px -23px rgb(78, 142, 225)',
+                        webkitBoxShadow: '1px 1px 185px -23px rgba(62, 113, 240, 0.43)',
+                        mozBoxShadow: '1px 1px 185px -23px rgba(101, 150, 254, 0.43)',
+                    }}>
+                        <FormControl sx={{ alignItems: "center", display: "flex", justifyContent: "center" }}>
+
+                            <CardContent>
+                                <Typography variant="h5" component="div" sx={{ display: 'flex', justifyContent: 'center', fontWeight: 'bold' }}>
+                                    KREDİ TÜRÜ
+                                </Typography>
+                                <Divider></Divider>
+                                <Box sx={{ p:10}}>
+                                    <RadioGroup
+                                        row
+                                        aria-labelledby="demo-row-radio-buttons-group-label"
+                                        name="row-radio-buttons-group"
+                                        value={selectedOption}
+                                        onChange={handleMainOptionChange}
+                                    >
+                                        <FormControlLabel value="Ticari" control={<CustomRadio />} label="Ticari" />
+                                        <FormControlLabel value="Bireysel" control={<CustomRadio />} label="Bireysel" />
+                                    </RadioGroup>
+
+                                    {selectedOption === 'Bireysel' && (
+                                        <div>
+                                            <RadioGroup
+                                                row
+                                                aria-labelledby="bireysel-options-group-label"
+                                                name="bireysel-options-group"
+                                                value={subOption}
+                                                onChange={handleSubOptionChange}
+                                            >
+                                                <FormControlLabel value="option1" control={<CustomRadio />} label="İhtiyaç" />
+                                                <FormControlLabel value="option2" control={<CustomRadio />} label="Konut" />
+                                                <FormControlLabel value="option3" control={<CustomRadio />} label="Taşıt" />
+                                            </RadioGroup>
+                                        </div>
+                                    )}
+                                </Box>
+                            </CardContent>
+                        </FormControl>
+
+                    </Card> */}
 
 
-                        </Box>
+
+                    <Box sx={{
+                        display: 'flex', justifyContent: 'center', flexGrow: 1, p: 5, marginTop: '10px', backgroundColor: 'transparent', borderRadius: 10,
+                        boxShadow: '1px 1px 185px -23px rgb(78, 142, 225)',
+                        webkitBoxShadow: '1px 1px 185px -23px rgba(62, 113, 240, 0.43)',
+                        mozBoxShadow: '1px 1px 185px -23px rgba(101, 150, 254, 0.43)',
+
+
+
+                    }}>
+                        <FormControl sx={{ alignItems: "center", display: "flex", justifyContent: "center" }}>
+                            <Grid item xs={12} >
+                                <Typography variant="h5" component="div" sx={{ display: 'flex', justifyContent: 'center', fontWeight: 'bold' }}>
+                                    KREDİ TÜRÜ
+                                </Typography>
+                            </Grid>
+
+                            <RadioGroup
+                                row
+                                aria-labelledby="demo-row-radio-buttons-group-label"
+                                name="row-radio-buttons-group"
+                                value={selectedOption}
+                                onChange={handleMainOptionChange}
+                            >
+                                <FormControlLabel value="Ticari" control={<CustomRadio />} label="Ticari" />
+                                <FormControlLabel value="Bireysel" control={<CustomRadio />} label="Bireysel" />
+                            </RadioGroup>
+                            {selectedOption === 'Bireysel' && (
+                                <div>
+                                    <RadioGroup
+                                        row
+                                        aria-labelledby="bireysel-options-group-label"
+                                        name="bireysel-options-group"
+                                        value={subOption}
+                                        onChange={handleSubOptionChange}
+                                    >
+                                        <FormControlLabel value="option1" control={<CustomRadio />} label="İhtiyaç" />
+                                        <FormControlLabel value="option2" control={<CustomRadio />} label="Konut" />
+                                        <FormControlLabel value="option3" control={<CustomRadio />} label="Taşıt" />
+                                    </RadioGroup>
+                                </div>
+                            )}
+                        </FormControl>
+
+
                     </Box>
+
                 </Grid>
             </Grid>
 
