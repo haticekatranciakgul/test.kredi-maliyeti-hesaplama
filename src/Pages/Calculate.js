@@ -230,7 +230,7 @@ function Calculate() {
                         mozBoxShadow: '1px 1px 185px -23px rgba(101, 150, 254, 0.43)',
 
                     }}>
-                        {irrValue !== null && (
+                        {/* {irrValue !== null && ( */}
                             <Typography sx={{
                                 fontWeight: 'bold', fontSize: {
                                     xs: '14px',
@@ -239,37 +239,33 @@ function Calculate() {
                                     lg: '18px',
                                 },
                             }} variant="h4">
-                                Kredi Maliyeti = {irrValue}
+                                Kredi Maliyeti =  {irrValue !== null && irrValue }
                             </Typography>
-                        )}
+                        {/* )} */}
                         <br />
-                        {prepaidExpenses !== null && (
-                            <Typography sx={{
-                                fontWeight: 'bold', fontSize: {
-                                    xs: '14px',
-                                    sm: '14px',
-                                    md: '16px',
-                                    lg: '18px',
-                                },
-                            }} variant="h4">
-                                Peşin ödenen masraflar  = {prepaidExpenses}
-                            </Typography>
-                        )}
+                        <Typography sx={{
+                            fontWeight: 'bold', fontSize: {
+                                xs: '14px',
+                                sm: '14px',
+                                md: '16px',
+                                lg: '18px',
+                            },
+                        }} variant="h4">
+                            Peşin ödenen masraflar  = {prepaidExpenses !== null && prepaidExpenses }
+                        </Typography>
                         <br />
-                        {interestPayableOnLoans !== null && (
-                            <Typography sx={{
-                                fontWeight: 'bold', fontSize: {
-                                    xs: '14px',
-                                    sm: '14px',
-                                    md: '16px',
-                                    lg: '18px',
-                                },
-                            }} variant="h4">
-                                Ödenecek kredi faizleri = {interestPayableOnLoans}
-                            </Typography>
-                        )}
+                        <Typography sx={{
+                            fontWeight: 'bold', fontSize: {
+                                xs: '14px',
+                                sm: '14px',
+                                md: '16px',
+                                lg: '18px',
+                            },
+                        }} variant="h4">
+                            Ödenecek kredi faizleri = {interestPayableOnLoans !== null && interestPayableOnLoans } 
+                        </Typography>
                         <br />
-                        {taxesOnLoanInterestPayable !== null && (
+                       
                             <Typography sx={{
                                 fontWeight: 'bold', fontSize: {
                                     xs: '14px',
@@ -278,61 +274,57 @@ function Calculate() {
                                     lg: '18px',
                                 },
                             }} variant="h4">
-                                Ödenecek kredi faizi vergileri ={taxesOnLoanInterestPayable}
+                                Ödenecek kredi faizi vergileri = {taxesOnLoanInterestPayable !== null && taxesOnLoanInterestPayable } 
                             </Typography>
-                        )}
+                        
                         <br />
-                        {interestCostRelatedToLoanBlockage !== null && (
-                            <Typography sx={{
-                                fontWeight: 'bold', fontSize: {
-                                    xs: '14px',
-                                    sm: '14px',
-                                    md: '16px',
-                                    lg: '18px',
-                                },
-                            }} variant="h4">
-                                Kredi blokesine ilişkin faiz maliyeti = {interestCostRelatedToLoanBlockage}
-                            </Typography>
-                        )}
+                       
+                        <Typography sx={{
+                            fontWeight: 'bold', fontSize: {
+                                xs: '14px',
+                                sm: '14px',
+                                md: '16px',
+                                lg: '18px',
+                            },
+                        }} variant="h4">
+                            Kredi blokesine ilişkin faiz maliyeti = {interestCostRelatedToLoanBlockage !== null && interestCostRelatedToLoanBlockage } 
+                        </Typography>
+                        
                         <br />
-                        {totalCost !== null && (
-                            <Typography sx={{
-                                fontWeight: 'bold', fontSize: {
-                                    xs: '14px',
-                                    sm: '14px',
-                                    md: '16px',
-                                    lg: '18px',
-                                },
-                            }} variant="h4">
-                                Toplam maliyet =  {totalCost}
-                            </Typography>
-                        )}
+                        
+                        <Typography sx={{
+                            fontWeight: 'bold', fontSize: {
+                                xs: '14px',
+                                sm: '14px',
+                                md: '16px',
+                                lg: '18px',
+                            },
+                        }} variant="h4">
+                            Toplam maliyet = {totalCost !== null && totalCost }
+                        </Typography>
                         <br />
-                        {monthlyCostIvo !== null && (
-                            <Typography sx={{
-                                fontWeight: 'bold', fontSize: {
-                                    xs: '14px',
-                                    sm: '14px',
-                                    md: '16px',
-                                    lg: '18px',
-                                },
-                            }} variant="h4">
-                                Aylık maliyet -ivo =  {monthlyCostIvo}
-                            </Typography>
-                        )}
+                        <Typography sx={{
+                            fontWeight: 'bold', fontSize: {
+                                xs: '14px',
+                                sm: '14px',
+                                md: '16px',
+                                lg: '18px',
+                            },
+                        }} variant="h4">
+                            Aylık maliyet -ivo =  {monthlyCostIvo !== null && monthlyCostIvo } 
+                        </Typography>
                         <br />
-                        {annualCompoundCostIvo !== null && (
-                            <Typography sx={{
-                                fontWeight: 'bold', fontSize: {
-                                    xs: '14px',
-                                    sm: '14px',
-                                    md: '16px',
-                                    lg: '18px',
-                                },
-                            }} variant="h4">
-                                Yıllık bileşik maliyet -ivo  =   {annualCompoundCostIvo}
-                            </Typography>
-                        )}
+                        <Typography sx={{
+                            fontWeight: 'bold', fontSize: {
+                                xs: '14px',
+                                sm: '14px',
+                                md: '16px',
+                                lg: '18px',
+                            },
+                        }} variant="h4">
+                            Yıllık bileşik maliyet -ivo  = {annualCompoundCostIvo !== null && annualCompoundCostIvo }
+                        </Typography>
+                        
                     </Box>
                 </Box>
 
