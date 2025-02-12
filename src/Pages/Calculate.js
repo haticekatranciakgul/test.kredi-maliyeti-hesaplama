@@ -24,7 +24,15 @@ import { setBlockData } from "../Redux/slices/blockSlice";
 import { setInitial } from '../Redux/slices/blockSlice';
 import { handleError } from '../utils';
 import { setIrrValue } from '../Redux/slices/irrSlice';
-
+import {
+    setPrepaidExpenses,
+    setInterestPayableOnLoans,
+    setTaxesOnLoanInterestPayable,
+    setInterestCostRelatedToLoanBlockage,
+    setTotalCost,
+    setMonthlyCostIvo,
+    setAnnualCompoundCostIvo
+} from '../Redux/slices/costSlice';
 
 function SlideTransition(props) {
     return <Slide {...props} direction="left" />;
@@ -41,6 +49,14 @@ function Calculate() {
     const { isOpen, modalType } = useSelector((state) => state.modal);
     const blockData = useSelector(selectBlockData);
     const irrValue = useSelector((state) => state.irr.irrValue);
+
+    const prepaidExpenses = useSelector((state) => state.costs.prepaidExpenses);
+    const interestPayableOnLoans = useSelector((state) => state.costs.interestPayableOnLoans);
+    const taxesOnLoanInterestPayable = useSelector((state) => state.costs.taxesOnLoanInterestPayable);
+    const interestCostRelatedToLoanBlockage = useSelector((state) => state.costs.interestCostRelatedToLoanBlockage);
+    const totalCost = useSelector((state) => state.costs.totalCost);
+    const monthlyCostIvo = useSelector((state) => state.costs.monthlyCostIvo);
+    const annualCompoundCostIvo = useSelector((state) => state.costs.annualCompoundCostIvo);
 
 
     //Alert: start
@@ -130,7 +146,7 @@ function Calculate() {
             dispatch(setBlockData({ block_amount: parseFloat(initial) || 0 }));
             console.log(payload);
             const tableResponse = await createTable(payload);
-           
+
 
             if (tableResponse && tableResponse.table) {
                 const parsedTable = JSON.parse(tableResponse.table);
@@ -142,6 +158,15 @@ function Calculate() {
                     column4: row.fields.principal_amount,
                     column5: row.fields.remaining_principal_amount,
                 }));
+
+
+                dispatch(setPrepaidExpenses(tableResponse.prepaid_expenses));
+                dispatch(setInterestPayableOnLoans(tableResponse.interest_payable_on_loans));
+                dispatch(setTaxesOnLoanInterestPayable(tableResponse.taxes_on_loan_interest_payable));
+                dispatch(setInterestCostRelatedToLoanBlockage(tableResponse.interest_cost_related_to_loan_blockage));
+                dispatch(setTotalCost(tableResponse.total_cost));
+                dispatch(setMonthlyCostIvo(tableResponse.monthly_cost_ivo));
+                dispatch(setAnnualCompoundCostIvo(tableResponse.annual_compound_cost_ivo));
 
                 setTableData(formattedData);
                 dispatch(setIrrValue(tableResponse.irr)); // Redux'a kaydet
@@ -157,7 +182,7 @@ function Calculate() {
         }
     };
 
-   
+
     return (
         <>
             <Box sx={{ display: 'flex', justifyContent: 'center', }}>
@@ -192,17 +217,20 @@ function Calculate() {
                 </Alert>
             </Snackbar>
             <Grid item xs={12} sx={{ alignItems: "center", display: "flex", justifyContent: "center" }}>
-               
-                {irrValue !== null && (
 
-                    <Box sx={{ display: 'flex', justifyContent: 'center', paddingTop: '1%', paddingBottom: '1%' }}>
-                        <Box sx={{
-                            display: 'flex', justifyContent: 'center', flexGrow: 1, p: 5, backgroundColor: 'transparent', borderRadius: 10, marginTop: '5%',
-                            boxShadow: '1px 1px 185px -23px rgb(78, 142, 225)',
-                            webkitBoxShadow: '1px 1px 185px -23px rgba(62, 113, 240, 0.43)',
-                            mozBoxShadow: '1px 1px 185px -23px rgba(101, 150, 254, 0.43)',
 
-                        }}>
+
+                <Box sx={{ display: 'flex', justifyContent: 'center', paddingTop: '1%', paddingBottom: '1%' }}>
+                    <Box sx={{
+                        flexDirection: 'column',
+                        alignItems: 'center',
+                        display: 'flex', justifyContent: 'center', flexGrow: 1, p: 5, backgroundColor: 'transparent', borderRadius: 10, marginTop: '5%',
+                        boxShadow: '1px 1px 185px -23px rgb(78, 142, 225)',
+                        webkitBoxShadow: '1px 1px 185px -23px rgba(62, 113, 240, 0.43)',
+                        mozBoxShadow: '1px 1px 185px -23px rgba(101, 150, 254, 0.43)',
+
+                    }}>
+                        {irrValue !== null && (
                             <Typography sx={{
                                 fontWeight: 'bold', fontSize: {
                                     xs: '14px',
@@ -213,10 +241,101 @@ function Calculate() {
                             }} variant="h4">
                                 Kredi Maliyeti = {irrValue}
                             </Typography>
-                        </Box>
+                        )}
+                        <br />
+                        {prepaidExpenses !== null && (
+                            <Typography sx={{
+                                fontWeight: 'bold', fontSize: {
+                                    xs: '14px',
+                                    sm: '14px',
+                                    md: '16px',
+                                    lg: '18px',
+                                },
+                            }} variant="h4">
+                                Peşin ödenen masraflar  = {prepaidExpenses}
+                            </Typography>
+                        )}
+                        <br />
+                        {interestPayableOnLoans !== null && (
+                            <Typography sx={{
+                                fontWeight: 'bold', fontSize: {
+                                    xs: '14px',
+                                    sm: '14px',
+                                    md: '16px',
+                                    lg: '18px',
+                                },
+                            }} variant="h4">
+                                Ödenecek kredi faizleri = {interestPayableOnLoans}
+                            </Typography>
+                        )}
+                        <br />
+                        {taxesOnLoanInterestPayable !== null && (
+                            <Typography sx={{
+                                fontWeight: 'bold', fontSize: {
+                                    xs: '14px',
+                                    sm: '14px',
+                                    md: '16px',
+                                    lg: '18px',
+                                },
+                            }} variant="h4">
+                                Ödenecek kredi faizi vergileri ={taxesOnLoanInterestPayable}
+                            </Typography>
+                        )}
+                        <br />
+                        {interestCostRelatedToLoanBlockage !== null && (
+                            <Typography sx={{
+                                fontWeight: 'bold', fontSize: {
+                                    xs: '14px',
+                                    sm: '14px',
+                                    md: '16px',
+                                    lg: '18px',
+                                },
+                            }} variant="h4">
+                                Kredi blokesine ilişkin faiz maliyeti = {interestCostRelatedToLoanBlockage}
+                            </Typography>
+                        )}
+                        <br />
+                        {totalCost !== null && (
+                            <Typography sx={{
+                                fontWeight: 'bold', fontSize: {
+                                    xs: '14px',
+                                    sm: '14px',
+                                    md: '16px',
+                                    lg: '18px',
+                                },
+                            }} variant="h4">
+                                Toplam maliyet =  {totalCost}
+                            </Typography>
+                        )}
+                        <br />
+                        {monthlyCostIvo !== null && (
+                            <Typography sx={{
+                                fontWeight: 'bold', fontSize: {
+                                    xs: '14px',
+                                    sm: '14px',
+                                    md: '16px',
+                                    lg: '18px',
+                                },
+                            }} variant="h4">
+                                Aylık maliyet -ivo =  {monthlyCostIvo}
+                            </Typography>
+                        )}
+                        <br />
+                        {annualCompoundCostIvo !== null && (
+                            <Typography sx={{
+                                fontWeight: 'bold', fontSize: {
+                                    xs: '14px',
+                                    sm: '14px',
+                                    md: '16px',
+                                    lg: '18px',
+                                },
+                            }} variant="h4">
+                                Yıllık bileşik maliyet -ivo  =   {annualCompoundCostIvo}
+                            </Typography>
+                        )}
                     </Box>
-                )}
-                <br />
+                </Box>
+
             </Grid>
 
             {/* <Divider></Divider> */}

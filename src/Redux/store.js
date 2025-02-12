@@ -9,6 +9,7 @@ import blockReducer from './slices/blockSlice';
 import taxesReducer from './slices/taxesSlice';
 import subscriptionReducer from './slices/subscriptionSlice';
 import irrReducer from './slices/irrSlice';
+import costReducer from './slices/costSlice';
 
 
 const store = configureStore({
@@ -23,6 +24,8 @@ const store = configureStore({
     taxes: taxesReducer, 
     subscription: subscriptionReducer,
     irr: irrReducer,
+    costs: costReducer,
+
 
 
   },
