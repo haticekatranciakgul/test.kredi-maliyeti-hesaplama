@@ -8,6 +8,7 @@ import creditTypeReducer from './slices/creditTypeSlice';
 import blockReducer from './slices/blockSlice';
 import taxesReducer from './slices/taxesSlice';
 import subscriptionReducer from './slices/subscriptionSlice';
+import irrReducer from './slices/irrSlice';
 
 
 const store = configureStore({
@@ -21,6 +22,7 @@ const store = configureStore({
     block: blockReducer, 
     taxes: taxesReducer, 
     subscription: subscriptionReducer,
+    irr: irrReducer,
 
 
   },

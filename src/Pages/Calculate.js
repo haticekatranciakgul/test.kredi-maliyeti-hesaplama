@@ -19,10 +19,11 @@ import { setConsumerCreditType, setCreditType } from '../Redux/slices/creditType
 import TaxModal from '../Components/TaxModal';
 import { Alert, Snackbar } from "@mui/material";
 import Slide from '@mui/material/Slide';
-import { calculateIRR, createTable } from '../services/service';
+import { createTable } from '../services/service';
 import { setBlockData } from "../Redux/slices/blockSlice";
 import { setInitial } from '../Redux/slices/blockSlice';
 import { handleError } from '../utils';
+import { setIrrValue } from '../Redux/slices/irrSlice';
 
 
 function SlideTransition(props) {
@@ -34,12 +35,13 @@ function Calculate() {
     const [credits, setcredits] = useState("");
     const [initial, setInitialInput] = useState("");
     const [generatedRows, setGeneratedRows] = useState([]);
-    const [irrValue, setIrrValue] = useState(null);
     const [tableData, setTableData] = useState([]);
     const expenses = useSelector((state) => state.expenses.expenses);
     const taxes = useSelector((state) => state.taxes.taxes);
     const { isOpen, modalType } = useSelector((state) => state.modal);
     const blockData = useSelector(selectBlockData);
+    const irrValue = useSelector((state) => state.irr.irrValue);
+
 
     //Alert: start
     const [snackbarOpen, setSnackbarOpen] = useState(false);
@@ -86,10 +88,6 @@ function Calculate() {
         }
     }, [inputCount, credits]);
 
-    useEffect(() => {
-        if (irrValue !== null) {
-        }
-    }, [irrValue]);
 
     const handleAddRow = () => {
         setGeneratedRows((prevRows) => [...prevRows, { value1: "", value2: "" }]);
@@ -132,7 +130,7 @@ function Calculate() {
             dispatch(setBlockData({ block_amount: parseFloat(initial) || 0 }));
             console.log(payload);
             const tableResponse = await createTable(payload);
-            // const response = await calculateIRR(payload);
+           
 
             if (tableResponse && tableResponse.table) {
                 const parsedTable = JSON.parse(tableResponse.table);
@@ -146,62 +144,20 @@ function Calculate() {
                 }));
 
                 setTableData(formattedData);
-                setIrrValue(tableResponse.irr);
+                dispatch(setIrrValue(tableResponse.irr)); // Redux'a kaydet
+
                 showSnackbar("İşlem Başarılı", "success");
 
             } else {
                 showSnackbar("API Yanıt Hatası", "warning");
-                setIrrValue(null);
+                dispatch(setIrrValue(null));
             }
         } catch (error) {
             handleError(error, showSnackbar);
         }
     };
 
-    // const handleCreateTable = async () => {
-    //     try {
-    //         const credits = generatedRows.map((row) => parseFloat(row.value2) || 0);
-    //         const payload = {
-    //             initial: parseFloat(initial) || 0,
-    //             credits: credits,
-    //             credit_type: creditType,
-    //             consumer_credit_type: consumerCreditType,
-    //             expenses: expenses,
-    //             block: blockData.block,
-    //             block_amount: blockData.block_amount,
-    //             taxes: taxes,
-    //         };
-    //         dispatch(setBlockData({ block_amount: parseFloat(initial) || 0 }));
-
-    //         const tableResponse = await createTable(payload);
-    //         const response = await calculateIRR(payload);
-
-    //         if (tableResponse && tableResponse.table && response && typeof response.irr !== "undefined") {
-    //             const parsedTable = JSON.parse(tableResponse.table);
-
-    //             const formattedData = parsedTable.map((row) => ({
-    //                 column1: row.fields.credit_amount,
-    //                 column2: row.fields.interest,
-    //                 column3: row.fields.tax,
-    //                 column4: row.fields.principal_amount,
-    //                 column5: row.fields.remaining_principal_amount,
-    //             }));
-
-    //             setTableData(formattedData);
-    //             setIrrValue(response.irr);
-    //             showSnackbar("İşlem Başarılı", "success");
-
-    //         } else {
-    //             showSnackbar("API Yanıt Hatası", "warning");
-    //             setIrrValue(null);
-    //         }
-    //     } catch (error) {
-    //         handleError(error, showSnackbar);
-    //     }
-    // };
-
-
-
+   
     return (
         <>
             <Box sx={{ display: 'flex', justifyContent: 'center', }}>
