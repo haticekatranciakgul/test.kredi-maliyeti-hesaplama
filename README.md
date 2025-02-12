@@ -1,6 +1,7 @@
 ## Live
 Kredi Maliyet Hesaplama Page - [Link](https://testkredi-maliyeti-hesaplama.vercel.app/)
 
+<img width="1435" alt="Screenshot 2025-02-12 at 18 56 51" src="https://github.com/user-attachments/assets/cc3ccd76-a5dc-4934-8d83-9f3845ece60e" />
 
 
 # Getting Started with Create React App
