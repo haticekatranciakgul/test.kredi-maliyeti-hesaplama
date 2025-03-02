@@ -34,6 +34,7 @@ import {
     setAnnualCompoundCostIvo
 } from '../Redux/slices/costSlice';
 
+
 function SlideTransition(props) {
     return <Slide {...props} direction="left" />;
 }
@@ -218,9 +219,8 @@ function Calculate() {
             </Snackbar>
             <Grid item xs={12} sx={{ alignItems: "center", display: "flex", justifyContent: "center" }}>
 
-
-
                 <Box sx={{ display: 'flex', justifyContent: 'center', paddingTop: '1%', paddingBottom: '1%' }}>
+
                     <Box sx={{
                         flexDirection: 'column',
                         alignItems: 'center',
@@ -230,102 +230,117 @@ function Calculate() {
                         mozBoxShadow: '1px 1px 185px -23px rgba(101, 150, 254, 0.43)',
 
                     }}>
-                        {/* {irrValue !== null && ( */}
+                       
+
+                        <Typography sx={{
+                            fontWeight: '500', fontSize: {
+                                xs: '14px',
+                                sm: '14px',
+                                md: '16px',
+                                lg: '18px',
+                            },
+                        }} variant="h4">
+                            {irrValue !== null
+                                ? `  Kredi Maliyeti =  ${irrValue}`
+                                : " Kredi maliyeti henüz hesaplanmadı"
+                            }
+
+                        </Typography>
+                        
+                        {prepaidExpenses !== null && (
                             <Typography sx={{
-                                fontWeight: 'bold', fontSize: {
+                                fontWeight: '500', fontSize: {
                                     xs: '14px',
                                     sm: '14px',
                                     md: '16px',
                                     lg: '18px',
                                 },
                             }} variant="h4">
-                                Kredi Maliyeti =  {irrValue !== null && irrValue }
+                                {` Peşin ödenen masraflar = ${prepaidExpenses}`}
                             </Typography>
-                        {/* )} */}
-                        <br />
-                        <Typography sx={{
-                            fontWeight: 'bold', fontSize: {
-                                xs: '14px',
-                                sm: '14px',
-                                md: '16px',
-                                lg: '18px',
-                            },
-                        }} variant="h4">
-                            Peşin ödenen masraflar  = {prepaidExpenses !== null && prepaidExpenses }
-                        </Typography>
-                        <br />
-                        <Typography sx={{
-                            fontWeight: 'bold', fontSize: {
-                                xs: '14px',
-                                sm: '14px',
-                                md: '16px',
-                                lg: '18px',
-                            },
-                        }} variant="h4">
-                            Ödenecek kredi faizleri = {interestPayableOnLoans !== null && interestPayableOnLoans } 
-                        </Typography>
-                        <br />
+                        )}
                        
+                        {interestPayableOnLoans !== null && (
                             <Typography sx={{
-                                fontWeight: 'bold', fontSize: {
+                                fontWeight: '500', fontSize: {
                                     xs: '14px',
                                     sm: '14px',
                                     md: '16px',
                                     lg: '18px',
                                 },
                             }} variant="h4">
-                                Ödenecek kredi faizi vergileri = {taxesOnLoanInterestPayable !== null && taxesOnLoanInterestPayable } 
+                                {` Ödenecek kredi faizleri =  ${interestPayableOnLoans}`}
                             </Typography>
+                        )}
                         
-                        <br />
+                        {taxesOnLoanInterestPayable !== null && (
+                            <Typography sx={{
+                                fontWeight: '500', fontSize: {
+                                    xs: '14px',
+                                    sm: '14px',
+                                    md: '16px',
+                                    lg: '18px',
+                                },
+                            }} variant="h4">
+                                {` Ödenecek kredi faizi vergileri =  ${taxesOnLoanInterestPayable}`}
+                            </Typography>
+                        )}
+                        
+                        {interestCostRelatedToLoanBlockage !== null && (
+                            <Typography sx={{
+                                fontWeight: '500', fontSize: {
+                                    xs: '14px',
+                                    sm: '14px',
+                                    md: '16px',
+                                    lg: '18px',
+                                },
+                            }} variant="h4">
+                                {` Kredi blokesine ilişkin faiz maliyeti =  ${interestCostRelatedToLoanBlockage}`}
+                            </Typography>
+                        )}
                        
-                        <Typography sx={{
-                            fontWeight: 'bold', fontSize: {
-                                xs: '14px',
-                                sm: '14px',
-                                md: '16px',
-                                lg: '18px',
-                            },
-                        }} variant="h4">
-                            Kredi blokesine ilişkin faiz maliyeti = {interestCostRelatedToLoanBlockage !== null && interestCostRelatedToLoanBlockage } 
-                        </Typography>
+                        {totalCost !== null && (
+                            <Typography sx={{
+                                fontWeight: '500', fontSize: {
+                                    xs: '14px',
+                                    sm: '14px',
+                                    md: '16px',
+                                    lg: '18px',
+                                },
+                            }} variant="h4">
+                                {` Toplam maliyet =  ${totalCost}`}
+                            </Typography>
+                        )}
                         
-                        <br />
+                        {monthlyCostIvo !== null && (
+                            <Typography sx={{
+                                fontWeight: '500', fontSize: {
+                                    xs: '14px',
+                                    sm: '14px',
+                                    md: '16px',
+                                    lg: '18px',
+                                },
+                            }} variant="h4">
+                                {`  Aylık maliyet -ivo =  ${monthlyCostIvo}`}
+                            </Typography>
+                        )}
+                       
+                        {annualCompoundCostIvo !== null && (
+                            <Typography sx={{
+                                fontWeight: '500', fontSize: {
+                                    xs: '14px',
+                                    sm: '14px',
+                                    md: '16px',
+                                    lg: '18px',
+                                },
+                            }} variant="h4">
+                                {`  Yıllık bileşik maliyet -ivo  = ${annualCompoundCostIvo}`}
+                            </Typography>
+                        )}
                         
-                        <Typography sx={{
-                            fontWeight: 'bold', fontSize: {
-                                xs: '14px',
-                                sm: '14px',
-                                md: '16px',
-                                lg: '18px',
-                            },
-                        }} variant="h4">
-                            Toplam maliyet = {totalCost !== null && totalCost }
-                        </Typography>
-                        <br />
-                        <Typography sx={{
-                            fontWeight: 'bold', fontSize: {
-                                xs: '14px',
-                                sm: '14px',
-                                md: '16px',
-                                lg: '18px',
-                            },
-                        }} variant="h4">
-                            Aylık maliyet -ivo =  {monthlyCostIvo !== null && monthlyCostIvo } 
-                        </Typography>
-                        <br />
-                        <Typography sx={{
-                            fontWeight: 'bold', fontSize: {
-                                xs: '14px',
-                                sm: '14px',
-                                md: '16px',
-                                lg: '18px',
-                            },
-                        }} variant="h4">
-                            Yıllık bileşik maliyet -ivo  = {annualCompoundCostIvo !== null && annualCompoundCostIvo }
-                        </Typography>
-                        
+
                     </Box>
+
                 </Box>
 
             </Grid>

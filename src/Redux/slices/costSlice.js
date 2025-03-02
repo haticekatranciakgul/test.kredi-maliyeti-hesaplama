@@ -1,13 +1,13 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-  prepaidExpenses: 0,
-  interestPayableOnLoans: 0,
-  taxesOnLoanInterestPayable: 0,
-  interestCostRelatedToLoanBlockage: 0,
-  totalCost: 0,
-  monthlyCostIvo: 0,
-  annualCompoundCostIvo: 0,
+  prepaidExpenses: null,
+  interestPayableOnLoans: null,
+  taxesOnLoanInterestPayable: null,
+  interestCostRelatedToLoanBlockage: null,
+  totalCost: null,
+  monthlyCostIvo: null,
+  annualCompoundCostIvo: null,
 };
 
 const costSlice = createSlice({

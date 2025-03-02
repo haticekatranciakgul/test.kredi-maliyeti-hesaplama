@@ -49,57 +49,6 @@ function SelectRadioBtn({ setConsumerCreditType, setCreditType }) {
         <div>
             <Grid container spacing={2} sx={{ display: 'flex', justifyContent: 'center', }} >
                 <Grid item xs={12} md={6} lg={4} sx={{ display: 'flex', justifyContent: 'center', }} >
-
-
-
-                    {/* <Card sx={{
-                         display: 'flex', justifyContent: 'center', flexGrow: 1, marginTop: '10px', backgroundColor: 'transparent', borderRadius: 10,
-                        boxShadow: '1px 1px 185px -23px rgb(78, 142, 225)',
-                        webkitBoxShadow: '1px 1px 185px -23px rgba(62, 113, 240, 0.43)',
-                        mozBoxShadow: '1px 1px 185px -23px rgba(101, 150, 254, 0.43)',
-                    }}>
-                        <FormControl sx={{ alignItems: "center", display: "flex", justifyContent: "center" }}>
-
-                            <CardContent>
-                                <Typography variant="h5" component="div" sx={{ display: 'flex', justifyContent: 'center', fontWeight: 'bold' }}>
-                                    KREDİ TÜRÜ
-                                </Typography>
-                                <Divider></Divider>
-                                <Box sx={{ p:10}}>
-                                    <RadioGroup
-                                        row
-                                        aria-labelledby="demo-row-radio-buttons-group-label"
-                                        name="row-radio-buttons-group"
-                                        value={selectedOption}
-                                        onChange={handleMainOptionChange}
-                                    >
-                                        <FormControlLabel value="Ticari" control={<CustomRadio />} label="Ticari" />
-                                        <FormControlLabel value="Bireysel" control={<CustomRadio />} label="Bireysel" />
-                                    </RadioGroup>
-
-                                    {selectedOption === 'Bireysel' && (
-                                        <div>
-                                            <RadioGroup
-                                                row
-                                                aria-labelledby="bireysel-options-group-label"
-                                                name="bireysel-options-group"
-                                                value={subOption}
-                                                onChange={handleSubOptionChange}
-                                            >
-                                                <FormControlLabel value="option1" control={<CustomRadio />} label="İhtiyaç" />
-                                                <FormControlLabel value="option2" control={<CustomRadio />} label="Konut" />
-                                                <FormControlLabel value="option3" control={<CustomRadio />} label="Taşıt" />
-                                            </RadioGroup>
-                                        </div>
-                                    )}
-                                </Box>
-                            </CardContent>
-                        </FormControl>
-
-                    </Card> */}
-
-
-
                     <Box sx={{
                         justifyContent: 'center', flexGrow: 1, p: 5, marginTop: '10px', backgroundColor: 'transparent', borderRadius: 10,
                         boxShadow: '1px 1px 185px -23px rgb(78, 142, 225)',
