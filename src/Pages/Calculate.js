@@ -424,17 +424,19 @@ function Calculate() {
                 {generatedRows.map((row, index) => (
                     <Grid container spacing={2} key={index} sx={{ marginTop: '10px' }}>
                         <Grid container spacing={1} columns={12}>
-                            <Grid item xs={12} sm={6} md={6} >
+                            <Grid item xs={12} sm={12} md={4} >
                                 <Grid container spacing={1} columns={12}>
-                                    <Grid item xs={12} sm={12} md={4} lg={4} xl={4} >
-
+                                <Grid item xs={12} sm={4} md={4} lg={4} xl={4}>
+                                        
                                     </Grid>
-                                    <Grid item xs={12} sm={6} md={4} lg={4} xl={4} sx={{ textAlign: 'center', marginTop: 'auto' }}>
+
+                                    
+                                    <Grid item xs={12} sm={4} md={4} lg={4} xl={4} sx={{ textAlign: 'center', marginTop: 'auto' }}>
                                         <Typography sx={{ fontSize: '17px', fontWeight: '500' }}>
                                             {`${index + 1} Ay Sonra :`}
                                         </Typography>
                                     </Grid>
-                                    <Grid item xs={12} sm={6} md={4} lg={4} xl={4}>
+                                    <Grid item xs={12} sm={4} md={4} lg={4} xl={4}>
                                         <TextField variant="standard" size="small"
                                             label="Ödeme Tutarı "
                                             fullWidth
@@ -451,6 +453,7 @@ function Calculate() {
                                             }}
                                         />
                                     </Grid>
+
                                 </Grid>
                             </Grid>
                             <Grid item xs={12} sm={6} md={6}>
@@ -601,15 +604,10 @@ function Calculate() {
                                 {`  Yıllık bileşik maliyet -ivo  = ${annualCompoundCostIvo}`}
                             </Typography>
                         )}
-
-
                     </Box>
-
                 </Box>
-
             </Grid>
             <CreateTable tableData={tableData} />
-
         </>
     )
 }
