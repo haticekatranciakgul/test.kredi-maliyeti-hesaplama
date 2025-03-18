@@ -89,22 +89,7 @@ export default function FormDialog() {
                         </DialogContentText>
 
                         <Grid container spacing={1} columns={10} >
-                            <Grid item md={5}>
-                                <TextField
-                                    required
-                                    label="Kredi tutarının blokede tutulacağı gün sayısı "
-                                    fullWidth
-                                    variant="standard"
-                                    type="text"
-                                    value={block}
-                                    onChange={handleBlockChange}
-                                    inputProps={{
-                                        inputMode: 'numeric',
-                                        pattern: '\\d*',
-                                        max: 99
-                                    }}
-                                />
-                            </Grid>
+                            
                             <Grid item md={5}>
                                 <TextField
                                     required
@@ -118,6 +103,22 @@ export default function FormDialog() {
                                         inputMode: 'decimal',
                                         pattern: '[0-9]*[.,]?[0-9]*',
                                         step: 'any'
+                                    }}
+                                />
+                            </Grid>
+                            <Grid item md={5}>
+                                <TextField
+                                    required
+                                    label="Kredi tutarının blokede tutulacağı gün sayısı "
+                                    fullWidth
+                                    variant="standard"
+                                    type="text"
+                                    value={block}
+                                    onChange={handleBlockChange}
+                                    inputProps={{
+                                        inputMode: 'numeric',
+                                        pattern: '\\d*',
+                                        max: 99
                                     }}
                                 />
                             </Grid>

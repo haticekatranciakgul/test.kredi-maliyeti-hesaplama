@@ -33,7 +33,7 @@ export default function FormDialog() {
 
     const handleAddRow = () => {
         const maxId = rows.length > 0 ? Math.max(...rows.map((row) => row.id)) : -1;
-        const newRow = { id: maxId + 1, title: '', amount: '' };
+        const newRow = { id: maxId + 1, title: '', amount: '0' };
         setRows([...rows, newRow]);
     };
 
@@ -70,25 +70,24 @@ export default function FormDialog() {
                     sx: {
                         width: '800px',
                         maxWidth: '80%',
-                        borderRadius: "20px"
+                        borderRadius: "20px",
+                        
                     },
                 }}>
                     <DialogTitle sx={{
                         backgroundColor: (theme) => theme.palette.mode === 'light' ? '#4d6eb1ad' : '#101624',
-                    }}>Kredi Vergi Oranları</DialogTitle>
+                    }}>Kredi Vergi Oranları (oranlar farklı ise değiştirin) </DialogTitle>
                     <DialogContent sx={{
                         backgroundColor: (theme) => theme.palette.mode === 'light' ? '#d3daee' : '#1F2A40',
                     }}>
-                        <DialogContentText sx={{ marginBottom: '2%', marginTop: "2%" }}>
-                            *Oranlar farklı ise oranları düzeltin.                        </DialogContentText>
+                        {/* <DialogContentText sx={{ marginBottom: '2%', marginTop: "2%" }}>
+                            *Oranlar farklı ise oranları düzeltin.                        </DialogContentText> */}
 
-                        <Grid container spacing={1} columns={12}>
+                        <Grid container spacing={1} columns={12} sx={{marginBottom: '2%', marginTop: "2%"}} >
                             {rows.map((row, index) => (
                                 <Grid container spacing={1} columns={10} key={index}>
                                     <Grid item md={5}>
                                         <TextField
-                                            required
-                                            label="Vergi Açıklaması"
                                             fullWidth
                                             variant="standard"
                                             value={row.title}
@@ -98,8 +97,8 @@ export default function FormDialog() {
                                     </Grid>
                                     <Grid item md={5}>
                                         <TextField
-                                            required
-                                            label="Vergi Oranı (%)"
+                                            // required
+                                            // label="Vergi Oranı (%)"
                                             fullWidth
                                             variant="standard"
                                             value={row.amount}

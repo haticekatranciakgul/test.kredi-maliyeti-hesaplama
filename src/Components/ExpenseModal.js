@@ -68,23 +68,20 @@ export default function FormDialog() {
                 }}>
                     <DialogTitle sx={{
                         backgroundColor: (theme) => theme.palette.mode === 'light' ? '#4d6eb1ad' : '#101624',
-                    }}>Masraf Ekle</DialogTitle>
+                    }}>Gönüllü olarak ödemediğiniz ve havaya gittiğini düşündüğünüz masrafları buraya girin.</DialogTitle>
                     <DialogContent sx={{
                         backgroundColor: (theme) => theme.palette.mode === 'light' ? '#d3daee' : '#1F2A40',
                     }}>
-                        <DialogContentText sx={{ marginBottom: '2%', marginTop: "2%" }}>
+                        {/* <DialogContentText sx={{ marginBottom: '2%', marginTop: "2%" }}>
                             *Gönüllü olarak ödemediğiniz ve havaya gittiğini düşündüğünüz masrafları buraya girin.
-                        </DialogContentText>
-                        <DialogContentText sx={{ marginBottom: '2%', marginTop: "2%" }}>
-                            *Farklı para biriminden olan ödemeleri güncel kurdan kredi ile aynı para birimine çevirip girin.
-                        </DialogContentText>
-                        <Grid container spacing={1} columns={12}>
+                        </DialogContentText> */}
+                       
+                        <Grid container spacing={1} columns={12} sx={{marginBottom: '2%', marginTop: "2%"}}>
                             {rows.map((row, index) => (
                                 <Grid container spacing={1} columns={10} key={row.id}>
                                     <Grid item md={5}>
                                         <TextField
-                                            required
-                                            label="Masraf Açıklaması"
+                                            
                                             fullWidth
                                             variant="standard"
                                             value={row.title}
@@ -93,8 +90,6 @@ export default function FormDialog() {
                                     </Grid>
                                     <Grid item md={5}>
                                         <TextField
-                                            required
-                                            label="Masraf Tutarı"
                                             fullWidth
                                             variant="standard"
                                             value={row.amount}
@@ -117,6 +112,9 @@ export default function FormDialog() {
                                 </Button>
                             </Grid>
                         </Grid>
+                        <DialogContentText sx={{ marginBottom: '1%', marginTop: "1%", fontSize:'10px' }}>
+                            *Farklı para biriminden olan ödemeleri güncel kurdan kredi ile aynı para birimine çevirip girin.
+                        </DialogContentText>
                     </DialogContent>
                     <DialogActions sx={{
                         backgroundColor: (theme) => theme.palette.mode === 'light' ? '#4d6eb1ad' : '#101624',
