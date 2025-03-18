@@ -109,9 +109,9 @@ function Calculate() {
     }, [inputCount, credits]);
 
 
-    const handleAddRow = () => {
-        setGeneratedRows((prevRows) => [...prevRows, { value1: "", value2: "" }]);
-    };
+    // const handleAddRow = () => {
+    //     setGeneratedRows((prevRows) => [...prevRows, { value1: "", value2: "" }]);
+    // };
 
     const handleInputChange = (index, field, newValue) => {
         const updatedRows = [...generatedRows];
@@ -119,14 +119,14 @@ function Calculate() {
         setGeneratedRows(updatedRows);
     };
 
-    const handleDeleteRow = (indexToDelete) => {
-        const isConfirmed = window.confirm("Silmek istediğinizden emin misiniz?");
-        if (isConfirmed) {
-            setGeneratedRows((prevRows) =>
-                prevRows.filter((_, index) => index !== indexToDelete)
-            );
-        }
-    };
+    // const handleDeleteRow = (indexToDelete) => {
+    //     const isConfirmed = window.confirm("Silmek istediğinizden emin misiniz?");
+    //     if (isConfirmed) {
+    //         setGeneratedRows((prevRows) =>
+    //             prevRows.filter((_, index) => index !== indexToDelete)
+    //         );
+    //     }
+    // };
     const showSnackbar = (message, severity) => {
         setSnackbarMessage(message);
         setSnackbarSeverity(severity);
@@ -137,8 +137,8 @@ function Calculate() {
     const handleSave = async () => {
         try {
             const credits = generatedRows.map((row) => parseFloat(row.value2) || 0);
-            const newBlock = block ? parseFloat(block) : 0;  // Block değeri varsa kullan, yoksa 0
-            const newBlockAmount = blockAmount ? parseFloat(blockAmount) : 0;  // Block Amount değeri varsa kullan, yoksa 0
+            const newBlock = block ? parseFloat(block) : 0;  
+            const newBlockAmount = blockAmount ? parseFloat(blockAmount) : 0;  
 
             const payload = {
                 initial: parseFloat(initial) || 0,
@@ -146,8 +146,8 @@ function Calculate() {
                 credit_type: creditType,
                 consumer_credit_type: consumerCreditType,
                 expenses: expenses,
-                block: newBlock,  // Yeni block değeri
-                block_amount: newBlockAmount,  // Yeni block_amount değeri
+                block: newBlock, 
+                block_amount: newBlockAmount,  
                 taxes: taxes,
             };
             dispatch(setBlockData({ block: newBlock, block_amount: newBlockAmount }));
@@ -176,7 +176,7 @@ function Calculate() {
                 dispatch(setAnnualCompoundCostIvo(tableResponse.annual_compound_cost_ivo));
 
                 setTableData(formattedData);
-                dispatch(setIrrValue(tableResponse.irr)); // Redux'a kaydet
+                dispatch(setIrrValue(tableResponse.irr)); 
 
                 showSnackbar("İşlem Başarılı", "success");
 
@@ -188,11 +188,10 @@ function Calculate() {
             handleError(error, showSnackbar);
         }
     };
-   // Modalda veriyi güncellemek için bir effect kullanabiliriz (Redux'tan gelen block ve block_amount'a göre)
    useEffect(() => {
     if (blockData) {
-        setBlock(blockData.block || 0);  // Eğer Redux'tan block gelmemişse 0 olarak ayarla
-        setBlockAmount(blockData.block_amount || 0);  // Eğer Redux'tan block_amount gelmemişse 0 olarak ayarla
+        setBlock(blockData.block || 0); 
+        setBlockAmount(blockData.block_amount || 0); 
     }
 }, [blockData]);
 
