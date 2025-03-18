@@ -426,12 +426,12 @@ function Calculate() {
                         <Grid container spacing={1} columns={12}>
                             <Grid item xs={12} sm={12} md={4} >
                                 <Grid container spacing={1} columns={12}>
-                                <Grid item xs={12} sm={4} md={4} lg={4} xl={4}>
+                                    <Grid item xs={12} sm={4} md={4} lg={4} xl={4}>
                                         
-                                    </Grid>
 
-                                    
+                                    </Grid>
                                     <Grid item xs={12} sm={4} md={4} lg={4} xl={4} sx={{ textAlign: 'center', marginTop: 'auto' }}>
+                                   
                                         <Typography sx={{ fontSize: '17px', fontWeight: '500' }}>
                                             {`${index + 1} Ay Sonra :`}
                                         </Typography>

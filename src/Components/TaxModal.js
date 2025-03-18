@@ -33,7 +33,7 @@ export default function FormDialog() {
 
     const handleAddRow = () => {
         const maxId = rows.length > 0 ? Math.max(...rows.map((row) => row.id)) : -1;
-        const newRow = { id: maxId + 1, title: '', amount: '0' };
+        const newRow = { id: maxId + 1, title: '', amount: '' };
         setRows([...rows, newRow]);
     };
 
@@ -103,6 +103,8 @@ export default function FormDialog() {
                                             value={row.amount}
                                             onChange={(e) => handleInputChange(index, 'amount', e.target.value)}
                                             type="number"
+                                            placeholder={row.amount === '' ? '0' : ''}
+
                                         />
                                     </Grid>
                                 </Grid>
