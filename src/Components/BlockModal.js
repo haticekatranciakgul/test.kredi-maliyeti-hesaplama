@@ -80,20 +80,21 @@ export default function FormDialog() {
                 }}>
                     <DialogTitle sx={{
                         backgroundColor: (theme) => theme.palette.mode === 'light' ? '#4d6eb1ad' : '#101624',
-                    }}>Bloke Verileri</DialogTitle>
+                    }}>Kredi tutarının tamamının veya bir kısmının bankada bloke edilmesi şartı varsa buraya giriş yapın.</DialogTitle>
                     <DialogContent sx={{
                         backgroundColor: (theme) => theme.palette.mode === 'light' ? '#d3daee' : '#1F2A40',
                     }}>
-                        <DialogContentText sx={{ marginBottom: '2%', marginTop: "2%" }}>
+                        {/* <DialogContentText sx={{ marginBottom: '2%', marginTop: "2%" }}>
                             *Kullandırım sonrası kredi tutarının tamamının veya bir kısmının bir süre bankada tutulması şartı varsa buraya giriş yapın.
-                        </DialogContentText>
+                        </DialogContentText> */}
 
-                        <Grid container spacing={1} columns={10} >
+                        <Grid container spacing={1} columns={10}  sx={{marginBottom: '2%', marginTop: "2%"}}>
                             
                             <Grid item md={5}>
                                 <TextField
                                     required
-                                    label="Blokede kalacak kredi tutarı "
+                                    // label="Blokede kalacak kredi tutarı "
+                                    label="Bloke Edilecek Kredi Tutarı"
                                     fullWidth
                                     variant="standard"
                                     type="text"
@@ -109,7 +110,8 @@ export default function FormDialog() {
                             <Grid item md={5}>
                                 <TextField
                                     required
-                                    label="Kredi tutarının blokede tutulacağı gün sayısı "
+                                    // label="Kredi tutarının blokede tutulacağı gün sayısı "
+                                    label="Bloke Gün Sayısı"
                                     fullWidth
                                     variant="standard"
                                     type="text"

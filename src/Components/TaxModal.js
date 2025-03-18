@@ -80,8 +80,7 @@ export default function FormDialog() {
                     <DialogContent sx={{
                         backgroundColor: (theme) => theme.palette.mode === 'light' ? '#d3daee' : '#1F2A40',
                     }}>
-                        {/* <DialogContentText sx={{ marginBottom: '2%', marginTop: "2%" }}>
-                            *Oranlar farklı ise oranları düzeltin.                        </DialogContentText> */}
+                       
 
                         <Grid container spacing={1} columns={12} sx={{marginBottom: '2%', marginTop: "2%"}} >
                             {rows.map((row, index) => (
@@ -121,6 +120,8 @@ export default function FormDialog() {
                                 </Button>
                             </Grid>
                         </Grid>
+                         <DialogContentText sx={{ marginBottom: '2%', marginTop: "2%", fontSize:'10px' }}>
+                            *Oranlar farklı ise oranları düzeltin.                        </DialogContentText>
                     </DialogContent>
                     <DialogActions sx={{
                         backgroundColor: (theme) => theme.palette.mode === 'light' ? '#4d6eb1ad' : '#101624',

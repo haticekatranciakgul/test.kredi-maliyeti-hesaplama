@@ -220,7 +220,6 @@ function Calculate() {
 
 
             {/* <Divider></Divider> */}
-            <CreateTable tableData={tableData} />
             <Box sx={{
                 flexGrow: 1, p: 5, backgroundColor: 'transparent', borderRadius: 10, marginTop: '5%',
                 boxShadow: '1px 1px 185px -23px rgb(78, 142, 225)',
@@ -254,7 +253,7 @@ function Calculate() {
                                 <Grid item xs={12} sm={4} md={4} lg={4} xl={4} >
                                     <TextField fullWidth variant="standard" size="small"
                                         required
-                                        label="Kredi Tutarı (Anapara)"
+                                        label="KREDİ ANAPARA"
                                         value={initial}
                                         onChange={handleInitialChange}
                                         inputProps={{
@@ -280,7 +279,7 @@ function Calculate() {
                                 <Grid item xs={12} sm={4} md={4} lg={4} xl={4}>
                                     <TextField fullWidth variant="standard" size="small"
                                         required
-                                        label="Vade Periyodu"
+                                        label="VADE"
                                         value={inputCount}
                                         onChange={(e) => {
                                             const value = e.target.value;
@@ -312,7 +311,7 @@ function Calculate() {
                                 <Grid item xs={12} sm={4} md={4} lg={4} xl={4}>
                                     <TextField fullWidth variant="standard" size="small"
                                         required
-                                        label="Ödeme Tutarı"
+                                        label="GERİ ÖDEMELER"
                                         value={credits}
                                         onChange={(e) => {
                                             const value = e.target.value;
@@ -355,7 +354,7 @@ function Calculate() {
                                         EKLE
                                     </Button>
                                 </Grid> */}
-                                <Grid item xs={6} sm={2} md={2} lg={2} xl={2} display="flex" justifyContent="flex-end">
+                                <Grid item xs={6} sm={3} md={3} lg={3} xl={3} display="flex" justifyContent="flex-end">
                                     <Button
                                         variant="contained"
                                         startIcon={<AddIcon />}
@@ -364,7 +363,7 @@ function Calculate() {
                                         color="primary"
                                         onClick={handleOpenExpenseModal}
                                     >
-                                        Masraf
+                                        PEŞİN MASRAFLAR
                                     </Button>
                                     {isOpen && modalType === "expense" && <ExpenseModal />}
 
@@ -379,12 +378,12 @@ function Calculate() {
                                         onClick={handleOpenBlockModal}
 
                                     >
-                                        Bloke
+                                        BLOKAJ
                                     </Button>
                                     {isOpen && modalType === "block" && <BlockModal />}
 
                                 </Grid>
-                                <Grid item xs={6} sm={2} md={2} lg={2} xl={2} display="flex" justifyContent="flex-end">
+                                <Grid item xs={6} sm={3} md={3} lg={3} xl={3} display="flex" justifyContent="flex-end">
                                     <Button
                                         variant="contained"
                                         startIcon={<AddIcon />}
@@ -394,7 +393,7 @@ function Calculate() {
                                         onClick={handleOpenTaxesModal}
 
                                     >
-                                        Vergi
+                                        VERGİ ORANLARI
                                     </Button>
                                     {isOpen && modalType === "taxes" && <TaxModal />}
 
@@ -432,7 +431,7 @@ function Calculate() {
                                     </Grid>
                                     <Grid item xs={12} sm={6} md={4} lg={4} xl={4} sx={{ textAlign: 'center', marginTop: 'auto' }}>
                                         <Typography sx={{ fontSize: '17px', fontWeight: '500' }}>
-                                            {`${index + 1}. Vade :`}
+                                            {`${index + 1} Ay Sonra :`}
                                         </Typography>
                                     </Grid>
                                     <Grid item xs={12} sm={6} md={4} lg={4} xl={4}>
@@ -609,6 +608,8 @@ function Calculate() {
                 </Box>
 
             </Grid>
+            <CreateTable tableData={tableData} />
+
         </>
     )
 }
