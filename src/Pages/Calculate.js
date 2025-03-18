@@ -217,133 +217,7 @@ function Calculate() {
                     {snackbarMessage}
                 </Alert>
             </Snackbar>
-            <Grid item xs={12} sx={{ alignItems: "center", display: "flex", justifyContent: "center" }}>
 
-                <Box sx={{ display: 'flex', justifyContent: 'center', paddingTop: '1%', paddingBottom: '1%' }}>
-
-                    <Box sx={{
-                        flexDirection: 'column',
-                        alignItems: 'center',
-                        display: 'flex', justifyContent: 'center', flexGrow: 1, p: 5, backgroundColor: 'transparent', borderRadius: 10, marginTop: '5%',
-                        boxShadow: '1px 1px 185px -23px rgb(78, 142, 225)',
-                        webkitBoxShadow: '1px 1px 185px -23px rgba(62, 113, 240, 0.43)',
-                        mozBoxShadow: '1px 1px 185px -23px rgba(101, 150, 254, 0.43)',
-
-                    }}>
-                       
-
-                        <Typography sx={{
-                            fontWeight: '500', fontSize: {
-                                xs: '14px',
-                                sm: '14px',
-                                md: '16px',
-                                lg: '18px',
-                            },
-                        }} variant="h4">
-                            {irrValue !== null
-                                ? `  Kredi Maliyeti =  ${irrValue}`
-                                : " Kredi maliyeti henüz hesaplanmadı"
-                            }
-
-                        </Typography>
-                        
-                        {prepaidExpenses !== null && (
-                            <Typography sx={{
-                                fontWeight: '500', fontSize: {
-                                    xs: '14px',
-                                    sm: '14px',
-                                    md: '16px',
-                                    lg: '18px',
-                                },
-                            }} variant="h4">
-                                {` Peşin ödenen masraflar = ${prepaidExpenses}`}
-                            </Typography>
-                        )}
-                       
-                        {interestPayableOnLoans !== null && (
-                            <Typography sx={{
-                                fontWeight: '500', fontSize: {
-                                    xs: '14px',
-                                    sm: '14px',
-                                    md: '16px',
-                                    lg: '18px',
-                                },
-                            }} variant="h4">
-                                {` Ödenecek kredi faizleri =  ${interestPayableOnLoans}`}
-                            </Typography>
-                        )}
-                        
-                        {taxesOnLoanInterestPayable !== null && (
-                            <Typography sx={{
-                                fontWeight: '500', fontSize: {
-                                    xs: '14px',
-                                    sm: '14px',
-                                    md: '16px',
-                                    lg: '18px',
-                                },
-                            }} variant="h4">
-                                {` Ödenecek kredi faizi vergileri =  ${taxesOnLoanInterestPayable}`}
-                            </Typography>
-                        )}
-                        
-                        {interestCostRelatedToLoanBlockage !== null && (
-                            <Typography sx={{
-                                fontWeight: '500', fontSize: {
-                                    xs: '14px',
-                                    sm: '14px',
-                                    md: '16px',
-                                    lg: '18px',
-                                },
-                            }} variant="h4">
-                                {` Kredi blokesine ilişkin faiz maliyeti =  ${interestCostRelatedToLoanBlockage}`}
-                            </Typography>
-                        )}
-                       
-                        {totalCost !== null && (
-                            <Typography sx={{
-                                fontWeight: '500', fontSize: {
-                                    xs: '14px',
-                                    sm: '14px',
-                                    md: '16px',
-                                    lg: '18px',
-                                },
-                            }} variant="h4">
-                                {` Toplam maliyet =  ${totalCost}`}
-                            </Typography>
-                        )}
-                        
-                        {monthlyCostIvo !== null && (
-                            <Typography sx={{
-                                fontWeight: '500', fontSize: {
-                                    xs: '14px',
-                                    sm: '14px',
-                                    md: '16px',
-                                    lg: '18px',
-                                },
-                            }} variant="h4">
-                                {`  Aylık maliyet -ivo =  ${monthlyCostIvo}`}
-                            </Typography>
-                        )}
-                       
-                        {annualCompoundCostIvo !== null && (
-                            <Typography sx={{
-                                fontWeight: '500', fontSize: {
-                                    xs: '14px',
-                                    sm: '14px',
-                                    md: '16px',
-                                    lg: '18px',
-                                },
-                            }} variant="h4">
-                                {`  Yıllık bileşik maliyet -ivo  = ${annualCompoundCostIvo}`}
-                            </Typography>
-                        )}
-                        
-
-                    </Box>
-
-                </Box>
-
-            </Grid>
 
             {/* <Divider></Divider> */}
             <CreateTable tableData={tableData} />
@@ -469,7 +343,7 @@ function Calculate() {
                         </Grid>
                         <Grid item xs={12} sm={12} md={8} >
                             <Grid container spacing={1} columns={12}>
-                                <Grid item xs={6} sm={2} md={2} lg={2} xl={2} display="flex" justifyContent="flex-end">
+                                {/* <Grid item xs={6} sm={2} md={2} lg={2} xl={2} display="flex" justifyContent="flex-end">
                                     <Button
                                         variant="contained"
                                         startIcon={<AddIcon />}
@@ -480,7 +354,7 @@ function Calculate() {
                                     >
                                         EKLE
                                     </Button>
-                                </Grid>
+                                </Grid> */}
                                 <Grid item xs={6} sm={2} md={2} lg={2} xl={2} display="flex" justifyContent="flex-end">
                                     <Button
                                         variant="contained"
@@ -551,7 +425,7 @@ function Calculate() {
                 {generatedRows.map((row, index) => (
                     <Grid container spacing={2} key={index} sx={{ marginTop: '10px' }}>
                         <Grid container spacing={1} columns={12}>
-                            <Grid item xs={12} sm={6} md={4} >
+                            <Grid item xs={12} sm={6} md={6} >
                                 <Grid container spacing={1} columns={12}>
                                     <Grid item xs={12} sm={12} md={4} lg={4} xl={4} >
 
@@ -580,9 +454,9 @@ function Calculate() {
                                     </Grid>
                                 </Grid>
                             </Grid>
-                            <Grid item xs={12} sm={6} md={8}>
+                            <Grid item xs={12} sm={6} md={6}>
                                 <Grid container spacing={1} columns={12}>
-                                    <Grid item xs={12} sm={12} md={2} lg={2} xl={2} display="flex" justifyContent="flex-end">
+                                    {/* <Grid item xs={12} sm={12} md={2} lg={2} xl={2} display="flex" justifyContent="flex-end">
                                         <Button
                                             variant="contained"
                                             color="primary"
@@ -593,7 +467,7 @@ function Calculate() {
                                         >
                                             SİL
                                         </Button>
-                                    </Grid>
+                                    </Grid> */}
                                     <Grid item xs={12} sm={12} md={2} lg={2} xl={2} display="flex" justifyContent="flex-end">
                                     </Grid>
                                     <Grid item xs={12} sm={12} md={2} lg={2} xl={2} display="flex" justifyContent="flex-end">
@@ -606,6 +480,135 @@ function Calculate() {
                     </Grid>
                 ))}
             </Box>
+
+
+            <Grid item xs={12} sx={{ alignItems: "center", display: "flex", justifyContent: "center" }}>
+
+                <Box sx={{ display: 'flex', justifyContent: 'center', paddingTop: '1%', paddingBottom: '1%' }}>
+
+                    <Box sx={{
+                        flexDirection: 'column',
+                        alignItems: 'center',
+                        display: 'flex', justifyContent: 'center', flexGrow: 1, p: 5, backgroundColor: 'transparent', borderRadius: 10, marginTop: '5%',
+                        boxShadow: '1px 1px 185px -23px rgb(78, 142, 225)',
+                        webkitBoxShadow: '1px 1px 185px -23px rgba(62, 113, 240, 0.43)',
+                        mozBoxShadow: '1px 1px 185px -23px rgba(101, 150, 254, 0.43)',
+
+                    }}>
+
+
+                        <Typography sx={{
+                            fontWeight: '500', fontSize: {
+                                xs: '14px',
+                                sm: '14px',
+                                md: '16px',
+                                lg: '18px',
+                            },
+                        }} variant="h4">
+                            {irrValue !== null
+                                ? `  Kredi Maliyeti =  ${irrValue}`
+                                : " Kredi maliyeti henüz hesaplanmadı"
+                            }
+
+                        </Typography>
+
+                        {prepaidExpenses !== null && (
+                            <Typography sx={{
+                                fontWeight: '500', fontSize: {
+                                    xs: '14px',
+                                    sm: '14px',
+                                    md: '16px',
+                                    lg: '18px',
+                                },
+                            }} variant="h4">
+                                {` Peşin ödenen masraflar = ${prepaidExpenses}`}
+                            </Typography>
+                        )}
+
+                        {interestPayableOnLoans !== null && (
+                            <Typography sx={{
+                                fontWeight: '500', fontSize: {
+                                    xs: '14px',
+                                    sm: '14px',
+                                    md: '16px',
+                                    lg: '18px',
+                                },
+                            }} variant="h4">
+                                {` Ödenecek kredi faizleri =  ${interestPayableOnLoans}`}
+                            </Typography>
+                        )}
+
+                        {taxesOnLoanInterestPayable !== null && (
+                            <Typography sx={{
+                                fontWeight: '500', fontSize: {
+                                    xs: '14px',
+                                    sm: '14px',
+                                    md: '16px',
+                                    lg: '18px',
+                                },
+                            }} variant="h4">
+                                {` Ödenecek kredi faizi vergileri =  ${taxesOnLoanInterestPayable}`}
+                            </Typography>
+                        )}
+
+                        {interestCostRelatedToLoanBlockage !== null && (
+                            <Typography sx={{
+                                fontWeight: '500', fontSize: {
+                                    xs: '14px',
+                                    sm: '14px',
+                                    md: '16px',
+                                    lg: '18px',
+                                },
+                            }} variant="h4">
+                                {` Kredi blokesine ilişkin faiz maliyeti =  ${interestCostRelatedToLoanBlockage}`}
+                            </Typography>
+                        )}
+
+                        {totalCost !== null && (
+                            <Typography sx={{
+                                fontWeight: '500', fontSize: {
+                                    xs: '14px',
+                                    sm: '14px',
+                                    md: '16px',
+                                    lg: '18px',
+                                },
+                            }} variant="h4">
+                                {` Toplam maliyet =  ${totalCost}`}
+                            </Typography>
+                        )}
+
+                        {monthlyCostIvo !== null && (
+                            <Typography sx={{
+                                fontWeight: '500', fontSize: {
+                                    xs: '14px',
+                                    sm: '14px',
+                                    md: '16px',
+                                    lg: '18px',
+                                },
+                            }} variant="h4">
+                                {`  Aylık maliyet -ivo =  ${monthlyCostIvo}`}
+                            </Typography>
+                        )}
+
+                        {annualCompoundCostIvo !== null && (
+                            <Typography sx={{
+                                fontWeight: '500', fontSize: {
+                                    xs: '14px',
+                                    sm: '14px',
+                                    md: '16px',
+                                    lg: '18px',
+                                },
+                            }} variant="h4">
+                                {`  Yıllık bileşik maliyet -ivo  = ${annualCompoundCostIvo}`}
+                            </Typography>
+                        )}
+
+
+                    </Box>
+
+                </Box>
+
+            </Grid>
         </>
     )
 }
