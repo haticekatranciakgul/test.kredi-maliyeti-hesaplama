@@ -59,6 +59,9 @@ function Calculate() {
     const monthlyCostIvo = useSelector((state) => state.costs.monthlyCostIvo);
     const annualCompoundCostIvo = useSelector((state) => state.costs.annualCompoundCostIvo);
 
+    // Modalda görünen veriler için useState kullanıyoruz
+    const [block, setBlock] = useState(blockData?.block || 0); // Redux'tan gelen block değeri, yoksa 0
+    const [blockAmount, setBlockAmount] = useState(blockData?.block_amount || 0); // block_amount başlangıç değeri
 
     //Alert: start
     const [snackbarOpen, setSnackbarOpen] = useState(false);
@@ -134,17 +137,20 @@ function Calculate() {
     const handleSave = async () => {
         try {
             const credits = generatedRows.map((row) => parseFloat(row.value2) || 0);
+            const newBlock = block ? parseFloat(block) : 0;  // Block değeri varsa kullan, yoksa 0
+            const newBlockAmount = blockAmount ? parseFloat(blockAmount) : 0;  // Block Amount değeri varsa kullan, yoksa 0
+
             const payload = {
                 initial: parseFloat(initial) || 0,
                 credits: credits,
                 credit_type: creditType,
                 consumer_credit_type: consumerCreditType,
                 expenses: expenses,
-                block: blockData.block,
-                block_amount: blockData.block_amount,
+                block: newBlock,  // Yeni block değeri
+                block_amount: newBlockAmount,  // Yeni block_amount değeri
                 taxes: taxes,
             };
-            dispatch(setBlockData({ block_amount: parseFloat(initial) || 0 }));
+            dispatch(setBlockData({ block: newBlock, block_amount: newBlockAmount }));
             console.log(payload);
             const tableResponse = await createTable(payload);
 
@@ -182,7 +188,13 @@ function Calculate() {
             handleError(error, showSnackbar);
         }
     };
-
+   // Modalda veriyi güncellemek için bir effect kullanabiliriz (Redux'tan gelen block ve block_amount'a göre)
+   useEffect(() => {
+    if (blockData) {
+        setBlock(blockData.block || 0);  // Eğer Redux'tan block gelmemişse 0 olarak ayarla
+        setBlockAmount(blockData.block_amount || 0);  // Eğer Redux'tan block_amount gelmemişse 0 olarak ayarla
+    }
+}, [blockData]);
 
     return (
         <>
