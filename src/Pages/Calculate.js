@@ -33,19 +33,22 @@ import {
     setMonthlyCostIvo,
     setAnnualCompoundCostIvo
 } from '../Redux/slices/costSlice';
+// FormDialog.js veya kullanmak istediğin sayfada
+import { handleFormattedChange } from '../utils'; // doğru yolunuzu yazdığınızdan emin olun
+
 
 
 function SlideTransition(props) {
     return <Slide {...props} direction="left" />;
 }
 
-const formatCurrency = (value) => {
-    return new Intl.NumberFormat("tr-TR", {
-        style: "currency",
-        currency: "TRY",
-        minimumFractionDigits: 2,
-    }).format(value);
-};
+// const formatCurrency = (value) => {
+//     return new Intl.NumberFormat("tr-TR", {
+//         style: "currency",
+//         currency: "TRY",
+//         minimumFractionDigits: 2,
+//     }).format(value);
+// };
 
 
 function Calculate() {
@@ -53,8 +56,8 @@ function Calculate() {
     const [credits, setCredits] = useState("");
     const [creditsInput, setCreditsInput] = useState("");
 
-    const [initialInput, setInitialInput] = useState(""); // UI'da gösterilecek formatlı değer
-    const initial = useSelector((state) => state.block.initial); // Redux'tan gelen formatsız değer
+    const [initialInput, setInitialInput] = useState(""); 
+    const initial = useSelector((state) => state.block.initial); 
 
 
     const [generatedRows, setGeneratedRows] = useState([]);
@@ -87,37 +90,19 @@ function Calculate() {
     };
     //Alert: end
 
-     // 📌 Formatlı ve saf değerleri yöneten ortak fonksiyon
-     const handleFormattedChange = (value, setFormattedState, setRawState) => {
-        // Sadece rakam ve virgül girilmesine izin ver
-        value = value.replace(/[^0-9,]/g, "");
 
-        // Binlik formatlama için noktaları ekle
-        let parts = value.split(",");
-        let integerPart = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-        let formattedValue = parts.length > 1 ? integerPart + "," + parts[1] : integerPart;
-
-        // 🔹 Saf değeri alıp API'ye uygun hale getir
-        let rawValue = value.replace(/\./g, "").replace(",", ".");
-
-        setFormattedState(formattedValue); // UI için formatlı göster
-        setRawState(rawValue); // Redux / API için saf veriyi kaydet
-    };
-      // 📌 initial için değişiklik yönetimi
-      const handleInitialChange = (e) => {
+    const handleInitialChange = (e) => {
         handleFormattedChange(e.target.value, setInitialInput, (val) => dispatch(setInitial(val)));
     };
 
-    // 📌 credits için değişiklik yönetimi
     const handleCreditsChange = (e) => {
         handleFormattedChange(e.target.value, setCreditsInput, setCredits);
     };
 
-     // 📌 inputCount için değişiklik yönetimi
-     const handleInputCountChange = (e) => {
+    const handleInputCountChange = (e) => {
         const value = e.target.value;
         if (/^\d*$/.test(value) && (value === "" || parseInt(value) <= 99)) {
-            setInputCount(value); // inputCount state'ini güncelle
+            setInputCount(value);
         }
     };
 
@@ -138,15 +123,14 @@ function Calculate() {
         dispatch(openModal("taxes"));
     };
 
-     // 📌 Yeni satırlar oluşturuluyor
-     useEffect(() => {
-        // inputCount'a göre satır sayısını belirle
+    useEffect(() => {
+
         const count = parseInt(inputCount) || 0;
         const newRows = Array.from({ length: count }, () => ({
             value1: "",
             value2: creditsInput,
         }));
-        setGeneratedRows(newRows); // Yeni satırları state'e set ediyoruz
+        setGeneratedRows(newRows); 
     }, [inputCount, creditsInput]);
 
 
@@ -171,12 +155,18 @@ function Calculate() {
             const newBlock = block ? parseFloat(block) : 0;
             const newBlockAmount = blockAmount ? parseFloat(blockAmount) : 0;
 
+           
+            const pureExpenses = expenses.map((expense) => ({
+                title: expense.title,
+                amount: parseFloat(expense.rawAmount) || 0, 
+            }));
+
             const payload = {
                 initial: initial,
                 credits: credits,
                 credit_type: creditType,
                 consumer_credit_type: consumerCreditType,
-                expenses: expenses,
+                expenses: pureExpenses,
                 block: newBlock,
                 block_amount: newBlockAmount,
                 taxes: taxes,
@@ -374,7 +364,7 @@ function Calculate() {
                         </Grid>
                         <Grid item xs={12} sm={12} md={8} >
                             <Grid container spacing={1} columns={12}>
-                               
+
                                 <Grid item xs={6} sm={3} md={3} lg={3} xl={3} display="flex" justifyContent="flex-end">
                                     <Button
                                         variant="contained"

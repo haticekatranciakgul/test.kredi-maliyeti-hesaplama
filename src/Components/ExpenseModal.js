@@ -7,15 +7,14 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
-import { closeModal } from '../Redux/slices/modalSlice'; 
+import { closeModal } from '../Redux/slices/modalSlice';
 import Grid from "@mui/material/Grid";
 import AddIcon from "@mui/icons-material/Add";
 import { ThemeProvider, useTheme } from "@mui/material";
 import CssBaseline from "@mui/material/CssBaseline";
 import { ColorModeContext } from "../theme";
-
-
-import { setExpenses } from '../Redux/slices/expensesSlice'; 
+import { handleFormattedChange } from '../utils';
+import { setExpenses, updateExpenseAmount } from '../Redux/slices/expensesSlice';
 
 
 
@@ -27,7 +26,26 @@ export default function FormDialog() {
     const [rows, setRows] = useState(expenses);
     const theme = useTheme();
     const colorMode = useContext(ColorModeContext);
-
+   // 📌 Miktar değiştiğinde formatlı ve saf değerleri güncelle
+   const handleAmountChange = (index, value) => {
+    handleFormattedChange(value, 
+        (formattedValue) => {
+            setRows(prevRows => {
+                const updatedRows = [...prevRows];
+                updatedRows[index] = { ...updatedRows[index], amount: formattedValue };
+                return updatedRows;
+            });
+            dispatch(updateExpenseAmount({ index, amount: formattedValue, rawAmount: value.replace(/\./g, "").replace(",", ".") }));
+        }, 
+        (rawValue) => {
+            setRows(prevRows => {
+                const updatedRows = [...prevRows];
+                updatedRows[index] = { ...updatedRows[index], rawAmount: rawValue };
+                return updatedRows;
+            });
+        }
+    );
+};
 
     const handleClose = () => {
         dispatch(closeModal());
@@ -35,7 +53,7 @@ export default function FormDialog() {
 
     const handleAddRow = () => {
         const maxId = rows.length > 0 ? Math.max(...rows.map((row) => row.id)) : -1; 
-        const newRow = { id: maxId + 1, title: '', amount: '' }; 
+        const newRow = { id: maxId + 1, title: '', amount: '', rawAmount: '' }; 
         setRows([...rows, newRow]);
     };
 
@@ -75,13 +93,13 @@ export default function FormDialog() {
                         {/* <DialogContentText sx={{ marginBottom: '2%', marginTop: "2%" }}>
                             *Gönüllü olarak ödemediğiniz ve havaya gittiğini düşündüğünüz masrafları buraya girin.
                         </DialogContentText> */}
-                       
-                        <Grid container spacing={1} columns={12} sx={{marginBottom: '2%', marginTop: "2%"}}>
+
+                        <Grid container spacing={1} columns={12} sx={{ marginBottom: '2%', marginTop: "2%" }}>
                             {rows.map((row, index) => (
                                 <Grid container spacing={1} columns={10} key={row.id}>
                                     <Grid item md={5}>
                                         <TextField
-                                            
+
                                             fullWidth
                                             variant="standard"
                                             value={row.title}
@@ -93,9 +111,9 @@ export default function FormDialog() {
                                             fullWidth
                                             variant="standard"
                                             value={row.amount}
-                                            onChange={(e) => handleInputChange(index, 'amount', e.target.value)}
-                                            type="number"
+                                            onChange={(e) => handleAmountChange(index, e.target.value)}
                                             placeholder={row.amount === '' ? '0' : ''}
+                                            inputProps={{ inputMode: 'decimal', pattern: '[0-9,]*' }}
 
                                         />
                                     </Grid>
@@ -114,7 +132,7 @@ export default function FormDialog() {
                                 </Button>
                             </Grid>
                         </Grid>
-                        <DialogContentText sx={{ marginBottom: '1%', marginTop: "1%", fontSize:'10px' }}>
+                        <DialogContentText sx={{ marginBottom: '1%', marginTop: "1%", fontSize: '10px' }}>
                             *Farklı para biriminden olan ödemeleri güncel kurdan kredi ile aynı para birimine çevirip girin.
                         </DialogContentText>
                     </DialogContent>
