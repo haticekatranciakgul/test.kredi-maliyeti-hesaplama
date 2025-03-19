@@ -13,7 +13,9 @@ import { ThemeProvider, useTheme } from "@mui/material";
 import CssBaseline from "@mui/material/CssBaseline";
 import { ColorModeContext } from "../theme";
 import { setBlockData } from "../Redux/slices/blockSlice";
-import { handleFormattedChange } from '../utils'; 
+
+import { setInitial } from "../Redux/slices/blockSlice"; 
+
 
 export default function FormDialog() {
     const dispatch = useDispatch();
@@ -21,10 +23,12 @@ export default function FormDialog() {
     const blockData = useSelector((state) => state.block);
     const initial = blockData.initial;
 
+
    // Local state
    const [block, setBlock] = useState(blockData.block || 0);
    const [blockAmount, setBlockAmount] = useState(blockData.block_amount || 0);
-   const [rawBlockAmount, setRawBlockAmount] = useState(blockData.block_amount || "0"); // Saf hali tutar
+
+
 
     const theme = useTheme();
     const colorMode = useContext(ColorModeContext);
@@ -38,31 +42,39 @@ export default function FormDialog() {
         if (/^\d*$/.test(value) && (value === "" || parseInt(value) <= 99)) {
             setBlock(value);
             if (value !== "" && initial !== null) {
-                handleFormattedChange(initial.toString(), setBlockAmount, setRawBlockAmount);
+                setBlockAmount(initial.toString());
             } else {
                 setBlockAmount("");
-                setRawBlockAmount("0");
             }
         }
     };
 
     const handleBlockAmountChange = (e) => {
-        handleFormattedChange(e.target.value, setBlockAmount, setRawBlockAmount);
-    };
+        const value = e.target.value;
+        if (/^\d*\.?\d*$/.test(value)) {
+            if (initial === null || block === "" || parseFloat(value) <= parseFloat(initial || 0)) {
+                setBlockAmount(value);
+
+            }
+        }    };
+
+
 
     const handleSave = () => {
-        dispatch(
-            setBlockData({
-                block: parseFloat(block) || 0,
-                block_amount: parseFloat(rawBlockAmount) || 0,
-            })
-        );
+        dispatch(setInitial(initial)); // Redux'a initial değerini doğru kaydet
+    
+        dispatch(setBlockData({
+            block: parseFloat(block) || 0,
+            block_amount: parseFloat(blockAmount) || 0,       
+         }));
+    
         try {
             handleClose();
         } catch (error) {
-           // console.error("Error closing modal", error);
+            console.error("Error closing modal", error);
         }
     };
+    
 
     return (
         <ColorModeContext.Provider value={colorMode}>
