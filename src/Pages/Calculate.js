@@ -39,10 +39,24 @@ function SlideTransition(props) {
     return <Slide {...props} direction="left" />;
 }
 
+const formatCurrency = (value) => {
+    return new Intl.NumberFormat("tr-TR", {
+        style: "currency",
+        currency: "TRY",
+        minimumFractionDigits: 2,
+    }).format(value);
+};
+
+
 function Calculate() {
     const [inputCount, setInputCount] = useState("");
-    const [credits, setcredits] = useState("");
-    const [initial, setInitialInput] = useState("");
+    const [credits, setCredits] = useState("");
+    const [creditsInput, setCreditsInput] = useState("");
+
+    const [initialInput, setInitialInput] = useState(""); // UI'da gösterilecek formatlı değer
+    const initial = useSelector((state) => state.block.initial); // Redux'tan gelen formatsız değer
+
+
     const [generatedRows, setGeneratedRows] = useState([]);
     const [tableData, setTableData] = useState([]);
     const expenses = useSelector((state) => state.expenses.expenses);
@@ -60,8 +74,8 @@ function Calculate() {
     const annualCompoundCostIvo = useSelector((state) => state.costs.annualCompoundCostIvo);
 
     // Modalda görünen veriler için useState kullanıyoruz
-    const [block, setBlock] = useState(blockData?.block || 0); // Redux'tan gelen block değeri, yoksa 0
-    const [blockAmount, setBlockAmount] = useState(blockData?.block_amount || 0); // block_amount başlangıç değeri
+    const [block, setBlock] = useState(blockData?.block || 0);
+    const [blockAmount, setBlockAmount] = useState(blockData?.block_amount || 0);
 
     //Alert: start
     const [snackbarOpen, setSnackbarOpen] = useState(false);
@@ -73,13 +87,40 @@ function Calculate() {
     };
     //Alert: end
 
-    const handleInitialChange = (e) => {
+     // 📌 Formatlı ve saf değerleri yöneten ortak fonksiyon
+     const handleFormattedChange = (value, setFormattedState, setRawState) => {
+        // Sadece rakam ve virgül girilmesine izin ver
+        value = value.replace(/[^0-9,]/g, "");
+
+        // Binlik formatlama için noktaları ekle
+        let parts = value.split(",");
+        let integerPart = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+        let formattedValue = parts.length > 1 ? integerPart + "," + parts[1] : integerPart;
+
+        // 🔹 Saf değeri alıp API'ye uygun hale getir
+        let rawValue = value.replace(/\./g, "").replace(",", ".");
+
+        setFormattedState(formattedValue); // UI için formatlı göster
+        setRawState(rawValue); // Redux / API için saf veriyi kaydet
+    };
+      // 📌 initial için değişiklik yönetimi
+      const handleInitialChange = (e) => {
+        handleFormattedChange(e.target.value, setInitialInput, (val) => dispatch(setInitial(val)));
+    };
+
+    // 📌 credits için değişiklik yönetimi
+    const handleCreditsChange = (e) => {
+        handleFormattedChange(e.target.value, setCreditsInput, setCredits);
+    };
+
+     // 📌 inputCount için değişiklik yönetimi
+     const handleInputCountChange = (e) => {
         const value = e.target.value;
-        if (/^\d*\.?\d*$/.test(value)) {
-            setInitialInput(value);
-            dispatch(setInitial(value ? parseFloat(value) : null));
+        if (/^\d*$/.test(value) && (value === "" || parseInt(value) <= 99)) {
+            setInputCount(value); // inputCount state'ini güncelle
         }
     };
+
 
     const dispatch = useDispatch();
     const consumerCreditType = useSelector((state) => state.creditType.consumerCreditType);
@@ -97,21 +138,19 @@ function Calculate() {
         dispatch(openModal("taxes"));
     };
 
-    useEffect(() => {
+     // 📌 Yeni satırlar oluşturuluyor
+     useEffect(() => {
+        // inputCount'a göre satır sayısını belirle
         const count = parseInt(inputCount) || 0;
-        if (credits) {
-            const newRows = Array.from({ length: count }, () => ({
-                value1: "",
-                value2: credits,
-            }));
-            setGeneratedRows(newRows);
-        }
-    }, [inputCount, credits]);
+        const newRows = Array.from({ length: count }, () => ({
+            value1: "",
+            value2: creditsInput,
+        }));
+        setGeneratedRows(newRows); // Yeni satırları state'e set ediyoruz
+    }, [inputCount, creditsInput]);
 
 
-    // const handleAddRow = () => {
-    //     setGeneratedRows((prevRows) => [...prevRows, { value1: "", value2: "" }]);
-    // };
+
 
     const handleInputChange = (index, field, newValue) => {
         const updatedRows = [...generatedRows];
@@ -119,14 +158,6 @@ function Calculate() {
         setGeneratedRows(updatedRows);
     };
 
-    // const handleDeleteRow = (indexToDelete) => {
-    //     const isConfirmed = window.confirm("Silmek istediğinizden emin misiniz?");
-    //     if (isConfirmed) {
-    //         setGeneratedRows((prevRows) =>
-    //             prevRows.filter((_, index) => index !== indexToDelete)
-    //         );
-    //     }
-    // };
     const showSnackbar = (message, severity) => {
         setSnackbarMessage(message);
         setSnackbarSeverity(severity);
@@ -136,18 +167,18 @@ function Calculate() {
 
     const handleSave = async () => {
         try {
-            const credits = generatedRows.map((row) => parseFloat(row.value2) || 0);
-            const newBlock = block ? parseFloat(block) : 0;  
-            const newBlockAmount = blockAmount ? parseFloat(blockAmount) : 0;  
+            const credits = generatedRows.map((row) => parseFloat(row.value2.replace(/\./g, "").replace(",", ".")) || 0);
+            const newBlock = block ? parseFloat(block) : 0;
+            const newBlockAmount = blockAmount ? parseFloat(blockAmount) : 0;
 
             const payload = {
-                initial: parseFloat(initial) || 0,
+                initial: initial,
                 credits: credits,
                 credit_type: creditType,
                 consumer_credit_type: consumerCreditType,
                 expenses: expenses,
-                block: newBlock, 
-                block_amount: newBlockAmount,  
+                block: newBlock,
+                block_amount: newBlockAmount,
                 taxes: taxes,
             };
             dispatch(setBlockData({ block: newBlock, block_amount: newBlockAmount }));
@@ -176,7 +207,7 @@ function Calculate() {
                 dispatch(setAnnualCompoundCostIvo(tableResponse.annual_compound_cost_ivo));
 
                 setTableData(formattedData);
-                dispatch(setIrrValue(tableResponse.irr)); 
+                dispatch(setIrrValue(tableResponse.irr));
 
                 showSnackbar("İşlem Başarılı", "success");
 
@@ -188,12 +219,12 @@ function Calculate() {
             handleError(error, showSnackbar);
         }
     };
-   useEffect(() => {
-    if (blockData) {
-        setBlock(blockData.block || 0); 
-        setBlockAmount(blockData.block_amount || 0); 
-    }
-}, [blockData]);
+    useEffect(() => {
+        if (blockData) {
+            setBlock(blockData.block || 0);
+            setBlockAmount(blockData.block_amount || 0);
+        }
+    }, [blockData]);
 
     return (
         <>
@@ -265,7 +296,7 @@ function Calculate() {
                                     <TextField fullWidth variant="standard" size="small"
                                         required
                                         label="KREDİ ANAPARA"
-                                        value={initial}
+                                        value={initialInput}
                                         onChange={handleInitialChange}
                                         inputProps={{
                                             inputMode: 'numeric',
@@ -292,12 +323,7 @@ function Calculate() {
                                         required
                                         label="VADE"
                                         value={inputCount}
-                                        onChange={(e) => {
-                                            const value = e.target.value;
-                                            if (/^\d*$/.test(value) && (value === "" || parseInt(value) <= 99)) {
-                                                setInputCount(value);
-                                            }
-                                        }}
+                                        onChange={handleInputCountChange}
                                         inputProps={{
                                             inputMode: 'numeric',
                                             pattern: '[0-9]*',
@@ -323,13 +349,8 @@ function Calculate() {
                                     <TextField fullWidth variant="standard" size="small"
                                         required
                                         label="GERİ ÖDEMELER"
-                                        value={credits}
-                                        onChange={(e) => {
-                                            const value = e.target.value;
-                                            if (/^\d*\.?\d*$/.test(value)) {
-                                                setcredits(value);
-                                            }
-                                        }}
+                                        value={creditsInput}
+                                        onChange={handleCreditsChange}
                                         inputProps={{
                                             inputMode: 'numeric',
                                             pattern: '[0-9]*'
@@ -353,18 +374,7 @@ function Calculate() {
                         </Grid>
                         <Grid item xs={12} sm={12} md={8} >
                             <Grid container spacing={1} columns={12}>
-                                {/* <Grid item xs={6} sm={2} md={2} lg={2} xl={2} display="flex" justifyContent="flex-end">
-                                    <Button
-                                        variant="contained"
-                                        startIcon={<AddIcon />}
-                                        fullWidth
-                                        size="large"
-                                        color="primary"
-                                        onClick={handleAddRow}
-                                    >
-                                        EKLE
-                                    </Button>
-                                </Grid> */}
+                               
                                 <Grid item xs={6} sm={3} md={3} lg={3} xl={3} display="flex" justifyContent="flex-end">
                                     <Button
                                         variant="contained"
@@ -438,11 +448,11 @@ function Calculate() {
                             <Grid item xs={12} sm={12} md={4} >
                                 <Grid container spacing={1} columns={12}>
                                     <Grid item xs={12} sm={4} md={4} lg={4} xl={4}>
-                                        
+
 
                                     </Grid>
                                     <Grid item xs={12} sm={4} md={4} lg={4} xl={4} sx={{ textAlign: 'center', marginTop: 'auto' }}>
-                                   
+
                                         <Typography sx={{ fontSize: '17px', fontWeight: '500' }}>
                                             {`${index + 1} Ay Sonra :`}
                                         </Typography>
