@@ -56,8 +56,8 @@ function Calculate() {
     const [credits, setCredits] = useState("");
     const [creditsInput, setCreditsInput] = useState("");
 
-    const [initialInput, setInitialInput] = useState(""); 
-    const initial = useSelector((state) => state.block.initial); 
+    const [initialInput, setInitialInput] = useState("");
+    const initial = useSelector((state) => state.block.initial);
 
 
     const [generatedRows, setGeneratedRows] = useState([]);
@@ -130,7 +130,7 @@ function Calculate() {
             value1: "",
             value2: creditsInput,
         }));
-        setGeneratedRows(newRows); 
+        setGeneratedRows(newRows);
     }, [inputCount, creditsInput]);
 
 
@@ -155,10 +155,10 @@ function Calculate() {
             const newBlock = block ? parseFloat(block) : 0;
             const newBlockAmount = blockAmount ? parseFloat(blockAmount) : 0;
 
-           
+
             const pureExpenses = expenses.map((expense) => ({
                 title: expense.title,
-                amount: parseFloat(expense.rawAmount) || 0, 
+                amount: parseFloat(expense.rawAmount) || 0,
             }));
 
             const payload = {
@@ -534,33 +534,7 @@ function Calculate() {
                                     lg: '18px',
                                 },
                             }} variant="h4">
-                                {` Peşin ödenen masraflar = ${prepaidExpenses}`}
-                            </Typography>
-                        )}
-
-                        {interestPayableOnLoans !== null && (
-                            <Typography sx={{
-                                fontWeight: '500', fontSize: {
-                                    xs: '14px',
-                                    sm: '14px',
-                                    md: '16px',
-                                    lg: '18px',
-                                },
-                            }} variant="h4">
-                                {` Ödenecek kredi faizleri =  ${interestPayableOnLoans}`}
-                            </Typography>
-                        )}
-
-                        {taxesOnLoanInterestPayable !== null && (
-                            <Typography sx={{
-                                fontWeight: '500', fontSize: {
-                                    xs: '14px',
-                                    sm: '14px',
-                                    md: '16px',
-                                    lg: '18px',
-                                },
-                            }} variant="h4">
-                                {` Ödenecek kredi faizi vergileri =  ${taxesOnLoanInterestPayable}`}
+                                {` Peşin Ödenen Masraflar = ${prepaidExpenses}`}
                             </Typography>
                         )}
 
@@ -573,9 +547,37 @@ function Calculate() {
                                     lg: '18px',
                                 },
                             }} variant="h4">
-                                {` Kredi blokesine ilişkin faiz maliyeti =  ${interestCostRelatedToLoanBlockage}`}
+                                {` Blokaj Maliyeti =  ${interestCostRelatedToLoanBlockage}`}
                             </Typography>
                         )}
+
+                        {interestPayableOnLoans !== null && (
+                            <Typography sx={{
+                                fontWeight: '500', fontSize: {
+                                    xs: '14px',
+                                    sm: '14px',
+                                    md: '16px',
+                                    lg: '18px',
+                                },
+                            }} variant="h4">
+                                {` Faiz =  ${interestPayableOnLoans}`}
+                            </Typography>
+                        )}
+
+                        {taxesOnLoanInterestPayable !== null && (
+                            <Typography sx={{
+                                fontWeight: '500', fontSize: {
+                                    xs: '14px',
+                                    sm: '14px',
+                                    md: '16px',
+                                    lg: '18px',
+                                },
+                            }} variant="h4">
+                                {` Faizi Vergileri =  ${taxesOnLoanInterestPayable}`}
+                            </Typography>
+                        )}
+
+
 
                         {totalCost !== null && (
                             <Typography sx={{
@@ -586,7 +588,7 @@ function Calculate() {
                                     lg: '18px',
                                 },
                             }} variant="h4">
-                                {` Toplam maliyet =  ${totalCost}`}
+                                {` TOPLAM MALİYET =  ${totalCost}`}
                             </Typography>
                         )}
 
@@ -599,7 +601,7 @@ function Calculate() {
                                     lg: '18px',
                                 },
                             }} variant="h4">
-                                {`  Aylık maliyet -ivo =  ${monthlyCostIvo}`}
+                                {` Kredinin Maliyeti - Aylık =  ${monthlyCostIvo}`}
                             </Typography>
                         )}
 
@@ -612,7 +614,7 @@ function Calculate() {
                                     lg: '18px',
                                 },
                             }} variant="h4">
-                                {`  Yıllık bileşik maliyet -ivo  = ${annualCompoundCostIvo}`}
+                                {` Kredinin Maliyeti - Yıllık Bileşik  = ${annualCompoundCostIvo}`}
                             </Typography>
                         )}
                     </Box>
