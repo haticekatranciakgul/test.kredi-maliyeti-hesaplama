@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
@@ -14,8 +14,8 @@ import CssBaseline from "@mui/material/CssBaseline";
 import { ColorModeContext } from "../theme";
 import { setBlockData } from "../Redux/slices/blockSlice";
 
-import { setInitial } from "../Redux/slices/blockSlice"; 
-
+import { setInitial } from "../Redux/slices/blockSlice";
+import { handleFormattedChange } from '../utils';
 
 export default function FormDialog() {
     const dispatch = useDispatch();
@@ -24,11 +24,31 @@ export default function FormDialog() {
     const initial = blockData.initial;
 
 
-   // Local state
-   const [block, setBlock] = useState(blockData.block || 0);
-   const [blockAmount, setBlockAmount] = useState(blockData.block_amount || 0);
+    // Local state
+    const [block, setBlock] = useState(blockData.block || "");
+    const [blockAmount, setBlockAmount] = useState("");
+    const [rawBlockAmount, setRawBlockAmount] = useState("0");
 
-
+    useEffect(() => {
+        if (block !== "" && initial) {
+          // Convert initial to string and ensure it has the correct format
+          let initialString = initial.toString();
+          
+          // If the initial value doesn't have a decimal point, add one
+          if (!initialString.includes('.')) {
+            initialString += '.00';
+          }
+          
+          // Convert from number format (with dot) to string format (with comma)
+          initialString = initialString.replace('.', ',');
+          
+          // Format it using your utility function
+          handleFormattedChange(initialString, setBlockAmount, setRawBlockAmount);
+        } else {
+          setBlockAmount("");
+          setRawBlockAmount("0");
+        }
+      }, [block, initial]);
 
     const theme = useTheme();
     const colorMode = useContext(ColorModeContext);
@@ -37,44 +57,54 @@ export default function FormDialog() {
         dispatch(closeModal());
     };
 
+    // Modify the block change handler to just update the block value
     const handleBlockChange = (e) => {
         const value = e.target.value;
         if (/^\d*$/.test(value) && (value === "" || parseInt(value) <= 99)) {
             setBlock(value);
-            if (value !== "" && initial !== null) {
-                setBlockAmount(initial.toString());
-            } else {
-                setBlockAmount("");
-            }
+            // The useEffect will handle updating blockAmount
         }
     };
 
+    // const handleBlockChange = (e) => {
+    //     const value = e.target.value;
+    //     if (/^\d*$/.test(value) && (value === "" || parseInt(value) <= 99)) {
+    //         setBlock(value);
+    //         if (value !== "" && initial !== null) {
+    //             setBlockAmount(initial.toString());
+    //         } else {
+    //             setBlockAmount("");
+    //         }
+    //     }
+    // };
+
     const handleBlockAmountChange = (e) => {
-        const value = e.target.value;
-        if (/^\d*\.?\d*$/.test(value)) {
-            if (initial === null || block === "" || parseFloat(value) <= parseFloat(initial || 0)) {
-                setBlockAmount(value);
+        // Format the input value
+        handleFormattedChange(e.target.value, setBlockAmount, setRawBlockAmount);
 
-            }
-        }    };
-
+        // Validate that rawBlockAmount is not greater than initial
+        if (initial && parseFloat(rawBlockAmount) > initial) {
+            // If it exceeds initial, reset to initial value
+            handleFormattedChange(initial.toString(), setBlockAmount, setRawBlockAmount);
+        }
+    };
 
 
     const handleSave = () => {
         dispatch(setInitial(initial)); // Redux'a initial değerini doğru kaydet
-    
+
         dispatch(setBlockData({
             block: parseFloat(block) || 0,
-            block_amount: parseFloat(blockAmount) || 0,       
-         }));
-    
+            block_amount: parseFloat(blockAmount) || 0,
+        }));
+
         try {
             handleClose();
         } catch (error) {
             console.error("Error closing modal", error);
         }
     };
-    
+
 
     return (
         <ColorModeContext.Provider value={colorMode}>
@@ -98,8 +128,8 @@ export default function FormDialog() {
                             *Kullandırım sonrası kredi tutarının tamamının veya bir kısmının bir süre bankada tutulması şartı varsa buraya giriş yapın.
                         </DialogContentText> */}
 
-                        <Grid container spacing={1} columns={10}  sx={{marginBottom: '2%', marginTop: "2%"}}>
-                            
+                        <Grid container spacing={1} columns={10} sx={{ marginBottom: '2%', marginTop: "2%" }}>
+
                             <Grid item md={5}>
                                 <TextField
                                     required
