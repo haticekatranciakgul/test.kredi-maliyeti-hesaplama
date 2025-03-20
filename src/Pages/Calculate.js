@@ -155,7 +155,7 @@ function Calculate() {
         try {
             const credits = generatedRows.map((row) => parseFloat(row.value2.replace(/\./g, "").replace(",", ".")) || 0);
             const newBlock = block ? parseFloat(block) : 0;
-            const newBlockAmount = blockAmount ? rawBlockAmount : 0;
+            const newBlockAmount = parseFloat(rawBlockAmount) || 0;
 
 
             const pureExpenses = expenses.map((expense) => ({
