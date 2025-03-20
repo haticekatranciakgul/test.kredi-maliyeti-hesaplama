@@ -91,7 +91,7 @@ export default function FormDialog() {
 
 
     const handleSave = () => {
-        dispatch(setInitial(initial)); // Redux'a initial değerini doğru kaydet
+        dispatch(setInitial(initial));
 
         dispatch(setBlockData({
             block: parseFloat(block) || 0,
