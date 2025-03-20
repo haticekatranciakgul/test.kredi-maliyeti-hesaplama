@@ -87,6 +87,7 @@ export default function FormDialog() {
             // If it exceeds initial, reset to initial value
             handleFormattedChange(initial.toString(), setBlockAmount, setRawBlockAmount);
         }
+        console.log(rawBlockAmount)
     };
 
 
@@ -96,7 +97,9 @@ export default function FormDialog() {
         dispatch(setBlockData({
             block: parseFloat(block) || 0,
             block_amount: parseFloat(blockAmount) || 0,
+            raw_block_amount: rawBlockAmount,
         }));
+        console.log("Kaydedilen rawBlockAmount:", rawBlockAmount);
 
         try {
             handleClose();

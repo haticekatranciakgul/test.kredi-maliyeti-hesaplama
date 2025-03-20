@@ -3,7 +3,8 @@ import { createSlice } from '@reduxjs/toolkit';
 const initialState = {
     block: 0, 
     block_amount: 0,
-    initial: null
+    initial: null,
+    raw_block_amount: "",
 };
 
 const blockSlice = createSlice({
@@ -13,6 +14,8 @@ const blockSlice = createSlice({
         setBlockData: (state, action) => {
             state.block = action.payload.block;
             state.block_amount = action.payload.block_amount;
+            state.raw_block_amount = action.payload.raw_block_amount; 
+
         },
         setInitial: (state, action) => {
             state.initial = action.payload;

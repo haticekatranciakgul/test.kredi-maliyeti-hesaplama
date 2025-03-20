@@ -66,6 +66,8 @@ function Calculate() {
     const taxes = useSelector((state) => state.taxes.taxes);
     const { isOpen, modalType } = useSelector((state) => state.modal);
     const blockData = useSelector(selectBlockData);
+    const rawBlockAmount = blockData.raw_block_amount;
+
     const irrValue = useSelector((state) => state.irr.irrValue);
 
     const prepaidExpenses = useSelector((state) => state.costs.prepaidExpenses);
@@ -153,7 +155,7 @@ function Calculate() {
         try {
             const credits = generatedRows.map((row) => parseFloat(row.value2.replace(/\./g, "").replace(",", ".")) || 0);
             const newBlock = block ? parseFloat(block) : 0;
-            const newBlockAmount = blockAmount ? parseFloat(blockAmount) : 0;
+            const newBlockAmount = blockAmount ? rawBlockAmount : 0;
 
 
             const pureExpenses = expenses.map((expense) => ({
