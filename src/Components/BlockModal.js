@@ -5,7 +5,6 @@ import TextField from '@mui/material/TextField';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import { closeModal } from '../Redux/slices/modalSlice';
 import Grid from "@mui/material/Grid";
@@ -31,18 +30,14 @@ export default function FormDialog() {
 
     useEffect(() => {
         if (block !== "" && initial) {
-          // Convert initial to string and ensure it has the correct format
           let initialString = initial.toString();
           
-          // If the initial value doesn't have a decimal point, add one
           if (!initialString.includes('.')) {
             initialString += '.00';
           }
           
-          // Convert from number format (with dot) to string format (with comma)
           initialString = initialString.replace('.', ',');
-          
-          // Format it using your utility function
+      
           handleFormattedChange(initialString, setBlockAmount, setRawBlockAmount);
         } else {
           setBlockAmount("");
@@ -57,34 +52,21 @@ export default function FormDialog() {
         dispatch(closeModal());
     };
 
-    // Modify the block change handler to just update the block value
     const handleBlockChange = (e) => {
         const value = e.target.value;
         if (/^\d*$/.test(value) && (value === "" || parseInt(value) <= 99)) {
             setBlock(value);
-            // The useEffect will handle updating blockAmount
+           
         }
     };
 
-    // const handleBlockChange = (e) => {
-    //     const value = e.target.value;
-    //     if (/^\d*$/.test(value) && (value === "" || parseInt(value) <= 99)) {
-    //         setBlock(value);
-    //         if (value !== "" && initial !== null) {
-    //             setBlockAmount(initial.toString());
-    //         } else {
-    //             setBlockAmount("");
-    //         }
-    //     }
-    // };
+
 
     const handleBlockAmountChange = (e) => {
-        // Format the input value
         handleFormattedChange(e.target.value, setBlockAmount, setRawBlockAmount);
 
-        // Validate that rawBlockAmount is not greater than initial
         if (initial && parseFloat(rawBlockAmount) > initial) {
-            // If it exceeds initial, reset to initial value
+      
             handleFormattedChange(initial.toString(), setBlockAmount, (prev) => prev);
         }
     };
@@ -96,7 +78,7 @@ export default function FormDialog() {
 
     const handleSave = () => {
 
-        let formattedRawBlockAmount = "0"; // Varsayılan olarak sıfır
+        let formattedRawBlockAmount = "0"; 
         handleFormattedChange(blockAmount, setBlockAmount, (value) => {
             formattedRawBlockAmount = value;
         });
@@ -160,7 +142,6 @@ export default function FormDialog() {
                             <Grid item md={5}>
                                 <TextField
                                     required
-                                    // label="Kredi tutarının blokede tutulacağı gün sayısı "
                                     label="Bloke Gün Sayısı"
                                     fullWidth
                                     variant="standard"
