@@ -41,12 +41,9 @@ export default function FormDialog() {
           
           // Convert from number format (with dot) to string format (with comma)
           initialString = initialString.replace('.', ',');
-          if (rawBlockAmount === "0") {
-            handleFormattedChange(initialString, setBlockAmount, setRawBlockAmount);
-        }
           
           // Format it using your utility function
-         // handleFormattedChange(initialString, setBlockAmount, setRawBlockAmount);
+          handleFormattedChange(initialString, setBlockAmount, setRawBlockAmount);
         } else {
           setBlockAmount("");
           setRawBlockAmount("0");
@@ -82,35 +79,36 @@ export default function FormDialog() {
     // };
 
     const handleBlockAmountChange = (e) => {
-        const value = e.target.value.replace(/\./g, "").replace(",", ".");
-        setRawBlockAmount(value);  // Doğrudan state'e set et
-        setBlockAmount(e.target.value); // Formatlı değeri set et
-    
-        if (initial && parseFloat(value) > initial) {
-            setRawBlockAmount(initial.toString());
-            setBlockAmount(initial.toString().replace('.', ','));
+        // Format the input value
+        handleFormattedChange(e.target.value, setBlockAmount, setRawBlockAmount);
+
+        // Validate that rawBlockAmount is not greater than initial
+        if (initial && parseFloat(rawBlockAmount) > initial) {
+            // If it exceeds initial, reset to initial value
+            handleFormattedChange(initial.toString(), setBlockAmount, (prev) => prev);
         }
     };
-    
     useEffect(() => {
-        if (rawBlockAmount !== "") {
-            setBlockAmount(rawBlockAmount.replace(/\B(?=(\d{3})+(?!\d))/g, "."));
+        if (blockAmount) {
+            handleFormattedChange(blockAmount, setBlockAmount, setRawBlockAmount);
         }
-    }, [rawBlockAmount]);
-    
+    }, [blockAmount]); 
 
     const handleSave = () => {
 
-        const newBlockAmount = parseFloat(rawBlockAmount) || 0;
+        let formattedRawBlockAmount = "0"; // Varsayılan olarak sıfır
+        handleFormattedChange(blockAmount, setBlockAmount, (value) => {
+            formattedRawBlockAmount = value;
+        });
     
         dispatch(setInitial(initial));
 
         dispatch(setBlockData({
             block: parseFloat(block) || 0,
             block_amount: parseFloat(blockAmount) || 0,
-            raw_block_amount: newBlockAmount,
+            raw_block_amount: formattedRawBlockAmount,
         }));
-        console.log("Kaydedilen rawBlockAmount:", newBlockAmount);
+        console.log("Kaydedilen rawBlockAmount:", formattedRawBlockAmount);
 
         try {
             handleClose();
