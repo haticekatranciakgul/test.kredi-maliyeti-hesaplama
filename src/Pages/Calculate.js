@@ -4,7 +4,6 @@ import Grid from "@mui/material/Grid";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import AddIcon from "@mui/icons-material/Add";
-import DeleteIcon from "@mui/icons-material/Delete";
 import Typography from "@mui/material/Typography";
 import Divider from '@mui/material/Divider';
 import CreateTable from "../Components/CreateTable";
@@ -149,7 +148,6 @@ function Calculate() {
                 title: expense.title,
                 amount: parseFloat(expense.rawAmount) || 0,
             }));
-
             const payload = {
                 initial: initial,
                 credits: credits,
@@ -160,6 +158,7 @@ function Calculate() {
                 block_amount: newBlockAmount,
                 taxes: taxes,
             };
+           // console.log(payload)
             dispatch(setBlockData({ block: newBlock, block_amount: newBlockAmount }));
             const tableResponse = await createTable(payload);
 
@@ -173,7 +172,7 @@ function Calculate() {
                     column4: row.fields.principal_amount,
                     column5: row.fields.remaining_principal_amount,
                 }));
-
+              
 
                 dispatch(setPrepaidExpenses(tableResponse.prepaid_expenses));
                 dispatch(setInterestPayableOnLoans(tableResponse.interest_payable_on_loans));
@@ -187,6 +186,7 @@ function Calculate() {
                 dispatch(setIrrValue(tableResponse.irr));
 
                 showSnackbar("İşlem Başarılı", "success");
+            
 
             } else {
                 showSnackbar("API Yanıt Hatası", "warning");

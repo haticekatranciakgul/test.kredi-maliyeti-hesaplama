@@ -14,6 +14,7 @@ import { ThemeProvider, useTheme } from "@mui/material";
 import CssBaseline from "@mui/material/CssBaseline";
 import { ColorModeContext } from "../theme";
 import { setTaxes } from '../Redux/slices/taxesSlice';
+import InputAdornment from '@mui/material/InputAdornment';
 
 
 
@@ -104,7 +105,9 @@ export default function FormDialog() {
                                             onChange={(e) => handleInputChange(index, 'amount', e.target.value)}
                                             type="number"
                                             placeholder={row.amount === '' ? '0' : ''}
-
+                                            InputProps={{
+                                                startAdornment: <InputAdornment position="start">%</InputAdornment>,
+                                            }}
                                         />
                                     </Grid>
                                 </Grid>
