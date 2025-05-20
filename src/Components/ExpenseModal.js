@@ -86,7 +86,7 @@ export default function FormDialog() {
                 }}>
                     <DialogTitle sx={{
                         backgroundColor: (theme) => theme.palette.mode === 'light' ? '#4d6eb1ad' : '#101624',
-                    }}>Gönüllü olarak ödemediğiniz ve havaya gittiğini düşündüğünüz masrafları buraya girin.</DialogTitle>
+                    }}>Gönüllü olarak ödemediğiniz ve havaya gittiğini düşündüğünüz masrafları buraya girin</DialogTitle>
                     <DialogContent sx={{
                         backgroundColor: (theme) => theme.palette.mode === 'light' ? '#d3daee' : '#1F2A40',
                     }}>
@@ -133,7 +133,7 @@ export default function FormDialog() {
                             </Grid>
                         </Grid>
                         <DialogContentText sx={{ marginBottom: '1%', marginTop: "1%", fontSize: '10px' }}>
-                            *Farklı para biriminden olan ödemeleri güncel kurdan kredi ile aynı para birimine çevirip girin.
+                            *Farklı para biriminden olan ödemeleri güncel kurdan kredi ile aynı para birimine çevirip girin
                         </DialogContentText>
                     </DialogContent>
                     <DialogActions sx={{
