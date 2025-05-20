@@ -499,35 +499,21 @@ function Calculate() {
 
             <Grid item xs={12} sx={{ alignItems: "center", display: "flex", justifyContent: "center" }}>
 
-                <Box sx={{ display: 'flex', justifyContent: 'center', paddingTop: '1%', paddingBottom: '1%' }}>
+                {irrValue !== null && (
 
-                    <Box sx={{
-                        flexDirection: 'column',
-                        alignItems: 'center',
-                        display: 'flex', justifyContent: 'center', flexGrow: 1, p: 5, backgroundColor: 'transparent', borderRadius: 10, marginTop: '5%',
-                        boxShadow: '1px 1px 185px -23px rgb(78, 142, 225)',
-                        webkitBoxShadow: '1px 1px 185px -23px rgba(62, 113, 240, 0.43)',
-                        mozBoxShadow: '1px 1px 185px -23px rgba(101, 150, 254, 0.43)',
+                    <Box sx={{ display: 'flex', justifyContent: 'center', paddingTop: '1%', paddingBottom: '1%' }}>
 
-                    }}>
+                        <Box sx={{
+                            flexDirection: 'column',
+                            alignItems: 'center',
+                            display: 'flex', justifyContent: 'center', flexGrow: 1, p: 5, backgroundColor: 'transparent', borderRadius: 10, marginTop: '5%',
+                            boxShadow: '1px 1px 185px -23px rgb(78, 142, 225)',
+                            webkitBoxShadow: '1px 1px 185px -23px rgba(62, 113, 240, 0.43)',
+                            mozBoxShadow: '1px 1px 185px -23px rgba(101, 150, 254, 0.43)',
+
+                        }}>
 
 
-                        <Typography sx={{
-                            fontWeight: '500', fontSize: {
-                                xs: '14px',
-                                sm: '14px',
-                                md: '16px',
-                                lg: '18px',
-                            },
-                        }} variant="h4">
-                            {irrValue !== null
-                                ? `  Kredi Maliyeti =  ${irrValue}`
-                                : " Kredi maliyeti henüz hesaplanmadı"
-                            }
-
-                        </Typography>
-
-                        {prepaidExpenses !== null && (
                             <Typography sx={{
                                 fontWeight: '500', fontSize: {
                                     xs: '14px',
@@ -536,91 +522,111 @@ function Calculate() {
                                     lg: '18px',
                                 },
                             }} variant="h4">
-                                {` Peşin Ödenen Masraflar = ${prepaidExpenses}`}
+
+                                {`Kredi Maliyeti = ${irrValue}`}
+
                             </Typography>
-                        )}
 
-                        {interestCostRelatedToLoanBlockage !== null && (
-                            <Typography sx={{
-                                fontWeight: '500', fontSize: {
-                                    xs: '14px',
-                                    sm: '14px',
-                                    md: '16px',
-                                    lg: '18px',
-                                },
-                            }} variant="h4">
-                                {` Blokaj Maliyeti =  ${interestCostRelatedToLoanBlockage}`}
-                            </Typography>
-                        )}
+                            {prepaidExpenses !== null && (
+                                <Typography sx={{
+                                    fontWeight: '500', fontSize: {
+                                        xs: '14px',
+                                        sm: '14px',
+                                        md: '16px',
+                                        lg: '18px',
+                                    },
+                                }} variant="h4">
+                                    {` Peşin Ödenen Masraflar = ${prepaidExpenses}`}
+                                </Typography>
+                            )}
 
-                        {interestPayableOnLoans !== null && (
-                            <Typography sx={{
-                                fontWeight: '500', fontSize: {
-                                    xs: '14px',
-                                    sm: '14px',
-                                    md: '16px',
-                                    lg: '18px',
-                                },
-                            }} variant="h4">
-                                {` Faiz =  ${interestPayableOnLoans}`}
-                            </Typography>
-                        )}
+                            {interestCostRelatedToLoanBlockage !== null && (
+                                <Typography sx={{
+                                    fontWeight: '500', fontSize: {
+                                        xs: '14px',
+                                        sm: '14px',
+                                        md: '16px',
+                                        lg: '18px',
+                                    },
+                                }} variant="h4">
+                                    {` Blokaj Maliyeti =  ${interestCostRelatedToLoanBlockage}`}
+                                </Typography>
+                            )}
 
-                        {taxesOnLoanInterestPayable !== null && (
-                            <Typography sx={{
-                                fontWeight: '500', fontSize: {
-                                    xs: '14px',
-                                    sm: '14px',
-                                    md: '16px',
-                                    lg: '18px',
-                                },
-                            }} variant="h4">
-                                {` Faizi Vergileri =  ${taxesOnLoanInterestPayable}`}
-                            </Typography>
-                        )}
+                            {interestPayableOnLoans !== null && (
+                                <Typography sx={{
+                                    fontWeight: '500', fontSize: {
+                                        xs: '14px',
+                                        sm: '14px',
+                                        md: '16px',
+                                        lg: '18px',
+                                    },
+                                }} variant="h4">
+                                    {` Faiz =  ${interestPayableOnLoans}`}
+                                </Typography>
+                            )}
+
+                            {taxesOnLoanInterestPayable !== null && (
+                                <Typography sx={{
+                                    fontWeight: '500', fontSize: {
+                                        xs: '14px',
+                                        sm: '14px',
+                                        md: '16px',
+                                        lg: '18px',
+                                    },
+                                }} variant="h4">
+                                    {` Faizi Vergileri =  ${taxesOnLoanInterestPayable}`}
+                                </Typography>
+                            )}
 
 
 
-                        {totalCost !== null && (
-                            <Typography sx={{
-                                fontWeight: '500', fontSize: {
-                                    xs: '14px',
-                                    sm: '14px',
-                                    md: '16px',
-                                    lg: '18px',
-                                },
-                            }} variant="h4">
-                                {` TOPLAM MALİYET =  ${totalCost}`}
-                            </Typography>
-                        )}
+                            {totalCost !== null && (
+                                <Typography sx={{
+                                    fontWeight: '500', fontSize: {
+                                        xs: '14px',
+                                        sm: '14px',
+                                        md: '16px',
+                                        lg: '18px',
+                                    },
+                                }} variant="h4">
+                                    {` TOPLAM MALİYET =  ${totalCost}`}
+                                </Typography>
+                            )}
 
-                        {monthlyCostIvo !== null && (
-                            <Typography sx={{
-                                fontWeight: '500', fontSize: {
-                                    xs: '14px',
-                                    sm: '14px',
-                                    md: '16px',
-                                    lg: '18px',
-                                },
-                            }} variant="h4">
-                                {` Kredinin Maliyeti - Aylık =  ${monthlyCostIvo}`}
-                            </Typography>
-                        )}
+                            {monthlyCostIvo !== null && (
+                                <Typography sx={{
+                                    fontWeight: '500', fontSize: {
+                                        xs: '14px',
+                                        sm: '14px',
+                                        md: '16px',
+                                        lg: '18px',
+                                    },
+                                }} variant="h4">
+                                    {` Kredinin Maliyeti - Aylık =  ${monthlyCostIvo}`}
+                                </Typography>
+                            )}
 
-                        {annualCompoundCostIvo !== null && (
-                            <Typography sx={{
-                                fontWeight: '500', fontSize: {
-                                    xs: '14px',
-                                    sm: '14px',
-                                    md: '16px',
-                                    lg: '18px',
-                                },
-                            }} variant="h4">
-                                {` Kredinin Maliyeti - Yıllık Bileşik  = ${annualCompoundCostIvo}`}
-                            </Typography>
-                        )}
+                            {annualCompoundCostIvo !== null && (
+                                <Typography sx={{
+                                    fontWeight: '500', fontSize: {
+                                        xs: '14px',
+                                        sm: '14px',
+                                        md: '16px',
+                                        lg: '18px',
+                                    },
+                                }} variant="h4">
+                                    {` Kredinin Maliyeti - Yıllık Bileşik  = ${annualCompoundCostIvo}`}
+                                </Typography>
+                            )}
+                        </Box>
                     </Box>
-                </Box>
+
+
+
+                )}
+
+
             </Grid>
             <CreateTable tableData={tableData} />
         </>
