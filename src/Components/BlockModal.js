@@ -123,7 +123,6 @@ export default function FormDialog() {
                         <Grid container spacing={1} columns={10} sx={{ marginBottom: '2%', marginTop: "2%" }}>
                             <Grid item md={5}>
                                 <TextField
-                                    required
                                     label="Bloke Gün Sayısı"
                                     fullWidth
                                     variant="standard"
@@ -139,7 +138,6 @@ export default function FormDialog() {
                             </Grid>
                             <Grid item md={5}>
                                 <TextField
-                                    required
                                     // label="Blokede kalacak kredi tutarı "
                                     label="Bloke Edilecek Kredi Tutarı"
                                     fullWidth
