@@ -30,20 +30,20 @@ export default function FormDialog() {
 
     useEffect(() => {
         if (block !== "" && initial) {
-          let initialString = initial.toString();
-          
-          if (!initialString.includes('.')) {
-            initialString += '.00';
-          }
-          
-          initialString = initialString.replace('.', ',');
-      
-          handleFormattedChange(initialString, setBlockAmount, setRawBlockAmount);
+            let initialString = initial.toString();
+
+            if (!initialString.includes('.')) {
+                initialString += '.00';
+            }
+
+            initialString = initialString.replace('.', ',');
+
+            handleFormattedChange(initialString, setBlockAmount, setRawBlockAmount);
         } else {
-          setBlockAmount("");
-          setRawBlockAmount("0");
+            setBlockAmount("");
+            setRawBlockAmount("0");
         }
-      }, [block, initial]);
+    }, [block, initial]);
 
     const theme = useTheme();
     const colorMode = useContext(ColorModeContext);
@@ -56,7 +56,7 @@ export default function FormDialog() {
         const value = e.target.value;
         if (/^\d*$/.test(value) && (value === "" || parseInt(value) <= 99)) {
             setBlock(value);
-           
+
         }
     };
 
@@ -66,7 +66,7 @@ export default function FormDialog() {
         handleFormattedChange(e.target.value, setBlockAmount, setRawBlockAmount);
 
         if (initial && parseFloat(rawBlockAmount) > initial) {
-      
+
             handleFormattedChange(initial.toString(), setBlockAmount, (prev) => prev);
         }
     };
@@ -74,15 +74,15 @@ export default function FormDialog() {
         if (blockAmount) {
             handleFormattedChange(blockAmount, setBlockAmount, setRawBlockAmount);
         }
-    }, [blockAmount]); 
+    }, [blockAmount]);
 
     const handleSave = () => {
 
-        let formattedRawBlockAmount = "0"; 
+        let formattedRawBlockAmount = "0";
         handleFormattedChange(blockAmount, setBlockAmount, (value) => {
             formattedRawBlockAmount = value;
         });
-    
+
         dispatch(setInitial(initial));
 
         dispatch(setBlockData({
@@ -118,10 +118,25 @@ export default function FormDialog() {
                     <DialogContent sx={{
                         backgroundColor: (theme) => theme.palette.mode === 'light' ? '#d3daee' : '#1F2A40',
                     }}>
-                       
+
 
                         <Grid container spacing={1} columns={10} sx={{ marginBottom: '2%', marginTop: "2%" }}>
-
+                            <Grid item md={5}>
+                                <TextField
+                                    required
+                                    label="Bloke Gün Sayısı"
+                                    fullWidth
+                                    variant="standard"
+                                    type="text"
+                                    value={block}
+                                    onChange={handleBlockChange}
+                                    inputProps={{
+                                        inputMode: 'numeric',
+                                        pattern: '\\d*',
+                                        max: 99
+                                    }}
+                                />
+                            </Grid>
                             <Grid item md={5}>
                                 <TextField
                                     required
@@ -136,22 +151,6 @@ export default function FormDialog() {
                                         inputMode: 'decimal',
                                         pattern: '[0-9]*[.,]?[0-9]*',
                                         step: 'any'
-                                    }}
-                                />
-                            </Grid>
-                            <Grid item md={5}>
-                                <TextField
-                                    required
-                                    label="Bloke Gün Sayısı"
-                                    fullWidth
-                                    variant="standard"
-                                    type="text"
-                                    value={block}
-                                    onChange={handleBlockChange}
-                                    inputProps={{
-                                        inputMode: 'numeric',
-                                        pattern: '\\d*',
-                                        max: 99
                                     }}
                                 />
                             </Grid>
