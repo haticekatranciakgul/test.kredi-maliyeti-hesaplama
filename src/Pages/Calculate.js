@@ -103,7 +103,7 @@ function Calculate() {
 
     const handleInputCountChange = (e) => {
         const value = e.target.value;
-        if (/^\d*$/.test(value) && (value === "" || parseInt(value) <= 99)) {
+        if (/^\d*$/.test(value) && (value === "" || parseInt(value) <= 240)) {
             setInputCount(value);
         }
     };
