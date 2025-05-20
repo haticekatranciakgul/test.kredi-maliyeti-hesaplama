@@ -262,7 +262,7 @@ function Calculate() {
             }}>
                 <Grid container spacing={2}>
                     <Grid item xs={12} sx={{ alignItems: "center", display: "flex", justifyContent: "center" }}>
-                        <Box sx={{ display: 'flex', justifyContent: 'center', }}>
+                        <Box sx={{ display: 'flex', justifyContent: 'center', fontWeight: 'bold' }}>
                             HER ŞEY DAHİL YILLIK BİLEŞİK KREDİ MALİYETİNİZİ KOLAYCA HESAPLAYIN! YANILMAYIN!
 
                         </Box>
