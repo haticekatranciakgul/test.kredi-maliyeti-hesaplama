@@ -122,9 +122,7 @@ export default function FormDialog() {
                                 </Button>
                             </Grid>
                         </Grid>
-                        <DialogContentText sx={{ marginBottom: '2%', marginTop: "2%", fontSize: '10px' }}>
-                            *Oranlar farklı ise oranları düzeltin
-                        </DialogContentText>
+                       
                     </DialogContent>
                     <DialogActions sx={{
                         backgroundColor: (theme) => theme.palette.mode === 'light' ? '#4d6eb1ad' : '#101624',
