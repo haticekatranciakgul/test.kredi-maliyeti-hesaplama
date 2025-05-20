@@ -66,21 +66,21 @@ export default function AppAppBar() {
                 color="inherit" size="small">
                 <Link to={`/hesapla`} style={{ textDecoration: 'none', color: 'inherit' }}>KREDİ MALİYETİ HESAPLAMA</Link>
               </Button>
-              <Button variant="text"
+             {/*  <Button variant="text"
                 sx={{ color: theme => theme.palette.mode === 'dark' ? 'white' : 'black' }}
                 size="small">
                 <Link to={`/hakkinda`} style={{ textDecoration: 'none', color: 'inherit' }}>HAKKINDA</Link>
-              </Button>
-              <Button variant="text"
+              </Button> */}
+              {/* <Button variant="text"
                 sx={{ color: theme => theme.palette.mode === 'dark' ? 'white' : 'black' }}
                 color="inherit" size="small" >
                 <Link to={`/sss`} style={{ textDecoration: 'none', color: 'inherit' }}>Sss</Link>
-              </Button>
-              <Button variant="text"
+              </Button> */}
+             {/*  <Button variant="text"
                 sx={{ color: theme => theme.palette.mode === 'dark' ? 'white' : 'black' }}
                 color="inherit" size="small" >
                 <Link to={`/iletisim`} style={{ textDecoration: 'none', color: 'inherit' }}>İLETİŞİM</Link>
-              </Button>
+              </Button> */}
             </Box>
           </Box>
           <Box
