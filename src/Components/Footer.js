@@ -83,71 +83,12 @@ export default function Footer() {
               minWidth: { xs: '100%', sm: '60%' },
             }}
           >
-            <Box sx={{ width: { xs: '100%', sm: '60%' } }}>
-
-              <Typography variant="body2" gutterBottom sx={{ fontWeight: 600, mt: 2 }}>
-                BİZE ULAŞIN
-              </Typography>
-              <Typography variant="body2" sx={{ color: 'text.secondary', mb: 2 }}>
-                HAFTALIK BÜLTENİMİZE ABONE OLUN
-              </Typography>
-              <InputLabel htmlFor="email-newsletter">Email</InputLabel>
-              <Stack direction="row" spacing={1} useFlexGap>
-                <TextField
-                  id="email-newsletter"
-                  hiddenLabel
-                  size="small"
-                  variant="outlined"
-                  fullWidth
-                  aria-label="Enter your email address"
-                  placeholder="Lütfen email adresinizi girin"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  sx={{ width: '250px' }}
-                />
-                <Button
-                  variant="contained"
-                  color="primary"
-                  size="small"
-                  sx={{ flexShrink: 0 }}
-                  onClick={handleSubscribe}
-                  disabled={loading}
-                >
-                  Abone Ol
-                </Button>
-              </Stack>
-              
-
-            </Box>
-
             <Link color="text.secondary" variant="body2" target="_blank" href={`https://www.linkedin.com/in/h%C3%BCseyin-ba%C4%9Fr%C4%B1yan%C4%B1k-51bb6165/?originalSubdomain=tr`}>
               <Typography variant="body2" sx={{ color: 'text.secondary', mb: 2 }}>
                 Bu sayfanın geliştirilmesi ile ilgili düşüncelerinizi iletin.
               </Typography>
             </Link>
           </Box>
-          <Box
-            sx={{
-              display: { xs: 'none', sm: 'flex' },
-              flexDirection: 'column',
-              gap: 1,
-            }}
-          >
-            <Typography variant="body2" sx={{ fontWeight: 'medium' }}>
-              Ürün
-            </Typography>
-            <Link color="text.secondary" variant="body2" href="hakkinda">
-              Özellikler
-            </Link>
-            <Link color="text.secondary" variant="body2" href="/iletisim">
-              Görüşler
-            </Link>
-            <Link color="text.secondary" variant="body2" href={`/sss`}>
-              Sıkça Sorulan Sorular
-            </Link>
-          </Box>
-
-
         </Box>
         <Box
           sx={{
