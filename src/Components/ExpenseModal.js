@@ -132,7 +132,7 @@ export default function FormDialog() {
                                 </Button>
                             </Grid>
                         </Grid>
-                        <DialogContentText sx={{ marginBottom: '1%', marginTop: "1%", fontSize: '10px' }}>
+                        <DialogContentText sx={{ marginBottom: '1%', marginTop: "1%", fontSize: '13px' }}>
                             *Farklı para biriminden olan ödemeleri güncel kurdan kredi ile aynı para birimine çevirip girin
                         </DialogContentText>
                     </DialogContent>
