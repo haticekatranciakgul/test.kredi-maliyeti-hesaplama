@@ -1,6 +1,6 @@
 import React, { useContext} from "react";
 import CssBaseline from "@mui/material/CssBaseline";
-import { ColorModeContext } from "../constants/theme";
+import { ColorModeContext } from "../theme";
 import { ThemeProvider, useTheme } from "@mui/material";
 import Calculate from "./Calculate";
 

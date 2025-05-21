@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { subscribeEmail } from '../redux/slices/subscriptionSlice';
+import { subscribeEmail } from '../Redux/slices/subscriptionSlice';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';

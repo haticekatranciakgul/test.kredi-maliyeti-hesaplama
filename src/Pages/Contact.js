@@ -10,9 +10,9 @@ import Button from "@mui/material/Button";
 import { useDispatch, useSelector } from 'react-redux';
 import { useForm, Controller } from 'react-hook-form';
 import { FormHelperText } from '@mui/material';
-import { submitForm } from '../redux/slices/formSlice';
-import TextArea from '../components/TextArea';
-import { setSnackbarOpen } from "../redux/slices/formSlice"; 
+import { submitForm } from '../Redux/slices/formSlice';
+import TextArea from '../Components/TextArea';
+import { setSnackbarOpen } from "../Redux/slices/formSlice"; 
 import { Alert, Snackbar } from "@mui/material";
 import Slide from '@mui/material/Slide';
 

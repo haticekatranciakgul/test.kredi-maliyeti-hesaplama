@@ -1,9 +1,9 @@
 import React, { useContext } from "react";
 import CssBaseline from "@mui/material/CssBaseline";
-import { ColorModeContext } from "../constants/theme";
+import { ColorModeContext } from "../theme";
 import { ThemeProvider, useTheme } from "@mui/material";
-import Navbar from "../components/Navbar";
-import Footer from "../components/Footer";
+import Navbar from "../Components/Navbar";
+import Footer from "../Components/Footer";
 import Divider from "@mui/material/Divider";
 import ScrollToTop from "react-scroll-to-top";
 import Container from "@mui/material/Container";
