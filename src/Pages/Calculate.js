@@ -45,7 +45,7 @@ function Calculate() {
     const [creditsInput, setCreditsInput] = useState("");
     const [initialInput, setInitialInput] = useState("");
     const [initialError, setInitialError] = useState(false);
-    const [vadeError, setVadeError] = useState(false);
+    const [inputCountError, setInputCountError] = useState(false);
     const [odemeError, setOdemeError] = useState(false);
     const initial = useSelector((state) => state.block.initial);
     const [generatedRows, setGeneratedRows] = useState([]);
@@ -89,7 +89,7 @@ function Calculate() {
 
     const handleInputCountChange = (e) => {
         const value = e.target.value;
-        setVadeError(value === "");
+        setInputCountError(value === "");
         if (/^\d*$/.test(value) && (value === "" || parseInt(value) <= 240)) {
             setInputCount(value);
         }
@@ -136,7 +136,7 @@ function Calculate() {
     const handleSave = async () => {
         // Validate all required fields
         setInitialError(initialInput === "");
-        setVadeError(inputCount === "");
+        setInputCountError(inputCount === "");
         setOdemeError(creditsInput === "");
 
         try {
@@ -295,8 +295,8 @@ function Calculate() {
                                 <Grid item xs={12} sm={4} md={4} lg={4} xl={4}>
                                     <TextField fullWidth variant="standard" size="small"
                                         required
-                                        error={vadeError}
-                                        helperText={vadeError ? "Bu alan zorunludur" : ""}
+                                        error={inputCountError}
+                                        helperText={inputCountError ? "Bu alan zorunludur" : ""}
                                         label="VADE"
                                         value={inputCount}
                                         onChange={handleInputCountChange}
