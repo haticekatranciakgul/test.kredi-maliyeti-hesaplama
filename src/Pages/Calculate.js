@@ -32,7 +32,7 @@ import {
     setMonthlyCostIvo,
     setAnnualCompoundCostIvo
 } from '../Redux/slices/costSlice';
-import { handleFormattedChange } from '../utils'; 
+import { handleFormattedChange } from '../utils';
 
 
 function SlideTransition(props) {
@@ -158,7 +158,7 @@ function Calculate() {
                 block_amount: newBlockAmount,
                 taxes: taxes,
             };
-           // console.log(payload)
+            // console.log(payload)
             dispatch(setBlockData({ block: newBlock, block_amount: newBlockAmount }));
             const tableResponse = await createTable(payload);
 
@@ -172,7 +172,7 @@ function Calculate() {
                     column4: row.fields.principal_amount,
                     column5: row.fields.remaining_principal_amount,
                 }));
-              
+
 
                 dispatch(setPrepaidExpenses(tableResponse.prepaid_expenses));
                 dispatch(setInterestPayableOnLoans(tableResponse.interest_payable_on_loans));
@@ -186,7 +186,7 @@ function Calculate() {
                 dispatch(setIrrValue(tableResponse.irr));
 
                 showSnackbar("İşlem Başarılı", "success");
-            
+
 
             } else {
                 showSnackbar("API Yanıt Hatası", "warning");
@@ -262,9 +262,10 @@ function Calculate() {
                     </Grid>
 
                     <Grid container spacing={1} columns={12}>
-                        <Grid item xs={12} sm={12} md={4} >
+                        <Grid item xs={12} sm={12} md={8} >
                             <Grid container spacing={1} columns={12}>
-                                <Grid item xs={12} sm={4} md={4} lg={4} xl={4} >
+                                {/* Kredi Anapara */}
+                                <Grid item xs={12} sm={6} md={2} lg={2} xl={3} >
                                     <TextField fullWidth variant="standard" size="small"
                                         required
                                         error={initialError}
@@ -292,7 +293,67 @@ function Calculate() {
                                         }}
                                     />
                                 </Grid>
-                                <Grid item xs={12} sm={4} md={4} lg={4} xl={4}>
+                                {/*  PEŞİN MASRAFLAR */}
+                                <Grid item xs={12} sm={6} md={4} lg={4} xl={3}>
+                                    <Button
+                                        variant="contained"
+                                        startIcon={<AddIcon />}
+                                        fullWidth
+                                        size="large"
+                                        color="primary"
+                                        onClick={handleOpenExpenseModal}
+                                        sx={{
+                                            overflow: "hidden",
+                                            whiteSpace: "nowrap",
+                                            textOverflow: "ellipsis",
+                                        }}
+                                    >
+                                        PEŞİN MASRAFLAR
+                                    </Button>
+                                    {isOpen && modalType === "expense" && <ExpenseModal />}
+                                </Grid>
+                                {/* BLOKAJ */}
+                                <Grid item xs={12} sm={6} md={3} lg={3} xl={3}>
+
+                                    <Button
+                                        variant="contained"
+                                        startIcon={<AddIcon />}
+                                        fullWidth
+                                        size="large"
+                                        color="primary"
+                                        onClick={handleOpenBlockModal}
+
+                                    >
+                                        BLOKAJ
+                                    </Button>
+                                    {isOpen && modalType === "block" && <BlockModal />}
+                                </Grid>
+                                {/* VERGİ ORANLARI */}
+                                <Grid item xs={12} sm={6} md={3} lg={3} xl={3}>
+                                    <Button
+                                            variant="contained"
+                                            startIcon={<AddIcon />}
+                                            fullWidth
+                                            size="large"
+                                            color="primary"
+                                            onClick={handleOpenTaxesModal}
+                                            sx={{
+                                                overflow: "hidden",
+                                                whiteSpace: "nowrap",
+                                                textOverflow: "ellipsis",
+                                            }}
+
+                                        >
+                                            VERGİ ORANLARI
+                                        </Button>
+                                        {isOpen && modalType === "taxes" && <TaxModal />}
+                                </Grid>
+                            </Grid>
+                        </Grid>
+                        <Grid item xs={12} sm={12} md={4} >
+                            <Grid container spacing={1} columns={12}>
+                                {/* Vade */}
+                                <Grid item xs={6} sm={4} md={4} lg={4} xl={4} display="flex" justifyContent="flex-end">
                                     <TextField fullWidth variant="standard" size="small"
                                         required
                                         error={inputCountError}
@@ -320,11 +381,12 @@ function Calculate() {
                                         }}
                                     />
                                 </Grid>
-                                <Grid item xs={12} sm={4} md={4} lg={4} xl={4}>
+                                {/* Geri Ödemeler */}
+                                <Grid item xs={6} sm={4} md={4} lg={4} xl={4} display="flex" justifyContent="flex-end">
                                     <TextField fullWidth variant="standard" size="small"
                                         required
                                         error={creditsInputError}
-                                        helperText={creditsInputError ? "Bu alan zorunludur" : ""} 
+                                        helperText={creditsInputError ? "Bu alan zorunludur" : ""}
                                         label="GERİ ÖDEMELER"
                                         value={creditsInput}
                                         onChange={handleCreditsChange}
@@ -347,55 +409,7 @@ function Calculate() {
                                         }}
                                     />
                                 </Grid>
-                            </Grid>
-                        </Grid>
-                        <Grid item xs={12} sm={12} md={8} >
-                            <Grid container spacing={1} columns={12}>
-
-                                <Grid item xs={6} sm={3} md={3} lg={3} xl={3} display="flex" justifyContent="flex-end">
-                                    <Button
-                                        variant="contained"
-                                        startIcon={<AddIcon />}
-                                        fullWidth
-                                        size="large"
-                                        color="primary"
-                                        onClick={handleOpenExpenseModal}
-                                    >
-                                        PEŞİN MASRAFLAR
-                                    </Button>
-                                    {isOpen && modalType === "expense" && <ExpenseModal />}
-
-                                </Grid>
-                                <Grid item xs={6} sm={2} md={2} lg={2} xl={2} display="flex" justifyContent="flex-end">
-                                    <Button
-                                        variant="contained"
-                                        startIcon={<AddIcon />}
-                                        fullWidth
-                                        size="large"
-                                        color="primary"
-                                        onClick={handleOpenBlockModal}
-
-                                    >
-                                        BLOKAJ
-                                    </Button>
-                                    {isOpen && modalType === "block" && <BlockModal />}
-
-                                </Grid>
-                                <Grid item xs={6} sm={3} md={3} lg={3} xl={3} display="flex" justifyContent="flex-end">
-                                    <Button
-                                        variant="contained"
-                                        startIcon={<AddIcon />}
-                                        fullWidth
-                                        size="large"
-                                        color="primary"
-                                        onClick={handleOpenTaxesModal}
-
-                                    >
-                                        VERGİ ORANLARI
-                                    </Button>
-                                    {isOpen && modalType === "taxes" && <TaxModal />}
-
-                                </Grid>
+                                {/* Hesapla */}
                                 <Grid item xs={12} sm={4} md={4} lg={4} xl={4} display="flex" justifyContent="flex-end">
                                     <Button
                                         variant="contained"
@@ -421,12 +435,10 @@ function Calculate() {
                 {generatedRows.map((row, index) => (
                     <Grid container spacing={2} key={index} sx={{ marginTop: '10px' }}>
                         <Grid container spacing={1} columns={12}>
+                            <Grid item xs={12} sm={12} md={8} ></Grid>
                             <Grid item xs={12} sm={12} md={4} >
                                 <Grid container spacing={1} columns={12}>
-                                    <Grid item xs={12} sm={4} md={4} lg={4} xl={4}>
-
-
-                                    </Grid>
+                                    
                                     <Grid item xs={12} sm={4} md={4} lg={4} xl={4} sx={{ textAlign: 'center', marginTop: 'auto' }}>
 
                                         <Typography sx={{ fontSize: '17px', fontWeight: '500' }}>
@@ -450,31 +462,14 @@ function Calculate() {
                                             }}
                                         />
                                     </Grid>
+                                    <Grid item xs={12} sm={4} md={4} lg={4} xl={4}>
+
+
+                                    </Grid>
 
                                 </Grid>
                             </Grid>
-                            <Grid item xs={12} sm={6} md={6}>
-                                <Grid container spacing={1} columns={12}>
-                                    {/* <Grid item xs={12} sm={12} md={2} lg={2} xl={2} display="flex" justifyContent="flex-end">
-                                        <Button
-                                            variant="contained"
-                                            color="primary"
-                                            startIcon={<DeleteIcon />}
-                                            fullWidth
-                                            size="large"
-                                            onClick={() => handleDeleteRow(index)}
-                                        >
-                                            SİL
-                                        </Button>
-                                    </Grid> */}
-                                    <Grid item xs={12} sm={12} md={2} lg={2} xl={2} display="flex" justifyContent="flex-end">
-                                    </Grid>
-                                    <Grid item xs={12} sm={12} md={2} lg={2} xl={2} display="flex" justifyContent="flex-end">
-                                    </Grid>
-                                    <Grid item xs={12} sm={12} md={2} lg={2} xl={2} display="flex" justifyContent="flex-end">
-                                    </Grid>
-                                </Grid>
-                            </Grid>
+
                         </Grid>
                     </Grid>
                 ))}
