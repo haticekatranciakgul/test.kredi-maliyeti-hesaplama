@@ -71,6 +71,8 @@ function Calculate() {
     const [snackbarMessage, setSnackbarMessage] = useState("");
     const [snackbarSeverity, setSnackbarSeverity] = useState("error");
 
+    const [totalRepayment, setTotalRepayment] = useState(0);
+
     const handleSnackbarClose = () => {
         setSnackbarOpen(false);
     };
@@ -202,6 +204,14 @@ function Calculate() {
             setBlockAmount(blockData.block_amount || 0);
         }
     }, [blockData]);
+
+    useEffect(() => {
+        const total = generatedRows.reduce((sum, row) => {
+            const value = parseFloat(row.value2.replace(/\./g, "").replace(",", ".")) || 0;
+            return sum + value;
+        }, 0);
+        setTotalRepayment(total);
+    }, [generatedRows]);
 
     return (
         <>
@@ -473,6 +483,25 @@ function Calculate() {
                         </Grid>
                     </Grid>
                 ))}
+                    <Grid container spacing={1} columns={12}>
+                        <Grid item xs={12} sm={12} md={8} ></Grid>
+                        <Grid item xs={12} sm={12} md={4} >
+                            <Grid container spacing={1} columns={12}>
+                                <Grid item xs={12} sm={8} md={8} lg={8} xl={8} sx={{ textAlign: 'center', marginTop: 'auto' }}>
+                                    
+                                    {totalRepayment > 0 && (
+                                        <Grid container spacing={2} >
+                                            <Grid item xs={12} sx={{ textAlign: 'center' }}>
+                                                <Typography sx={{ fontSize: '17px', fontWeight: '500', marginTop: '10px', backgroundColor: '#28344c1c',borderRadius:'5px' }}>
+                                                    TOPLAM : {totalRepayment.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")} TL
+                                                </Typography>
+                                            </Grid>
+                                        </Grid>
+                                    )}
+                                </Grid>
+                            </Grid>
+                        </Grid>
+                    </Grid>
             </Box>
 
 
