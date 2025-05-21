@@ -4,6 +4,8 @@ import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import Divider from "@mui/material/Divider";
+import { useDispatch } from 'react-redux';
+import { setTaxes } from '../Redux/slices/taxesSlice';
 
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
@@ -20,6 +22,7 @@ const CustomRadio = styled(Radio)(({ theme }) => ({
 function SelectRadioBtn({ setConsumerCreditType, setCreditType }) {
     const [selectedOption, setSelectedOption] = React.useState('Ticari');
     const [subOption, setSubOption] = React.useState('option1');
+    const dispatch = useDispatch();
 
 
 
@@ -28,6 +31,10 @@ function SelectRadioBtn({ setConsumerCreditType, setCreditType }) {
         if (event.target.value === 'Ticari') {
             setCreditType(1);
             setConsumerCreditType(1);
+            dispatch(setTaxes([
+                { id: 0, title: 'BSMV', amount: '5' },
+                { id: 1, title: 'KKDF', amount: '0' }
+            ]));
         } else if (event.target.value === 'Bireysel') {
             setCreditType(2);
         }
@@ -38,10 +45,22 @@ function SelectRadioBtn({ setConsumerCreditType, setCreditType }) {
         setSubOption(event.target.value);
         if (event.target.value === 'option1') {
             setConsumerCreditType(1);
+            dispatch(setTaxes([
+                { id: 0, title: 'BSMV', amount: '10' },
+                { id: 1, title: 'KKDF', amount: '15' }
+            ]));
         } else if (event.target.value === 'option2') {
             setConsumerCreditType(2);
+            dispatch(setTaxes([
+                { id: 0, title: 'BSMV', amount: '20' },
+                { id: 1, title: 'KKDF', amount: '25' }
+            ]));
         } else if (event.target.value === 'option3') {
             setConsumerCreditType(3);
+            dispatch(setTaxes([
+                { id: 0, title: 'BSMV', amount: '30' },
+                { id: 1, title: 'KKDF', amount: '35' }
+            ]));
         }
     };
 
