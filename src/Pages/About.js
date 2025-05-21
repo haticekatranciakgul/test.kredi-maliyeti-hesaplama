@@ -3,7 +3,7 @@ import Box from '@mui/material/Box';
 import Divider from '@mui/material/Divider';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Typography from '@mui/material/Typography';
-import ListFormula from '../Components/ListFormula';
+import ListFormula from '../components/ListFormula';
 
 
 const theme = createTheme({

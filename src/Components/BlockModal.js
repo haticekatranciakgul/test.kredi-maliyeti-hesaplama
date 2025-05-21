@@ -6,15 +6,15 @@ import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
-import { closeModal } from '../Redux/slices/modalSlice';
+import { closeModal } from '../redux/slices/modalSlice';
 import Grid from "@mui/material/Grid";
 import { ThemeProvider, useTheme } from "@mui/material";
 import CssBaseline from "@mui/material/CssBaseline";
-import { ColorModeContext } from "../theme";
-import { setBlockData } from "../Redux/slices/blockSlice";
+import { ColorModeContext } from "../constants/theme";
+import { setBlockData } from "../redux/slices/blockSlice";
 
-import { setInitial } from "../Redux/slices/blockSlice";
-import { handleFormattedChange } from '../utils';
+import { setInitial } from "../redux/slices/blockSlice";
+import { handleFormattedChange } from '../utils/utils';
 
 export default function FormDialog() {
     const dispatch = useDispatch();

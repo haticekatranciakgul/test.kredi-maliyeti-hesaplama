@@ -1,0 +1,330 @@
+0. Debugging
+debugging
+breakpoints
+developer tools (components tab)
+developer tools (profiler tab)
+developer tools (flamegraph Tab)
+developer tools (ranked tab)
+developer tools (timeline tab)
+Best tools to debbugging your React code
+  - BrowserStack Automate
+  - Chrome DevTools
+  - Zipy.ai
+  - React Developer Tool
+  - Redux Dev Tools
+  - Why Did You Render
+  - Reactotron
+  - Error Boundaries
+  - Jest
+  - Storybook
+  - Enzyme
+  - React Cosmos
+  - React Sight
+  - LogRocket
+1. Use functional components instead of class components
+Functional components are simpler and support Hooks. (Fonksiyonel bileşenler daha basittir ve Hook'ları destekler.) Functional Component
+
+Syntax : function, const Component = () => {}
+State Management : useState()
+Lifecycle : useState(), useReducer()
+Readability : Easy
+Reusability : Easy
+Performance : Good
+Test : Easy Class Component
+Syntax : class Component extends React.Component {}
+State Management : this.state and this.setState()
+Lifecycle : componentDidMount, componentDidUpdate
+Readability : Hard
+Reusability : Hard
+Performance : Slow
+Test : Hard
+2. Component Composition
+Build components by combining smaller ones. (Bileşenleri, daha küçük bileşenleri birleştirerek oluşturun.) props = {children}
+3. Avoid Using Inline Styles
+Use CSS or styled-components for maintainability. (Sürdürülebilirlik için CSS veya styled-components kullanın. Bileşene özel CSS modal.css)
+4. Use Arrow Functions
+Arrow functions are cleaner and keep the context (this). (Arrow function'lar daha temizdir ve this bağlamını korur.)
+5. Use the lazy() and Suspense() Functions
+Split code to improve load time. (Kodu bölerek yükleme süresini azaltın.)
+6. Optimize Component Rendering
+Use React.memo, useMemo, and useCallback. (React.memo, useMemo ve useCallback kullanarak yeniden render'ı azaltın.)
+7. Use Type Declaration Tools
+Use TypeScript or PropTypes. TypeScript veya PropTypes ile veri türlerini tanımlayın.
+8. Use a Linter and Follow its rules (ESLint, Prettier)
+Ensures consistent code style. (Tutarlı bir kod stili sağlar.)
+9. Test Your Code
+Use testing tools like Jest or React Testing Library. (Jest veya React Testing Library gibi araçlarla test yapın.)
+10. Write Test Cases
+Make sure each component works as expected. (Her bileşenin beklenildiği gibi çalıştığını doğrulayın.) - Jest: En yaygın kullanılan test framework'üdür, özellikle React projelerinde. - React Testing Library: Kullanıcı davranışlarını test etmek için mükemmeldir. - Enzyme: Özellikle eski projelerde yaygın. - Cypress: E2E testler için kullanılır. - Mocha + Chai: Daha esnek bir test yapısı sağlar.
+11. Higher-Order Components (HOC)
+Reuse component logic by wrapping them. (Bileşen mantığını yeniden kullanmak için sarmalayın.)
+    withUserData.js
+
+    import React, { useEffect, useState } from "react";
+
+    const withUserData = (WrappedComponent) => {
+      return function WithUserDataComponent(props) {
+        const [userData, setUserData] = useState(null);
+        const [loading, setLoading] = useState(true);
+
+        useEffect(() => {
+          const fetchUserData = async () => {
+            try {
+              const res = await fetch("https://jsonplaceholder.typicode.com/users/1");
+              const data = await res.json();
+              setUserData(data);
+              setLoading(false);
+            } catch (error) {
+              console.error("Error fetching user data:", error);
+              setLoading(false);
+            }
+          };
+
+          fetchUserData();
+        }, []);
+
+        if (loading) {
+          return <p>Loading user data...</p>;
+        }
+
+        return <WrappedComponent userData={userData} {...props} />;
+      };
+    };
+
+    export default withUserData;
+
+
+    UserInfo.js
+
+    import React from "react";
+
+    const UserInfo = ({ userData }) => {
+      return (
+        <div>
+          <h2>User Info</h2>
+          <p><strong>Name:</strong> {userData.name}</p>
+          <p><strong>Email:</strong> {userData.email}</p>
+          <p><strong>City:</strong> {userData.address.city}</p>
+        </div>
+      );
+    };
+
+    export default UserInfo;
+
+
+    App.js
+
+    import React from "react";
+    import withUserData from "./withUserData";
+    import UserInfo from "./UserInfo";
+
+    const EnhancedUserInfo = withUserData(UserInfo);
+
+    function App() {
+      return (
+        <div className="App">
+          <h1>Higher-Order Component Demo</h1>
+          <EnhancedUserInfo />
+        </div>
+      );
+    }
+
+    export default App;
+withUserData, UserInfo bileşenini sarar.
+User verisini alır ve userData prop'u olarak verir.
+Ve App içinde bu haliyle kullanılır: <EnhancedUserInfo />
+12. DRY (Don't Repeat Yourself)
+Avoid repeating code, create reusable functions. (Kendini tekrar etme, tekrar kullanılabilir fonksiyonlar yaz.)
+13. Separate Stateful Aspect From Rendering
+Keep logic and UI separate. (Durum yönetimini görsel kısımdan ayır.)
+14. Clean Code ( deleting any commented-out code, removing zombie code, and restructuring. ), code splitting
+Remove commented or unused code. (Yorum satırlarını ve kullanılmayan kodları sil.)
+15. Sorting Your Imports Correctly in React
+Keep imports organized (libraries, components, styles). (İçe aktarmaları düzenli tut (önce kütüphaneler, sonra bileşenler, stiller vb.).)
+
+Ideal Import Order in React (İdeal Import Sıralaması (Genel Kural)) . Third-party libraries (React, Redux, Axios, vs...) . Absolute imports (context, hooks, utils, etc...) . Relative imports (components, local files...) . Styles (CSS, SCSS, styled-components...)
+
+Third-party libraries
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import axios from "axios";
+Absolute imports (varsayılan olarak @/utils veya context gibi)
+import { ThemeContext } from "@/context/ThemeContext";
+import useAuth from "@/hooks/useAuth";
+Relative imports
+import Navbar from "../components/Navbar";
+import Button from "./Button";
+Styles
+import "./App.css";
+import "../styles/theme.scss";
+16. Keep your key prop unique across your whole App (map key={index})
+Use unique key props in lists. Avoid index. (Liste elemanlarında benzersiz key kullan, index kullanmaktan kaçın.)
+Bad Practice (Yanlış):
+
+{items.map((item, index) => (
+  <div key={index}>{item.name}</div>
+))}
+Good Practice (Doğru):
+
+{items.map((item) => (
+  <div key={item.id}>{item.name}</div>
+))}
+17. Use shorthand for boolean props
+Use disabled instead of disabled={true}. (disabled={true} yerine sadece disabled yaz.)
+18. Avoid curly braces for string props
+Use title="Hello" not title={"Hello"}. (title={"Hello"} yerine title="Hello" kullan.)
+19. Erase non-html attributes when spreading props
+Avoid passing unknown props to DOM. (HTML olmayan props'ları DOM'a yayma.)
+20. Integrate self-closing tags when no children are needed
+Use <Input /> instead of <Input></Input> (Çocuk bileşen yoksa kendini kapatan etiket kullan.)
+21. Follow common naming conventions
+Type	Convention	Example
+Components	PascalCase	LoginForm
+Component file	PascalCase	LoginForm.js
+Component folder	PascalCase	/components/LoginForm
+Props	camelCase	userEmail, onClick
+Variables	camelCase	let totalPrice = 99
+Functions	camelCase	getUserProfile()
+Utility functions	camelCase	formatDate
+Utility functions file	camelCase	formatDate.js
+Hooks	camelCase	useFetchData()
+Hook file	kebab-case	use-auth.js
+Redux Slice	camelCase	userSlice.js
+Redux Slice name	camelCase	userSlice
+Context file	kebab-case	auth-context.js
+Constants	SCREAMING_SNAKE_CASE	API_BASE_URL
+Route paths	kebab-case	/user-profile, /login-page
+Style file	kebab-case	login-form.module.css
+Asset file	kebab-case	logo-dark.svg
+Routes	kebab-case	/user-profile, /login-page
+Icons folder	kebab-case	/icons/
+Test file	PascalCase	LoginForm.test.js
+Component Folder Singular /Button, /Card, /Navbar
+Collections Folder Plural /components, /hooks, /pages, /services, /utils
+22. Github repostiory naming conventions standarts word-word
+Purpose	Naming Example
+App or Website	blog-platform, ecommerce-store
+Library / Package	react-form-builder, date-utils
+Tutorials / Learning	react-hooks-tutorial, js-30-day-challenge
+API Backends	notes-api, auth-service
+UI Components	mui-datepicker, tailwind-card-grid
+23. Keep a clear and standart folder structure
+  src/
+├── app/                     # Redux store konfigürasyonu
+│   └── store.js
+│
+├── features/                # Tüm slice'lar ve ilgili logic (feature-based architecture)
+│   ├── auth/                # Örnek feature: authentication
+│   │   ├── authSlice.js
+│   │   ├── authAPI.js
+│   │   ├── AuthPage.jsx
+│   │   └── authSelectors.js
+│   │
+│   ├── products/            # Örnek feature: products
+│   │   ├── productsSlice.js
+│   │   ├── productsAPI.js
+│   │   ├── ProductList.jsx
+│   │   └── productSelectors.js
+│   │
+│   └── ...                  # Diğer feature'lar
+│
+├── components/             # Reusable components (UI widgets)
+│   ├── Navbar.jsx
+│   ├── Button.jsx
+│   └── ...
+│
+├── layouts/                # Sayfa yapısını oluşturan layout bileşenleri
+│   ├── MainLayout.jsx
+│   └── ...
+│
+├── pages/                  # Route edilen sayfalar (React Router ile)
+│   ├── HomePage.jsx
+│   ├── LoginPage.jsx
+│   └── ...
+│
+├── routes/                 # Route tanımlamaları
+│   └── AppRoutes.jsx
+│
+├── services/               # API servisleri (axios instance vs.)
+│   ├── axios.js
+│   └── ...
+│
+├── hooks/                  # Custom React Hooks
+│   ├── useAuth.js
+│   └── ...
+│
+├── utils/                  # Yardımcı fonksiyonlar
+│   ├── formatDate.js
+│   └── ...
+│
+├── constants/              # Sabit değerler (API endpointleri, renkler vs.)
+│   ├── api.js
+│   └── ...
+│
+├── assets/                 # Görseller, ikonlar, stiller
+│   ├── images/
+│   ├── icons/
+│   └── styles/
+│
+├── index.js                # Uygulamanın giriş noktası
+└── App.js                  # Root bileşeni
+constants, config folder structure
+
+📁 Proje Klasör Yapısı Açıklaması
+Klasör	Ne İçin Kullanılır?	İçerik Örnekleri
+constants	Değişmeyen sabit değerler	Action Types, Routes, Colors, Status Codes
+config	Ortama bağlı ayarlar ve API yapılandırmaları	API URL, Firebase, Feature Flags, Env Settings
+24. Apply SOLID Principles
+25. Coding performance improvement, use efficient code
+26. Divide large components into small components
+27. Dont do over nesting
+28. Use the comments when requirements
+29. Use state manangement (Redux)
+30. Use reusable units, readablity, maintability, flexable
+31. Commit message standard
+32. Todo standard: // TODO: Will be converted to enum
+33. Gitignore template
+34. Debugging Methods
+35. Clean console.log for production code
+36. Api naming convention format
+https://medium.com/@nadinCodeHat/rest-api-naming-conventions-and-best-practices-1c4e781eb6a5
+
+37. Template to do create
+38. Use React best practice
+39. Use API layer (in services)
+40. Response model
+Member names SHOULD be camel-cased (i.e., wordWordWord)
+Member names SHOULD start and end with a character “a-z” (U+0061 to U+007A)
+Member names SHOULD contain only ASCII alphanumeric characters (i.e., “a-z”, “A-Z”, and “0-9”)
+(Veri kontrolü: API'den gelen verinin beklediğimiz yapıya uygun olup olmadığını kontrol ederiz.
+Tip güvenliği: Hangi alanın ne tipte olduğunu biliriz.
+Kod tamamlama / IntelliSense: IDE daha rahat yardım eder.)
+41. Rest API standarts
+Singleton and Collection Resources /customers //is a collection resource /customers/{id} // is a singleton resource
+Collection and Sub-collection Resources /customers //is a collection resource /customers/{id}/accounts // is a sub-collection resource
+Use nouns to represent resources /device-management/managed-devices /device-management/managed-devices/{device-id} /user-management/users /user-management/users/{id}
+Document
+http://api.example.com/device-management/managed-devices/{device-id} http://api.example.com/user-management/users/{id} http://api.example.com/user-management/users/admin
+Collection
+/device-management/managed-devices /user-management/users /user-management/users/{id}/accounts
+Store /song-management/users/{id}/playlists
+Use forward slash (/) to indicate hierarchical relationships /device-management /device-management/managed-devices /device-management/managed-devices/{id} /device-management/managed-devices/{id}/scripts /device-management/managed-devices/{id}/scripts/{id}
+Do not use trailing forward slash (/) in URIs http://api.example.com/device-management/managed-devices/ http://api.example.com/device-management/managed-devices /This is much better version/
+Use hyphens (-) to improve the readability of URIs http://api.example.com/devicemanagement/manageddevices/ http://api.example.com/device-management/managed-devices /This is much better version/
+Do not use underscores ( _ ) http://api.example.com/inventory-management/managed-entities/{id}/install-script-location //More readable http://api.example.com/inventory-management/managedEntities/{id}/installScriptLocation //Less readable
+Use lowercase letters in URIs http://api.example.org/my-folder/my-doc
+Do not use file extensions /device-management/managed-devices.xml /Do not use it/ /device-management/managed-devices /This is correct URI/
+Never use CRUD function names in URIs HTTP GET /device-management/managed-devices //Get all devices HTTP POST /device-management/managed-devices //Create new Device HTTP GET /device-management/managed-devices/{id} //Get device for given Id HTTP PUT /device-management/managed-devices/{id} //Update device for given Id HTTP DELETE /device-management/managed-devices/{id} //Delete device for given Id
+Use query component to filter URI collection /device-management/managed-devices /device-management/managed-devices?region=USA /device-management/managed-devices?region=USA&brand=XYZ /device-management/managed-devices?region=USA&brand=XYZ&sort=installation-date
+Do not Use Verbs in the URI /device-management/managed-devices/{id}/scripts/{id}/execute //DON't DO THIS! /device-management/managed-devices/{id}/scripts/{id}/status //POST request with action=execute
+42. Performance Optimization with Single Fetch Requests
+Why use 1 fetch instead of 3?
+Better performance Fetching all data at once makes the page load faster. Fewer network calls = quicker response.
+
+Less load on the server Instead of handling 3 separate requests, the server processes only 1. This reduces server CPU and memory usage — especially important for high-traffic apps.
+
+Cleaner and simpler code Handling data from one response is easier than managing multiple async calls. Fewer lines of code = fewer bugs.
+
+Reduced network usage Especially helpful for users on mobile or slow networks. Browsers limit how many requests can be sent at the same time — too many slows everything down.
+
+❌ Don’t: /user, /posts, /comments → 3 fetch calls ✅ Do: /allData → 1 fetch with everything included

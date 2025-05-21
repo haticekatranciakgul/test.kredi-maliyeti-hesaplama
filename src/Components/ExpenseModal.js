@@ -7,14 +7,14 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
-import { closeModal } from '../Redux/slices/modalSlice';
+import { closeModal } from '../redux/slices/modalSlice';
 import Grid from "@mui/material/Grid";
 import AddIcon from "@mui/icons-material/Add";
 import { ThemeProvider, useTheme } from "@mui/material";
 import CssBaseline from "@mui/material/CssBaseline";
-import { ColorModeContext } from "../theme";
-import { handleFormattedChange } from '../utils';
-import { setExpenses, updateExpenseAmount } from '../Redux/slices/expensesSlice';
+import { ColorModeContext } from "../constants/theme";
+import { handleFormattedChange } from '../utils/utils';
+import { setExpenses, updateExpenseAmount } from '../redux/slices/expensesSlice';
 
 
 

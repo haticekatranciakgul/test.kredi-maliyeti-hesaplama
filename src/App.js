@@ -1,13 +1,13 @@
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Home from "./Pages/Home";
-import { ColorModeContext, useMode } from "./theme";
+import Home from "./pages/Home";
+import { ColorModeContext, useMode } from "./constants/theme";
 import { CssBaseline, ThemeProvider } from "@mui/material";
-import Layout from "./Pages/Layout";
-import About from "./Pages/About";
-import Calculate from "./Pages/Calculate";
-import Contact from "./Pages/Contact";
-import Sss from "./Pages/Sss";
+import Layout from "./pages/Layout";
+import About from "./pages/About";
+import Calculate from "./pages/Calculate";
+import Contact from "./pages/Contact";
+import Sss from "./pages/Sss";
 
 
 const App = () => {
