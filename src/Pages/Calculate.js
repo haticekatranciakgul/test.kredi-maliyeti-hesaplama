@@ -46,7 +46,7 @@ function Calculate() {
     const [initialInput, setInitialInput] = useState("");
     const [initialError, setInitialError] = useState(false);
     const [inputCountError, setInputCountError] = useState(false);
-    const [odemeError, setOdemeError] = useState(false);
+    const [creditsInputError, setCreditsInputError] = useState(false);
     const initial = useSelector((state) => state.block.initial);
     const [generatedRows, setGeneratedRows] = useState([]);
     const [tableData, setTableData] = useState([]);
@@ -83,7 +83,7 @@ function Calculate() {
 
     const handleCreditsChange = (e) => {
         const value = e.target.value;
-        setOdemeError(value === "");
+        setCreditsInputError(value === "");
         handleFormattedChange(value, setCreditsInput, setCredits);
     };
 
@@ -137,7 +137,7 @@ function Calculate() {
         // Validate all required fields
         setInitialError(initialInput === "");
         setInputCountError(inputCount === "");
-        setOdemeError(creditsInput === "");
+        setCreditsInputError(creditsInput === "");
 
         try {
             const credits = generatedRows.map((row) => parseFloat(row.value2.replace(/\./g, "").replace(",", ".")) || 0);
@@ -323,8 +323,8 @@ function Calculate() {
                                 <Grid item xs={12} sm={4} md={4} lg={4} xl={4}>
                                     <TextField fullWidth variant="standard" size="small"
                                         required
-                                        error={odemeError}
-                                        helperText={odemeError ? "Bu alan zorunludur" : ""} 
+                                        error={creditsInputError}
+                                        helperText={creditsInputError ? "Bu alan zorunludur" : ""} 
                                         label="GERİ ÖDEMELER"
                                         value={creditsInput}
                                         onChange={handleCreditsChange}
