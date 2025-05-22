@@ -16,9 +16,7 @@ import { ColorModeContext } from "../theme";
 import { handleFormattedChange } from '../utils';
 import { setExpenses, updateExpenseAmount } from '../Redux/slices/expensesSlice';
 
-
-
-export default function FormDialog() {
+const FormDialog = () => {
     const dispatch = useDispatch();
     const open = useSelector((state) => state.modal.isOpen);
     const expenses = useSelector((state) => state.expenses.expenses);
@@ -161,3 +159,5 @@ export default function FormDialog() {
         </ColorModeContext.Provider>
     );
 }
+
+export default FormDialog;

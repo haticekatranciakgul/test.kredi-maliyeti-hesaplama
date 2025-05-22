@@ -39,12 +39,11 @@ import Tooltip from '@mui/material/Tooltip';
 import Fab from '@mui/material/Fab';
 import { keyframes } from '@mui/system';
 
-
-function SlideTransition(props) {
+const SlideTransition = (props) => {
     return <Slide {...props} direction="left" />;
 }
 
-function Calculate() {
+const Calculate = () => {
     const [inputCount, setInputCount] = useState("");
     const [credits, setCredits] = useState("");
     const [creditsInput, setCreditsInput] = useState("");

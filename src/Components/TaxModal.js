@@ -16,17 +16,13 @@ import { ColorModeContext } from "../theme";
 import { setTaxes } from '../Redux/slices/taxesSlice';
 import InputAdornment from '@mui/material/InputAdornment';
 
-
-
-export default function FormDialog() {
+const FormDialog = () => {
     const dispatch = useDispatch();
     const open = useSelector((state) => state.modal.isOpen);
     const taxes = useSelector((state) => state.taxes.taxes);
     const [rows, setRows] = useState(taxes);
     const theme = useTheme();
     const colorMode = useContext(ColorModeContext);
-
-
 
     const handleClose = () => {
         dispatch(closeModal());
@@ -38,8 +34,6 @@ export default function FormDialog() {
         setRows([...rows, newRow]);
     };
 
-
-
     const handleInputChange = (index, field, value) => {
         const newRows = [...rows];
 
@@ -50,8 +44,6 @@ export default function FormDialog() {
         newRows[index] = { ...newRows[index], [field]: value };
         setRows(newRows);
     };
-
-
 
     const handleSave = async () => {
         dispatch(setTaxes(rows));
@@ -152,3 +144,5 @@ export default function FormDialog() {
         </ColorModeContext.Provider>
     );
 }
+
+export default FormDialog;

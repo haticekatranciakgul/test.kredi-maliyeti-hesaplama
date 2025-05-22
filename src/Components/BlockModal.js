@@ -16,7 +16,7 @@ import { setBlockData } from "../Redux/slices/blockSlice";
 import { setInitial } from "../Redux/slices/blockSlice";
 import { handleFormattedChange } from '../utils';
 
-export default function FormDialog() {
+const FormDialog = () => {
     const dispatch = useDispatch();
     const open = useSelector((state) => state.modal.isOpen);
     const blockData = useSelector((state) => state.block);
@@ -179,3 +179,5 @@ export default function FormDialog() {
         </ColorModeContext.Provider>
     );
 }
+
+export default FormDialog;

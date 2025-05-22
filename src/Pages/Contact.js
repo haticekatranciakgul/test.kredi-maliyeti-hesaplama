@@ -16,28 +16,23 @@ import { setSnackbarOpen } from "../Redux/slices/formSlice";
 import { Alert, Snackbar } from "@mui/material";
 import Slide from '@mui/material/Slide';
 
-
-function SlideTransition(props) {
+const SlideTransition = (props) => {
     return <Slide {...props} direction="left" />;
 }
-
 
 const FormGrid = styled(Grid)(() => ({
     display: 'flex',
     flexDirection: 'column',
 }));
 
-function Contact() {
+const Contact = () => {
     const { control, handleSubmit, formState: { errors } } = useForm();
     const dispatch = useDispatch();
     const formStatus = useSelector((state) => state.form.status);
 
-
     const onSubmit = (data) => {
         dispatch(submitForm(data));
-     
     };
-
 
     const snackbarOpen = useSelector((state) => state.form.snackbarOpen);
     const snackbarMessage = useSelector((state) => state.form.snackbarMessage);
