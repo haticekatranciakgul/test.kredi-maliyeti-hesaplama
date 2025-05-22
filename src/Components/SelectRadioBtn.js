@@ -7,9 +7,6 @@ import Divider from "@mui/material/Divider";
 import { useDispatch } from 'react-redux';
 import { setTaxes } from '../Redux/slices/taxesSlice';
 
-import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
-import CardContent from '@mui/material/CardContent';
 
 const CustomRadio = styled(Radio)(({ theme }) => ({
     "&.Mui-checked": {
