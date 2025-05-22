@@ -47,6 +47,7 @@ function Calculate() {
     const [initialError, setInitialError] = useState(false);
     const [inputCountError, setInputCountError] = useState(false);
     const [creditsInputError, setCreditsInputError] = useState(false);
+
     const initial = useSelector((state) => state.block.initial);
     const [generatedRows, setGeneratedRows] = useState([]);
     const [tableData, setTableData] = useState([]);
@@ -135,11 +136,32 @@ function Calculate() {
         setSnackbarOpen(true);
     };
 
+    const validateForm = () => {
+        let isValid = true;
+        
+        if (!initialInput) {
+            setInitialError(true);
+            isValid = false;
+        }
+        
+        if (!inputCount) {
+            setInputCountError(true);
+            isValid = false;
+        }
+        
+        if (!creditsInput) {
+            setCreditsInputError(true);
+            isValid = false;
+        }
+
+        return isValid;
+    };
+
     const handleSave = async () => {
-        // Validate all required fields
-        setInitialError(initialInput === "");
-        setInputCountError(inputCount === "");
-        setCreditsInputError(creditsInput === "");
+        if (!validateForm()) {
+          // showSnackbar("Lütfen tüm alanları doğru şekilde doldurunuz", "error");
+            return;
+        }
 
         try {
             const credits = generatedRows.map((row) => parseFloat(row.value2.replace(/\./g, "").replace(",", ".")) || 0);
@@ -160,7 +182,6 @@ function Calculate() {
                 block_amount: newBlockAmount,
                 taxes: taxes,
             };
-             console.log(payload)
             dispatch(setBlockData({ block: newBlock, block_amount: newBlockAmount }));
             const tableResponse = await createTable(payload);
 
@@ -175,7 +196,6 @@ function Calculate() {
                     column5: row.fields.remaining_principal_amount,
                 }));
 
-
                 dispatch(setPrepaidExpenses(tableResponse.prepaid_expenses));
                 dispatch(setInterestPayableOnLoans(tableResponse.interest_payable_on_loans));
                 dispatch(setTaxesOnLoanInterestPayable(tableResponse.taxes_on_loan_interest_payable));
@@ -188,8 +208,6 @@ function Calculate() {
                 dispatch(setIrrValue(tableResponse.irr));
 
                 showSnackbar("İşlem Başarılı", "success");
-
-
             } else {
                 showSnackbar("API Yanıt Hatası", "warning");
                 dispatch(setIrrValue(null));
@@ -198,6 +216,7 @@ function Calculate() {
             handleError(error, showSnackbar);
         }
     };
+
     useEffect(() => {
         if (blockData) {
             setBlock(blockData.block || 0);
