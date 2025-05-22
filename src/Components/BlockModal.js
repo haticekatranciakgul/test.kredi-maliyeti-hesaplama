@@ -90,7 +90,7 @@ const FormDialog = () => {
             block_amount: parseFloat(blockAmount) || 0,
             raw_block_amount: formattedRawBlockAmount,
         }));
-        console.log("Kaydedilen rawBlockAmount:", formattedRawBlockAmount);
+        //console.log("Kaydedilen rawBlockAmount:", formattedRawBlockAmount);
 
         try {
             handleClose();
