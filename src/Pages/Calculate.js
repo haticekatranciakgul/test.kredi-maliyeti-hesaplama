@@ -33,6 +33,11 @@ import {
     setAnnualCompoundCostIvo
 } from '../Redux/slices/costSlice';
 import { handleFormattedChange } from '../utils';
+import WhatsAppIcon from '@mui/icons-material/WhatsApp';
+import IconButton from '@mui/material/IconButton';
+import Tooltip from '@mui/material/Tooltip';
+import Fab from '@mui/material/Fab';
+import { keyframes } from '@mui/system';
 
 
 function SlideTransition(props) {
@@ -231,6 +236,23 @@ function Calculate() {
         }, 0);
         setTotalRepayment(total);
     }, [generatedRows]);
+
+    const handleWhatsAppShare = () => {
+        const currentUrl = window.location.href;
+        const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(`Kredi Maliyeti Hesaplama: ${currentUrl}`)}`;
+        window.open(whatsappUrl, '_blank');
+    };
+
+    const rippleAnimation = keyframes`
+        0% {
+            transform: scale(1);
+            opacity: 0.5;
+        }
+        100% {
+            transform: scale(1.5);
+            opacity: 0;
+        }
+    `;
 
     return (
         <>
@@ -656,6 +678,36 @@ function Calculate() {
 
             </Grid>
             <CreateTable tableData={tableData} />
+
+            {/* WhatsApp Share Button */}
+            <Tooltip title="WhatsApp'ta Paylaş" placement="left">
+                <Fab
+                    color="primary"
+                    aria-label="share"
+                    onClick={handleWhatsAppShare}
+                    sx={{
+                        position: 'fixed',
+                        bottom: 100,
+                        right: 30,
+                        backgroundColor: '#25D366',
+                        '&:hover': {
+                            backgroundColor: '#128C7E',
+                            '&::before': {
+                                content: '""',
+                                position: 'absolute',
+                                width: '100%',
+                                height: '100%',
+                                borderRadius: '50%',
+                                backgroundColor: '#25D366',
+                                animation: `${rippleAnimation} 1.5s infinite`,
+                                zIndex: -1
+                            }
+                        }
+                    }}
+                >
+                    <WhatsAppIcon />
+                </Fab>
+            </Tooltip>
         </>
     )
 }
