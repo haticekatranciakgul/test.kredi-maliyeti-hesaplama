@@ -160,7 +160,7 @@ function Calculate() {
                 block_amount: newBlockAmount,
                 taxes: taxes,
             };
-            // console.log(payload)
+             console.log(payload)
             dispatch(setBlockData({ block: newBlock, block_amount: newBlockAmount }));
             const tableResponse = await createTable(payload);
 

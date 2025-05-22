@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { FormControl, FormControlLabel, Radio, RadioGroup, styled } from '@mui/material';
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
@@ -24,17 +24,37 @@ function SelectRadioBtn({ setConsumerCreditType, setCreditType }) {
     const [subOption, setSubOption] = React.useState('option1');
     const dispatch = useDispatch();
 
-
+    useEffect(() => {
+        if (selectedOption === 'Ticari') {
+            dispatch(setTaxes([
+                { id: 0, title: 'BSMV', amount: '5' },
+                { id: 1, title: 'KKDF', amount: '0' }
+            ]));
+        } else if (selectedOption === 'Bireysel') {
+            if (subOption === 'option1') {
+                dispatch(setTaxes([
+                    { id: 0, title: 'BSMV', amount: '10' },
+                    { id: 1, title: 'KKDF', amount: '15' }
+                ]));
+            } else if (subOption === 'option2') {
+                dispatch(setTaxes([
+                    { id: 0, title: 'BSMV', amount: '20' },
+                    { id: 1, title: 'KKDF', amount: '25' }
+                ]));
+            } else if (subOption === 'option3') {
+                dispatch(setTaxes([
+                    { id: 0, title: 'BSMV', amount: '30' },
+                    { id: 1, title: 'KKDF', amount: '35' }
+                ]));
+            }
+        }
+    }, [selectedOption, subOption, dispatch]);
 
     const handleMainOptionChange = (event) => {
         setSelectedOption(event.target.value);
         if (event.target.value === 'Ticari') {
             setCreditType(1);
             setConsumerCreditType(1);
-            dispatch(setTaxes([
-                { id: 0, title: 'BSMV', amount: '5' },
-                { id: 1, title: 'KKDF', amount: '0' }
-            ]));
         } else if (event.target.value === 'Bireysel') {
             setCreditType(2);
         }
@@ -45,22 +65,10 @@ function SelectRadioBtn({ setConsumerCreditType, setCreditType }) {
         setSubOption(event.target.value);
         if (event.target.value === 'option1') {
             setConsumerCreditType(1);
-            dispatch(setTaxes([
-                { id: 0, title: 'BSMV', amount: '10' },
-                { id: 1, title: 'KKDF', amount: '15' }
-            ]));
         } else if (event.target.value === 'option2') {
             setConsumerCreditType(2);
-            dispatch(setTaxes([
-                { id: 0, title: 'BSMV', amount: '20' },
-                { id: 1, title: 'KKDF', amount: '25' }
-            ]));
         } else if (event.target.value === 'option3') {
             setConsumerCreditType(3);
-            dispatch(setTaxes([
-                { id: 0, title: 'BSMV', amount: '30' },
-                { id: 1, title: 'KKDF', amount: '35' }
-            ]));
         }
     };
 
