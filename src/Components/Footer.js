@@ -83,7 +83,7 @@ export default function Footer() {
               minWidth: { xs: '100%', sm: '60%' },
             }}
           >
-            <Link color="text.secondary" variant="body2" target="_blank" href={`https://www.linkedin.com/in/h%C3%BCseyin-ba%C4%9Fr%C4%B1yan%C4%B1k-51bb6165/?originalSubdomain=tr`}>
+            <Link color="text.secondary" variant="body2" target="_blank" href={`https://www.linkedin.com/in/haticekatranci/`}>
               <Typography variant="body2" sx={{ color: 'text.secondary', mb: 2 }}>
                 Bu sayfanın geliştirilmesi ile ilgili düşüncelerinizi iletin.
               </Typography>
