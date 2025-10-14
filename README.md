@@ -1,53 +1,160 @@
-## Live
-Kredi Maliyet Hesaplama Page - [Link](https://testkredi-maliyeti-hesaplama.vercel.app/)
+# 💰 Credit Cost Calculation System
 
-<img width="1435" alt="Screenshot 2025-02-12 at 18 56 51" src="https://github.com/user-attachments/assets/cc3ccd76-a5dc-4934-8d83-9f3845ece60e" />
+A professional web application for calculating credit costs with a modern and user-friendly interface.
 
+## 🌟 Live Demo
 
-# Getting Started with Create React App
+🔗 **[Try the Application](https://testkredi-maliyeti-hesaplama.vercel.app/)**
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<img width="1435" alt="Credit Cost Calculator Application Screenshot" src="https://github.com/user-attachments/assets/cc3ccd76-a5dc-4934-8d83-9f3845ece60e" />
 
-## Available Scripts
+## 📋 About the Project
 
-In the project directory, you can run:
+This project is a modern web application that enables users to calculate credit costs in detail. Developed for banks, financial institutions, and individual users, this tool provides complex financial operations such as IRR (Internal Rate of Return) calculations, tax calculations, and cost analysis through a simple interface.
 
-### `npm start`
+## ✨ Features
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### 🔧 Core Functions
+- **Credit Cost Calculation**: Detailed credit cost analysis
+- **IRR Calculation**: Internal Rate of Return computation
+- **Tax Calculations**: BSMV and other tax calculations
+- **Dynamic Tables**: User-defined calculation tables
+- **Block/Period Management**: Flexible period-based calculations
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### 🎨 User Experience
+- **Responsive Design**: Perfect appearance on all devices
+- **Material-UI**: Modern and professional interface
+- **Dark/Light Theme**: Theme switching according to user preference
+- **Loading States**: Performance optimization and user notifications
+- **Form Validation**: Real-time data validation
 
-### `npm test`
+### 🚀 Technical Features
+- **Lazy Loading**: Page-based code splitting
+- **Redux Toolkit**: Modern state management
+- **React Hook Form**: High-performance form management
+- **Axios**: HTTP request management
+- **File Export**: Excel/CSV export capabilities
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## 🛠️ Technology Stack
 
-### `npm run build`
+### Frontend
+- **React 18** - Modern component-based UI
+- **Material-UI (MUI)** - Professional design system
+- **Redux Toolkit** - State management
+- **React Router v6** - Client-side routing
+- **React Hook Form** - Form handling
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Styling & UI
+- **Emotion** - CSS-in-JS styling
+- **Material Icons** - Icon library
+- **Pro Sidebar** - Navigation component
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Utilities & Tools
+- **Axios** - HTTP client
+- **File Saver** - File download functionality
+- **React Markdown** - Markdown rendering
+- **IMask** - Input masking
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## 🚀 Installation and Setup
 
-### `npm run eject`
+### Prerequisites
+- Node.js (v14 or higher)
+- npm or yarn
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### Installation
+```bash
+# Clone the repository
+git clone https://github.com/haticekatranciakgul/test.kredi-maliyeti-hesaplama.git
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+# Navigate to project directory
+cd test.kredi-maliyeti-hesaplama
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+# Install dependencies
+npm install
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+# Start development server
+npm start
+```
 
-## Learn More
+### Available Scripts
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+#### `npm start`
+Runs the app in development mode.  
+Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+
+#### `npm test`
+Launches the test runner in interactive watch mode.
+
+#### `npm run build`
+Builds the app for production to the `build` folder.  
+Optimizes React in production mode for the best performance.
+
+#### `npm run eject`
+⚠️ **This is a one-way operation!** Once you eject, you can't go back.
+
+## 📁 Project Structure
+
+```
+src/
+├── Components/          # Reusable components
+│   ├── BlockModal.js    # Block/period modal component
+│   ├── CreateTable.js   # Dynamic table creator
+│   ├── ExpenseModal.js  # Expense modal component
+│   └── ...
+├── Pages/              # Page components
+│   ├── Calculate.js    # Main calculation page
+│   ├── Home.js         # Homepage
+│   └── ...
+├── Redux/              # State management
+│   ├── store.js        # Redux store configuration
+│   └── slices/         # Redux Toolkit slices
+└── services/           # API services
+```
+
+## 🎯 Use Cases
+
+- **Banking Sector**: Credit cost calculations
+- **Financial Institutions**: Risk analysis and cost calculation
+- **Individual Use**: Personal loan comparison
+- **Accounting**: Financial advisory services
+- **Academic**: Financial mathematics education
+
+## 🔧 Configuration
+
+The application can be configured using environment variables:
+
+```env
+REACT_APP_API_URL=your_api_url_here
+REACT_APP_VERSION=1.0.0
+```
+
+## 🤝 Contributing
+
+1. Fork the project
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+## 📄 License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+
+## 👤 Developer
+
+**Hatice Akgül**
+- GitHub: [@haticekatranciakgul](https://github.com/haticekatranciakgul)
+- LinkedIn: [Hatice Akgül](https://linkedin.com/in/haticeakgul)
+
+## 📞 Contact
+
+For questions about the project:
+- 📧 Email: haticeakgul@example.com
+- 💬 WhatsApp: In-app contact button
+
+---
+
+⭐ If you like this project, don't forget to give it a star!
 
 To learn React, check out the [React documentation](https://reactjs.org/).
 
